@@ -12,6 +12,7 @@ import com.revrobotics.spark.SparkBase;
 import com.revrobotics.spark.SparkClosedLoopController;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkBase.PersistMode;
+import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.config.SparkBaseConfig;
 import com.revrobotics.spark.config.SparkMaxConfig;
 
@@ -45,7 +46,7 @@ public class CoralPivot extends SubsystemBase {
     coralPivotConfig.inverted(false); 
     coralPivotConfig.smartCurrentLimit(Constants.MotorControllers.SMART_CURRENT_LIMIT);
 
-    coralPivotMotor.configure(coralPivotConfig,SparkBase.ResetMode.kResetSafeParameters ,SparkBase.PersistMode.kPersistParameters);
+    coralPivotMotor.configure(coralPivotConfig, ResetMode.kResetSafeParameters, PersistMode.kNoPersistParameters);
         
     try {
       //  This tries to make a new digital input, and if it fails, throws an error 
