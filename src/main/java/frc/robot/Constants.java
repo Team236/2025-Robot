@@ -14,6 +14,7 @@ package frc.robot;
 public final class Constants {
 
   public static final class Controller {
+    //USB port number of the xbox controllers
     public static final int USB_DRIVECONTROLLER = 0;
     public static final int USB_AUXCONTROLLER = 1;
   }
@@ -21,22 +22,23 @@ public final class Constants {
   public static class MotorControllers {
     public static final int SMART_CURRENT_LIMIT = 40;
 
+    //Motor ID Numbers
     //Elevator (placeholder)
     public static final int ID_ELEVATOR_LEFT = 46;
     public static final int ID_ELEVATOR_RIGHT = 47;
 
     //AlgaeHold (placeholder)
-    public static final int ID_ALGAE_HOLD = 1;
+    public static final int ID_ALGAE_HOLD = 49;
 
    //CoralHold (placeholder)
     // public static final int ID_CORAL_HOLD_MOTORSRX = 14; //IF USE TALON SRX
-    public static final int ID_CORAL_HOLD_MOTOR = 60;//WILL BE BRUSHED SM MOTOR
+    public static final int ID_CORAL_HOLD_MOTOR = 1;//WILL BE BRUSHED SM MOTOR
 
     //AlgaePivot (placeholder)
-    public static final int ID_ALGAE_PIVOT = 2;//Change to 50 when test algaehold
+    public static final int ID_ALGAE_PIVOT = 50;//Change to 50 when test algaehold
 
      //CoralPivot (placeholder)
-     public static final int ID_CORAL_PIVOT = 50;
+     public static final int ID_CORAL_PIVOT = 2;//Change to 50 when test coralhold
   }
 
   public static class Elevator {
@@ -76,8 +78,8 @@ public static class CoralHold {
 }
 
   public static class AlgaePivot {
-    public static final int DIO_EXT_LIMIT = 1;//change to 8 when test AlgaePivot
-    public static final int DIO_RET_LIMIT = 2;//change to 9 when test AlgaePivot
+    public static final int DIO_EXT_LIMIT = 8;//change to 8 when test AlgaePivot
+    public static final int DIO_RET_LIMIT = 9;//change to 9 when test AlgaePivot
     public static final double ENC_REVS_MAX = -74;
     public static final double ENC_REVS_TEST1 = -30;
     public static final double ENC_REVS_TEST2 = -52;
@@ -90,8 +92,8 @@ public static class CoralHold {
   }
   
   public static class CoralPivot {
-    public static final int DIO_EXT_LIMIT = 8; //change to 8 when test AlgaePivot
-    public static final int DIO_RET_LIMIT = 9; //change to 9 when test AlgaePivot
+    public static final int DIO_EXT_LIMIT = 1; //change to 8 when test AlgaePivot
+    public static final int DIO_RET_LIMIT = 2; //change to 9 when test AlgaePivot
     public static final double ENC_REVS_MAX = -74;
     public static final double ENC_REVS_TEST1 = -30;
     public static final double ENC_REVS_TEST2 = -52;
@@ -101,6 +103,8 @@ public static class CoralHold {
     public static final double KI = 0;
     public static final double KD = 0;
     public static final double KFF = 0;
+    public static final int DIO_ENC_A = 11;
+    public static final int DIO_ENC_B = 12;
   }
   
   public static class XboxController {

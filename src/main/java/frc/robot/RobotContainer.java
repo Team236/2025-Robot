@@ -50,7 +50,6 @@ public class RobotContainer {
   //AlgaePivot
   private final ManualAlgaePivot algaePivotDown = new ManualAlgaePivot(algaePivot, Constants.AlgaePivot.MAN_EXT_SPEED);
   private final ManualAlgaePivot algaePivotUp = new ManualAlgaePivot(algaePivot, Constants.AlgaePivot.MAN_RET_SPEED);
-
   private final PIDAlgaePivot pidAlgaePivot1 = new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_TEST1);
   private final PIDAlgaePivot pidAlgaePivot2 = new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_TEST2);
   
@@ -131,6 +130,9 @@ public class RobotContainer {
 //
     //rb.whileTrue(algaePivotUp);
     //rm.whileTrue(algaePivotDown);
+
+    rb.whileTrue(algaeGrabPull);
+    rm.whileTrue(algaeGrabRelease);
 //
     //x.onTrue(pidAlgaePivot1);
     //y.onTrue(pidAlgaePivot2);
@@ -144,10 +146,10 @@ public class RobotContainer {
     //leftPov.whileTrue(coralGrabWithCounter);
     //rightPov.whileTrue(coralReleaseL4);
 
-    upPov.whileTrue(coralPivotUp);
-    downPov.whileTrue(coralPivotDown);
-    a.onTrue(pidCoralPivot1);
-    b.onTrue(pidCoralPivot2);
+    //upPov.whileTrue(algaePivotUp);
+    //downPov.whileTrue(algaePivotDown);
+    //a.onTrue(pidAlgaePivot1);
+    //b.onTrue(pidAlgaePivot2);
     
   }
 
