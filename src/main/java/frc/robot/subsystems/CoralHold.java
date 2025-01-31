@@ -123,7 +123,7 @@ public class CoralHold extends SubsystemBase {
   @Override
   public void periodic() {
   // This method will be called once per scheduler run
-   SmartDashboard.putNumber("Intake periodic count is:", getCoralHCount());
+   SmartDashboard.putNumber("Coral count is:", getCoralHCount());
    SmartDashboard.putBoolean("HasNote: ", counter.get()>0);
   }
 
