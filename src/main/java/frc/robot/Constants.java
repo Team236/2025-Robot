@@ -38,7 +38,7 @@ public final class Constants {
     public static final int ID_ALGAE_PIVOT = 50;//Change to 50 when test algaehold
 
      //CoralPivot (placeholder)
-     public static final int ID_CORAL_PIVOT = 2;//Change to 50 when test coralhold
+     public static final int ID_CORAL_PIVOT = 42;//Change to 50 when test coralhold
   }
 
   public static class Elevator {
@@ -97,14 +97,14 @@ public static class CoralHold {
     public static final double ENC_REVS_MAX = -74;
     public static final double ENC_REVS_TEST1 = -30;
     public static final double ENC_REVS_TEST2 = -52;
-    public static final double MAN_EXT_SPEED = -0.1;
-    public static final double MAN_RET_SPEED = 0.1;
+    public static final double MAN_EXT_SPEED = -0.3;
+    public static final double MAN_RET_SPEED = 0.3;
     public static final double KP = 0.029;
     public static final double KI = 0;
     public static final double KD = 0;
     public static final double KFF = 0;
     public static final int DIO_ENC_A = 11;
-    public static final int DIO_ENC_B = 12;
+    public static final int DIO_ENC_B = 10;
   }
   
   public static class XboxController {

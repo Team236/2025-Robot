@@ -4,6 +4,7 @@
 
 package frc.robot.commands.CoralPivotCommands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.CoralPivot;
 
@@ -23,7 +24,9 @@ public class ManualCoralPivot extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    SmartDashboard.putBoolean("Manual coral pivot command initualized", true);
   }
+
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override

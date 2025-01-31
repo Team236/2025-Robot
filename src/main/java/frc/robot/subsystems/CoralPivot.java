@@ -74,6 +74,7 @@ public void resetCoralEncoder() {
 }
 
 public void stopCoralPivot() {
+  SmartDashboard.putBoolean("set speed of coral pivot motor: ", true);
   coralPivotMotor.set(0);
 }
 
