@@ -46,7 +46,7 @@ public class CoralHold extends SubsystemBase {
     
     // SPARK MAX
     //TODO Change to using a brushed motor (with SparkMax controller)
-    coralHoldMotor = new SparkMax(Constants.MotorControllers.ID_CORAL_HOLD_MOTOR , MotorType.kBrushless);
+    coralHoldMotor = new SparkMax(Constants.MotorControllers.ID_CORAL_HOLD_MOTOR , MotorType.kBrushed);
 
     coralHoldConfig = new SparkMaxConfig();
 
