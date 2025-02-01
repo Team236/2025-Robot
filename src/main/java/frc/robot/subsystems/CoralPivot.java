@@ -37,13 +37,13 @@ public class CoralPivot extends SubsystemBase {
 
     /** Creates a new CoralPivot. */
     public CoralPivot() {
-    coralPivotMotor = new SparkMax(Constants.MotorControllers.ID_CORAL_PIVOT, MotorType.kBrushless);
+    coralPivotMotor = new SparkMax(Constants.MotorControllers.ID_CORAL_PIVOT, MotorType.kBrushed);
     //coralPivotEncoder = coralPivotMotor.getEncoder(); 
 
     coralPivotEncoder = new Encoder(Constants.CoralPivot.DIO_ENC_A, Constants.CoralPivot.DIO_ENC_B);
 
     coralPivotConfig = new SparkMaxConfig();
-    coralPivotConfig.inverted(false); 
+    coralPivotConfig.inverted(true); //TODO change to false when using 2024 Robot Tilt motor ID50
     coralPivotConfig.smartCurrentLimit(Constants.MotorControllers.SMART_CURRENT_LIMIT);
 
     coralPivotMotor.configure(coralPivotConfig, ResetMode.kResetSafeParameters, PersistMode.kNoPersistParameters);
@@ -67,7 +67,7 @@ public class CoralPivot extends SubsystemBase {
 // methods start here
 public double getCoralEncoder() {  //gives encoder reading in Revs
   //return coralPivotEncoder.getPosition();
-  return coralPivotEncoder.getRaw() / 256;
+  return coralPivotEncoder.getRaw() / 512;
 }
 
 public void resetCoralEncoder() {
@@ -75,7 +75,7 @@ public void resetCoralEncoder() {
 }
 
 public void stopCoralPivot() {
-  SmartDashboard.putBoolean("set speed of coral pivot motor: ", true);
+ // SmartDashboard.putBoolean("set speed of coral pivot motor: ", true);
   coralPivotMotor.set(0);
 }
 
@@ -100,26 +100,29 @@ if (isCoralPivotRetException) {
 
 public boolean isFullyExtended() {
   return (getCoralEncoder() <= Constants.CoralPivot.ENC_REVS_MAX);
+  //return (getCoralEncoder() <= Constants.CoralPivot.ENC_REVS_MAX);
 }
 
 public void setCoralPivotSpeed(double speed) {
   if (speed <= 0) {  
     if (isCoralExtLimit() || isFullyExtended()) {
+      //SmartDashboard.putBoolean("the CP speed negative and extend limit is hit- stop: ", true);
         // if fully extended limit is tripped or at the maximum desired extension and going out, stop 
         stopCoralPivot();
      }  else {
         // extending out but fully extended limit is not tripped, go at commanded speed
-       coralPivotMotor.set(speed);
+       coralPivotMotor.set(speed);//TODO change back to possitive
       }
  } 
  else {
       if (isCoralRetLimit()) {
         // retracting and retract limit is tripped, stop and zero encoder
         stopCoralPivot();
+        //SmartDashboard.putBoolean("the CP speed positive and retact limit hit - stop: ", true);
         resetCoralEncoder();
       } else {
         // retracting but fully retracted limit is not tripped, go at commanded speed
-        coralPivotMotor.set(speed);
+        coralPivotMotor.set(speed); //TODO change back to positive
       }
      }
 }

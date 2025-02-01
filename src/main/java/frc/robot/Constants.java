@@ -38,7 +38,7 @@ public final class Constants {
     public static final int ID_ALGAE_PIVOT = 50;//Change to 50 when test algaehold
 
      //CoralPivot (placeholder)
-     public static final int ID_CORAL_PIVOT = 42;//Change to 50 when test coralhold
+     public static final int ID_CORAL_PIVOT = 34;//34 is brushed motor
   }
 
   public static class Elevator {
@@ -78,8 +78,8 @@ public static class CoralHold {
 }
 
   public static class AlgaePivot {
-    public static final int DIO_EXT_LIMIT = 8;//change to 8 when test AlgaePivot
-    public static final int DIO_RET_LIMIT = 9;//change to 9 when test AlgaePivot
+    public static final int DIO_EXT_LIMIT = 1;//TODO change to 8 when test AlgaePivot
+    public static final int DIO_RET_LIMIT = 2;//TODO change to 9 when test AlgaePivot
     public static final double ENC_REVS_MAX = -74;
     public static final double ENC_REVS_TEST1 = -30;
     public static final double ENC_REVS_TEST2 = -52;
@@ -92,13 +92,13 @@ public static class CoralHold {
   }
   
   public static class CoralPivot {
-    public static final int DIO_EXT_LIMIT = 1; //change to 8 when test AlgaePivot
-    public static final int DIO_RET_LIMIT = 2; //change to 9 when test AlgaePivot
-    public static final double ENC_REVS_MAX = -74;
-    public static final double ENC_REVS_TEST1 = -30;
-    public static final double ENC_REVS_TEST2 = -52;
-    public static final double MAN_EXT_SPEED = -0.3;
-    public static final double MAN_RET_SPEED = 0.3;
+    public static final int DIO_EXT_LIMIT = 8; //TODO change to 8 when test AlgaePivot
+    public static final int DIO_RET_LIMIT = 9; //TODO change to 9 when test AlgaePivot
+    public static final double ENC_REVS_MAX = -74;//TODO change to -74 when test AlgaePivot with 2024
+    public static final double ENC_REVS_TEST1 = 5;
+    public static final double ENC_REVS_TEST2 = 3;
+    public static final double MAN_EXT_SPEED = -0.1;
+    public static final double MAN_RET_SPEED = 0.1;
     public static final double KP = 0.029;
     public static final double KI = 0;
     public static final double KD = 0;
