@@ -85,7 +85,7 @@ public class TargetForwardDistance extends Command {
     double targetingForwardSpeed = error*kPtranslation;
 
      SmartDashboard.putNumber("Forward distance from Robot Bumper to tag in inches: ", ((dz/0.0254)-Constants.Targeting.DIST_CAMERA_TO_BUMPER_FWD));
-    //targetingForwardSpeed *= -1.0;
+   
     double translationVal = targetingForwardSpeed;
    
    //This sets Y and rotational movement equal to the value passed when command called (which is joystick value)

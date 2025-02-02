@@ -75,7 +75,7 @@ public class TargetSideDistance extends Command {
     error = dx - finalStandoff; //OR DO WE NEED ADD finalStandoff here instead of subtract it?
     double targetingSidewaysSpeed = error*kPstrafe;
 
-    SmartDashboard.putNumber("Side to side distance - camera to target, in inches: ", dx/0.0254);
+   // SmartDashboard.putNumber("Side to side distance - camera to target, in inches: ", dx/0.0254);
 
     targetingSidewaysSpeed *= -1.0;  //IS NEEDED
     double strafeVal = targetingSidewaysSpeed;
