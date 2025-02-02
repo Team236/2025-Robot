@@ -3,12 +3,16 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 package frc.robot;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.autos.exampleAuto;
+import frc.robot.commands.TeleopSwerve;
 import frc.robot.commands.AlgaeHoldCommands.AlgaeGrab;
 import frc.robot.commands.AlgaePivotCommands.ManualAlgaePivot;
 import frc.robot.commands.AlgaePivotCommands.PIDAlgaePivot;
@@ -19,9 +23,16 @@ import frc.robot.commands.CoralPivotCommands.ManualCoralPivot;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
 import frc.robot.commands.ElevatorCommands.ManualUpDown;
 import frc.robot.commands.ElevatorCommands.PIDToHeight;
+import frc.robot.commands.Targeting.TargetAllParallel;
+import frc.robot.commands.Targeting.TargetAllSeries;
+import frc.robot.commands.Targeting.TargetAngle;
+import frc.robot.commands.Targeting.TargetForwardDistance;
+import frc.robot.commands.Targeting.TargetMegaTag2;
+import frc.robot.commands.Targeting.TargetSideDistance;
 import frc.robot.subsystems.AlgaeHold;
 import frc.robot.subsystems.AlgaePivot;
 import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.Swerve;
 import frc.robot.subsystems.CoralHold;
 import frc.robot.subsystems.CoralPivot;
 /**
@@ -36,12 +47,40 @@ public class RobotContainer {
   XboxController driverController = new XboxController(Constants.Controller.USB_DRIVECONTROLLER);
   XboxController auxController = new XboxController(Constants.Controller.USB_AUXCONTROLLER);
 
-  //Subsystems
+   //AUTO SWITCHES
+  private static DigitalInput autoSwitch1 = new DigitalInput(Constants.DIO_AUTO_1);
+  private static DigitalInput autoSwitch2 = new DigitalInput(Constants.DIO_AUTO_2);
+  private static DigitalInput autoSwitch3 = new DigitalInput(Constants.DIO_AUTO_3);
+  private static DigitalInput autoSwitch4 = new DigitalInput(Constants.DIO_AUTO_4);
+
+   //Subsystems
   private final AlgaeHold  algaeHold = new AlgaeHold();
   private final AlgaePivot algaePivot = new AlgaePivot();
   private final Elevator elevator = new Elevator();
   private final CoralHold coralHold = new CoralHold();
-  private final CoralPivot coralPivot = new CoralPivot();
+  private final CoralPivot coralPivot = new CoralPivot(); 
+  private final Swerve s_Swerve = new Swerve();
+
+    
+    /* Drive Controls */
+    private final int translationAxis = XboxController.Axis.kLeftY.value;
+    private final int strafeAxis = XboxController.Axis.kLeftX.value;
+    private final int rotationAxis = XboxController.Axis.kRightX.value;
+
+    /* Driver Buttons */
+    private final JoystickButton zeroGyro = new JoystickButton(driverController, XboxController.Button.kY.value);
+    private final JoystickButton robotCentric = new JoystickButton(driverController, XboxController.Button.kLeftBumper.value);
+
+    //DRIVE COMMANDS
+    private final TargetAllParallel targetAllParallel = new TargetAllParallel(s_Swerve, 9, 0);
+    //***Forward standoff - input into command as inches from bumper
+    private final TargetAllSeries targetAllSeries = new TargetAllSeries(s_Swerve, 9, 0);
+    private final TargetAngle targetAngle =  new TargetAngle(s_Swerve, -driverController.getRawAxis(translationAxis), -driverController.getRawAxis(strafeAxis));
+    private final TargetForwardDistance targetForwardDistance = new TargetForwardDistance(s_Swerve, -driverController.getRawAxis(strafeAxis), -driverController.getRawAxis(rotationAxis), 8);
+    private final TargetSideDistance targetSideDistance = new TargetSideDistance(s_Swerve, -driverController.getRawAxis(translationAxis), -driverController.getRawAxis(rotationAxis), 0);
+    private final TargetMegaTag2 target3DMegaTag2 = new TargetMegaTag2(s_Swerve);
+
+  
 
   //AlgaeHold
   private final AlgaeGrab algaeGrabPull = new AlgaeGrab(algaeHold, Constants.AlgaeHold.HOLD_SPEED);
@@ -75,6 +114,15 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    s_Swerve.setDefaultCommand(
+            new TeleopSwerve(
+                s_Swerve, 
+                () -> -driverController.getRawAxis(translationAxis), 
+                () -> -driverController.getRawAxis(strafeAxis), 
+                () -> -driverController.getRawAxis(rotationAxis), 
+                () -> robotCentric.getAsBoolean()
+            )
+        );
     // Configure the trigger bindings
     configureBindings();
   }
@@ -90,13 +138,17 @@ public class RobotContainer {
    */
   private void configureBindings() {
     //Buttons
-
+ zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroHeading()));
     //Main Xbox Controller
     JoystickButton a = new JoystickButton(driverController, Constants.XboxController.A);
     JoystickButton b = new JoystickButton(driverController, Constants.XboxController.B);
-    JoystickButton y = new JoystickButton(driverController, Constants.XboxController.Y);
+      //Y on driver controller is assigned to "zeroGyro" above
+   // JoystickButton y = new JoystickButton(driver, Constants.XboxController.Y);
+   //leftBumper on driver controller is assigned to "robotCentric" above
+   // JoystickButton lb = new JoystickButton(driver, Constants.XboxController.LB);
+    // JoystickButton y = new JoystickButton(driverController, Constants.XboxController.Y);
     JoystickButton x = new JoystickButton(driverController, Constants.XboxController.X);
-    JoystickButton lb = new JoystickButton(driverController, Constants.XboxController.LB);
+   // JoystickButton lb = new JoystickButton(driverController, Constants.XboxController.LB);
     JoystickButton rb = new JoystickButton(driverController, Constants.XboxController.RB);
     JoystickButton lm = new JoystickButton(driverController, Constants.XboxController.LM);
     JoystickButton rm = new JoystickButton(driverController, Constants.XboxController.RM);
@@ -125,6 +177,17 @@ public class RobotContainer {
 
     //Inputs
 
+    //y button is already assigned to ZeroGyro
+    //leftBumper button is already assigned to RobotCentric
+
+   // a.whileTrue(targetAllSeries);
+   // b.whileTrue(targetAllParallel);
+   // upPov.whileTrue(targetAngle);
+   // x.whileTrue(targetForwardDistance);
+
+   // rb.whileTrue(targetSideDistance);
+   // downPov.whileTrue(target3DMegaTag2);
+
     //lb.whileTrue(elevatorDown);
     //lm.whileTrue(elevatorUp);
     //downPov.onTrue(pidElevatorL1);
@@ -144,10 +207,10 @@ public class RobotContainer {
 //
     
 //
-    a.whileTrue(coralGrab);
-    b.whileTrue(coralRelease);
-    leftPov.whileTrue(coralGrabWithCounter);
-    rightPov.whileTrue(coralReleaseL4);
+  //  a.whileTrue(coralGrab);
+   // b.whileTrue(coralRelease);
+   // leftPov.whileTrue(coralGrabWithCounter);
+   // rightPov.whileTrue(coralReleaseL4);
 
     //upPov.whileTrue(algaePivotUp);
     //downPov.whileTrue(algaePivotDown);
@@ -157,8 +220,8 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return null; // Replace with autonomous command
-    //  return new ExampleCommand(m_exampleSubsystem);
+   return new exampleAuto(s_Swerve, false);
+  
   }
 
 }
