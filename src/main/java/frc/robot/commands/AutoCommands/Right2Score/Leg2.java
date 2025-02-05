@@ -1,4 +1,4 @@
-package frc.robot.commands.AutoCommands.RRedorLBlue2Score;
+package frc.robot.commands.AutoCommands.Right2Score;
 
 import frc.robot.Constants;
 import frc.robot.subsystems.Swerve;
@@ -18,9 +18,9 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 
-public class Leg1 extends SequentialCommandGroup {
-  //TODO: X always positive, so pass in false for "reversed" in Container when command is called
-    public Leg1(Swerve s_Swerve, boolean reversed){
+public class Leg2 extends SequentialCommandGroup {
+    //TODO: X always positive, so pass in false for "reversed" in Container when command is called
+    public Leg2(Swerve s_Swerve, boolean reversed){ 
         TrajectoryConfig config =
             new TrajectoryConfig(
                     Constants.AutoConstants.kMaxSpeedMetersPerSecond,
@@ -33,11 +33,11 @@ public class Leg1 extends SequentialCommandGroup {
                 // Start at the origin facing the +X direction
                  new Pose2d(0, 0, new Rotation2d(0)),
                 // Pass through these interior waypoints
-                List.of(new Translation2d(Units.inchesToMeters(23), Units.inchesToMeters(2.2) ), 
-                       new Translation2d(Units.inchesToMeters(46), Units.inchesToMeters(4.5) ),
-                       new Translation2d(Units.inchesToMeters(89), Units.inchesToMeters(6.8) )),  
+                List.of(new Translation2d(Units.inchesToMeters(4.5), Units.inchesToMeters(38.7) ), 
+                       new Translation2d(Units.inchesToMeters(9), Units.inchesToMeters(77.5) ),
+                       new Translation2d(Units.inchesToMeters(13.5), Units.inchesToMeters(116.3) )),  
                 // End here
-               new Pose2d(Units.inchesToMeters(113), Units.inchesToMeters(9), new Rotation2d(Units.degreesToRadians(-12.3))),
+               new Pose2d(Units.inchesToMeters(18.1), Units.inchesToMeters(155), new Rotation2d(Units.degreesToRadians(-83.8))),
                 config);
 
         var thetaController =

@@ -1,4 +1,4 @@
-package frc.robot.commands.AutoCommands.RRedorLBlue2Score;
+package frc.robot.commands.AutoCommands.Right2Score;
 
 import frc.robot.Constants;
 import frc.robot.subsystems.Swerve;

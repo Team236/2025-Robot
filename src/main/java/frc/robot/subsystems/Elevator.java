@@ -25,8 +25,6 @@ public class Elevator extends SubsystemBase {
   private CurrentLimitsConfigs leftCurrentConfigs, rightCurrentConfigs;
   private MotorOutputConfigs leftOutputConfigs, rightOutputConfigs;
 
-  //public RelativeEncoder leftElevEncoder, rightElevEncoder;
-
   private DigitalInput elevatorTopLimit, elevatorBottomLimit;
   private boolean isTException, isBException;
 

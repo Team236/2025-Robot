@@ -144,17 +144,17 @@ The numbers used below are robot specific, and should be tuned. */
 
     @Override
     public void periodic(){
-        swerveOdometry.update(getGyroYaw(), getModulePositions());
-        SmartDashboard.putNumber("Pose2D-X", Units.metersToInches(getPose().getX()));
-        SmartDashboard.putNumber("Pose2D-Y", Units.metersToInches(getPose().getY()));
-        SmartDashboard.putNumber("Pose2D-ThetaDegrees", getPose().getRotation().getDegrees());
+       // swerveOdometry.update(getGyroYaw(), getModulePositions());
+      //  SmartDashboard.putNumber("Pose2D-X", Units.metersToInches(getPose().getX()));
+       // SmartDashboard.putNumber("Pose2D-Y", Units.metersToInches(getPose().getY()));
+       // SmartDashboard.putNumber("Pose2D-ThetaDegrees", getPose().getRotation().getDegrees());
 
-        for(SwerveModule mod : mSwerveMods){
-            SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Velocity", mod.getState().speedMetersPerSecond);
-            SmartDashboard.putNumber("Mod " + mod.moduleNumber + " CANcoder degrees", mod.getCANcoder().getDegrees());
-            SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Angle degrees", mod.getPosition().angle.getDegrees());
-            //SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Velocity m/s", mod.getState().speedMetersPerSecond);
-        }
+       //  for(SwerveModule mod : mSwerveMods){
+        //    SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Velocity", mod.getState().speedMetersPerSecond);
+       //    SmartDashboard.putNumber("Mod " + mod.moduleNumber + " CANcoder degrees", mod.getCANcoder().getDegrees());
+         //   SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Angle degrees", mod.getPosition().angle.getDegrees());
+         //   SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Velocity m/s", mod.getState().speedMetersPerSecond);
+        //  }
       // poseAngle = LimelightHelpers.getTargetPose_CameraSpace("limelight")[5];
        // SmartDashboard.putNumber("TargetingAngle in swerve: ", poseAngle);
        // poseForwardDistance = LimelightHelpers.getTargetPose_CameraSpace("limelight")[2];
