@@ -45,8 +45,10 @@ public final class Constants {
 
     //Motor ID Numbers
     //Elevator (placeholder)
-    public static final int ID_ELEVATOR_LEFT = 46;
-    public static final int ID_ELEVATOR_RIGHT = 47;
+    // public static final int ID_ELEVATOR_LEFT = 46;
+    // public static final int ID_ELEVATOR_RIGHT = 47;
+    public static final int ID_ELEVATOR_LEFT_TALON = 11;
+    public static final int ID_ELEVATOR_RIGHT_TALON = 12;
 
     //AlgaeHold (placeholder)
     public static final int ID_ALGAE_HOLD = 49;
