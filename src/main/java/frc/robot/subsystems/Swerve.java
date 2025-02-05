@@ -19,6 +19,7 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -144,6 +145,9 @@ The numbers used below are robot specific, and should be tuned. */
     @Override
     public void periodic(){
         swerveOdometry.update(getGyroYaw(), getModulePositions());
+        SmartDashboard.putNumber("Pose2D-X", Units.metersToInches(getPose().getX()));
+        SmartDashboard.putNumber("Pose2D-Y", Units.metersToInches(getPose().getY()));
+        SmartDashboard.putNumber("Pose2D-ThetaDegrees", getPose().getRotation().getDegrees());
 
         for(SwerveModule mod : mSwerveMods){
             SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Velocity", mod.getState().speedMetersPerSecond);

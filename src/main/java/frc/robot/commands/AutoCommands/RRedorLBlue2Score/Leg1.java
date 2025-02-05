@@ -37,7 +37,7 @@ public class Leg1 extends SequentialCommandGroup {
                        new Translation2d(Units.inchesToMeters(46), Units.inchesToMeters(4.5) ),
                        new Translation2d(Units.inchesToMeters(89), Units.inchesToMeters(6.8) )),  
                 // End here
-               new Pose2d(Units.inchesToMeters(113), Units.inchesToMeters(9), new Rotation2d(Units.degreesToRadians(12.3))),
+               new Pose2d(Units.inchesToMeters(113), Units.inchesToMeters(9), new Rotation2d(Units.degreesToRadians(-12.3))),
                 config);
 
         var thetaController =

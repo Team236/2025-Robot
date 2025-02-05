@@ -16,6 +16,8 @@ import frc.robot.commands.TeleopSwerve;
 import frc.robot.commands.AlgaeHoldCommands.AlgaeGrab;
 import frc.robot.commands.AlgaePivotCommands.ManualAlgaePivot;
 import frc.robot.commands.AlgaePivotCommands.PIDAlgaePivot;
+import frc.robot.commands.AutoCommands.RRedorLBlue2Score.FullRun;
+import frc.robot.commands.AutoCommands.RRedorLBlue2Score.Leg1;
 import frc.robot.commands.CoralHoldCommands.CoralGrabWithCounter;
 import frc.robot.commands.CoralHoldCommands.CoralGrab;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
@@ -220,7 +222,7 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-   return new exampleAuto(s_Swerve, false);
+   return new Leg1(s_Swerve, false);
   
   }
 
