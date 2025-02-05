@@ -108,16 +108,16 @@ public class Elevator extends SubsystemBase {
 
   // reset/zero encoders
   public void resetElevatorEncoders(){
-    leftElevEncoder.setPosition(0);
-    rightElevEncoder.setPosition(0);
+    leftElevatorMotor.setPosition(0);
+    rightElevatorMotor.setPosition(0);
   }
 
   //returns encoder position in REVOLUTIONS (number of rotations)
   public double getElevLeftEncoder() {
-    return leftElevEncoder.getPosition(); //for a SparkMax encoder
+    return leftElevatorMotor.getPosition().getValueAsDouble(); //for a SparkMax encoder
   }
     public double getElevRightEncoder() {
-    return rightElevEncoder.getPosition(); //for a SparkMax encoder
+    return rightElevatorMotor.getPosition().getValueAsDouble(); //for a SparkMax encoder
   }
 
   //returns revolutions of encoders -- NOT CONVERTED TO INCHES
