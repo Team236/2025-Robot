@@ -12,11 +12,6 @@ import com.ctre.phoenix6.configs.TalonFXConfigurator;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.revrobotics.RelativeEncoder;
-import com.revrobotics.spark.SparkMax;
-import com.revrobotics.spark.SparkBase.PersistMode;
-import com.revrobotics.spark.SparkBase.ResetMode;
-import com.revrobotics.spark.SparkLowLevel.MotorType;
-import com.revrobotics.spark.config.SparkMaxConfig;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -24,15 +19,13 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Elevator extends SubsystemBase {
   /** Creates a new Elevator. */
-  //TODO  Change to TalonFX motor controllers (not using SparkMax)
-  //private SparkMax leftElevatorMotor, rightElevatorMotor;
   private TalonFX leftElevatorMotor, rightElevatorMotor;
   private TalonFXConfigurator leftConfig, rightConfig;
+
   private CurrentLimitsConfigs leftCurrentConfigs, rightCurrentConfigs;
   private MotorOutputConfigs leftOutputConfigs, rightOutputConfigs;
-  // private SparkMaxConfig leftConfig, rightConfig;
 
-  public RelativeEncoder leftElevEncoder, rightElevEncoder;
+  //public RelativeEncoder leftElevEncoder, rightElevEncoder;
 
   private DigitalInput elevatorTopLimit, elevatorBottomLimit;
   private boolean isTException, isBException;
@@ -40,35 +33,25 @@ public class Elevator extends SubsystemBase {
   public Elevator() {
     leftElevatorMotor = new TalonFX(Constants.MotorControllers.ID_ELEVATOR_LEFT_TALON);
     rightElevatorMotor = new TalonFX(Constants.MotorControllers.ID_ELEVATOR_RIGHT_TALON);
-    // leftElevatorMotor = new SparkMax(Constants.MotorControllers.ID_ELEVATOR_LEFT, MotorType.kBrushless);
-    // rightElevatorMotor = new SparkMax(Constants.MotorControllers.ID_ELEVATOR_RIGHT, MotorType.kBrushless);
 
-   // leftElevatorMotor.configure(leftConfig, ResetMode.kResetSafeParameters, PersistMode.kNoPersistParameters);
-    //rightElevatorMotor.configure(rightConfig, ResetMode.kResetSafeParameters, PersistMode.kNoPersistParameters);
-//CREATE ENCODERS!! New encoder???
     // configure motors
     leftConfig = leftElevatorMotor.getConfigurator();
     leftCurrentConfigs = new CurrentLimitsConfigs();
+    leftCurrentConfigs.StatorCurrentLimitEnable = true;   
     leftCurrentConfigs.StatorCurrentLimit = (Constants.MotorControllers.SMART_CURRENT_LIMIT);
     leftOutputConfigs = new MotorOutputConfigs();
-    leftOutputConfigs.Inverted = InvertedValue.CounterClockwise_Positive;
-
+    leftOutputConfigs.Inverted = InvertedValue.CounterClockwise_Positive;//TODO- both CCW or both CW
     leftConfig.apply(leftCurrentConfigs);
     leftConfig.apply(leftOutputConfigs);
 
-
     rightConfig = leftElevatorMotor.getConfigurator();
     rightCurrentConfigs = new CurrentLimitsConfigs();
+    rightCurrentConfigs.StatorCurrentLimitEnable = true;   
     rightCurrentConfigs.StatorCurrentLimit = (Constants.MotorControllers.SMART_CURRENT_LIMIT);
     rightOutputConfigs = new MotorOutputConfigs();
-    rightOutputConfigs.Inverted = InvertedValue.CounterClockwise_Positive;
-
+    rightOutputConfigs.Inverted = InvertedValue.CounterClockwise_Positive;//TODO- both CCW or both CW
     rightConfig.apply(leftCurrentConfigs);
     rightConfig.apply(leftOutputConfigs);
-
-
-   //leftElevEncoder = leftElevatorMotor.getEncoder();
-   // rightElevEncoder = rightElevatorMotor.getEncoder();
 
     try {
       elevatorTopLimit = new DigitalInput(Constants.Elevator.DIO_ELEV_TOP);
@@ -114,10 +97,10 @@ public class Elevator extends SubsystemBase {
 
   //returns encoder position in REVOLUTIONS (number of rotations)
   public double getElevLeftEncoder() {
-    return leftElevatorMotor.getPosition().getValueAsDouble(); //for a SparkMax encoder
+    return leftElevatorMotor.getPosition().getValueAsDouble();
   }
     public double getElevRightEncoder() {
-    return rightElevatorMotor.getPosition().getValueAsDouble(); //for a SparkMax encoder
+    return rightElevatorMotor.getPosition().getValueAsDouble();
   }
 
   //returns revolutions of encoders -- NOT CONVERTED TO INCHES
@@ -127,7 +110,6 @@ public class Elevator extends SubsystemBase {
 
  // check if elevator is at "top" according to user definition
   public boolean isTop() {
-    boolean eTop;
     return (getElevatorHeight() >= Constants.Elevator.MAX_HEIGHT);
   }
 
