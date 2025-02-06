@@ -232,10 +232,10 @@ public class RobotContainer {
     //a.onTrue(pidAlgaePivot1);
     //b.onTrue(pidAlgaePivot2);
 
-  a.whileTrue(driveFwdCenter55);
-  b.whileTrue(turnNeg60);
-  upPov.whileTrue(driveFwd113);
-  x.whileTrue(driveSideways60); 
+  a.onTrue(driveFwdCenter55);
+  b.onTrue(turnNeg60);
+  upPov.onTrue(driveFwd113);
+  x.onTrue(driveSideways60); 
 
   downPov.whileTrue(algaeTarget);
   leftPov.whileTrue(coralLeftTarget);
