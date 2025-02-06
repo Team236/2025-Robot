@@ -16,6 +16,9 @@ import frc.robot.commands.TeleopSwerve;
 import frc.robot.commands.AlgaeHoldCommands.AlgaeGrab;
 import frc.robot.commands.AlgaePivotCommands.ManualAlgaePivot;
 import frc.robot.commands.AlgaePivotCommands.PIDAlgaePivot;
+import frc.robot.commands.AutoCommands.DriveFwd;
+import frc.robot.commands.AutoCommands.DriveSideways;
+import frc.robot.commands.AutoCommands.TurnOnly;
 //import frc.robot.commands.AutoCommands.*;
 import frc.robot.commands.AutoCommands.Right2Score.Leg1;
 import frc.robot.commands.CoralHoldCommands.CoralGrabWithCounter;
@@ -73,7 +76,9 @@ public class RobotContainer {
     private final JoystickButton zeroGyro = new JoystickButton(driverController, XboxController.Button.kY.value);
     private final JoystickButton robotCentric = new JoystickButton(driverController, XboxController.Button.kLeftBumper.value);
 
-    //DRIVE COMMANDS
+   //COMMANDS
+
+   //Targeting
     private final TargetAllParallel targetAllParallel = new TargetAllParallel(s_Swerve, 9, 0);
     //***Forward standoff - input into command as inches from bumper
     private final TargetAllSeries targetAllSeries = new TargetAllSeries(s_Swerve, 9, 0);
@@ -82,7 +87,11 @@ public class RobotContainer {
     private final TargetSideDistance targetSideDistance = new TargetSideDistance(s_Swerve, -driverController.getRawAxis(translationAxis), -driverController.getRawAxis(rotationAxis), 0);
     private final TargetMegaTag2 target3DMegaTag2 = new TargetMegaTag2(s_Swerve);
 
-  
+    //Auto
+    private final DriveFwd driveFwdCenter55 = new DriveFwd(s_Swerve, false, 55);//88+3 for bumper -36)
+    private final TurnOnly turnNeg60 = new TurnOnly(s_Swerve, false, -60);
+    private final DriveFwd driveFwd113 = new DriveFwd(s_Swerve, false, 113);
+    private final DriveSideways driveSideways60 = new DriveSideways(s_Swerve, false, 60);
 
   //AlgaeHold
   private final AlgaeGrab algaeGrabPull = new AlgaeGrab(algaeHold, Constants.AlgaeHold.HOLD_SPEED);
@@ -218,11 +227,16 @@ public class RobotContainer {
     //downPov.whileTrue(algaePivotDown);
     //a.onTrue(pidAlgaePivot1);
     //b.onTrue(pidAlgaePivot2);
+
+    a.whileTrue(driveFwdCenter55);
+   b.whileTrue(turnNeg60);
+   upPov.whileTrue(driveFwd113);
+   x.whileTrue(driveSideways60);
     
   }
 
   public Command getAutonomousCommand() {
-   return new Leg1(s_Swerve, false);
+   return new Leg1(s_Swerve);
   
   }
 
