@@ -61,7 +61,7 @@ public class Robot extends TimedRobot {
                    Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared)
                .setKinematics(Constants.Swerve.swerveKinematics).setReversed(false);
 
-     
+  /* 
     Trajectory trajectory =
             TrajectoryGenerator.generateTrajectory(
                 // Start at the origin facing the +X direction
@@ -78,8 +78,7 @@ public class Robot extends TimedRobot {
     field.getObject("trajectory").setTrajectory(trajectory);
     field.getObject("PIPose2d").setPose(new Pose2d(2,3,new Rotation2d(Math.PI)));
     field.getObject("zero Pose2d").setPose(new Pose2d(5,3,new Rotation2d(0)));
-    
-
+*/
 
     //Need to do this once in order to have Limelight communication while tethered
     for (int port = 5800; port <= 5805; port++){

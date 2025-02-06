@@ -1,11 +1,6 @@
-package frc.robot.commands.AutoCommands.Right2Score;
+package frc.robot.commands.AutoCommands;
 
 import frc.robot.Constants;
-import frc.robot.commands.ZeroPose;
-import frc.robot.commands.AutoCommands.DriveFwd;
-import frc.robot.commands.AutoCommands.DriveReverse;
-import frc.robot.commands.AutoCommands.DriveSideways;
-import frc.robot.commands.AutoCommands.TurnOnly;
 import frc.robot.subsystems.Swerve;
 
 import java.util.List;
@@ -23,24 +18,11 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 
-public class Leg3 extends SequentialCommandGroup {
-
-    public Leg3(Swerve s_Swerve, boolean reversed) {
-    addCommands(
-    new ZeroPose(s_Swerve).withTimeout(1),
-    new DriveSideways(s_Swerve, false, 36).withTimeout(5),
-    new ZeroPose(s_Swerve).withTimeout(1),
-    new DriveReverse(s_Swerve, true, -114.5).withTimeout(5),  
-    new ZeroPose(s_Swerve).withTimeout(1),
-    new TurnOnly(s_Swerve, false, -6.6).withTimeout(2),
-    new ZeroPose(s_Swerve).withTimeout(1)
-    );
-  }
-}
-    
-    
-    /* OLD CODE
-    { 
+public class TurnDriveFwd extends SequentialCommandGroup {
+  //Drives forward in the X direction (forwardDist in inches),
+  //and also turns CW (negative turnAngle, degrees) or CCW (positive turnAngle, degrees)
+  //X always positive, so pass in false for "reversed" in Container when command is called
+    public TurnDriveFwd(Swerve s_Swerve, boolean reversed, double turnAngle, double forwardDist) {
         TrajectoryConfig config =
             new TrajectoryConfig(
                     Constants.AutoConstants.kMaxSpeedMetersPerSecond,
@@ -49,17 +31,17 @@ public class Leg3 extends SequentialCommandGroup {
 
         // An example trajectory to follow.  All units in meters.
         Trajectory exampleTrajectory =
-            TrajectoryGenerator.generateTrajectory(
-                // Start at the origin facing the +X direction
-                 new Pose2d(0, 0, new Rotation2d(0)),
-                // Pass through these interior waypoints
-                List.of(new Translation2d(Units.inchesToMeters(30.1), Units.inchesToMeters(-6) ), 
-                       new Translation2d(Units.inchesToMeters(60.2), Units.inchesToMeters(-12) ),
-                       new Translation2d(Units.inchesToMeters(90.3), Units.inchesToMeters(-18) )),  
-                // End here
-               new Pose2d(Units.inchesToMeters(120.5), Units.inchesToMeters(-24), new Rotation2d(Units.degreesToRadians(11.3))),
-                config);
-
+        TrajectoryGenerator.generateTrajectory(
+            // Start at the origin facing the +X direction
+             new Pose2d(0, 0, new Rotation2d(0)),
+            // Pass through these interior waypoints
+            List.of(new Translation2d(Units.inchesToMeters(0.25*forwardDist), Units.inchesToMeters(0) ), 
+                   new Translation2d(Units.inchesToMeters(0.5*forwardDist), Units.inchesToMeters(0) ),
+                   new Translation2d(Units.inchesToMeters(0.75*forwardDist), Units.inchesToMeters(0) )),  
+            // End here
+            new Pose2d(Units.inchesToMeters(forwardDist), Units.inchesToMeters(0), new Rotation2d(Units.degreesToRadians(turnAngle))),
+            config);
+            
         var thetaController =
             new ProfiledPIDController(
                 Constants.AutoConstants.kPThetaController, 0, 0, Constants.AutoConstants.kThetaControllerConstraints);
@@ -83,4 +65,3 @@ public class Leg3 extends SequentialCommandGroup {
         );
     }
 }
-    */

@@ -15,11 +15,11 @@ public class FullRun extends SequentialCommandGroup {
   /** Creates a new FullRun. */
   public FullRun(Swerve s_Swerve) {
     addCommands(
-    new Leg1(s_Swerve, false).withTimeout(5),
+    new Leg1(s_Swerve).withTimeout(10),
     new ZeroPose(s_Swerve).withTimeout(1),
-    new Leg2(s_Swerve, false).withTimeout(5),
+    new Leg2(s_Swerve).withTimeout(10),
     new ZeroPose(s_Swerve).withTimeout(1),
-    new Leg3(s_Swerve, false).withTimeout(5),
+    new Leg3(s_Swerve, false).withTimeout(10),
     new ZeroPose(s_Swerve).withTimeout(1)
     );
   }
