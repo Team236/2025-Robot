@@ -16,7 +16,7 @@ import frc.robot.commands.TeleopSwerve;
 import frc.robot.commands.AlgaeHoldCommands.AlgaeGrab;
 import frc.robot.commands.AlgaePivotCommands.ManualAlgaePivot;
 import frc.robot.commands.AlgaePivotCommands.PIDAlgaePivot;
-import frc.robot.commands.AutoCommands.*;
+//import frc.robot.commands.AutoCommands.*;
 import frc.robot.commands.AutoCommands.Right2Score.Leg1;
 import frc.robot.commands.CoralHoldCommands.CoralGrabWithCounter;
 import frc.robot.commands.CoralHoldCommands.CoralGrab;
@@ -190,7 +190,7 @@ public class RobotContainer {
    // rb.whileTrue(targetSideDistance);
    // downPov.whileTrue(target3DMegaTag2);
 
-    //lb.whileTrue(elevatorDown);
+    // lb.whileTrue(elevatorDown);
     //lm.whileTrue(elevatorUp);
     //downPov.onTrue(pidElevatorL1);
     //leftPov.onTrue(pidElevatorL2);

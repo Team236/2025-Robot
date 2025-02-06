@@ -1,4 +1,4 @@
-package frc.robot.commands.AutoCommands.Right2Score;
+package frc.robot.autos;
 
 import frc.robot.Constants;
 import frc.robot.subsystems.Swerve;
@@ -18,9 +18,8 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 
-public class Leg1 extends SequentialCommandGroup {
-  //TODO: X always positive, so pass in false for "reversed" in Container when command is called
-    public Leg1(Swerve s_Swerve, boolean reversed){
+public class autoTurn extends SequentialCommandGroup {
+    public autoTurn(Swerve s_Swerve, boolean reversed){ // when called in container pass true or false
         TrajectoryConfig config =
             new TrajectoryConfig(
                     Constants.AutoConstants.kMaxSpeedMetersPerSecond,
@@ -32,12 +31,9 @@ public class Leg1 extends SequentialCommandGroup {
             TrajectoryGenerator.generateTrajectory(
                 // Start at the origin facing the +X direction
                  new Pose2d(0, 0, new Rotation2d(0)),
-                // Pass through these interior waypoints
-                List.of(new Translation2d(Units.inchesToMeters(35), Units.inchesToMeters(8) ), 
-                       new Translation2d(Units.inchesToMeters(70), Units.inchesToMeters(16) ),
-                       new Translation2d(Units.inchesToMeters(105), Units.inchesToMeters(24) )),  
-                // End here
-               new Pose2d(Units.inchesToMeters(139), Units.inchesToMeters(32), new Rotation2d(Units.degreesToRadians(-77))),
+                // Pass through these two interior waypoints, making an 's' curve path
+                List.of(new Translation2d(Units.inchesToMeters(5), 0 )),
+               new Pose2d(Units.inchesToMeters(10), Units.inchesToMeters(0), new Rotation2d(Units.degreesToRadians(90))),
                 config);
 
         var thetaController =

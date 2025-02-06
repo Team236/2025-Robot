@@ -144,10 +144,10 @@ The numbers used below are robot specific, and should be tuned. */
 
     @Override
     public void periodic(){
-       // swerveOdometry.update(getGyroYaw(), getModulePositions());
-      //  SmartDashboard.putNumber("Pose2D-X", Units.metersToInches(getPose().getX()));
-       // SmartDashboard.putNumber("Pose2D-Y", Units.metersToInches(getPose().getY()));
-       // SmartDashboard.putNumber("Pose2D-ThetaDegrees", getPose().getRotation().getDegrees());
+       swerveOdometry.update(getGyroYaw(), getModulePositions());
+       SmartDashboard.putNumber("Pose2D-X", Units.metersToInches(getPose().getX()));
+       SmartDashboard.putNumber("Pose2D-Y", Units.metersToInches(getPose().getY()));
+       SmartDashboard.putNumber("Pose2D-ThetaDegrees", getPose().getRotation().getDegrees());
 
        //  for(SwerveModule mod : mSwerveMods){
         //    SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Velocity", mod.getState().speedMetersPerSecond);
