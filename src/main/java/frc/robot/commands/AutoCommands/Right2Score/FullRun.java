@@ -19,7 +19,7 @@ public class FullRun extends SequentialCommandGroup {
     new ZeroPose(s_Swerve).withTimeout(1),
     new Leg2(s_Swerve).withTimeout(10),
     new ZeroPose(s_Swerve).withTimeout(1),
-    new Leg3(s_Swerve, false).withTimeout(10),
+    new Leg3(s_Swerve).withTimeout(10),
     new ZeroPose(s_Swerve).withTimeout(1)
     );
   }

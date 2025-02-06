@@ -25,7 +25,7 @@ import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 
 public class Leg3 extends SequentialCommandGroup {
 
-    public Leg3(Swerve s_Swerve, boolean reversed) {
+    public Leg3(Swerve s_Swerve) {
     addCommands(
     new ZeroPose(s_Swerve).withTimeout(1),
     new DriveSideways(s_Swerve, false, 36).withTimeout(5),
