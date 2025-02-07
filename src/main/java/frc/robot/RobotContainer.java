@@ -100,7 +100,7 @@ public class RobotContainer {
     private final TurnOnly turn = new TurnOnly(s_Swerve, false, -58);
     private final DriveFwd driveFwd113 = new DriveFwd(s_Swerve, false, 113);
     private final DriveSideways driveSideways60 = new DriveSideways(s_Swerve, false, 60);
-    private final DriveFwdAndSideAndTurn leg2Parallel = new DriveFwdAndSideAndTurn(s_Swerve, false, 0, 150, -73);
+    private final DriveFwdAndSideAndTurn leg2Parallel = new DriveFwdAndSideAndTurn(s_Swerve, false, 0, 168, -73);
       
   //Elevator
   private final ManualUpDown elevatorUp = new ManualUpDown(elevator, Constants.Elevator.ELEV_UP_SPEED);
@@ -237,7 +237,7 @@ public class RobotContainer {
   a.onTrue(driveFwdCenter55);
   b.onTrue(turn);
   upPov.onTrue(driveFwd113);
-  x.onTrue(driveSideways60); 
+  x.onTrue(leg2Parallel); 
 
   downPov.whileTrue(algaeTarget);
   leftPov.whileTrue(coralLeftTarget);
