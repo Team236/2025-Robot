@@ -261,7 +261,7 @@ public static class CoralHold {
     public static final double KD = 0;
     public static final double KFF = 0;
     public static final int DIO_ENC_A = 11;
-    public static final int DIO_ENC_B = 10;
+    public static final int DIO_ENC_B = 12;
   }
   
   public static class XboxController {
