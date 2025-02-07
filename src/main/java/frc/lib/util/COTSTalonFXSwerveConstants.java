@@ -6,6 +6,9 @@ import com.ctre.phoenix6.signals.SensorDirectionValue;
 import edu.wpi.first.math.util.Units;
 
 /* Contains values and required settings for common COTS swerve modules. */
+//IN 2025 TEAM 236 IS USING SDS MK4 moduels with KRAKEN X60, L2
+//WITH angleGearRatio = (12.8 / 1.0);  drive ratio 6.75/1
+
 public class COTSTalonFXSwerveConstants {
     public final double wheelDiameter;
     public final double wheelCircumference;
