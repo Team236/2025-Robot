@@ -22,10 +22,7 @@ public class CoralLeftTarget extends SequentialCommandGroup {
   public CoralLeftTarget(Swerve s_Swerve,  double standoffSideways) {
     addCommands(
     new ZeroPose(s_Swerve),
-    Commands.parallel(
-        new TargetAngle(s_Swerve,  0,0).withTimeout(4),
-        new TargetSideDistance(s_Swerve, 0, 0, standoffSideways).withTimeout(4)
-      ),
+    new TargetAllParallel(s_Swerve, 0, standoffSideways).withTimeout(3),
     new TargetForwardDistance(s_Swerve, 0, 0, 15).withTimeout(3),
     new ZeroPose(s_Swerve).withTimeout(1),
     new DriveFwd(s_Swerve, false, 12).withTimeout(3),
