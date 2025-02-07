@@ -236,7 +236,7 @@ public class COTSTalonFXSwerveConstants {
 
             /** Swerve Drive Specialties - MK4 Module (Kraken X60)*/  //THIS IS WHAT TEAM 236 IS USING IN 2025!!!!!
             public static final COTSTalonFXSwerveConstants KrakenX60(double driveGearRatio){
-                double wheelDiameter = Units.inchesToMeters(4.0)*(.975);  //based on actual distance traveled over 3 meters during test
+                double wheelDiameter = Units.inchesToMeters(3.83);  //based on actual distance traveled over 3 meters during test
         
                 /** 12.8 : 1 */
                 double angleGearRatio = (12.8 / 1.0);
