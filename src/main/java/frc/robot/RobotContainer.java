@@ -95,7 +95,7 @@ public class RobotContainer {
 
     //Auto
     private final DriveFwd driveFwdCenter55 = new DriveFwd(s_Swerve, false, 55);//88+3 ror bumper -36)
-    private final TurnOnly turnNeg60 = new TurnOnly(s_Swerve, false, -60);
+    private final TurnOnly turn = new TurnOnly(s_Swerve, false, 90);
     private final DriveFwd driveFwd113 = new DriveFwd(s_Swerve, false, 113);
     private final DriveSideways driveSideways60 = new DriveSideways(s_Swerve, false, 60);
       
@@ -232,7 +232,7 @@ public class RobotContainer {
     //b.onTrue(pidAlgaePivot2);
 
   a.onTrue(driveFwdCenter55);
-  b.onTrue(turnNeg60);
+  b.onTrue(turn);
   upPov.onTrue(driveFwd113);
   x.onTrue(driveSideways60); 
 
