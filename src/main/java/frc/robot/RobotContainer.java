@@ -21,6 +21,7 @@ import frc.robot.commands.AutoCommands.DriveSideways;
 import frc.robot.commands.AutoCommands.TurnOnly;
 //import frc.robot.commands.AutoCommands.*;
 import frc.robot.commands.AutoCommands.Right2Score.Leg1;
+import frc.robot.commands.AutoCommands.Right2Score.Leg2;
 import frc.robot.commands.CoralHoldCommands.CoralGrabWithCounter;
 import frc.robot.commands.CoralHoldCommands.CoralGrab;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
@@ -242,7 +243,7 @@ public class RobotContainer {
   }
   
   public Command getAutonomousCommand() {
-   return new Leg1(s_Swerve);
+   return new Leg2(s_Swerve);
   }
 
 }

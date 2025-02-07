@@ -23,17 +23,13 @@ public class Leg2 extends SequentialCommandGroup {
     //This is for starting Robot at the Reef after Leg1
   public Leg2(Swerve s_Swerve) {
     addCommands(
-    new ZeroPose(s_Swerve).withTimeout(1),
+   // new ZeroPose(s_Swerve).withTimeout(1),
     new DriveReverse(s_Swerve, true, -12).withTimeout(2),
-    new TurnOnly(s_Swerve, false,-66.6).withTimeout(2),
-    new ZeroPose(s_Swerve).withTimeout(1),
-//THIS
-    //new DriveRevAndSideAndTurn(s_Swerve, true, -147.5, 57.2, 0).withTimeout(6),
-//OR THIS :
-  new DriveSideways(s_Swerve, false, 57.2).withTimeout(4),
-  new DriveFwd(s_Swerve, true, -147.5).withTimeout(6),
-
-    new ZeroPose(s_Swerve).withTimeout(1)
+    new TurnOnly(s_Swerve, false,-75).withTimeout(2),
+    new DriveReverse(s_Swerve, true, -110),
+   // new ZeroPose(s_Swerve).withTimeout(1)
+   new DriveSideways(s_Swerve, true, 50),
+   new DriveReverse(s_Swerve, true, -47.5)
     );
   }
 }
