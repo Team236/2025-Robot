@@ -17,6 +17,7 @@ import frc.robot.commands.AlgaeHoldCommands.AlgaeGrab;
 import frc.robot.commands.AlgaePivotCommands.ManualAlgaePivot;
 import frc.robot.commands.AlgaePivotCommands.PIDAlgaePivot;
 import frc.robot.commands.AutoCommands.DriveFwd;
+import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
 import frc.robot.commands.AutoCommands.DriveSideways;
 import frc.robot.commands.AutoCommands.TurnOnly;
 //import frc.robot.commands.AutoCommands.*;
@@ -99,6 +100,7 @@ public class RobotContainer {
     private final TurnOnly turn = new TurnOnly(s_Swerve, false, -58);
     private final DriveFwd driveFwd113 = new DriveFwd(s_Swerve, false, 113);
     private final DriveSideways driveSideways60 = new DriveSideways(s_Swerve, false, 60);
+    private final DriveFwdAndSideAndTurn leg2Parallel = new DriveFwdAndSideAndTurn(s_Swerve, false, 0, 150, -73);
       
   //Elevator
   private final ManualUpDown elevatorUp = new ManualUpDown(elevator, Constants.Elevator.ELEV_UP_SPEED);

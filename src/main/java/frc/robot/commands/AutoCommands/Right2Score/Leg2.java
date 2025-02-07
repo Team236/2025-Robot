@@ -25,10 +25,10 @@ public class Leg2 extends SequentialCommandGroup {
     addCommands(
    // new ZeroPose(s_Swerve).withTimeout(1),
     new DriveReverse(s_Swerve, true, -12).withTimeout(2),
-    new TurnOnly(s_Swerve, false,-75).withTimeout(2),
-    new DriveReverse(s_Swerve, true, -110),
+    new TurnOnly(s_Swerve, false,-73).withTimeout(2),
+    new DriveReverse(s_Swerve, true, -105),
    // new ZeroPose(s_Swerve).withTimeout(1)
-   new DriveSideways(s_Swerve, true, 50),
+   new DriveSideways(s_Swerve, true, 60),
    new DriveReverse(s_Swerve, true, -47.5)
     );
   }
