@@ -44,24 +44,21 @@ public final class Constants {
     public static final int SMART_CURRENT_LIMIT = 40;
 
     //Motor ID Numbers
-    //Elevator (placeholder)
-    // public static final int ID_ELEVATOR_LEFT = 46;
-    // public static final int ID_ELEVATOR_RIGHT = 47;
+    //Elevator 
     public static final int ID_ELEVATOR_LEFT_TALON = 11;
     public static final int ID_ELEVATOR_RIGHT_TALON = 12;
 
-    //AlgaeHold (placeholder)
-    public static final int ID_ALGAE_HOLD = 49;
+    //AlgaeHold
+    public static final int ID_ALGAE_HOLD = 49; //TODO find actual
 
-   //CoralHold (placeholder)
-    // public static final int ID_CORAL_HOLD_MOTORSRX = 14; //IF USE TALON SRX
-    public static final int ID_CORAL_HOLD_MOTOR = 34;//WILL BE BRUSHED SM MOTOR  34 is brushed motor
+   //CoralHold
+    public static final int ID_CORAL_HOLD_MOTOR = 1;//BRUSHED!!! TODO find actual
 
-    //AlgaePivot (placeholder)
-    public static final int ID_ALGAE_PIVOT = 50;//Change to 50 when test algaehold
+    //AlgaePivot 
+    public static final int ID_ALGAE_PIVOT = 50;//TODO find actual
 
-     //CoralPivot (placeholder)
-     public static final int ID_CORAL_PIVOT = 1;//34 is brushed motor
+     //CoralPivot 
+     public static final int ID_CORAL_PIVOT = 2;//BRUSHED!!!  TODO find actual
   }
 
   public static final class  Targeting {
@@ -146,7 +143,7 @@ public static final class Swerve {
 
         /* Module Specific Constants */
 
-        /* Front Left Module - Module 0 */
+        /* FRONT LEFT Module - Module 0 */
         public static final class Mod0 { //TODO: This must be tuned to specific robot
             public static final int driveMotorID = 7;
             public static final int angleMotorID = 6;
@@ -155,7 +152,7 @@ public static final class Swerve {
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
         }
-        /* Front Right Module - Module 1 */
+        /* FRONT RIGHT Module - Module 1 */
             public static final class Mod1 { //TODO: This must be tuned to specific robot
             public static final int driveMotorID = 3;
             public static final int angleMotorID = 2;
@@ -164,7 +161,7 @@ public static final class Swerve {
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
         }    
-        /* Back Left Module - Module 2 */
+        /* BACK LEFT Module - Module 2 */
         public static final class Mod2 { //TODO: This must be tuned to specific robot
             public static final int driveMotorID = 5;
             public static final int angleMotorID = 4;
@@ -173,7 +170,7 @@ public static final class Swerve {
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
         }
-        /* Back Right Module - Module 3 */
+        /* BACK RIGHT Module - Module 3 */
         public static final class Mod3 { //TODO: This must be tuned to specific robot
             public static final int driveMotorID = 1;
             public static final int angleMotorID = 10;
@@ -182,14 +179,13 @@ public static final class Swerve {
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
         }
-  
     }
 
     public static final class AutoConstants { //TODO: The below constants are used in the example auto, and must be tuned to specific robot
-        public static final double kMaxSpeedMetersPerSecond = 3; //4
-        public static final double kMaxAccelerationMetersPerSecondSquared = 3; //4
-        public static final double kMaxAngularSpeedRadiansPerSecond = 3*Math.PI;
-        public static final double kMaxAngularSpeedRadiansPerSecondSquared = 3*Math.PI;
+        public static final double kMaxSpeedMetersPerSecond = 4; //4
+        public static final double kMaxAccelerationMetersPerSecondSquared = 4; //4
+        public static final double kMaxAngularSpeedRadiansPerSecond = 4*Math.PI;
+        public static final double kMaxAngularSpeedRadiansPerSecondSquared = 4*Math.PI;
     //X = forward, Y = to the left for swerve??
         public static final double kPXController = 12; //1 default
         public static final double kPYController = 12; //1
@@ -209,15 +205,16 @@ public static final class Swerve {
     public static final double ELEV_DOWN_SPEED = -0.15;
 
     //placeholder conversion factors
-    public static final double ELEV_REV_TO_IN = 0.32327;
-    public static final double ELEV_IN_TO_REV = 1/(0.32327);
+    public static final double ELEV_REV_TO_IN = 0.32327;//TODO find actual
+    public static final double ELEV_IN_TO_REV = 1/ELEV_REV_TO_IN;
 
-    public static final double L1_HEIGHT = 6;
-    public static final double L2_HEIGHT = 12;
-    public static final double L3_HEIGHT = 18;
+    public static final double L1_HEIGHT = 3; //TODO find actual
+    public static final double L2_HEIGHT = 6;//TODO find actual
+    public static final double L3_HEIGHT = 9;//TODO find actual
+    public static final double L4_HEIGHT = 12;//TODO find actual
     
-    public static final double MIN_HEIGHT = 1.5;
-    public static final double MAX_HEIGHT = 27;
+    public static final double MIN_HEIGHT = 1.5; //TODO find actual
+    public static final double MAX_HEIGHT = 15;  //TODO find actual
 
     //placeholder PID values
     public static final double KP_ELEV = 0.2;
@@ -231,35 +228,35 @@ public static class AlgaeHold {
 }
 
 public static class CoralHold {
-  public static final int DIO_COUNTER = 12;
-  public static final double HOLD_SPEED = .1;
-  public static final double RELEASE_SPEED = -.1;
-  public static final double L4_RELEASE_SPEED = .1;
+  public static final int DIO_COUNTER = 10;
+  public static final double HOLD_SPEED = 0.1;
+  public static final double RELEASE_SPEED = -0.1;
+  public static final double L4_RELEASE_SPEED = 0.1;
 }
 
   public static class AlgaePivot {
-    public static final int DIO_EXT_LIMIT = 1;//TODO change to 8 when test AlgaePivot
-    public static final int DIO_RET_LIMIT = 2;//TODO change to 9 when test AlgaePivot
-    public static final double ENC_REVS_MAX = -74;
-    public static final double ENC_REVS_TEST1 = -30;
-    public static final double ENC_REVS_TEST2 = -52;
+    public static final int DIO_EXT_LIMIT = 6;
+    public static final int DIO_RET_LIMIT = 7;
+    public static final double ENC_REVS_MAX = -700000; //TODO find actual
+    public static final double ENC_REVS_TEST1 = -5;
+    public static final double ENC_REVS_TEST2 = -10;
     public static final double MAN_EXT_SPEED = -0.1;
     public static final double MAN_RET_SPEED = 0.1;
-    public static final double KP = 0.029;
+    public static final double KP = 0.029;  //TODO find actual
     public static final double KI = 0;
     public static final double KD = 0;
     public static final double KFF = 0;
   }
   
   public static class CoralPivot {
-    public static final int DIO_EXT_LIMIT = 8; //TODO change to 8 when test AlgaePivot
-    public static final int DIO_RET_LIMIT = 9; //TODO change to 9 when test AlgaePivot
-    public static final double ENC_REVS_MAX = -74;//TODO change to -74 when test AlgaePivot with 2024
+    public static final int DIO_EXT_LIMIT = 8; 
+    public static final int DIO_RET_LIMIT = 9; 
+    public static final double ENC_REVS_MAX = -700000;//TODO determine actual
     public static final double ENC_REVS_TEST1 = 5;
-    public static final double ENC_REVS_TEST2 = 3;
+    public static final double ENC_REVS_TEST2 = 10;
     public static final double MAN_EXT_SPEED = -0.1;
     public static final double MAN_RET_SPEED = 0.1;
-    public static final double KP = 0.029;
+    public static final double KP = 0.029; //TODO find actual
     public static final double KI = 0;
     public static final double KD = 0;
     public static final double KFF = 0;

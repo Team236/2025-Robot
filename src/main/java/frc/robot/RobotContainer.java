@@ -98,17 +98,7 @@ public class RobotContainer {
     private final TurnOnly turnNeg60 = new TurnOnly(s_Swerve, false, -60);
     private final DriveFwd driveFwd113 = new DriveFwd(s_Swerve, false, 113);
     private final DriveSideways driveSideways60 = new DriveSideways(s_Swerve, false, 60);
-
-  //AlgaeHold
-  private final AlgaeGrab algaeGrabPull = new AlgaeGrab(algaeHold, Constants.AlgaeHold.HOLD_SPEED);
-  private final AlgaeGrab algaeGrabRelease = new AlgaeGrab(algaeHold, Constants.AlgaeHold.RELEASE_SPEED);
-
-  //AlgaePivot
-  private final ManualAlgaePivot algaePivotDown = new ManualAlgaePivot(algaePivot, Constants.AlgaePivot.MAN_EXT_SPEED);
-  private final ManualAlgaePivot algaePivotUp = new ManualAlgaePivot(algaePivot, Constants.AlgaePivot.MAN_RET_SPEED);
-  private final PIDAlgaePivot pidAlgaePivot1 = new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_TEST1);
-  private final PIDAlgaePivot pidAlgaePivot2 = new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_TEST2);
-  
+      
   //Elevator
   private final ManualUpDown elevatorUp = new ManualUpDown(elevator, Constants.Elevator.ELEV_UP_SPEED);
   private final ManualUpDown elevatorDown = new ManualUpDown(elevator, Constants.Elevator.ELEV_DOWN_SPEED);
@@ -116,6 +106,17 @@ public class RobotContainer {
   private final PIDToHeight pidElevatorL1 = new PIDToHeight(elevator, Constants.Elevator.L1_HEIGHT);
   private final PIDToHeight pidElevatorL2 = new PIDToHeight(elevator, Constants.Elevator.L2_HEIGHT);
   private final PIDToHeight pidElevatorL3 = new PIDToHeight(elevator, Constants.Elevator.L3_HEIGHT);
+  private final PIDToHeight pidElevatorL4 = new PIDToHeight(elevator, Constants.Elevator.L4_HEIGHT);
+
+  //AlgaeHold
+  private final AlgaeGrab algaeGrab = new AlgaeGrab(algaeHold, Constants.AlgaeHold.HOLD_SPEED);
+  private final AlgaeGrab algaeRelease = new AlgaeGrab(algaeHold, Constants.AlgaeHold.RELEASE_SPEED);
+
+  //AlgaePivot
+  private final ManualAlgaePivot algaePivotDown = new ManualAlgaePivot(algaePivot, Constants.AlgaePivot.MAN_EXT_SPEED);
+  private final ManualAlgaePivot algaePivotUp = new ManualAlgaePivot(algaePivot, Constants.AlgaePivot.MAN_RET_SPEED);
+  private final PIDAlgaePivot pidAlgaePivot1 = new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_TEST1);
+  private final PIDAlgaePivot pidAlgaePivot2 = new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_TEST2);
 
   //CoralHold
   private final CoralGrab coralGrab = new CoralGrab(coralHold, Constants.CoralHold.HOLD_SPEED);
@@ -129,6 +130,7 @@ public class RobotContainer {
   private final PIDCoralPivot pidCoralPivot1 = new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_TEST1);
   private final PIDCoralPivot pidCoralPivot2 = new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_TEST2);
 
+  
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     s_Swerve.setDefaultCommand(
@@ -205,7 +207,7 @@ public class RobotContainer {
    // rb.whileTrue(targetSideDistance);
    // downPov.whileTrue(target3DMegaTag2);
 
-    // rb.whileTrue(elevatorDown);
+    //rb.whileTrue(elevatorDown);
     //rm.whileTrue(elevatorUp);
     //downPov.onTrue(pidElevatorL1);
     //leftPov.onTrue(pidElevatorL2);
@@ -216,11 +218,8 @@ public class RobotContainer {
     //a.onTrue(pidCoralPivot1);
     //b.onTrue(pidCoralPivot2);
 
-    //rb.whileTrue(algaeGrabPull);
-    //rm.whileTrue(algaeGrabRelease);
-//
-    //x.onTrue(pidAlgaePivot1);
-    //y.onTrue(pidAlgaePivot2);
+    //rb.whileTrue(algaeGrab);
+    //rm.whileTrue(algaeRelease);
 
   //  a.whileTrue(coralGrab);
    // b.whileTrue(coralRelease);
