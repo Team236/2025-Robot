@@ -22,6 +22,7 @@ public class DriveSideways extends SequentialCommandGroup {
   //Pass in forward X distance (inches, positive), sideways distance (inches), and turn angle (degrees)
   //X always positive, so pass in false for "reversed" in Container when command is called
     public DriveSideways(Swerve s_Swerve, boolean reversed, double sideDist) {
+        double sideDistFinal = sideDist * 1.03;
         TrajectoryConfig config =
             new TrajectoryConfig(
                     Constants.AutoConstants.kMaxSpeedMetersPerSecond,
@@ -34,11 +35,17 @@ public class DriveSideways extends SequentialCommandGroup {
             // Start at the origin facing the +X direction
              new Pose2d(0, 0, new Rotation2d(0)),
             // Pass through these interior waypoints
-            List.of(new Translation2d(Units.inchesToMeters(0), Units.inchesToMeters(0.25*sideDist) ), 
-            new Translation2d(Units.inchesToMeters(0), Units.inchesToMeters(0.5*sideDist) ),
-            new Translation2d(Units.inchesToMeters(0), Units.inchesToMeters(0.75*sideDist) )),  
+            List.of(new Translation2d(Units.inchesToMeters(0), Units.inchesToMeters(0.1*sideDistFinal) ), 
+            new Translation2d(Units.inchesToMeters(0), Units.inchesToMeters(0.2*sideDistFinal) ),
+            new Translation2d(Units.inchesToMeters(0), Units.inchesToMeters(0.3*sideDistFinal) ),
+            new Translation2d(Units.inchesToMeters(0), Units.inchesToMeters(0.4*sideDistFinal) ),
+            new Translation2d(Units.inchesToMeters(0), Units.inchesToMeters(0.5*sideDistFinal) ),
+            new Translation2d(Units.inchesToMeters(0), Units.inchesToMeters(0.6*sideDistFinal) ),
+            new Translation2d(Units.inchesToMeters(0), Units.inchesToMeters(0.7*sideDistFinal) ),
+            new Translation2d(Units.inchesToMeters(0), Units.inchesToMeters(0.8*sideDistFinal) ),
+            new Translation2d(Units.inchesToMeters(0), Units.inchesToMeters(0.9*sideDistFinal) )),  
      // End here
-     new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(sideDist), new Rotation2d(Units.degreesToRadians(0))),
+     new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(sideDistFinal), new Rotation2d(Units.degreesToRadians(0))),
      config);
             
         var thetaController =

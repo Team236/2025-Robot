@@ -95,7 +95,7 @@ public class RobotContainer {
 
     //Auto
     private final DriveFwd driveFwdCenter55 = new DriveFwd(s_Swerve, false, 55);//88+3 ror bumper -36)
-    private final TurnOnly turn = new TurnOnly(s_Swerve, false, -60);
+    private final TurnOnly turn = new TurnOnly(s_Swerve, false, -58);
     private final DriveFwd driveFwd113 = new DriveFwd(s_Swerve, false, 113);
     private final DriveSideways driveSideways60 = new DriveSideways(s_Swerve, false, 60);
       

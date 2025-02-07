@@ -182,14 +182,14 @@ public static final class Swerve {
     }
 
     public static final class AutoConstants { //TODO: The below constants are used in the example auto, and must be tuned to specific robot
-        public static final double kMaxSpeedMetersPerSecond = 4; //4
-        public static final double kMaxAccelerationMetersPerSecondSquared = 4; //4
+        public static final double kMaxSpeedMetersPerSecond = 3; //4
+        public static final double kMaxAccelerationMetersPerSecondSquared = 3; //4
         public static final double kMaxAngularSpeedRadiansPerSecond = 4*Math.PI;
         public static final double kMaxAngularSpeedRadiansPerSecondSquared = 4*Math.PI;
     //X = forward, Y = to the left for swerve??
         public static final double kPXController = 12; //1 default
         public static final double kPYController = 12; //1
-        public static final double kPThetaController = 8; //1 default
+        public static final double kPThetaController = 8.1; //1 default
     
         /* Constraint for the motion profilied robot angle controller */
         public static final TrapezoidProfile.Constraints kThetaControllerConstraints =

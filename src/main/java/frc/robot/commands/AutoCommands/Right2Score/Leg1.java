@@ -20,14 +20,14 @@ public class Leg1 extends SequentialCommandGroup {
     //with bumpers parallel to and just over the starting line
   public Leg1(Swerve s_Swerve) {
     addCommands(
-    new ZeroPose(s_Swerve).withTimeout(1),
+   // new ZeroPose(s_Swerve).withTimeout(1),
+    new DriveFwd(s_Swerve, false, 26).withTimeout(3),
+   // new ZeroPose(s_Swerve).withTimeout(1),
     new TurnOnly(s_Swerve, false, -60).withTimeout(2),
-    new ZeroPose(s_Swerve).withTimeout(1),
-    new DriveFwd(s_Swerve, false, 15).withTimeout(3),
+ // new ZeroPose(s_Swerve).withTimeout(1),
    // new TurnDriveFwd(s_Swerve, false, -60, 15).withTimeout(3),
-    new ZeroPose(s_Swerve).withTimeout(1),
-    new DriveFwd(s_Swerve, false, 113).withTimeout(5),
-    new ZeroPose(s_Swerve).withTimeout(1)
+    new DriveFwd(s_Swerve, false, 100).withTimeout(5)
+   // new ZeroPose(s_Swerve).withTimeout(1)
     );
   }
 }
