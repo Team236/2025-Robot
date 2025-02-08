@@ -6,30 +6,28 @@ package frc.robot.commands.AutoCommands.Right2Score;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
+import frc.robot.commands.AutoCommands.DriveReverse;
 import frc.robot.subsystems.Swerve;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class FullRunParallel extends SequentialCommandGroup {
+public class FullRun extends SequentialCommandGroup {
   /** Creates a new FullRunParallel. */
-  public FullRunParallel(Swerve s_Swerve) {
+  public FullRun(Swerve s_Swerve) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
 
       //Later add the commands for scoring and receiving coral
       //Later insert actual x y and theta for Leg1 and Leg3
-
       //LEG 1:
-      new DriveFwdAndSideAndTurn(s_Swerve, false, 0, 0, 0),
-
+      new DriveFwdAndSideAndTurn(s_Swerve, false, 78.6, -91, -58)
       //LEG2:
-      new DriveFwdAndSideAndTurn(s_Swerve, false, 0, 168, -73),//TESTED GOOD
-
-
+      //new DriveReverse(s_Swerve, true,-12).withTimeout(2),
+      //new DriveFwdAndSideAndTurn(s_Swerve, false, 12, 171, -68)//TESTED GOO
       //LEG3:
-      new DriveFwdAndSideAndTurn(s_Swerve, true, 0, 0, 0)
+      //new DriveFwdAndSideAndTurn(s_Swerve, true, 129, -26.5, 4)
 
     );
   

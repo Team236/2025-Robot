@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.autos.exampleAuto;
 import frc.robot.commands.TeleopSwerve;
 import frc.robot.commands.AlgaeHoldCommands.AlgaeGrab;
 import frc.robot.commands.AlgaePivotCommands.ManualAlgaePivot;
@@ -20,6 +19,8 @@ import frc.robot.commands.AutoCommands.DriveFwd;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
 import frc.robot.commands.AutoCommands.DriveSideways;
 import frc.robot.commands.AutoCommands.TurnOnly;
+import frc.robot.commands.AutoCommands.exampleAuto;
+import frc.robot.commands.AutoCommands.Right2Score.FullRun;
 //import frc.robot.commands.AutoCommands.*;
 import frc.robot.commands.AutoCommands.Right2Score.Leg1Series;
 import frc.robot.commands.AutoCommands.Right2Score.Leg2Series;
@@ -101,9 +102,11 @@ public class RobotContainer {
     private final DriveFwd driveFwd113 = new DriveFwd(s_Swerve, false, 113);
     private final DriveSideways driveSideways60 = new DriveSideways(s_Swerve, false, 60);
 
-    private final DriveFwdAndSideAndTurn leg1Parallel = new DriveFwdAndSideAndTurn(s_Swerve, false, 57.6, -86, -60);//TODO test and tweak
-    private final DriveFwdAndSideAndTurn leg2Parallel = new DriveFwdAndSideAndTurn(s_Swerve, false, 0, 168, -73);//TESTED GOOD
-    private final DriveFwdAndSideAndTurn leg3Parallel = new DriveFwdAndSideAndTurn(s_Swerve, true, -120, 59, 5.9);//TODO test and tweak
+    //private final DriveFwdAndSideAndTurn leg1Parallel = new DriveFwdAndSideAndTurn(s_Swerve, false, 57.6, -86, -60);//TODO test and tweak
+    //private final DriveFwdAndSideAndTurn leg2Parallel = new DriveFwdAndSideAndTurn(s_Swerve, false, 0, 168, -73);//TESTED GOOD
+    //private final DriveFwdAndSideAndTurn leg3Parallel = new DriveFwdAndSideAndTurn(s_Swerve, true, -120, 59, 5.9);//TODO test and tweak
+    //private final FullRun fullRunParallel = new FullRun(s_Swerve);
+    private final FullRun fullRun = new FullRun(s_Swerve);
       
   //Elevator
   private final ManualUpDown elevatorUp = new ManualUpDown(elevator, Constants.Elevator.ELEV_UP_SPEED);
@@ -240,7 +243,7 @@ public class RobotContainer {
   a.onTrue(driveFwdCenter55);
   b.onTrue(turn);
   upPov.onTrue(driveFwd113);
-  x.onTrue(leg2Parallel); 
+  x.onTrue(fullRun); 
 
   downPov.whileTrue(algaeTarget);
   leftPov.whileTrue(coralLeftTarget);
@@ -248,7 +251,7 @@ public class RobotContainer {
   }
   
   public Command getAutonomousCommand() {
-   return new Leg2Series(s_Swerve);
+   return new FullRun(s_Swerve);
   }
 
 }
