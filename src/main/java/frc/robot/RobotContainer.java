@@ -96,11 +96,14 @@ public class RobotContainer {
     private final TargetMegaTag2 target3DMegaTag2 = new TargetMegaTag2(s_Swerve);
 
     //Auto
-    private final DriveFwd driveFwdCenter55 = new DriveFwd(s_Swerve, false, 55);//88+3 ror bumper -36)
+    private final DriveFwd driveFwdCenter55 = new DriveFwd(s_Swerve, false, 55);//88 + (3 for bumper) -36)
     private final TurnOnly turn = new TurnOnly(s_Swerve, false, -58);
     private final DriveFwd driveFwd113 = new DriveFwd(s_Swerve, false, 113);
     private final DriveSideways driveSideways60 = new DriveSideways(s_Swerve, false, 60);
-    private final DriveFwdAndSideAndTurn leg2Parallel = new DriveFwdAndSideAndTurn(s_Swerve, false, 0, 168, -73);
+
+    private final DriveFwdAndSideAndTurn leg1Parallel = new DriveFwdAndSideAndTurn(s_Swerve, false, 0, 168, -73);//TODO get values
+    private final DriveFwdAndSideAndTurn leg2Parallel = new DriveFwdAndSideAndTurn(s_Swerve, false, 0, 168, -73);//TESTED GOOD
+    private final DriveFwdAndSideAndTurn leg3Parallel = new DriveFwdAndSideAndTurn(s_Swerve, false, 0, 168, -73);//TODO get values
       
   //Elevator
   private final ManualUpDown elevatorUp = new ManualUpDown(elevator, Constants.Elevator.ELEV_UP_SPEED);

@@ -21,25 +21,46 @@ import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 public class DriveFwd extends SequentialCommandGroup {
   //Goes forward in X distance only (no turn, no Y movement)
   //X always positive, so pass in false for "reversed" in Container when command is called
-    public DriveFwd(Swerve s_Swerve, boolean reversed, double forwardDist) {
+    public DriveFwd(Swerve s_Swerve, boolean reversed, double fwdDist) {
         TrajectoryConfig config =
-            new TrajectoryConfig(
-                    Constants.AutoConstants.kMaxSpeedMetersPerSecond,
-                    Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared)
-                .setKinematics(Constants.Swerve.swerveKinematics).setReversed(reversed);
+        new TrajectoryConfig(
+                Constants.AutoConstants.kMaxSpeedMetersPerSecond,
+                Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared)
+            .setKinematics(Constants.Swerve.swerveKinematics).setReversed(reversed);
 
-        // An example trajectory to follow.  All units in meters.
-        Trajectory exampleTrajectory =
-        TrajectoryGenerator.generateTrajectory(
-            // Start at the origin facing the +X direction
-             new Pose2d(0, 0, new Rotation2d(0)),
-            // Pass through these interior waypoints
-            List.of(new Translation2d(Units.inchesToMeters(0.25*forwardDist), Units.inchesToMeters(0) ), 
-                   new Translation2d(Units.inchesToMeters(0.5*forwardDist), Units.inchesToMeters(0) ),
-                   new Translation2d(Units.inchesToMeters(0.75*forwardDist), Units.inchesToMeters(0) )),  
-            // End here
-            new Pose2d(Units.inchesToMeters(forwardDist), Units.inchesToMeters(0), new Rotation2d(Units.degreesToRadians(0))),
-            config);
+    // An example trajectory to follow.  All units in meters.
+    Trajectory exampleTrajectory =
+    TrajectoryGenerator.generateTrajectory(
+        // Start at the origin facing the +X direction
+         new Pose2d(0, 0, new Rotation2d(0)),
+        // Pass through these interior waypoints
+        List.of(
+               new Translation2d(Units.inchesToMeters(0.05*fwdDist), Units.inchesToMeters(0)) , 
+               new Translation2d(Units.inchesToMeters(0.1*fwdDist), Units.inchesToMeters(0) ),
+               new Translation2d(Units.inchesToMeters(0.15*fwdDist), Units.inchesToMeters(0)) ,
+               new Translation2d(Units.inchesToMeters(0.2*fwdDist), Units.inchesToMeters(0) ), 
+               new Translation2d(Units.inchesToMeters(0.25*fwdDist), Units.inchesToMeters(0) ),
+               new Translation2d(Units.inchesToMeters(0.3*fwdDist), Units.inchesToMeters(0) ),
+               new Translation2d(Units.inchesToMeters(0.35*fwdDist), Units.inchesToMeters(0) ), 
+               new Translation2d(Units.inchesToMeters(0.4*fwdDist), Units.inchesToMeters(0) ),
+               new Translation2d(Units.inchesToMeters(0.45*fwdDist), Units.inchesToMeters(0) ), 
+               new Translation2d(Units.inchesToMeters(0.5*fwdDist), Units.inchesToMeters(0) ),
+               new Translation2d(Units.inchesToMeters(0.55*fwdDist), Units.inchesToMeters(0) ),
+               new Translation2d(Units.inchesToMeters(0.6*fwdDist), Units.inchesToMeters(0) ), 
+               new Translation2d(Units.inchesToMeters(0.65*fwdDist), Units.inchesToMeters(0) ),
+               new Translation2d(Units.inchesToMeters(0.7*fwdDist), Units.inchesToMeters(0) ),
+               new Translation2d(Units.inchesToMeters(0.75*fwdDist), Units.inchesToMeters(0) ), 
+               new Translation2d(Units.inchesToMeters(0.8*fwdDist), Units.inchesToMeters(0) ),
+               new Translation2d(Units.inchesToMeters(0.85*fwdDist), Units.inchesToMeters(0) ), 
+               new Translation2d(Units.inchesToMeters(0.9*fwdDist), Units.inchesToMeters(0)),
+               new Translation2d(Units.inchesToMeters(0.95*fwdDist), Units.inchesToMeters(0))
+               ),  
+        // End here
+        new Pose2d(Units.inchesToMeters(fwdDist), Units.inchesToMeters(0), new Rotation2d(Units.degreesToRadians(0))),
+        config);
+        
+
+
             
         var thetaController =
             new ProfiledPIDController(

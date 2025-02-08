@@ -19,9 +19,12 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 
 public class DriveRevAndSideAndTurn extends SequentialCommandGroup {
-    //Pass in reverse X distance (inches, negative), sideways distance (inches), and turn angle (degrees)
-  //X always positive, so pass in true for "reversed" in Container when command is called
-    public DriveRevAndSideAndTurn(Swerve s_Swerve, boolean reversed, double reverseDist, double sideDist, double turnAngle) {
+
+  //Pass in reverse X distance (inches, negative), sideways distance (inches), and turn angle (degrees)
+  //***** X MUST BE NEGATIVE! 
+  //Pass in true for "reversed" in Container when command is called
+
+    public DriveRevAndSideAndTurn(Swerve s_Swerve, boolean reversed, double revDist, double sideDist, double turnAngle) {
         TrajectoryConfig config =
             new TrajectoryConfig(
                     Constants.AutoConstants.kMaxSpeedMetersPerSecond,
@@ -34,11 +37,29 @@ public class DriveRevAndSideAndTurn extends SequentialCommandGroup {
             // Start at the origin facing the +X direction
              new Pose2d(0, 0, new Rotation2d(0)),
             // Pass through these interior waypoints
-            List.of(new Translation2d(Units.inchesToMeters(0.25*reverseDist), Units.inchesToMeters(0.25*sideDist) ), 
-                   new Translation2d(Units.inchesToMeters(0.5*reverseDist), Units.inchesToMeters(0.5*sideDist) ),
-                   new Translation2d(Units.inchesToMeters(0.75*reverseDist), Units.inchesToMeters(0.75*sideDist) )),  
+            List.of(
+            new Translation2d(Units.inchesToMeters(0.05*revDist), Units.inchesToMeters(0.05*sideDist) ), 
+            new Translation2d(Units.inchesToMeters(0.1*revDist), Units.inchesToMeters(0.1*sideDist) ),
+            new Translation2d(Units.inchesToMeters(0.15*revDist), Units.inchesToMeters(0.15*sideDist) ),
+            new Translation2d(Units.inchesToMeters(0.2*revDist), Units.inchesToMeters(0.2*sideDist) ), 
+            new Translation2d(Units.inchesToMeters(0.25*revDist), Units.inchesToMeters(0.25*sideDist) ),
+            new Translation2d(Units.inchesToMeters(0.3*revDist), Units.inchesToMeters(0.3*sideDist) ),
+            new Translation2d(Units.inchesToMeters(0.35*revDist), Units.inchesToMeters(0.35*sideDist) ), 
+            new Translation2d(Units.inchesToMeters(0.4*revDist), Units.inchesToMeters(0.4*sideDist) ),
+            new Translation2d(Units.inchesToMeters(0.45*revDist), Units.inchesToMeters(0.45*sideDist) ), 
+            new Translation2d(Units.inchesToMeters(0.5*revDist), Units.inchesToMeters(0.5*sideDist) ),
+            new Translation2d(Units.inchesToMeters(0.55*revDist), Units.inchesToMeters(0.55*sideDist) ),
+            new Translation2d(Units.inchesToMeters(0.6*revDist), Units.inchesToMeters(0.6*sideDist) ), 
+            new Translation2d(Units.inchesToMeters(0.65*revDist), Units.inchesToMeters(0.65*sideDist) ),
+            new Translation2d(Units.inchesToMeters(0.7*revDist), Units.inchesToMeters(0.7*sideDist) ),
+            new Translation2d(Units.inchesToMeters(0.75*revDist), Units.inchesToMeters(0.75*sideDist) ), 
+            new Translation2d(Units.inchesToMeters(0.8*revDist), Units.inchesToMeters(0.8*sideDist) ),
+            new Translation2d(Units.inchesToMeters(0.85*revDist), Units.inchesToMeters(0.85*sideDist) ), 
+            new Translation2d(Units.inchesToMeters(0.9*revDist), Units.inchesToMeters(0.9*sideDist) ),
+            new Translation2d(Units.inchesToMeters(0.95*revDist), Units.inchesToMeters(0.95*sideDist))
+                   ),  
             // End here
-            new Pose2d(Units.inchesToMeters(reverseDist), Units.inchesToMeters(sideDist), new Rotation2d(Units.degreesToRadians(turnAngle))),
+            new Pose2d(Units.inchesToMeters(revDist), Units.inchesToMeters(sideDist), new Rotation2d(Units.degreesToRadians(turnAngle))),
             config);
             
         var thetaController =
