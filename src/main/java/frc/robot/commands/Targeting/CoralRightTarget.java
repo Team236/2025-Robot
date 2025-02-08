@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.LimelightHelpers;
 import frc.robot.commands.ZeroPose;
 import frc.robot.commands.AutoCommands.DriveFwd;
+import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
 import frc.robot.commands.AutoCommands.DriveSideways;
 import frc.robot.subsystems.Swerve;
 
@@ -23,12 +24,11 @@ public class CoralRightTarget extends SequentialCommandGroup {
  //then targets forward to 12" from the bumper to the apriltag,
  //then uses odometry to move 12" forward and 6.5" right, to be centered on right coral branch.
   public CoralRightTarget(Swerve s_Swerve,  double standoffSideways) {
-    double LLfwdDist = Units.metersToInches(LimelightHelpers.getTargetPose_CameraSpace("limelight")[2]) - 3;
     addCommands(
     new TargetSideDistance(s_Swerve, 0, 0, 0).withTimeout(2),
     new TargetAngle(s_Swerve, 0, 0).withTimeout(2),
-    new TargetSideDistance(s_Swerve, 0, 0, 0).withTimeout(1),
-    new DriveFwd(s_Swerve, false, LLfwdDist).withTimeout(2)
+    new TargetSideDistance(s_Swerve, 0, 0, 0).withTimeout(1)
+    //new DriveFwdAndSideAndTurn(s_Swerve, false, LLfwdDist, standoffSideways, 0).withTimeout(2)
     ); 
   }
 }

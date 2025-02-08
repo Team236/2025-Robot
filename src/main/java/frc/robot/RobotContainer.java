@@ -88,7 +88,7 @@ public class RobotContainer {
    //Targeting
     private final CoralLeftTarget coralLeftTarget = new CoralLeftTarget(s_Swerve, 6.5);
     private final CoralRightTarget coralRightTarget = new CoralRightTarget(s_Swerve, -6.5);
-    private final AlgaeTarget algaeTarget = new AlgaeTarget(s_Swerve, 0);
+    private final AlgaeTarget algaeTarget = new AlgaeTarget(s_Swerve, 6.5);
 
     private final TargetAllParallel targetAllParallel = new TargetAllParallel(s_Swerve, 14, 0);
     private final TargetAllSeries targetAllSeries = new TargetAllSeries(s_Swerve, 14, 0);
@@ -210,12 +210,12 @@ public class RobotContainer {
     //y button is already assigned to ZeroGyro
     //leftBumper lb button is already assigned to RobotCentric
 
-   a.whileTrue(targetAllSeries);
-   b.whileTrue(targetAllParallel);
+   a.whileTrue(coralLeftTarget);
+   b.whileTrue(coralRightTarget);
    upPov.whileTrue(targetAngle);
    x.whileTrue(targetForwardDistance);
 
-   rb.whileTrue(coralRightTarget);
+   rb.whileTrue(algaeTarget);
    downPov.whileTrue(targetAngleSide);
 
     //rb.whileTrue(elevatorDown);

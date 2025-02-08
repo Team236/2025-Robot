@@ -141,6 +141,9 @@ The numbers used below are robot specific, and should be tuned. */
         }
     }
 
+    public double getLLFwdDist() {
+        return Units.metersToInches(LimelightHelpers.getTargetPose_CameraSpace("limelight")[2]);
+    }
 
     @Override
     public void periodic(){
