@@ -28,8 +28,8 @@ public class AlgaeTarget extends SequentialCommandGroup {
     addCommands(
     new TargetSideDistance(s_Swerve, 0, 0, 0).withTimeout(2),
     new TargetAngle(s_Swerve, 0, 0).withTimeout(2),
-    new TargetSideDistance(s_Swerve, 0, 0, 0).withTimeout(1)
-    //new DriveFwdAndSideAndTurn(s_Swerve, false, LLfwdDist, standoffSideways, 0).withTimeout(2)
+    new TargetSideDistance(s_Swerve, 0, 0, 0).withTimeout(1),
+    new DriveFwdAndSideAndTurn(s_Swerve, false, s_Swerve.getLLFwdDist(), standoffSideways, 0).withTimeout(2)
     ); 
   }
 }
