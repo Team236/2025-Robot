@@ -22,12 +22,12 @@ public class FullRun extends SequentialCommandGroup {
       //Later add the commands for scoring and receiving coral
       //Later insert actual x y and theta for Leg1 and Leg3
       //LEG 1:
-      new DriveFwdAndSideAndTurn(s_Swerve, false, 78.6, -91, -58)
+      new DriveFwdAndSideAndTurn(s_Swerve, false, 78.6, -91, -58),
       //LEG2:
-      //new DriveReverse(s_Swerve, true,-12).withTimeout(2),
-      //new DriveFwdAndSideAndTurn(s_Swerve, false, 12, 171, -68)//TESTED GOO
+      new DriveReverse(s_Swerve, true,-12).withTimeout(2),
+      new DriveFwdAndSideAndTurn(s_Swerve, false, 12, 171, -68),//TESTED GOO
       //LEG3:
-      //new DriveFwdAndSideAndTurn(s_Swerve, true, 129, -26.5, 4)
+      new DriveFwdAndSideAndTurn(s_Swerve, true, 129, -26.5, 4)
 
     );
   

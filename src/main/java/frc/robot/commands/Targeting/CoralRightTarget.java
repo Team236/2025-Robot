@@ -4,8 +4,11 @@
 
 package frc.robot.commands.Targeting;
 
+import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.LimelightHelpers;
 import frc.robot.commands.ZeroPose;
 import frc.robot.commands.AutoCommands.DriveFwd;
 import frc.robot.commands.AutoCommands.DriveSideways;
@@ -21,12 +24,10 @@ public class CoralRightTarget extends SequentialCommandGroup {
  //then uses odometry to move 12" forward and 6.5" right, to be centered on right coral branch.
   public CoralRightTarget(Swerve s_Swerve,  double standoffSideways) {
     addCommands(
-    new ZeroPose(s_Swerve),
-    new TargetAllParallel(s_Swerve, 0, standoffSideways).withTimeout(3),
-    new TargetForwardDistance(s_Swerve, 0, 0, 15).withTimeout(3),
-    new ZeroPose(s_Swerve).withTimeout(1),
-    new DriveFwd(s_Swerve, false, 12).withTimeout(3),
-    new DriveSideways(s_Swerve, false, -6.5).withTimeout(3)
-    );
+    new TargetSideDistance(s_Swerve, 0, 0, 0).withTimeout(2),
+    new TargetAngle(s_Swerve, 0, 0).withTimeout(2),
+    new TargetSideDistance(s_Swerve, 0, 0, 0).withTimeout(2),
+    new DriveFwd(s_Swerve, false, Units.metersToInches(LimelightHelpers.getTargetPose_CameraSpace("limelight")[2]) - 3).withTimeout(2)
+    ); 
   }
 }

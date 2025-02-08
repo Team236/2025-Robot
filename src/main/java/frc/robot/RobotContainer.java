@@ -37,6 +37,7 @@ import frc.robot.commands.Targeting.CoralRightTarget;
 import frc.robot.commands.Targeting.TargetAllParallel;
 import frc.robot.commands.Targeting.TargetAllSeries;
 import frc.robot.commands.Targeting.TargetAngle;
+import frc.robot.commands.Targeting.TargetAngleSide;
 import frc.robot.commands.Targeting.TargetForwardDistance;
 import frc.robot.commands.Targeting.TargetMegaTag2;
 import frc.robot.commands.Targeting.TargetSideDistance;
@@ -55,8 +56,8 @@ import frc.robot.subsystems.CoralPivot;
 public class RobotContainer {
 
   //Controllers
-  XboxController driverController = new XboxController(Constants.Controller.USB_DRIVECONTROLLER);
-  XboxController auxController = new XboxController(Constants.Controller.USB_AUXCONTROLLER);
+  public XboxController driverController = new XboxController(Constants.Controller.USB_DRIVECONTROLLER);
+  public XboxController auxController = new XboxController(Constants.Controller.USB_AUXCONTROLLER);
 
    //AUTO SWITCHES
   private static DigitalInput autoSwitch1 = new DigitalInput(Constants.DIO_AUTO_1);
@@ -74,9 +75,9 @@ public class RobotContainer {
 
     
     /* Drive Controls */
-    private final int translationAxis = XboxController.Axis.kLeftY.value;
-    private final int strafeAxis = XboxController.Axis.kLeftX.value;
-    private final int rotationAxis = XboxController.Axis.kRightX.value;
+    public final int translationAxis = XboxController.Axis.kLeftY.value;
+    public final int strafeAxis = XboxController.Axis.kLeftX.value;
+    public final int rotationAxis = XboxController.Axis.kRightX.value;
 
     /* Driver Buttons */
     private final JoystickButton zeroGyro = new JoystickButton(driverController, XboxController.Button.kY.value);
@@ -89,12 +90,13 @@ public class RobotContainer {
     private final CoralRightTarget coralRightTarget = new CoralRightTarget(s_Swerve, -6.5);
     private final AlgaeTarget algaeTarget = new AlgaeTarget(s_Swerve, 0);
 
-    private final TargetAllParallel targetAllParallel = new TargetAllParallel(s_Swerve, 9, 0);
-    private final TargetAllSeries targetAllSeries = new TargetAllSeries(s_Swerve, 9, 0);
+    private final TargetAllParallel targetAllParallel = new TargetAllParallel(s_Swerve, 14, 0);
+    private final TargetAllSeries targetAllSeries = new TargetAllSeries(s_Swerve, 14, 0);
     private final TargetAngle targetAngle =  new TargetAngle(s_Swerve, -driverController.getRawAxis(translationAxis), -driverController.getRawAxis(strafeAxis));
-    private final TargetForwardDistance targetForwardDistance = new TargetForwardDistance(s_Swerve, -driverController.getRawAxis(strafeAxis), -driverController.getRawAxis(rotationAxis), 8);
+    private final TargetForwardDistance targetForwardDistance = new TargetForwardDistance(s_Swerve, -driverController.getRawAxis(strafeAxis), -driverController.getRawAxis(rotationAxis), 14);
     private final TargetSideDistance targetSideDistance = new TargetSideDistance(s_Swerve, -driverController.getRawAxis(translationAxis), -driverController.getRawAxis(rotationAxis), 0);
     private final TargetMegaTag2 target3DMegaTag2 = new TargetMegaTag2(s_Swerve);
+    private final TargetAngleSide targetAngleSide = new TargetAngleSide(s_Swerve, 0);
 
     //Auto
     private final DriveFwd driveFwdCenter55 = new DriveFwd(s_Swerve, false, 55);//88 + (3 for bumper) -36)
@@ -208,13 +210,13 @@ public class RobotContainer {
     //y button is already assigned to ZeroGyro
     //leftBumper lb button is already assigned to RobotCentric
 
-   // a.whileTrue(targetAllSeries);
-   // b.whileTrue(targetAllParallel);
-   // upPov.whileTrue(targetAngle);
-   // x.whileTrue(targetForwardDistance);
+   a.whileTrue(targetAllSeries);
+   b.whileTrue(targetAllParallel);
+   upPov.whileTrue(targetAngle);
+   x.whileTrue(targetForwardDistance);
 
-   // rb.whileTrue(targetSideDistance);
-   // downPov.whileTrue(target3DMegaTag2);
+   rb.whileTrue(coralRightTarget);
+   downPov.whileTrue(targetAngleSide);
 
     //rb.whileTrue(elevatorDown);
     //rm.whileTrue(elevatorUp);
@@ -240,14 +242,14 @@ public class RobotContainer {
     //a.onTrue(pidAlgaePivot1);
     //b.onTrue(pidAlgaePivot2);
 
-  a.onTrue(driveFwdCenter55);
-  b.onTrue(turn);
-  upPov.onTrue(driveFwd113);
-  x.onTrue(fullRun); 
+ // a.onTrue(driveFwdCenter55);
+  //b.onTrue(turn);
+  //upPov.onTrue(driveFwd113);
+  //x.onTrue(fullRun); 
 
-  downPov.whileTrue(algaeTarget);
-  leftPov.whileTrue(coralLeftTarget);
-  rightPov.whileTrue(coralRightTarget);
+  //downPov.whileTrue(algaeTarget);
+  //leftPov.whileTrue(coralLeftTarget);
+  //rightPov.whileTrue(coralRightTarget);
   }
   
   public Command getAutonomousCommand() {
