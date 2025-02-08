@@ -20,18 +20,14 @@ import frc.robot.subsystems.Swerve;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class CoralLeftTarget extends SequentialCommandGroup {
- //This command targets angle and sideways distance in parallel, 
- //then targets forward to 12" from the bumper to the apriltag,
- //then uses odometry to move 12" forward and 6.5" right, to be centered on right coral branch.
   public CoralLeftTarget(Swerve s_Swerve,  double standoffSideways) {
-    //double LLfwdDist = Units.metersToInches(LimelightHelpers.getTargetPose_CameraSpace("limelight")[2]) - 3;
     addCommands(
-    new TargetSideDistance(s_Swerve, 0, 0, 0).withTimeout(2),
+  //  new TargetSideDistance(s_Swerve, 0, 0, 0).withTimeout(2),
     new TargetAngle(s_Swerve, 0, 0).withTimeout(2),
-    new TargetSideDistance(s_Swerve, 0, 0, 0).withTimeout(1),
-    //new LLgetFwdDist(s_Swerve)
-    //new ZeroPose(s_Swerve),
-    new DriveFwdAndSideAndTurn(s_Swerve, false, s_Swerve.getLLFwdDist(), standoffSideways, 0).withTimeout(2)
+   // new TargetSideDistance(s_Swerve, 0, 0, 0).withTimeout(1),
+
+    //new DriveFwdAndSideAndTurn(s_Swerve, false, s_Swerve.getLLFwdDistInch(), standoffSideways, 0).withTimeout(2)
+    new DriveFwdAndSideAndTurn(s_Swerve, false, s_Swerve.getLLFwdDistInch(), s_Swerve.getLLSideDistInch(), 0).withTimeout(2)
     ); 
   }
 }

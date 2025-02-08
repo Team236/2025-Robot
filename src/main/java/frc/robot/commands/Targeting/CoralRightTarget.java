@@ -25,10 +25,12 @@ public class CoralRightTarget extends SequentialCommandGroup {
  //then uses odometry to move 12" forward and 6.5" right, to be centered on right coral branch.
   public CoralRightTarget(Swerve s_Swerve,  double standoffSideways) {
     addCommands(
-    new TargetSideDistance(s_Swerve, 0, 0, 0).withTimeout(2),
+   // new TargetSideDistance(s_Swerve, 0, 0, 0).withTimeout(2),
     new TargetAngle(s_Swerve, 0, 0).withTimeout(2),
-    new TargetSideDistance(s_Swerve, 0, 0, 0).withTimeout(1),
-    new DriveFwdAndSideAndTurn(s_Swerve, false, s_Swerve.getLLFwdDist(), standoffSideways, 0).withTimeout(2)
+   // new TargetSideDistance(s_Swerve, 0, 0, 0).withTimeout(1),
+
+   //new DriveFwdAndSideAndTurn(s_Swerve, false, s_Swerve.getLLFwdDistInch(), standoffSideways, 0).withTimeout(2)
+   new DriveFwdAndSideAndTurn(s_Swerve, false, s_Swerve.getLLFwdDistInch(), s_Swerve.getLLSideDistInch(), 0).withTimeout(2)
     ); 
   }
 }
