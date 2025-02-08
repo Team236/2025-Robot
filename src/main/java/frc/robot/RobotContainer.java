@@ -56,8 +56,8 @@ import frc.robot.subsystems.CoralPivot;
 public class RobotContainer {
 
   //Controllers
-  public XboxController driverController = new XboxController(Constants.Controller.USB_DRIVECONTROLLER);
-  public XboxController auxController = new XboxController(Constants.Controller.USB_AUXCONTROLLER);
+  XboxController driverController = new XboxController(Constants.Controller.USB_DRIVECONTROLLER);
+  XboxController auxController = new XboxController(Constants.Controller.USB_AUXCONTROLLER);
 
    //AUTO SWITCHES
   private static DigitalInput autoSwitch1 = new DigitalInput(Constants.DIO_AUTO_1);
@@ -75,9 +75,9 @@ public class RobotContainer {
 
     
     /* Drive Controls */
-    public final int translationAxis = XboxController.Axis.kLeftY.value;
-    public final int strafeAxis = XboxController.Axis.kLeftX.value;
-    public final int rotationAxis = XboxController.Axis.kRightX.value;
+    private final int translationAxis = XboxController.Axis.kLeftY.value;
+    private final int strafeAxis = XboxController.Axis.kLeftX.value;
+    private final int rotationAxis = XboxController.Axis.kRightX.value;
 
     /* Driver Buttons */
     private final JoystickButton zeroGyro = new JoystickButton(driverController, XboxController.Button.kY.value);
