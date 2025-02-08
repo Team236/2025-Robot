@@ -23,9 +23,9 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 
-public class Leg3 extends SequentialCommandGroup {
+public class Leg3Series extends SequentialCommandGroup {
 
-    public Leg3(Swerve s_Swerve) {
+    public Leg3Series(Swerve s_Swerve) {
     addCommands(
     new ZeroPose(s_Swerve).withTimeout(1),
     new DriveSideways(s_Swerve, false, 36).withTimeout(5),

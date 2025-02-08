@@ -11,13 +11,13 @@ import frc.robot.subsystems.Swerve;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class FullRun extends SequentialCommandGroup {
+public class FullRunSeries extends SequentialCommandGroup {
   /** Creates a new FullRun. */
-  public FullRun(Swerve s_Swerve) {
+  public FullRunSeries(Swerve s_Swerve) {
     addCommands(
-    new Leg1(s_Swerve).withTimeout(10),
+    new Leg1Series(s_Swerve).withTimeout(10),
     new ZeroPose(s_Swerve).withTimeout(1),
-    new Leg2(s_Swerve).withTimeout(10),
+    new Leg2Series(s_Swerve).withTimeout(10),
     new ZeroPose(s_Swerve).withTimeout(1),
     new Leg3(s_Swerve).withTimeout(10),
     new ZeroPose(s_Swerve).withTimeout(1)
