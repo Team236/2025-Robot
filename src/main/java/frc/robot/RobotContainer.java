@@ -101,9 +101,9 @@ public class RobotContainer {
     private final DriveFwd driveFwd113 = new DriveFwd(s_Swerve, false, 113);
     private final DriveSideways driveSideways60 = new DriveSideways(s_Swerve, false, 60);
 
-    private final DriveFwdAndSideAndTurn leg1Parallel = new DriveFwdAndSideAndTurn(s_Swerve, false, 0, 168, -73);//TODO get values
+    private final DriveFwdAndSideAndTurn leg1Parallel = new DriveFwdAndSideAndTurn(s_Swerve, false, 57.6, -86, -60);//TODO test and tweak
     private final DriveFwdAndSideAndTurn leg2Parallel = new DriveFwdAndSideAndTurn(s_Swerve, false, 0, 168, -73);//TESTED GOOD
-    private final DriveFwdAndSideAndTurn leg3Parallel = new DriveFwdAndSideAndTurn(s_Swerve, false, 0, 168, -73);//TODO get values
+    private final DriveFwdAndSideAndTurn leg3Parallel = new DriveFwdAndSideAndTurn(s_Swerve, true, -120, 59, 5.9);//TODO test and tweak
       
   //Elevator
   private final ManualUpDown elevatorUp = new ManualUpDown(elevator, Constants.Elevator.ELEV_UP_SPEED);
