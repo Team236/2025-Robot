@@ -36,7 +36,7 @@ public class TargetAngleSide extends Command {
         // 3D pose array contains [0] = X, [1] = Y, [2] = Z, [3] = roll, [4] = pitch, [5] = yaw
 
         private double standoffSideways; // desired sideways distance in inches from camera to tag; pass into command
-        private double error, dx, angle;
+        private double errorSide, poseSide, poseAngle;
   // simple proportional turning control with Limelight.
   // "proportional control" is a control algorithm in which the output is proportional to the error.
   //In this case, angular velocity will be set proportional to tx (LL to target horizontal offset angle,)
@@ -77,19 +77,19 @@ public class TargetAngleSide extends Command {
 
     if (tv == 1) { //tv =1 means Limelight sees a target
 
-    angle = s_Swerve.getLLAngleDegrees();  //the angle is the error (angle between target and camera)
-    //SmartDashboard.putNumber("TargetingAngle: ", angleTx);
-    double targetingAngle = angle * kProtation; 
+    poseAngle = s_Swerve.getLLAngleDegrees();  //the angle is the error (angle between target and camera)
+    //SmartDashboard.putNumber("TargetingAngle: ", poseAngle);
+    double targetingAngle = poseAngle * kProtation; 
     //invert since tx is positive when the target is to the right of the crosshair
     targetingAngle *= -1.0; 
     double rotationVal = targetingAngle; 
 
-  //dx is first element in the pose array - which is sideways distance from center of LL camera to the AprilTag in meters
-    dx = (s_Swerve.getLLSideDistMeters());
-    //dx = LimelightHelpers.getTargetPose_CameraSpace("limelight")[0]; 
+  //poseSide is first element in the pose array - which is sideways distance from center of LL camera to the AprilTag in meters
+    poseSide = (s_Swerve.getLLSideDistMeters());
+    //poseSide = LimelightHelpers.getTargetPose_CameraSpace("limelight")[0]; 
     double finalSideways = Units.inchesToMeters(standoffSideways);  //convert desired standoff from inches to meters
-    error = dx - finalSideways; //OR DO WE NEED ADD finalStandoff here instead of subtract it?
-    double targetingSidewaysSpeed = error*kPstrafe;
+    errorSide = poseSide - finalSideways; //or add it?
+    double targetingSidewaysSpeed = errorSide*kPstrafe;
    // SmartDashboard.putNumber("Side to side distance - camera to target, in meters: ", dx);
     targetingSidewaysSpeed *= -1.0;  
     double strafeVal = targetingSidewaysSpeed;
@@ -118,7 +118,7 @@ public class TargetAngleSide extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return ( (Math.abs(error) < Units.inchesToMeters(0.25)) &&  (angle < 1));
+    return ( (Math.abs(errorSide) < Units.inchesToMeters(0.25)) &&  (poseAngle < 1));
    // return false;
 
   }

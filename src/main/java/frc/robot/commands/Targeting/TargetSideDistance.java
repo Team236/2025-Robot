@@ -39,16 +39,16 @@ public class TargetSideDistance extends Command {
     private double pipeline = 0; 
     private double tv;
     private double translationSup, rotationSup; 
-    private double standoff; // desired horiz distance in inches from camera to target; pass into command
-    private double dx, error;
+    private double standoffSide; // desired horiz distance in inches from camera to target; pass into command
+    private double poseSide , errorSide;
     private Swerve s_Swerve;    
   
   /** Creates a new TargetSideDistance. */
-  public TargetSideDistance(Swerve s_Swerve, double translationSup, double rotationSup, double standoff) {
+  public TargetSideDistance(Swerve s_Swerve, double standoffSide) {
     this.s_Swerve = s_Swerve;
-    this.translationSup = translationSup;
-    this.rotationSup = rotationSup;
-    this.standoff = standoff;
+    //this.translationSup = translationSup;
+    //this.rotationSup = rotationSup;
+    this.standoffSide = standoffSide;
     addRequirements(s_Swerve);
   }
 
@@ -58,7 +58,7 @@ public class TargetSideDistance extends Command {
     // turn on the LED,  3 = force on
     NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
     NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(pipeline);
-    SmartDashboard.putBoolean("starting tsd", true);
+   // SmartDashboard.putBoolean("starting tsd", true);
     // TODO swap to LimelightHelpers alternative instead of above methods ?
     // LimelightHelpers.setLEDMode_ForceOn("limelight");
     // LimelightHelpers.setPipelineIndex("limelight", pipeline);
@@ -73,11 +73,11 @@ public class TargetSideDistance extends Command {
     if (tv ==1) { //tv =1 means Limelight sees a target
 
     //dx is first element in the pose array - which is sideways distance from center of LL camera to the AprilTag in meters  
-    dx = (s_Swerve.getLLSideDistMeters());
+    poseSide = (s_Swerve.getLLSideDistMeters());
     //dx = LimelightHelpers.getTargetPose_CameraSpace("limelight")[0];
-    double finalStandoff = Units.inchesToMeters(standoff);  //convert desired standoff from inches to meters
-    error = dx - finalStandoff; 
-    double targetingSidewaysSpeed = error*kPstrafe;
+    double finalStandoff = Units.inchesToMeters(standoffSide);  //convert desired standoff from inches to meters
+    errorSide = poseSide - finalStandoff; 
+    double targetingSidewaysSpeed = errorSide*kPstrafe;
    // SmartDashboard.putNumber("Side to side distance - camera to target, in inches: ", dx/0.0254);
     targetingSidewaysSpeed *= -1.0;  //IS NEEDED
     double strafeVal = targetingSidewaysSpeed;
@@ -105,7 +105,7 @@ public class TargetSideDistance extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (Math.abs(error) < Units.inchesToMeters(0.2));
+    return (Math.abs(errorSide) < Units.inchesToMeters(0.2));
    // return false;
   }
 }

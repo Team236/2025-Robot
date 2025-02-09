@@ -31,14 +31,14 @@ public class TargetAngle extends Command {
     double kProtation = 0.014; //0.02 also works //kP value for rotation
     private double pipeline = 0; 
     private double tv, poseAngle;
-    private double translationSup, strafeSup;
+   // private double translationSup, strafeSup;
     private Swerve s_Swerve;    
   
   /** Creates a new TargetAngle. */
-  public TargetAngle(Swerve s_Swerve, double translationSup, double strafeSup) {
+  public TargetAngle(Swerve s_Swerve) {
     this.s_Swerve = s_Swerve;
-    this.strafeSup = strafeSup;
-    this.translationSup = translationSup;
+   // this.strafeSup = strafeSup;
+   // this.translationSup = translationSup;
     addRequirements(s_Swerve);
     
   }

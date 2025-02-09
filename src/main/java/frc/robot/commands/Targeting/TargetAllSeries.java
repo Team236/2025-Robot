@@ -15,9 +15,9 @@ public class TargetAllSeries extends SequentialCommandGroup {
   /** Creates a new TargetAllSeries. */
   public TargetAllSeries(Swerve s_Swerve, double standoffForward, double standoffSideways) {
     addCommands(
-    new TargetAngle(s_Swerve,  0,0).withTimeout(3),
+    new TargetAngle(s_Swerve).withTimeout(3),
     new TargetSideDistance(s_Swerve, 0, 0, standoffSideways).withTimeout(3),
-    new TargetForwardDistance(s_Swerve, 0, 0, standoffForward).withTimeout(3),
+    new TargetForwardDistance(s_Swerve, standoffForward).withTimeout(3),
     new TargetSideDistance(s_Swerve, 0, 0, standoffSideways).withTimeout(3));
   }
 }

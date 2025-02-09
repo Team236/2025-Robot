@@ -35,7 +35,7 @@ public class TargetForwardDistance extends Command {
         // 3D pose array contains [0] = X, [1] = Y, [2] = Z, [3] = roll, [4] = pitch, [5] = yaw
 
   private double standoff; //desired Forward distance in inches from bumper to tag; pass into command
-  private double dz, error; //z is the forward direction
+  private double poseFwd, errorFwd; 
 
   // "proportional control" is a control algorithm in which the output is proportional to the error.
   // in this case, we are going to set forward speed that is proportional to the forward
@@ -49,14 +49,14 @@ public class TargetForwardDistance extends Command {
     double kPtranslation = 1.0; //kP for the Forward direction
     private double pipeline = 0; 
     private double tv;
-    private double strafeSup, rotationSup; 
+    //private double strafeSup, rotationSup; 
     private Swerve s_Swerve;    
   
   /** Creates a new TargetForwardDistance. */
-  public TargetForwardDistance(Swerve s_Swerve, double strafeSup, double rotationSup, double standoff) {
+  public TargetForwardDistance(Swerve s_Swerve, double standoff) {
     this.s_Swerve = s_Swerve;
-    this.strafeSup = strafeSup;
-    this.rotationSup = rotationSup;
+   // this.strafeSup = strafeSup;
+    //this.rotationSup = rotationSup;
     this.standoff = standoff;
     addRequirements(s_Swerve);
   }
@@ -79,13 +79,13 @@ public class TargetForwardDistance extends Command {
   // simple proportional ranging control
   // this works best if your Limelight's mount height and target mount height are different.
   
-  // dz is the third element [2] in the pose array, which is the forward distance from center of robot to the AprilTag
-    dz = (s_Swerve.getLLFwdDistMeters());
-    //dz = LimelightHelpers.getTargetPose_CameraSpace("limelight")[2]; 
+  // poseFwd is the third element [2] in the pose array, which is the forward distance from center of robot to the AprilTag
+    poseFwd = (s_Swerve.getLLFwdDistMeters());
+    //poseFwd = LimelightHelpers.getTargetPose_CameraSpace("limelight")[2]; 
     //Standsoff is from bumper to Target. Must add forward dist from bumper to LLcamera (since using TargetPose-CameraSpace)
     double finalStandoff = Units.inchesToMeters(standoff + Constants.Targeting.DIST_CAMERA_TO_BUMPER_FWD); //to robot center in meters
-    error = dz - finalStandoff; 
-    double targetingForwardSpeed = error*kPtranslation;
+    errorFwd = poseFwd - finalStandoff; 
+    double targetingForwardSpeed = errorFwd*kPtranslation;
      //SmartDashboard.putNumber("Forward distance from Robot frame to tag in inches: ", ((dz/0.0254)-Constants.Targeting.DIST_CAMERA_TO_BUMPER_FWD));
     double translationVal = targetingForwardSpeed;
 
@@ -111,7 +111,7 @@ public class TargetForwardDistance extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return ((Math.abs(error) < Units.inchesToMeters(0.15)));
+    return ((Math.abs(errorFwd) < Units.inchesToMeters(0.15)));
    // return false;
   }
 }
