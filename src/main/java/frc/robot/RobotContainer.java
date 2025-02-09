@@ -90,9 +90,9 @@ public class RobotContainer {
 
     private final TargetAllParallel targetAllParallel = new TargetAllParallel(s_Swerve, 14, 0);
     private final TargetAllSeries targetAllSeries = new TargetAllSeries(s_Swerve, 14, 0);
-    private final TargetAngle targetAngle =  new TargetAngle(s_Swerve,0, 0);
-    private final TargetForwardDistance targetForwardDistance = new TargetForwardDistance(s_Swerve, 0, 0, 14);
-    private final TargetSideDistance targetSideDistanceChanged  = new TargetSideDistance(s_Swerve,0, 0, 0);
+    private final TargetAngle targetAngle =  new TargetAngle(s_Swerve);
+    private final TargetForwardDistance targetForwardDistance = new TargetForwardDistance(s_Swerve, 14);
+    private final TargetSideDistance targetSideDistanceChanged  = new TargetSideDistance(s_Swerve,0);
     private final TargetMegaTag2 target3DMegaTag2 = new TargetMegaTag2(s_Swerve);
     private final TargetAngleSide targetAngleSide = new TargetAngleSide(s_Swerve, 0);
 

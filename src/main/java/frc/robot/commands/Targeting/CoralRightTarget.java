@@ -23,7 +23,7 @@ public class CoralRightTarget extends SequentialCommandGroup {
   public CoralRightTarget(Swerve s_Swerve,  double standoffSideways) {
     addCommands(
    // new TargetSideDistance(s_Swerve, 0, 0, 0).withTimeout(2), //add back if needed
-    new TargetAngle(s_Swerve, 0, 0).withTimeout(2),
+    new TargetAngle(s_Swerve).withTimeout(2),
    // new TargetSideDistance(s_Swerve, 0, 0, 0).withTimeout(1), //add back if needed
 
    //new DriveFwdAndSideAndTurn(s_Swerve, false, s_Swerve.getLLFwdDistInch(), standoffSideways, 0).withTimeout(2) //replace below with this if needed

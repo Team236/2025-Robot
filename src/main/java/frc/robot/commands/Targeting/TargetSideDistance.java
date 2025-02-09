@@ -38,7 +38,6 @@ public class TargetSideDistance extends Command {
     double kPstrafe = 1.2;  //kP value for the sideways (strafe) motion
     private double pipeline = 0; 
     private double tv;
-    private double translationSup, rotationSup; 
     private double standoffSide; // desired horiz distance in inches from camera to target; pass into command
     private double poseSide , errorSide;
     private Swerve s_Swerve;    
@@ -46,8 +45,6 @@ public class TargetSideDistance extends Command {
   /** Creates a new TargetSideDistance. */
   public TargetSideDistance(Swerve s_Swerve, double standoffSide) {
     this.s_Swerve = s_Swerve;
-    //this.translationSup = translationSup;
-    //this.rotationSup = rotationSup;
     this.standoffSide = standoffSide;
     addRequirements(s_Swerve);
   }
