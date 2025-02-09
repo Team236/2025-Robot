@@ -22,7 +22,7 @@ public class DriveSideways extends SequentialCommandGroup {
   //Pass in forward X distance (inches, positive), sideways distance (inches), and turn angle (degrees)
   //X always positive, so pass in false for "reversed" in Container when command is called
     public DriveSideways(Swerve s_Swerve, boolean reversed, double sideD) {
-        //****WAS NOT DRIVIN ENOUGH SIDEWAYS WITHOUT THIS FACTOR!!*****
+        //****WAS NOT DRIVINg ENOUGH SIDEWAYS WITHOUT THIS FACTOR!!*****
         double sideDist = sideD * 1.03;  
         TrajectoryConfig config =
             new TrajectoryConfig(

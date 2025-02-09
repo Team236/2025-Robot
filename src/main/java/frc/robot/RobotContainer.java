@@ -84,8 +84,8 @@ public class RobotContainer {
    //COMMANDS
 
    //Targeting
-    private final CoralLeftTarget coralLeftTarget = new CoralLeftTarget(s_Swerve, 6.5);
-    private final CoralRightTarget coralRightTarget = new CoralRightTarget(s_Swerve, -6.5);
+    private final CoralLeftTarget coralLeftTarget = new CoralLeftTarget(s_Swerve, 6.5); //or +6.5?
+    private final CoralRightTarget coralRightTarget = new CoralRightTarget(s_Swerve, -6.5); //OR -6.5?
     private final AlgaeTarget algaeTarget = new AlgaeTarget(s_Swerve, 6.5);
 
     private final TargetAllParallel targetAllParallel = new TargetAllParallel(s_Swerve, 14, 0);

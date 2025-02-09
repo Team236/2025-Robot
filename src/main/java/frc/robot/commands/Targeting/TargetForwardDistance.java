@@ -53,11 +53,11 @@ public class TargetForwardDistance extends Command {
     private Swerve s_Swerve;    
   
   /** Creates a new TargetForwardDistance. */
-  public TargetForwardDistance(Swerve s_Swerve, double standoff) {
+  public TargetForwardDistance(Swerve s_Swerve, double standoffFwd) {
     this.s_Swerve = s_Swerve;
    // this.strafeSup = strafeSup;
     //this.rotationSup = rotationSup;
-    this.standoffFwd = standoff;
+    this.standoffFwd = standoffFwd;
     addRequirements(s_Swerve);
   }
 
