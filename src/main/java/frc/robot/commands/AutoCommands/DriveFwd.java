@@ -58,9 +58,6 @@ public class DriveFwd extends SequentialCommandGroup {
         // End here
         new Pose2d(Units.inchesToMeters(fwdDist), Units.inchesToMeters(0), new Rotation2d(Units.degreesToRadians(0))),
         config);
-        
-
-
             
         var thetaController =
             new ProfiledPIDController(
@@ -77,7 +74,6 @@ public class DriveFwd extends SequentialCommandGroup {
                 thetaController,
                 s_Swerve::setModuleStates,
                 s_Swerve);
-
 
         addCommands(
             new InstantCommand(() -> s_Swerve.setPose(exampleTrajectory.getInitialPose())),

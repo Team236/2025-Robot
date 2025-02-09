@@ -189,7 +189,7 @@ public static final class Swerve {
         public static final double kMaxAccelerationMetersPerSecondSquared = 3; //4
         public static final double kMaxAngularSpeedRadiansPerSecond = 4*Math.PI;
         public static final double kMaxAngularSpeedRadiansPerSecondSquared = 4*Math.PI;
-    //X = forward, Y = to the left for swerve??
+        //X = forward, Y = to the left, Theta positive CCW for swerve
         public static final double kPXController = 12; //1 default
         public static final double kPYController = 12; //1
         public static final double kPThetaController = 8.1; //1 default
@@ -198,6 +198,38 @@ public static final class Swerve {
         public static final TrapezoidProfile.Constraints kThetaControllerConstraints =
             new TrapezoidProfile.Constraints(
                 kMaxAngularSpeedRadiansPerSecond, kMaxAngularSpeedRadiansPerSecondSquared);
+
+      //Center Auto path (inches)
+        public static final double CENTER_FWD_DIST = 55; //if starting 1" behind start line
+
+      //Right Auto path (inches), starting 12" from sideline, bumper just covering black start line
+        public static final double RIGHT_LEG1_FWD_X = 78.6;//ADD TO X TO BACK UP BEHIND START LINE
+        public static final double RIGHT_LEG1_SIDE_Y = -91;
+        public static final double RIGHT_LEG1_ANGLE_CCW = -58;
+     
+        public static final double RIGHT_LEG2_INITIAL_REVERSE = -12;
+        public static final double RIGHT_LEG2_FWD_X = 12;
+        public static final double RIGHT_LEG2_SIDE_Y = 171;
+        public static final double RIGHT_LEG2_ANGLE_CCW = -68;
+
+        public static final double RIGHT_LEG3_FWD_X = 129;
+        public static final double RIGHT_LEG3_SIDE_Y = -26.5;
+        public static final double RIGHT_LEG3_ANGLE_CCW = 4;
+
+        //Left Auto path (inches)
+        public static final double LEFT_LEG1_FWD_X = RIGHT_LEG1_FWD_X;
+        public static final double LEFT_LEG1_SIDE_Y = -RIGHT_LEG1_SIDE_Y;
+        public static final double LEFT_LEG1_ANGLE_CCW = -RIGHT_LEG1_ANGLE_CCW ;
+     
+        public static final double LEFT_LEG2_INITIAL_REVERSE = RIGHT_LEG2_INITIAL_REVERSE;
+        public static final double LEFT_LEG2_FWD_X = RIGHT_LEG2_FWD_X;
+        public static final double LEFT_LEG2_SIDE_Y = -RIGHT_LEG2_SIDE_Y;
+        public static final double LEFT_LEG2_ANGLE_CCW = -RIGHT_LEG2_ANGLE_CCW;
+
+        public static final double LEFT_LEG3_FWD_X = RIGHT_LEG3_FWD_X;
+        public static final double LEFT_LEG3_SIDE_Y = -RIGHT_LEG3_SIDE_Y;
+        public static final double LEFT_LEG3_ANGLE_CCW = -RIGHT_LEG3_ANGLE_CCW ;
+                
     }
 
   public static class Elevator {

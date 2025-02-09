@@ -19,9 +19,7 @@ import frc.robot.commands.AutoCommands.DriveFwd;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
 import frc.robot.commands.AutoCommands.DriveSideways;
 import frc.robot.commands.AutoCommands.TurnOnly;
-import frc.robot.commands.AutoCommands.exampleAuto;
-import frc.robot.commands.AutoCommands.Right2Score.FullRun;
-//import frc.robot.commands.AutoCommands.*;
+import frc.robot.commands.AutoCommands.Right2Score.FullRunRight;
 import frc.robot.commands.AutoCommands.Right2Score.Leg1Series;
 import frc.robot.commands.AutoCommands.Right2Score.Leg2Series;
 import frc.robot.commands.CoralHoldCommands.CoralGrabWithCounter;
@@ -108,7 +106,7 @@ public class RobotContainer {
     //private final DriveFwdAndSideAndTurn leg2Parallel = new DriveFwdAndSideAndTurn(s_Swerve, false, 0, 168, -73);
     //private final DriveFwdAndSideAndTurn leg3Parallel = new DriveFwdAndSideAndTurn(s_Swerve, true, -120, 59, 5.9);
     //private final FullRun fullRunParallel = new FullRun(s_Swerve);
-    private final FullRun fullRun = new FullRun(s_Swerve);
+    private final FullRunRight fullRun = new FullRunRight(s_Swerve);
       
   //Elevator
   private final ManualUpDown elevatorUp = new ManualUpDown(elevator, Constants.Elevator.ELEV_UP_SPEED);
@@ -245,7 +243,7 @@ public class RobotContainer {
  // a.onTrue(driveFwdCenter55);
   //b.onTrue(turn);
   //upPov.onTrue(driveFwd113);
-  //x.onTrue(fullRun); 
+  //x.onTrue(fullRunRight); 
 
   //downPov.whileTrue(algaeTarget);
   //leftPov.whileTrue(coralLeftTarget);
@@ -253,7 +251,7 @@ public class RobotContainer {
   }
   
   public Command getAutonomousCommand() {
-   return new FullRun(s_Swerve);
+   return new FullRunRight(s_Swerve);
   }
 
 }

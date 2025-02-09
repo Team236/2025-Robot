@@ -75,7 +75,6 @@ public class DriveFwdAndSideAndTurn extends SequentialCommandGroup {
                 s_Swerve::setModuleStates,
                 s_Swerve);
 
-
         addCommands(
             new InstantCommand(() -> s_Swerve.setPose(exampleTrajectory.getInitialPose())),
             swerveControllerCommand
