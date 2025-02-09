@@ -37,7 +37,7 @@ public class TargetAllParallel extends Command {
 
         private double standoffForward; // desired Forward distance in inches from bumper to tag; pass into command
         private double standoffSideways; // desired sideways distance in inches from camera to tag; pass into command
-        private double error, dz, dx, poseAngle;
+        private double errorX, errorZ, dz, dx, poseAngle;
   // simple proportional turning control with Limelight.
   // "proportional control" is a control algorithm in which the output is proportional to the error.
   //In this case, angular velocity will be set proportional to tx (LL to target horizontal offset angle,)
@@ -80,7 +80,7 @@ public class TargetAllParallel extends Command {
 
     if (tv == 1) { //tv =1 means Limelight sees a target
 
-    poseAngle = s_Swerve.getLLAngleDegrees();
+    poseAngle = s_Swerve.getLLAngleDegrees();  //the angle is the error (angle between camera and apriltag)
     //poseAngle = LimelightHelpers.getTargetPose_CameraSpace("limelight")[5];
    // SmartDashboard.putNumber("TargetingAngle: ", poseAngle );
     double targetingAngle = poseAngle * kProtation; //
@@ -94,17 +94,17 @@ public class TargetAllParallel extends Command {
   //dz = LimelightHelpers.getTargetPose_CameraSpace("limelight")[2]; 
   //Standsoff is from bumper to Target. Must add forward dist from bumper to LLcamera (since using TargetPose-CameraSpace)
   double finalForward = Units.inchesToMeters(standoffForward + Constants.Targeting.DIST_CAMERA_TO_BUMPER_FWD);
-  error = dz - finalForward; 
-  double targetingForwardSpeed = error*kPtranslation;
+  errorZ = dz - finalForward; 
+  double targetingForwardSpeed = errorZ*kPtranslation;
  //SmartDashboard.putNumber("Forward distance from Robot frame to tag in inches: ", ((dz/0.0254)-Constants.Targeting.DIST_CAMERA_TO_BUMPER_FWD));
   double translationVal = targetingForwardSpeed;
 
     //dx is first element in the pose array - which is sideways distance from center of LL camera to the AprilTag in meters  
     dx=(s_Swerve.getLLSideDistMeters());
     //dx = LimelightHelpers.getTargetPose_CameraSpace("limelight")[0];
-    double finalStandoff = Units.inchesToMeters(standoffSideways);  //convert desired standoff from inches to meters
-    error = dx - finalStandoff; //OR DO WE NEED ADD finalStandoff here instead of subtract it?
-    double targetingSidewaysSpeed = error*kPstrafe;
+    double finalSideways = Units.inchesToMeters(standoffSideways);  //convert desired standoff from inches to meters
+    errorX = dx - finalSideways; //OR DO WE NEED ADD finalStandoff here instead of subtract it?
+    double targetingSidewaysSpeed = errorX*kPstrafe;
    // SmartDashboard.putNumber("Side to side distance - camera to target, in inches: ", dx/0.0254);
     targetingSidewaysSpeed *= -1.0;  //IS NEEDED
     double strafeVal = targetingSidewaysSpeed;
@@ -122,11 +122,13 @@ public class TargetAllParallel extends Command {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) { //INSERT CODE TO STOP HERE?
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return ((Math.abs(errorX) < Units.inchesToMeters(0.3)) && (Math.abs(errorZ) < Units.inchesToMeters(0.3)) &&  (poseAngle < 1));
+   // return false;
   }
 }

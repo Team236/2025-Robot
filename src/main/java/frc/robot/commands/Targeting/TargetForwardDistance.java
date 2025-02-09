@@ -111,6 +111,7 @@ public class TargetForwardDistance extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return ((Math.abs(error) < Units.inchesToMeters(0.15)));
+   // return false;
   }
 }

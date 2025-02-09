@@ -9,6 +9,7 @@ import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -86,11 +87,14 @@ public class TargetAngle extends Command {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    //INSERT CODE TO STOP HERE?
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+     return ( poseAngle < 0.5);
+   // return false;
   }
 }

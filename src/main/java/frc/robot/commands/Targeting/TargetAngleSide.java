@@ -77,7 +77,7 @@ public class TargetAngleSide extends Command {
 
     if (tv == 1) { //tv =1 means Limelight sees a target
 
-    angle = s_Swerve.getLLAngleDegrees();
+    angle = s_Swerve.getLLAngleDegrees();  //the angle is the error (angle between target and camera)
     //SmartDashboard.putNumber("TargetingAngle: ", angleTx);
     double targetingAngle = angle * kProtation; 
     //invert since tx is positive when the target is to the right of the crosshair
@@ -111,11 +111,15 @@ public class TargetAngleSide extends Command {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    //INSERT CODE TO STOP HERE?
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return ( (Math.abs(error) < Units.inchesToMeters(0.25)) &&  (angle < 1));
+   // return false;
+
   }
 }
