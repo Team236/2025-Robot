@@ -8,6 +8,7 @@ import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -78,18 +79,17 @@ public class TargetForwardDistance extends Command {
   // simple proportional ranging control
   // this works best if your Limelight's mount height and target mount height are different.
   // dz is the third element [2] in the pose array, which is the forward distance from center of robot to the AprilTag
-    dz = LimelightHelpers.getTargetPose_CameraSpace("limelight")[2]; 
+    dz = Units.inchesToMeters(s_Swerve.getLLFwdDistInch());
+    //dz = LimelightHelpers.getTargetPose_CameraSpace("limelight")[2]; 
     //Add the forward dist from bumper to center of robot (from Constants) to the desired standoff from the bumper:
-    double finalStandoff = (standoff + Constants.Targeting.DIST_CAMERA_TO_BUMPER_FWD) * 0.0254; //to robot center in meters
+    double finalStandoff = Units.inchesToMeters(standoff + Constants.Targeting.DIST_CAMERA_TO_BUMPER_FWD); //to robot center in meters
     error = dz - finalStandoff; 
     double targetingForwardSpeed = error*kPtranslation;
-
-     SmartDashboard.putNumber("Forward distance from Robot frame to tag in inches: ", ((dz/0.0254)-Constants.Targeting.DIST_CAMERA_TO_BUMPER_FWD));
-   
+     //SmartDashboard.putNumber("Forward distance from Robot frame to tag in inches: ", ((dz/0.0254)-Constants.Targeting.DIST_CAMERA_TO_BUMPER_FWD));
     double translationVal = targetingForwardSpeed;
    
-   //This sets Y and rotational movement equal to the value passed when command called (which is joystick value)
-   // or try strafeVal and rotationVal = 0 if needed (no rotation or movement in Y directions)
+   //This sets Y and rotational movement equal to the value passed when command called 
+   // try strafeVal and rotationVal = 0  (no rotation or movement in Y directions)
    double strafeVal = MathUtil.applyDeadband(strafeSup, Constants.stickDeadband);
    double rotationVal = MathUtil.applyDeadband(rotationSup, Constants.stickDeadband);
    

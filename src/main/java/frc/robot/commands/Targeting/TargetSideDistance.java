@@ -5,6 +5,7 @@ package frc.robot.commands.Targeting;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -72,13 +73,12 @@ public class TargetSideDistance extends Command {
     if (tv ==1) { //tv =1 means Limelight sees a target
 
     //dx is first element in the pose array - which is sideways distance from center of LL camera to the AprilTag in meters  
-    dx = LimelightHelpers.getTargetPose_CameraSpace("limelight")[0];
-    double finalStandoff = standoff * 0.0254;  //convert desired standoff from inches to meters
+    dx= Units.inchesToMeters(s_Swerve.getLLSideDistInch());
+    //dx = LimelightHelpers.getTargetPose_CameraSpace("limelight")[0];
+    double finalStandoff = Units.inchesToMeters(standoff);  //convert desired standoff from inches to meters
     error = dx - finalStandoff; //OR DO WE NEED ADD finalStandoff here instead of subtract it?
     double targetingSidewaysSpeed = error*kPstrafe;
-
    // SmartDashboard.putNumber("Side to side distance - camera to target, in inches: ", dx/0.0254);
-
     targetingSidewaysSpeed *= -1.0;  //IS NEEDED
     double strafeVal = targetingSidewaysSpeed;
    

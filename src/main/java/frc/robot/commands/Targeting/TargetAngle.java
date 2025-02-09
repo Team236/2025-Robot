@@ -57,21 +57,14 @@ public class TargetAngle extends Command {
     tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);
 
     if (tv ==1) { //tv =1 means Limelight sees a target
-
-    //tx is the horizontal offset angle from the target, i.e. angle error, in degrees
-    //tx ranges from (-hfov/2) to (hfov/2) in degrees. If your target is on the rightmost edge of 
-    // your limelight 3 feed, tx should return roughly 31 degrees 
-    //angleTx = LimelightHelpers.getTX("limelight");
-    poseAngle = LimelightHelpers.getTargetPose_CameraSpace("limelight")[5];
-   // SmartDashboard.putNumber("TargetingAngle: ", poseAngle *(180/Math.PI));
-    SmartDashboard.putNumber("TargetingAngle: ", poseAngle );
-
+    
+    poseAngle = s_Swerve.getLLAngleDegrees();
+    //poseAngle = LimelightHelpers.getTargetPose_CameraSpace("limelight")[5];
+   // SmartDashboard.putNumber("TargetingAngle: ", poseAngle );
     double targetingAngle = poseAngle * kProtation; //
     // convert to radians per second for our drive method
-    
-    //invert since tx is positive when the target is to the right of the crosshair
-    targetingAngle *= -1.0; 
- 
+    //invert since angle is positive when the target is to the right of the crosshair
+    targetingAngle *= -1.0;
     double rotationVal = targetingAngle; 
 
     //This sets Forward and Sideways movement equal to the value passed when command called (which is joystick value)
