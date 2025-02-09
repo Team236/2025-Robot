@@ -140,16 +140,27 @@ The numbers used below are robot specific, and should be tuned. */
             mod.resetToAbsolute();
         }
     }
+    
+    public double getLLAngleDegrees() {
+        return (LimelightHelpers.getTargetPose_CameraSpace("limelight")[5]);
+    }
+
+    public double getLLFwdDistMeters() {
+        return (LimelightHelpers.getTargetPose_CameraSpace("limelight")[2]);
+    }
+
+    public double getLLSideDistMeters() {
+        return (LimelightHelpers.getTargetPose_CameraSpace("limelight")[0]);
+    }
 
     public double getLLFwdDistInch() {
         return Units.metersToInches(LimelightHelpers.getTargetPose_CameraSpace("limelight")[2]);
     }
+    
     public double getLLSideDistInch() {
         return Units.metersToInches(LimelightHelpers.getTargetPose_CameraSpace("limelight")[0]);
     }
-    public double getLLAngleDegrees() {
-        return (LimelightHelpers.getTargetPose_CameraSpace("limelight")[5]);
-    }
+ 
 
     @Override
     public void periodic(){

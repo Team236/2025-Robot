@@ -62,7 +62,10 @@ public final class Constants {
   }
 
   public static final class  Targeting {
-    public static final double DIST_TO_CENTER = 18; //forward distance center to bumper, inches
+    //forward distance robot center to robot bumper, inches 
+    //only use DIST_TO_CENTER if we switch to TargetPose-RobotSpace
+    public static final double DIST_TO_CENTER = 18;
+    //use this with TargetPose-CameraSpace:
     public static final double DIST_CAMERA_TO_BUMPER_FWD = 7.25;  //inches
 }
 

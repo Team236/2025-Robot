@@ -73,10 +73,10 @@ public class TargetSideDistance extends Command {
     if (tv ==1) { //tv =1 means Limelight sees a target
 
     //dx is first element in the pose array - which is sideways distance from center of LL camera to the AprilTag in meters  
-    dx= Units.inchesToMeters(s_Swerve.getLLSideDistInch());
+    dx= (s_Swerve.getLLSideDistMeters());
     //dx = LimelightHelpers.getTargetPose_CameraSpace("limelight")[0];
     double finalStandoff = Units.inchesToMeters(standoff);  //convert desired standoff from inches to meters
-    error = dx - finalStandoff; //OR DO WE NEED ADD finalStandoff here instead of subtract it?
+    error = dx - finalStandoff; 
     double targetingSidewaysSpeed = error*kPstrafe;
    // SmartDashboard.putNumber("Side to side distance - camera to target, in inches: ", dx/0.0254);
     targetingSidewaysSpeed *= -1.0;  //IS NEEDED
@@ -84,8 +84,8 @@ public class TargetSideDistance extends Command {
    
    //This sets Y and rotational movement equal to the value passed when command called (which is joystick value)
    // or try strafeVal and rotationVal = 0 if needed (no rotation or movement in Y directions)
-   double translationVal = MathUtil.applyDeadband(translationSup, Constants.stickDeadband);
-   double rotationVal = MathUtil.applyDeadband(rotationSup, Constants.stickDeadband);
+   double translationVal = 0; //MathUtil.applyDeadband(translationSup, Constants.stickDeadband);
+   double rotationVal = 0; // MathUtil.applyDeadband(rotationSup, Constants.stickDeadband);
    
    /* Drive */
    s_Swerve.drive(

@@ -36,7 +36,7 @@ public class TargetAngleSide extends Command {
         // 3D pose array contains [0] = X, [1] = Y, [2] = Z, [3] = roll, [4] = pitch, [5] = yaw
 
         private double standoffSideways; // desired sideways distance in inches from camera to tag; pass into command
-        private double error, dx, angleTx;
+        private double error, dx, angle;
   // simple proportional turning control with Limelight.
   // "proportional control" is a control algorithm in which the output is proportional to the error.
   //In this case, angular velocity will be set proportional to tx (LL to target horizontal offset angle,)
@@ -77,27 +77,30 @@ public class TargetAngleSide extends Command {
 
     if (tv == 1) { //tv =1 means Limelight sees a target
 
-    angleTx = s_Swerve.getLLAngleDegrees();
+    angle = s_Swerve.getLLAngleDegrees();
     //SmartDashboard.putNumber("TargetingAngle: ", angleTx);
-    double targetingAngle = angleTx * kProtation; 
+    double targetingAngle = angle * kProtation; 
     //invert since tx is positive when the target is to the right of the crosshair
     targetingAngle *= -1.0; 
     double rotationVal = targetingAngle; 
 
   //dx is first element in the pose array - which is sideways distance from center of LL camera to the AprilTag in meters
-    dx = Units.inchesToMeters(s_Swerve.getLLSideDistInch());
+    dx = (s_Swerve.getLLSideDistMeters());
     //dx = LimelightHelpers.getTargetPose_CameraSpace("limelight")[0]; 
-    double finalSideways =Units.inchesToMeters(standoffSideways);  //convert desired standoff from inches to meters
+    double finalSideways = Units.inchesToMeters(standoffSideways);  //convert desired standoff from inches to meters
     error = dx - finalSideways; //OR DO WE NEED ADD finalStandoff here instead of subtract it?
     double targetingSidewaysSpeed = error*kPstrafe;
    // SmartDashboard.putNumber("Side to side distance - camera to target, in meters: ", dx);
     targetingSidewaysSpeed *= -1.0;  
     double strafeVal = targetingSidewaysSpeed;
 
+  //This sets forward x movement equal to = 0 
+   double translationVal = 0; //MathUtil.applyDeadband(translationSup, Constants.stickDeadband);
+
 
    /* Drive */
    s_Swerve.drive(
-       new Translation2d(0, strafeVal).times(Constants.Swerve.maxSpeed), 
+       new Translation2d(translationVal, strafeVal).times(Constants.Swerve.maxSpeed), 
        rotationVal * Constants.Swerve.maxAngularVelocity, 
        true,  //true for robot centric
        true //true for open loop (?)

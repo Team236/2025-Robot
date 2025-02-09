@@ -78,20 +78,20 @@ public class TargetForwardDistance extends Command {
     if (tv ==1) { //tv =1 means Limelight sees a target
   // simple proportional ranging control
   // this works best if your Limelight's mount height and target mount height are different.
+  
   // dz is the third element [2] in the pose array, which is the forward distance from center of robot to the AprilTag
-    dz = Units.inchesToMeters(s_Swerve.getLLFwdDistInch());
+    dz = (s_Swerve.getLLFwdDistMeters());
     //dz = LimelightHelpers.getTargetPose_CameraSpace("limelight")[2]; 
-    //Add the forward dist from bumper to center of robot (from Constants) to the desired standoff from the bumper:
+    //Standsoff is from bumper to Target. Must add forward dist from bumper to LLcamera (since using TargetPose-CameraSpace)
     double finalStandoff = Units.inchesToMeters(standoff + Constants.Targeting.DIST_CAMERA_TO_BUMPER_FWD); //to robot center in meters
     error = dz - finalStandoff; 
     double targetingForwardSpeed = error*kPtranslation;
      //SmartDashboard.putNumber("Forward distance from Robot frame to tag in inches: ", ((dz/0.0254)-Constants.Targeting.DIST_CAMERA_TO_BUMPER_FWD));
     double translationVal = targetingForwardSpeed;
-   
-   //This sets Y and rotational movement equal to the value passed when command called 
-   // try strafeVal and rotationVal = 0  (no rotation or movement in Y directions)
-   double strafeVal = MathUtil.applyDeadband(strafeSup, Constants.stickDeadband);
-   double rotationVal = MathUtil.applyDeadband(rotationSup, Constants.stickDeadband);
+
+   //This sets Y and rotational movement equal to = 0  (no rotation or movement in Y directions)
+   double strafeVal = 0; //MathUtil.applyDeadband(strafeSup, Constants.stickDeadband);
+   double rotationVal = 0; //MathUtil.applyDeadband(rotationSup, Constants.stickDeadband);
    
    /* Drive */
    s_Swerve.drive(

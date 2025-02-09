@@ -67,10 +67,11 @@ public class TargetAngle extends Command {
     targetingAngle *= -1.0;
     double rotationVal = targetingAngle; 
 
-    //This sets Forward and Sideways movement equal to the value passed when command called (which is joystick value)
-    // or try translationVal and strafeVal = 0 if needed (no movement in X or Y directions)
-    double translationVal = MathUtil.applyDeadband(translationSup, Constants.stickDeadband);
-    double strafeVal = MathUtil.applyDeadband(strafeSup, Constants.stickDeadband);
+
+    //This sets forward x movement and sideways y movement equal to = 0 
+    double translationVal = 0; //MathUtil.applyDeadband(translationSup, Constants.stickDeadband);
+    double strafeVal = 0; //MathUtil.applyDeadband(translationSup, Constants.stickDeadband);
+
 
    /* Drive */
    s_Swerve.drive(

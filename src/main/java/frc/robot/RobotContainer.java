@@ -92,9 +92,9 @@ public class RobotContainer {
 
     private final TargetAllParallel targetAllParallel = new TargetAllParallel(s_Swerve, 14, 0);
     private final TargetAllSeries targetAllSeries = new TargetAllSeries(s_Swerve, 14, 0);
-    private final TargetAngle targetAngle =  new TargetAngle(s_Swerve, -driverController.getRawAxis(translationAxis), -driverController.getRawAxis(strafeAxis));
-    private final TargetForwardDistance targetForwardDistance = new TargetForwardDistance(s_Swerve, -driverController.getRawAxis(strafeAxis), -driverController.getRawAxis(rotationAxis), 14);
-    private final TargetSideDistance targetSideDistance = new TargetSideDistance(s_Swerve, -driverController.getRawAxis(translationAxis), -driverController.getRawAxis(rotationAxis), 0);
+    private final TargetAngle targetAngle =  new TargetAngle(s_Swerve,0, 0);
+    private final TargetForwardDistance targetForwardDistance = new TargetForwardDistance(s_Swerve, 0, 0, 14);
+    private final TargetSideDistance targetSideDistance = new TargetSideDistance(s_Swerve,0, 0, 0);
     private final TargetMegaTag2 target3DMegaTag2 = new TargetMegaTag2(s_Swerve);
     private final TargetAngleSide targetAngleSide = new TargetAngleSide(s_Swerve, 0);
 
@@ -104,9 +104,9 @@ public class RobotContainer {
     private final DriveFwd driveFwd113 = new DriveFwd(s_Swerve, false, 113);
     private final DriveSideways driveSideways60 = new DriveSideways(s_Swerve, false, 60);
 
-    //private final DriveFwdAndSideAndTurn leg1Parallel = new DriveFwdAndSideAndTurn(s_Swerve, false, 57.6, -86, -60);//TODO test and tweak
-    //private final DriveFwdAndSideAndTurn leg2Parallel = new DriveFwdAndSideAndTurn(s_Swerve, false, 0, 168, -73);//TESTED GOOD
-    //private final DriveFwdAndSideAndTurn leg3Parallel = new DriveFwdAndSideAndTurn(s_Swerve, true, -120, 59, 5.9);//TODO test and tweak
+    //private final DriveFwdAndSideAndTurn leg1Parallel = new DriveFwdAndSideAndTurn(s_Swerve, false, 57.6, -86, -60);
+    //private final DriveFwdAndSideAndTurn leg2Parallel = new DriveFwdAndSideAndTurn(s_Swerve, false, 0, 168, -73);
+    //private final DriveFwdAndSideAndTurn leg3Parallel = new DriveFwdAndSideAndTurn(s_Swerve, true, -120, 59, 5.9);
     //private final FullRun fullRunParallel = new FullRun(s_Swerve);
     private final FullRun fullRun = new FullRun(s_Swerve);
       
