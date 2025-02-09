@@ -37,10 +37,11 @@ public class TurnOnly extends SequentialCommandGroup {
             Trajectory exampleTrajectory = 
             TrajectoryGenerator.generateTrajectory( 
               new Pose2d(0, 0, new Rotation2d(0)),
-              List.of(new Translation2d(Units.inchesToMeters(0.5), Units.inchesToMeters(0) ), 
-             // new Translation2d(Units.inchesToMeters(1), Units.inchesToMeters(0) ),
-              new Translation2d(Units.inchesToMeters(1), Units.inchesToMeters(0) )), 
-             new Pose2d(0, 0, new Rotation2d(turnAngle * Math.PI / 180)),
+              List.of(
+                new Translation2d(Units.inchesToMeters(0.5), Units.inchesToMeters(0) ), 
+                new Translation2d(Units.inchesToMeters(1), Units.inchesToMeters(0) )
+                ), 
+                new Pose2d(0, 0, new Rotation2d(Units.degreesToRadians(turnAngle))),
               config);
             
         var thetaController =
