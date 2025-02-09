@@ -26,7 +26,7 @@ public class FullRunLeft extends SequentialCommandGroup {
       Constants.AutoConstants.LEFT_LEG1_SIDE_Y, 
       Constants.AutoConstants.LEFT_LEG1_ANGLE_CCW),
       //LEG2:
-      new DriveReverse(s_Swerve, true,Constants.AutoConstants.RIGHT_LEG2_INITIAL_REVERSE).withTimeout(1),
+      new DriveReverse(s_Swerve, true,Constants.AutoConstants.LEFT_LEG2_INITIAL_REVERSE).withTimeout(1),
       new DriveFwdAndSideAndTurn(s_Swerve, false, 
       Constants.AutoConstants.LEFT_LEG2_FWD_X, 
       Constants.AutoConstants.LEFT_LEG2_SIDE_Y, 
