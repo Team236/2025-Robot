@@ -20,7 +20,7 @@ import frc.robot.LimelightHelpers;
 import frc.robot.subsystems.Swerve;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class TargetAllParallel extends Command {
+public class TargetAllParallel extends Command {  //Targeting with Limeight
 // Basic targeting data
 //tx =  Horizontal offset from crosshair to target in degrees
 //ty = Vertical offset from crosshair to target in degrees

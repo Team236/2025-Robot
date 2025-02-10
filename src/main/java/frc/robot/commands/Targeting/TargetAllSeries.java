@@ -12,7 +12,8 @@ import frc.robot.subsystems.Swerve;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class TargetAllSeries extends SequentialCommandGroup {
-  /** Creates a new TargetAllSeries. */
+  /** Creates a new TargetAllSeries. */  
+  //Targeting with Limelight
   public TargetAllSeries(Swerve s_Swerve, double standoffForward, double standoffSideways) {
     addCommands(
     new TargetAngle(s_Swerve).withTimeout(3),

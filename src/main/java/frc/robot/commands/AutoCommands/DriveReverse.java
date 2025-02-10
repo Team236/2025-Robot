@@ -21,7 +21,7 @@ import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 public class DriveReverse extends SequentialCommandGroup {
 
   //Goes reverse in X distance only (no turn, no Y movement)
- //****X MUST BE NEGATIVE!! 
+ //****X (revDist) MUST BE NEGATIVE!! 
  //Pass in true for "reversed" in Container when command is called!!!!
 
     public DriveReverse(Swerve s_Swerve, boolean reversed, double revDist) {

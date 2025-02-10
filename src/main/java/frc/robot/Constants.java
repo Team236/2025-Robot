@@ -204,16 +204,16 @@ public static final class Swerve {
 
       //Right Auto path (inches), starting 12" from sideline, bumper just covering black start line
         public static final double RIGHT_LEG1_FWD_X = 78.6;//ADD TO X TO BACK UP BEHIND START LINE
-        public static final double RIGHT_LEG1_SIDE_Y = -91;
+        public static final double RIGHT_LEG1_SIDE_Y = -91/1.03;
         public static final double RIGHT_LEG1_ANGLE_CCW = -58;
      
         public static final double RIGHT_LEG2_INITIAL_REVERSE = -12;
         public static final double RIGHT_LEG2_FWD_X = 12;
-        public static final double RIGHT_LEG2_SIDE_Y = 171;
+        public static final double RIGHT_LEG2_SIDE_Y = 171/1.03;//Find the correct constant for 2025 bot
         public static final double RIGHT_LEG2_ANGLE_CCW = -68;
 
         public static final double RIGHT_LEG3_FWD_X = 129;
-        public static final double RIGHT_LEG3_SIDE_Y = -26.5;
+        public static final double RIGHT_LEG3_SIDE_Y = -26.5/1.03;
         public static final double RIGHT_LEG3_ANGLE_CCW = 4;
 
         //Left Auto path (inches)

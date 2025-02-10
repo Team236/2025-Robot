@@ -21,10 +21,14 @@ import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 public class DriveRevAndSideAndTurn extends SequentialCommandGroup {
 
   //Pass in reverse X distance (inches, negative), sideways distance (inches), and turn angle (degrees)
-  //***** X MUST BE NEGATIVE! 
+  //***** X (revDist) MUST BE NEGATIVE! 
   //Pass in true for "reversed" in Container when command is called
 
-    public DriveRevAndSideAndTurn(Swerve s_Swerve, boolean reversed, double revDist, double sideDist, double turnAngle) {
+    public DriveRevAndSideAndTurn(Swerve s_Swerve, boolean reversed, double revDist, double sideD, double turnAngle) {
+
+        //****WAS NOT DRIVINg ENOUGH SIDEWAYS WITHOUT THIS FACTOR!!*****
+        double sideDist = sideD * 1.03;  //TODO find this factor for 2025 robot
+
         TrajectoryConfig config =
             new TrajectoryConfig(
                     Constants.AutoConstants.kMaxSpeedMetersPerSecond,

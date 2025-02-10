@@ -19,11 +19,13 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 
 public class DriveSideways extends SequentialCommandGroup {
-  //Pass in forward X distance (inches, positive), sideways distance (inches), and turn angle (degrees)
-  //X always positive, so pass in false for "reversed" in Container when command is called
+  //Pass in sideways distance (inches), (negative for right, positive to the left)
+  //X (fwdDist is 0, so not negative, so pass in false for "reversed" in Container when command is called
     public DriveSideways(Swerve s_Swerve, boolean reversed, double sideD) {
-        //****WAS NOT DRIVINg ENOUGH SIDEWAYS WITHOUT THIS FACTOR!!*****
-        double sideDist = sideD * 1.03;  
+
+    //****WAS NOT DRIVINg ENOUGH SIDEWAYS WITHOUT THIS FACTOR!!*****
+        double sideDist = sideD * 1.03; //TODO find this factor for 2025 robot
+
         TrajectoryConfig config =
             new TrajectoryConfig(
                     Constants.AutoConstants.kMaxSpeedMetersPerSecond,

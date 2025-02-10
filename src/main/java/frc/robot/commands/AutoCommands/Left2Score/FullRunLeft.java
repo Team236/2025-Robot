@@ -18,7 +18,7 @@ public class FullRunLeft extends SequentialCommandGroup {
   /** Creates a new FullRunParallel. */
   public FullRunLeft(Swerve s_Swerve) {
     addCommands(
-      //Later add the commands for scoring and receiving coral
+      //TODO  add the commands for scoring and receiving coral
 
       //LEG 1:
       new DriveFwdAndSideAndTurn(s_Swerve, false, 

@@ -16,11 +16,11 @@ public class FullRunOldSeries extends SequentialCommandGroup {
   public FullRunOldSeries(Swerve s_Swerve) {
     addCommands(
     new Leg1Series(s_Swerve).withTimeout(10),
-    new ZeroPose(s_Swerve).withTimeout(1),
+   // new ZeroPose(s_Swerve).withTimeout(1),
     new Leg2Series(s_Swerve).withTimeout(10),
-    new ZeroPose(s_Swerve).withTimeout(1),
-    new Leg3Series(s_Swerve).withTimeout(10),
-    new ZeroPose(s_Swerve).withTimeout(1)
+  // new ZeroPose(s_Swerve).withTimeout(1),
+    new Leg3Series(s_Swerve).withTimeout(10)
+   // new ZeroPose(s_Swerve).withTimeout(1)
     );
   }
 }
