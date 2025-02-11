@@ -20,7 +20,7 @@ import frc.robot.subsystems.Swerve;
 public class CoralLeftTarget extends SequentialCommandGroup {
 
   //driver needs to drive straight forward after using this
-  public CoralLeftTarget(Swerve s_Swerve,  double standoffSideways) {
+  public CoralLeftTarget(Swerve s_Swerve) {
     addCommands(
     new TargetSideDistance(s_Swerve, 0).withTimeout(1),
     new TargetAngle(s_Swerve).withTimeout(1), 

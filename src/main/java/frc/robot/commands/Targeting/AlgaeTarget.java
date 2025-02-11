@@ -30,7 +30,7 @@ public class AlgaeTarget extends SequentialCommandGroup {
  //ALGAETARGET AND CORALLEFT WILL BE THE SAME -USE WHICHEVER ONE WORKS 
  //CAN REMOVE standoffSideways from arguments if this one works
 
-  public AlgaeTarget(Swerve s_Swerve,  double standoffSideways) {
+  public AlgaeTarget(Swerve s_Swerve) {
 
     // turn on the LED,  3 = force on
     NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);

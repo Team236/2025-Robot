@@ -28,7 +28,7 @@ public class CoralRightTarget extends SequentialCommandGroup {
  //This command moves camera to be centered on the AprilTag (assumes camera is to the left, but may be to right on 2025 robot).
 
  //CAN REMOVE standoffSideways from arguments if this one works
-  public CoralRightTarget(Swerve s_Swerve,  double standoffSideways) {
+  public CoralRightTarget(Swerve s_Swerve) {
 
     // turn on the LED,  3 = force on
     NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
