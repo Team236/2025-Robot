@@ -59,19 +59,18 @@ public class TargetAngle extends Command {
 
     if (tv ==1) { //tv =1 means Limelight sees a target
     
-    poseAngle = s_Swerve.getLLAngleDegrees();
-    //poseAngle = LimelightHelpers.getTargetPose_CameraSpace("limelight")[5];
+    //the angle is the error (angle between target and camera)
+    poseAngle = LimelightHelpers.getTargetPose_CameraSpace("limelight")[5];  
    // SmartDashboard.putNumber("TargetingAngle: ", poseAngle );
     double targetingAngle = poseAngle * kProtation; //
-    // convert to radians per second for our drive method
+   
     //invert since angle is positive when the target is to the right of the crosshair
     targetingAngle *= -1.0;
     double rotationVal = targetingAngle; 
 
-
-    //This sets forward x movement and sideways y movement equal to = 0 
-    double translationVal = 0; //MathUtil.applyDeadband(translationSup, Constants.stickDeadband);
-    double strafeVal = 0; //MathUtil.applyDeadband(translationSup, Constants.stickDeadband);
+    //This sets forward and sideways movement equal to = 0 
+    double translationVal = 0; 
+    double strafeVal = 0; 
 
 
    /* Drive */

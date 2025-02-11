@@ -18,14 +18,14 @@ import frc.robot.subsystems.Swerve;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class CoralLeftTarget extends SequentialCommandGroup {
+
+  //driver needs to drive straight forward after using this
   public CoralLeftTarget(Swerve s_Swerve,  double standoffSideways) {
     addCommands(
-  //  new TargetSideDistance(s_Swerve 0).withTimeout(2), //add back if needed
-    new TargetAngle(s_Swerve).withTimeout(2),
-   // new TargetSideDistance(s_Swerve, 0).withTimeout(1), //add back if needed
-
-    //new DriveFwdAndSideAndTurn(s_Swerve, false, s_Swerve.getLLFwdDistInch(), standoffSideways, 0).withTimeout(2) //replace below with this if needed
-    new DriveFwdAndSideAndTurn(s_Swerve, false, s_Swerve.getLLFwdDistInch(), s_Swerve.getLLSideDistInch(), 0).withTimeout(2)
+    new TargetSideDistance(s_Swerve, 0).withTimeout(1), //add back if needed
+    new TargetAngle(s_Swerve).withTimeout(1),
+    new TargetSideDistance(s_Swerve, 0).withTimeout(1), //add back if needed
+    new TargetAngle(s_Swerve).withTimeout(1)
     ); 
   }
 }
