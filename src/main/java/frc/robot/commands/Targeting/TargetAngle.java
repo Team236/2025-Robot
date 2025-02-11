@@ -59,8 +59,8 @@ public class TargetAngle extends Command {
 
     if (tv ==1) { //tv =1 means Limelight sees a target
     
-    poseAngle = s_Swerve.getLLAngleDegrees();
-    //poseAngle = LimelightHelpers.getTargetPose_CameraSpace("limelight")[5];
+    //poseAngle = s_Swerve.getLLAngleDegrees();
+    poseAngle = LimelightHelpers.getTargetPose_CameraSpace("limelight")[5];
    // SmartDashboard.putNumber("TargetingAngle: ", poseAngle );
     double targetingAngle = poseAngle * kProtation; //
     // convert to radians per second for our drive method

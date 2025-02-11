@@ -77,7 +77,8 @@ public class TargetAngleSide extends Command {
 
     if (tv == 1) { //tv =1 means Limelight sees a target
 
-    poseAngle = s_Swerve.getLLAngleDegrees();  //the angle is the error (angle between target and camera)
+    //poseAngle = s_Swerve.getLLAngleDegrees();  //the angle is the error (angle between target and camera)
+    poseAngle = LimelightHelpers.getTargetPose_CameraSpace("limelight")[5];
     //SmartDashboard.putNumber("TargetingAngle: ", poseAngle);
     double targetingAngle = poseAngle * kProtation; 
     //invert since tx is positive when the target is to the right of the crosshair
@@ -85,8 +86,8 @@ public class TargetAngleSide extends Command {
     double rotationVal = targetingAngle; 
 
   //poseSide is first element in the pose array - which is sideways distance from center of LL camera to the AprilTag in meters
-    poseSide = (s_Swerve.getLLSideDistMeters());
-    //poseSide = LimelightHelpers.getTargetPose_CameraSpace("limelight")[0]; 
+    //poseSide = (s_Swerve.getLLSideDistMeters());
+    poseSide = LimelightHelpers.getTargetPose_CameraSpace("limelight")[0]; 
     double finalSideways = Units.inchesToMeters(standoffSideways);  //convert desired standoff from inches to meters
     errorSide = poseSide - finalSideways; //or add it?
     double targetingSidewaysSpeed = errorSide*kPstrafe;

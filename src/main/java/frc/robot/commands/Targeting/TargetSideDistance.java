@@ -69,9 +69,9 @@ public class TargetSideDistance extends Command {
 
     if (tv ==1) { //tv =1 means Limelight sees a target
 
-    //dx is first element in the pose array - which is sideways distance from center of LL camera to the AprilTag in meters  
-    poseSide = (s_Swerve.getLLSideDistMeters());
-    //dx = LimelightHelpers.getTargetPose_CameraSpace("limelight")[0];
+    //poseSide is first element in the pose array - which is sideways distance from center of LL camera to the AprilTag in meters  
+    //poseSide = (s_Swerve.getLLSideDistMeters());
+    poseSide = LimelightHelpers.getTargetPose_CameraSpace("limelight")[0];
     double finalStandoff = Units.inchesToMeters(standoffSide);  //convert desired standoff from inches to meters
     errorSide = poseSide - finalStandoff; 
     double targetingSidewaysSpeed = errorSide*kPstrafe;

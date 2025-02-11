@@ -81,8 +81,8 @@ public class TargetAllParallel extends Command {  //Targeting with Limeight
 
     if (tv == 1) { //tv =1 means Limelight sees a target
 
-    poseAngle = s_Swerve.getLLAngleDegrees();  //the angle is the error (angle between camera and apriltag)
-    //poseAngle = LimelightHelpers.getTargetPose_CameraSpace("limelight")[5];
+    //poseAngle = s_Swerve.getLLAngleDegrees();  //the angle is the error (angle between camera and apriltag)
+    poseAngle = LimelightHelpers.getTargetPose_CameraSpace("limelight")[5];
     // SmartDashboard.putNumber("TargetingAngle: ", poseAngle );
     double targetingAngle = poseAngle * kProtation; //
     //invert since angle is positive when the target is to the right of the crosshair
@@ -90,8 +90,8 @@ public class TargetAllParallel extends Command {  //Targeting with Limeight
     double rotationVal = targetingAngle; 
 
     // poseFwd is the third element [2] in the pose array, which is the forward distance from center of LL camera to the AprilTag
-    poseFwd =s_Swerve.getLLFwdDistMeters();
-    //poseFwd = LimelightHelpers.getTargetPose_CameraSpace("limelight")[2]; 
+    //poseFwd =s_Swerve.getLLFwdDistMeters();
+    poseFwd = LimelightHelpers.getTargetPose_CameraSpace("limelight")[2]; 
     //Standsoff is from bumper to Target. Must add forward dist from bumper to LLcamera (since using TargetPose-CameraSpace)
     double finalForward = Units.inchesToMeters(standoffForward + Constants.Targeting.DIST_CAMERA_TO_BUMPER_FWD);
     errorFwd = poseFwd - finalForward; 
@@ -100,8 +100,8 @@ public class TargetAllParallel extends Command {  //Targeting with Limeight
     double translationVal = targetingForwardSpeed;
 
     //poseSide is first element in the pose array - which is sideways distance from center of LL camera to the AprilTag in meters  
-    poseSide=(s_Swerve.getLLSideDistMeters());
-    //poseSide = LimelightHelpers.getTargetPose_CameraSpace("limelight")[0];
+    //poseSide=(s_Swerve.getLLSideDistMeters());
+    poseSide = LimelightHelpers.getTargetPose_CameraSpace("limelight")[0];
     double finalSideways = Units.inchesToMeters(standoffSideways);  //convert desired standoff from inches to meters
     errorSide = poseSide - finalSideways; //OR DO WE NEED ADD finalStandoff here instead of subtract it?
     double targetingSidewaysSpeed = errorSide*kPstrafe;

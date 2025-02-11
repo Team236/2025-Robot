@@ -4,6 +4,7 @@
 
 package frc.robot.commands.Targeting;
 
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.LimelightHelpers;
@@ -25,7 +26,7 @@ public class AlgaeTarget extends SequentialCommandGroup {
    // new TargetSideDistance(s_Swerve, 0).withTimeout(1), //add back if needed
 
    //new DriveFwdAndSideAndTurn(s_Swerve, false, s_Swerve.getLLFwdDistInch(), standoffSideways, 0).withTimeout(2)  //replace below with this if needed
-    new DriveFwdAndSideAndTurn(s_Swerve, false, s_Swerve.getLLFwdDistInch(), s_Swerve.getLLSideDistInch(), 0).withTimeout(2)
+    new DriveFwdAndSideAndTurn(s_Swerve, false, Units.metersToInches(LimelightHelpers.getTargetPose_CameraSpace("limelight")[2]), Units.metersToInches(LimelightHelpers.getTargetPose_CameraSpace("limelight")[0]), 0).withTimeout(2)
     ); 
   }
 }
