@@ -87,8 +87,8 @@ public class RobotContainer {
     private final CoralLeftTarget coralLeftTarget = new CoralLeftTarget(s_Swerve);
     private final CoralRightTarget coralRightTarget = new CoralRightTarget(s_Swerve);
     private final AlgaeTarget algaeTarget = new AlgaeTarget(s_Swerve);
-
-    private final TargetAllParallel targetAllParallel = new TargetAllParallel(s_Swerve, 14, 0);
+//NOTE - STANDOFF FWD IS WITHOUT THE BUMPER - ADD BUMPER DEPTH AS NEEDEDD
+    private final TargetAllParallel targetAllParallel = new TargetAllParallel(s_Swerve, 6, 0);
     private final TargetAllSeries targetAllSeries = new TargetAllSeries(s_Swerve, 6, 0);
     private final TargetAngle targetAngle =  new TargetAngle(s_Swerve);
     private final TargetForwardDistance targetForwardDistance = new TargetForwardDistance(s_Swerve, 6);
