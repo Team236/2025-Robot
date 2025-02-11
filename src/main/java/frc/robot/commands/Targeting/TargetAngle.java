@@ -93,7 +93,7 @@ public class TargetAngle extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-     return ( poseAngle < 0.5);
-   // return false;
+    //return ( poseAngle < 0.5);
+     return false;
   }
 }

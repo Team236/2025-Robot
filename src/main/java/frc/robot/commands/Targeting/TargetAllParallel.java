@@ -127,8 +127,8 @@ public class TargetAllParallel extends Command {  //Targeting with Limeight
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return ((Math.abs(errorFwd) < Units.inchesToMeters(0.3)) && (Math.abs(errorSide) < Units.inchesToMeters(0.3)) &&  (poseAngle < 1));
-   // return false;
+    //return ((Math.abs(errorFwd) < Units.inchesToMeters(0.3)) && (Math.abs(errorSide) < Units.inchesToMeters(0.3)) &&  (poseAngle < 1));
+    return false;
   }
 
 }
