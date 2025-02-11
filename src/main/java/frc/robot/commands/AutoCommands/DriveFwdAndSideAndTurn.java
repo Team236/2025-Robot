@@ -24,10 +24,10 @@ public class DriveFwdAndSideAndTurn extends SequentialCommandGroup {
   //X (fwdDist) always positive, so pass in false for "reversed" in Container when command is called
 
 
-    public DriveFwdAndSideAndTurn(Swerve s_Swerve, boolean reversed, double fwdDist, double sideD, double turnAngle) {
+    public DriveFwdAndSideAndTurn(Swerve s_Swerve, boolean reversed, double fwdDist, double sideDist, double turnAngle) {
         
         //****WAS NOT DRIVINg ENOUGH SIDEWAYS WITHOUT THIS FACTOR!!*****
-        double sideDist = sideD * 1.03;  //TODO find this factor for 2025 
+        //double sideDist = sideD * 1.03;  //TODO find this factor for 2025 
 
 
         TrajectoryConfig config =

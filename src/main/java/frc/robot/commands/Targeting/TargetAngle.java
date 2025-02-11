@@ -37,8 +37,6 @@ public class TargetAngle extends Command {
   /** Creates a new TargetAngle. */
   public TargetAngle(Swerve s_Swerve) {
     this.s_Swerve = s_Swerve;
-   // this.strafeSup = strafeSup;
-   // this.translationSup = translationSup;
     addRequirements(s_Swerve);
     
   }

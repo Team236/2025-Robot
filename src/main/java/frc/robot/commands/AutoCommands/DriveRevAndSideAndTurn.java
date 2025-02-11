@@ -24,10 +24,10 @@ public class DriveRevAndSideAndTurn extends SequentialCommandGroup {
   //***** X (revDist) MUST BE NEGATIVE! 
   //Pass in true for "reversed" in Container when command is called
 
-    public DriveRevAndSideAndTurn(Swerve s_Swerve, boolean reversed, double revDist, double sideD, double turnAngle) {
+    public DriveRevAndSideAndTurn(Swerve s_Swerve, boolean reversed, double revDist, double sideDist, double turnAngle) {
 
         //****WAS NOT DRIVINg ENOUGH SIDEWAYS WITHOUT THIS FACTOR!!*****
-        double sideDist = sideD * 1.03;  //TODO find this factor for 2025 robot
+       // double sideDist = sideD * 1.03;  //TODO find this factor for 2025 robot
 
         TrajectoryConfig config =
             new TrajectoryConfig(
