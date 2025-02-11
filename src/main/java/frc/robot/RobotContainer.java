@@ -210,10 +210,10 @@ public class RobotContainer {
 
    a.whileTrue(coralLeftTarget);
    b.whileTrue(coralRightTarget);
-   upPov.whileTrue(targetAngle);
-   x.whileTrue(targetForwardDistance);
+   x.whileTrue(algaeTarget);
 
-   rb.whileTrue(algaeTarget);
+   rb.whileTrue(targetAngle);
+  upPov.whileTrue(targetForwardDistance);
    downPov.whileTrue(targetAngleSide);
 
     //rb.whileTrue(elevatorDown);
