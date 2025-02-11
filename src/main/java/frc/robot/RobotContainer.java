@@ -3,6 +3,17 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 package frc.robot;
+import java.io.IOException;
+
+import org.json.simple.parser.ParseException;
+import com.pathplanner.lib.commands.PathPlannerAuto;
+import com.pathplanner.lib.config.RobotConfig;
+import com.pathplanner.lib.path.PathPlannerPath;
+import com.pathplanner.lib.path.PathPoint;
+import com.pathplanner.lib.path.Waypoint;
+import com.pathplanner.lib.trajectory.PathPlannerTrajectory;
+import com.pathplanner.lib.util.FileVersionException;
+
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -139,6 +150,8 @@ public class RobotContainer {
   private final PIDCoralPivot pidCoralPivot1 = new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_TEST1);
   private final PIDCoralPivot pidCoralPivot2 = new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_TEST2);
 
+  // PATHPLANNER stuff
+  private PathPlannerPath currentPath,flipCurrentPath;
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -153,6 +166,18 @@ public class RobotContainer {
         );
     // Configure the trigger bindings
     configureBindings();
+
+    // PATHPLANNER - read specific path into currentpath from pathplanner file 
+    // keep this and other reads early in Robot 
+    try {
+       currentPath = PathPlannerPath.fromPathFile("2Left45_Reef-K");
+        } catch (IOException e) {     //  could convert to single Exception catch
+          System.out.println("IO exception 2Left45_Reef-K :");e.printStackTrace();
+        } catch (ParseException e) {
+          System.out.println("ParseException 2Left45_Reef-K :");e.printStackTrace();
+        }  catch (FileVersionException e) {
+          System.out.println("FileVersionException 2Left45_Reef-K :");e.printStackTrace();
+        }        
   }
 
   /**
