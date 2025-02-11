@@ -34,8 +34,9 @@ public class CoralRightTarget extends SequentialCommandGroup {
     NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
     NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(pipeline);
 
-    initialPoseFwd = LimelightHelpers.getTargetPose_CameraSpace("limelight")[2];
+    
     initialPoseSide = LimelightHelpers.getTargetPose_CameraSpace("limelight")[0];
+    initialPoseFwd = LimelightHelpers.getTargetPose_CameraSpace("limelight")[2];
     initialPoseAngle = LimelightHelpers.getTargetPose_CameraSpace("limelight")[5];
 
     tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);

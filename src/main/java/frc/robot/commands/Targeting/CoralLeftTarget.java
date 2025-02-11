@@ -22,9 +22,9 @@ public class CoralLeftTarget extends SequentialCommandGroup {
   //driver needs to drive straight forward after using this
   public CoralLeftTarget(Swerve s_Swerve,  double standoffSideways) {
     addCommands(
-    new TargetSideDistance(s_Swerve, 0).withTimeout(1), //add back if needed
-    new TargetAngle(s_Swerve).withTimeout(1),
-    new TargetSideDistance(s_Swerve, 0).withTimeout(1), //add back if needed
+    new TargetSideDistance(s_Swerve, 0).withTimeout(1),
+    new TargetAngle(s_Swerve).withTimeout(1), 
+    new TargetSideDistance(s_Swerve, 6.5).withTimeout(1), //-6.5 for other side and algae
     new TargetAngle(s_Swerve).withTimeout(1)
     ); 
   }
