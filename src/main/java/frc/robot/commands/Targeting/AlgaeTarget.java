@@ -64,7 +64,7 @@ public class AlgaeTarget extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    new DriveFwdAndSideAndTurn(s_Swerve, false, moveFwd, moveSide, turn).withTimeout(2); 
+   new DriveFwdAndSideAndTurn(s_Swerve, false, moveFwd, moveSide, turn).withTimeout(2); 
   }
 
 
