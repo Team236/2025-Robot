@@ -29,8 +29,7 @@ import frc.robot.commands.CoralPivotCommands.ManualCoralPivot;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
 import frc.robot.commands.ElevatorCommands.ManualUpDown;
 import frc.robot.commands.ElevatorCommands.PIDToHeight;
-import frc.robot.commands.Targeting.AlgaeTarget;
-import frc.robot.commands.Targeting.CoralLeftTarget;
+import frc.robot.commands.Targeting.CoralLeftorAlgaeTarget;
 import frc.robot.commands.Targeting.CoralRightTarget;
 import frc.robot.commands.Targeting.TargetAllParallel;
 import frc.robot.commands.Targeting.TargetAllSeries;
@@ -84,9 +83,9 @@ public class RobotContainer {
    //COMMANDS
 
    //Targeting
-    private final CoralLeftTarget coralLeftTarget = new CoralLeftTarget(s_Swerve);
+    private final CoralLeftorAlgaeTarget coralLeftorAlgaeTarget = new CoralLeftorAlgaeTarget(s_Swerve);
     private final CoralRightTarget coralRightTarget = new CoralRightTarget(s_Swerve);
-    private final AlgaeTarget algaeTarget = new AlgaeTarget(s_Swerve);
+
 //NOTE - STANDOFF FWD IS WITHOUT THE BUMPER - ADD BUMPER DEPTH AS NEEDEDD
     private final TargetAllParallel targetAllParallel = new TargetAllParallel(s_Swerve, 6, 0);
     private final TargetAllSeries targetAllSeries = new TargetAllSeries(s_Swerve, 6, 0);
@@ -209,9 +208,9 @@ public class RobotContainer {
     //y button is already assigned to ZeroGyro
     //leftBumper lb button is already assigned to RobotCentric
 
-   a.whileTrue(coralLeftTarget);
+   a.whileTrue(coralLeftorAlgaeTarget);
    b.whileTrue(coralRightTarget);
-   x.whileTrue(algaeTarget);
+  
 
    rb.whileTrue(targetAllParallel);
   upPov.whileTrue(targetForwardDistance);

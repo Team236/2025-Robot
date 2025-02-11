@@ -4,6 +4,35 @@
 
 package frc.robot.commands.Targeting;
 
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.commands.AutoCommands.DriveFwd;
+import frc.robot.subsystems.Swerve;
+
+
+// NOTE:  Consider using this command inline, rather than writing a subclass.  For more
+// information, see:
+// https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
+public class CoralLeftorAlgaeTarget extends SequentialCommandGroup {
+  /** Creates a new TargetAllSeries. */  
+  //Targeting with Limelight
+  public CoralLeftorAlgaeTarget(Swerve s_Swerve) {
+    addCommands(
+      new TargetAllParallel(s_Swerve, 6, 6.5).withTimeout(1.5),
+      new DriveFwd(s_Swerve, false, 3).withTimeout(1).withTimeout(1));
+  }
+}
+
+
+
+
+/* OLD CODE:
+
+// Copyright (c) FIRST and other WPILib contributors.
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
+
+package frc.robot.commands.Targeting;
+
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
@@ -15,7 +44,7 @@ import frc.robot.subsystems.Swerve;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class AlgaeTarget extends Command {
+public class CoralLeftTarget extends Command {
 
   private double pipeline = 0; 
   private double initialPoseFwd, initialPoseSide, initialPoseAngle;
@@ -26,7 +55,7 @@ public class AlgaeTarget extends Command {
  //This command moves robot center to be centered on the AprilTag (assumes camera is to the left, but may be to right on 2025 robot).
 
  //ALGAETARGET AND CORALLEFT WILL BE THE SAME -USE WHICHEVER ONE WORKS 
-  public AlgaeTarget(Swerve s_Swerve) {
+  public CoralLeftTarget(Swerve s_Swerve) {
     this.s_Swerve = s_Swerve;
     addRequirements(s_Swerve);
   }
@@ -64,7 +93,7 @@ public class AlgaeTarget extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-   new DriveFwdAndSideAndTurn(s_Swerve, false, moveFwd, moveSide, turn).withTimeout(2); 
+    new DriveFwdAndSideAndTurn(s_Swerve, false, moveFwd, moveSide, turn).withTimeout(2); 
   }
 
 
@@ -82,3 +111,4 @@ public class AlgaeTarget extends Command {
   }
 }
 
+*/
