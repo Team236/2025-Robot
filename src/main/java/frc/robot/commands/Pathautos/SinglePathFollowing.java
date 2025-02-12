@@ -5,34 +5,47 @@
 package frc.robot.commands.Pathautos;
 
 import com.pathplanner.lib.commands.PathPlannerAuto;
+import com.pathplanner.lib.path.PathPlannerPath;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.Swerve;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class SinglePathFollowing extends Command {
-private Swerve swerve;
+private Swerve s_swerve;
 private String pathName;
 
   /** Creates a new SinglePathFollowing. */
-  public SinglePathFollowing(Swerve swerve,String pathName) {
-    this.swerve = swerve;
-    pathName = pathName;
+  public SinglePathFollowing(Swerve swerve, String pathName) {
+    this.s_swerve = swerve;
+    this.pathName = pathName;
+    
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(this.swerve);
+    // addRequirements(this.swerve);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    PathPlannerAuto.getPathGroupFromAutoFile("pathName");
+    try{
+      // PathPlannerAuto.getPathGroupFromAutoFile("auto1");
+      // PathPlannerPath path = PathPlannerPath.fromPathFile("Reef-K_Coral-10.path");
+      PathPlannerPath path = PathPlannerPath.fromPathFile(pathName);
+
+    } catch (Exception e) { 
+      System.out.println("report: "+ e.getStackTrace() );
+    }
+    
+    
+
     
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
+    //TODO command the this.swerve to drive the pathPlannerPath
+    // swerve.drive();
   }
 
   // Called once the command ends or is interrupted.
