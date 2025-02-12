@@ -12,16 +12,14 @@ import frc.robot.subsystems.Swerve;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class CoralRightTarget extends SequentialCommandGroup {
+public class AlgaeTarget extends SequentialCommandGroup {
   /** Creates a new TargetAllSeries. */  
   //Targeting with Limelight
-  public CoralRightTarget(Swerve s_Swerve) {
+  public AlgaeTarget(Swerve s_Swerve) {
     addCommands(
-       //TODO: TRY TargetAllParallel with 0 standoffSideways, and then DriveFwdAndSide 
-      new TargetAllParallel(s_Swerve, 9, -6.5).withTimeout(1.5),
+       //TODO:  TRY TargetAllParallel with 0 standoffSideways, and then DriveFwdAndSide 
+      new TargetAllParallel(s_Swerve, 9, 6.5).withTimeout(1.5),
       new DriveFwd(s_Swerve, false, 9).withTimeout(1).withTimeout(1));
   }
 }
-
-
 

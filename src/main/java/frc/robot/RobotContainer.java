@@ -29,7 +29,7 @@ import frc.robot.commands.CoralPivotCommands.ManualCoralPivot;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
 import frc.robot.commands.ElevatorCommands.ManualUpDown;
 import frc.robot.commands.ElevatorCommands.PIDToHeight;
-import frc.robot.commands.Targeting.CoralLeftorAlgaeTarget;
+import frc.robot.commands.Targeting.CoralLeftTarget;
 import frc.robot.commands.Targeting.CoralRightTarget;
 import frc.robot.commands.Targeting.TargetAllParallel;
 import frc.robot.commands.Targeting.TargetAllSeries;
@@ -83,7 +83,7 @@ public class RobotContainer {
    //COMMANDS
 
    //Targeting
-    private final CoralLeftorAlgaeTarget coralLeftorAlgaeTarget = new CoralLeftorAlgaeTarget(s_Swerve);
+    private final CoralLeftTarget coralLeftTarget = new CoralLeftTarget(s_Swerve);
     private final CoralRightTarget coralRightTarget = new CoralRightTarget(s_Swerve);
 
 //NOTE - STANDOFF FWD IS WITHOUT THE BUMPER - ADD BUMPER DEPTH AS NEEDEDD
@@ -220,7 +220,7 @@ public class RobotContainer {
     b.onTrue(targetForwardDistance);
     x.onTrue(targetsideDistance);
     upPov.onTrue(targetAllParallel);
-    downPov.onTrue(coralLeftorAlgaeTarget);
+    downPov.onTrue(coralLeftTarget);
     leftPov.onTrue(coralRightTarget);
 
 
