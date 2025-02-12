@@ -77,7 +77,7 @@ public class TargetAngleSide extends Command {
 
     if (tv == 1) { //tv =1 means Limelight sees a target
 
-    //poseAngle = s_Swerve.getLLAngleDegrees();  //the angle is the error (angle between target and camera)
+    //the angle is the error (angle between target and camera)
     poseAngle = LimelightHelpers.getTargetPose_CameraSpace("limelight")[5];
     //SmartDashboard.putNumber("TargetingAngle: ", poseAngle);
     double targetingAngle = poseAngle * kProtation; 
@@ -86,17 +86,15 @@ public class TargetAngleSide extends Command {
     double rotationVal = targetingAngle; 
 
   //poseSide is first element in the pose array - which is sideways distance from center of LL camera to the AprilTag in meters
-    //poseSide = (s_Swerve.getLLSideDistMeters());
     poseSide = LimelightHelpers.getTargetPose_CameraSpace("limelight")[0]; 
     double finalSideways = Units.inchesToMeters(standoffSideways);  //convert desired standoff from inches to meters
     errorSide = poseSide - finalSideways; //or add it?
     double targetingSidewaysSpeed = errorSide*kPstrafe;
-   // SmartDashboard.putNumber("Side to side distance - camera to target, in meters: ", dx);
     targetingSidewaysSpeed *= -1.0;  
     double strafeVal = targetingSidewaysSpeed;
 
-  //This sets forward x movement equal to = 0 
-   double translationVal = 0; //MathUtil.applyDeadband(translationSup, Constants.stickDeadband);
+  //This sets forward movement equal to = 0 
+   double translationVal = 0; 
 
 
    /* Drive */
@@ -119,8 +117,8 @@ public class TargetAngleSide extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return ( (Math.abs(errorSide) < Units.inchesToMeters(0.25)) &&  (poseAngle < 1));
-   // return false;
+    //return ( (Math.abs(errorSide) < Units.inchesToMeters(0.25)) &&  (poseAngle < 1));
+     return false;
 
   }
 }

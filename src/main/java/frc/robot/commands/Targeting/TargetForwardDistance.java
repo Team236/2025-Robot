@@ -80,7 +80,6 @@ public class TargetForwardDistance extends Command {
   // this works best if your Limelight's mount height and target mount height are different.
   
   // poseFwd is the third element [2] in the pose array, which is the forward distance from center of robot to the AprilTag
-    //poseFwd = (s_Swerve.getLLFwdDistMeters());
     poseFwd = LimelightHelpers.getTargetPose_CameraSpace("limelight")[2]; 
     //Standsoff is from bumper to Target. Must add forward dist from bumper to LLcamera (since using TargetPose-CameraSpace)
     double finalStandoff = Units.inchesToMeters(standoffFwd + Constants.Targeting.DIST_CAMERA_TO_BUMPER_FWD); //to robot center in meters
@@ -111,7 +110,7 @@ public class TargetForwardDistance extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return ((Math.abs(errorFwd) < Units.inchesToMeters(0.15)));
-   // return false;
+    //return ((Math.abs(errorFwd) < Units.inchesToMeters(0.15)));
+    return false;
   }
 }

@@ -24,7 +24,7 @@ public class DriveSideways extends SequentialCommandGroup {
     public DriveSideways(Swerve s_Swerve, boolean reversed, double sideD) {
 
     //****WAS NOT DRIVINg ENOUGH SIDEWAYS WITHOUT THIS FACTOR!!*****
-        double sideDist = sideD * 1.03; //TODO find this factor for 2025 robot
+       double sideDist = sideD * 1.03; //TODO find this factor for 2025 robot
 
         TrajectoryConfig config =
             new TrajectoryConfig(

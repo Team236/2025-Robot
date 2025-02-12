@@ -29,8 +29,7 @@ import frc.robot.commands.CoralPivotCommands.ManualCoralPivot;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
 import frc.robot.commands.ElevatorCommands.ManualUpDown;
 import frc.robot.commands.ElevatorCommands.PIDToHeight;
-import frc.robot.commands.Targeting.AlgaeTarget;
-import frc.robot.commands.Targeting.CoralLeftTarget;
+import frc.robot.commands.Targeting.CoralLeftorAlgaeTarget;
 import frc.robot.commands.Targeting.CoralRightTarget;
 import frc.robot.commands.Targeting.TargetAllParallel;
 import frc.robot.commands.Targeting.TargetAllSeries;
@@ -84,14 +83,15 @@ public class RobotContainer {
    //COMMANDS
 
    //Targeting
-    //private final CoralLeftTarget coralLeftTarget = new CoralLeftTarget(s_Swerve, 6.5); //or +6.5?
-   // private final CoralRightTarget coralRightTarget = new CoralRightTarget(s_Swerve, -6.5); //OR -6.5?
-    //private final AlgaeTarget algaeTarget = new AlgaeTarget(s_Swerve, 6.5);
+    private final CoralLeftorAlgaeTarget coralLeftorAlgaeTarget = new CoralLeftorAlgaeTarget(s_Swerve);
+    private final CoralRightTarget coralRightTarget = new CoralRightTarget(s_Swerve);
 
-    private final TargetAllParallel targetAllParallel = new TargetAllParallel(s_Swerve, 14, 0);
-    private final TargetAllSeries targetAllSeries = new TargetAllSeries(s_Swerve, 14, 0);
+//NOTE - STANDOFF FWD IS WITHOUT THE BUMPER - ADD BUMPER DEPTH AS NEEDEDD
+    private final TargetAllParallel targetAllParallel = new TargetAllParallel(s_Swerve, 6, 0);
+    private final TargetAllSeries targetAllSeries = new TargetAllSeries(s_Swerve, 6, 0);
     private final TargetAngle targetAngle =  new TargetAngle(s_Swerve);
-    private final TargetForwardDistance targetForwardDistance = new TargetForwardDistance(s_Swerve, 14);
+    private final TargetForwardDistance targetForwardDistance = new TargetForwardDistance(s_Swerve, 9);
+    private final TargetSideDistance targetsideDistance = new TargetSideDistance(s_Swerve, 0);
     private final TargetSideDistance targetSideDistanceChanged  = new TargetSideDistance(s_Swerve,0);
     private final TargetMegaTag2 target3DMegaTag2 = new TargetMegaTag2(s_Swerve);
     private final TargetAngleSide targetAngleSide = new TargetAngleSide(s_Swerve, 0);
@@ -208,13 +208,21 @@ public class RobotContainer {
     //y button is already assigned to ZeroGyro
     //leftBumper lb button is already assigned to RobotCentric
 
-   a.whileTrue(new CoralLeftTarget(s_Swerve, 6.5));
-  // b.whileTrue(coralRightTarget);
-   upPov.whileTrue(targetAngle);
-   x.whileTrue(targetForwardDistance);
+    // a.whileTrue(coralLeftorAlgaeTarget);
+    // b.whileTrue(coralRightTarget);
+  
 
-  // rb.whileTrue(algaeTarget);
-   downPov.whileTrue(targetAngleSide);
+    // rb.whileTrue(targetAllParallel);
+    // upPov.whileTrue(targetForwardDistance);
+    // downPov.whileTrue(targetsideDistance);
+
+    a.onTrue(targetAngle);
+    b.onTrue(targetForwardDistance);
+    x.onTrue(targetsideDistance);
+    upPov.onTrue(targetAllParallel);
+    downPov.onTrue(coralLeftorAlgaeTarget);
+    leftPov.onTrue(coralRightTarget);
+
 
     //rb.whileTrue(elevatorDown);
     //rm.whileTrue(elevatorUp);

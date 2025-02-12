@@ -4,13 +4,8 @@
 
 package frc.robot.commands.Targeting;
 
-import edu.wpi.first.math.util.Units;
-import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.LimelightHelpers;
 import frc.robot.commands.AutoCommands.DriveFwd;
-import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
-import frc.robot.commands.AutoCommands.DriveSideways;
 import frc.robot.subsystems.Swerve;
 
 
@@ -18,17 +13,11 @@ import frc.robot.subsystems.Swerve;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class CoralRightTarget extends SequentialCommandGroup {
- //This command targets angle and sideways distance in parallel, 
- //then targets forward to 12" from the bumper to the apriltag,
- //then uses odometry to move 12" forward and 6.5" right, to be centered on right coral branch.
-  public CoralRightTarget(Swerve s_Swerve,  double standoffSideways) {
+  /** Creates a new TargetAllSeries. */  
+  //Targeting with Limelight
+  public CoralRightTarget(Swerve s_Swerve) {
     addCommands(
-   // new TargetSideDistance(s_Swerve, 0, 0, 0).withTimeout(2), //add back if needed
-    new TargetAngle(s_Swerve).withTimeout(2),
-   // new TargetSideDistance(s_Swerve, 0, 0, 0).withTimeout(1), //add back if needed
-
-   //new DriveFwdAndSideAndTurn(s_Swerve, false, s_Swerve.getLLFwdDistInch(), standoffSideways, 0).withTimeout(2) //replace below with this if needed
-   new DriveFwdAndSideAndTurn(s_Swerve, false, Units.metersToInches(LimelightHelpers.getTargetPose_CameraSpace("limelight")[2]), Units.metersToInches(LimelightHelpers.getTargetPose_CameraSpace("limelight")[0]), 0).withTimeout(2)
-   ); 
+      new TargetAllParallel(s_Swerve, 9, -6.5).withTimeout(1.5),
+      new DriveFwd(s_Swerve, false, 9).withTimeout(1));
   }
 }

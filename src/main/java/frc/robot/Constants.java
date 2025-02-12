@@ -67,6 +67,7 @@ public final class Constants {
     public static final double DIST_TO_CENTER = 18;
     //use this with TargetPose-CameraSpace:
     public static final double DIST_CAMERA_TO_BUMPER_FWD = 7.25;  //inches
+    public static final double DIST_CAM_TO_ROBOT_CENTER = 6.5;  //TO DO change to -6.5 or other for camera on right
 }
 
 public static final class Swerve {

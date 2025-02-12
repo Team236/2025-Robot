@@ -27,7 +27,7 @@ public class DriveRevAndSideAndTurn extends SequentialCommandGroup {
     public DriveRevAndSideAndTurn(Swerve s_Swerve, boolean reversed, double revDist, double sideD, double turnAngle) {
 
         //****WAS NOT DRIVINg ENOUGH SIDEWAYS WITHOUT THIS FACTOR!!*****
-        double sideDist = sideD * 1.03;  //TODO find this factor for 2025 robot
+       double sideDist = sideD * 1.03;  //TODO find this factor for 2025 robot
 
         TrajectoryConfig config =
             new TrajectoryConfig(
