@@ -47,8 +47,8 @@ public class TargetAngleSide extends Command {
     // if it is too high, the robot will oscillate.
     // if it is too low, the robot will never reach its target
     // if the robot never turns in the correct direction, kP should be inverted.
-    double kProtation = 0.008; //kP value for rotation
-    double kPstrafe = 0.4;  //kP value for the sideways (strafe) motion
+    double kProtation = Constants.Targeting.KP_ROTATION;//kP value for rotation
+    double kPstrafe = Constants.Targeting.KP_STRAFE;  //kP value for the sideways 
     private double pipeline = 0; 
     private double tv;
     

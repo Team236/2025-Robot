@@ -68,6 +68,9 @@ public final class Constants {
     //use this with TargetPose-CameraSpace:
     public static final double DIST_CAMERA_TO_BUMPER_FWD = 7.25;  //inches
     public static final double DIST_CAM_TO_ROBOT_CENTER = 6.5;  //TO DO change to -6.5 or other for camera on right
+    public static final double KP_ROTATION = 0.008; //kP value for rotation
+    public static final double KP_TRANSLATION = 0.4;//kP value for forward (translation) motion
+    public static final double KP_STRAFE = 0.4;  //kP value for the sideways (strafe) motion
 }
 
 public static final class Swerve {
@@ -75,7 +78,7 @@ public static final class Swerve {
 
         public static final COTSTalonFXSwerveConstants chosenModule =  //TODO: This must be tuned to specific robot
         COTSTalonFXSwerveConstants.SDS.MK4.KrakenX60(COTSTalonFXSwerveConstants.SDS.MK4.driveRatios.L2);
-
+      
         /* Drivetrain Constants */
         public static final double trackWidth = Units.inchesToMeters(23.5); //2024 testbed
         public static final double wheelBase = Units.inchesToMeters(23.5); //2024 testbed

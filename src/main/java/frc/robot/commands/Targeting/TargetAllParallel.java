@@ -49,11 +49,10 @@ public class TargetAllParallel extends Command {  //Targeting with Limeight
     // if it is too high, the robot will oscillate.
     // if it is too low, the robot will never reach its target
     // if the robot never turns in the correct direction, kP should be inverted.
-    double kProtation = 0.008; //kP value for rotation
-    double kPtranslation = 0.4;//kP value for forward (translation) motion
-    double kPstrafe = 0.4;  //kP value for the sideways (strafe) motion
-    private double pipeline = 0; 
-    private double tv;
+    double kProtation = Constants.Targeting.KP_ROTATION;//kP value for rotation
+    double kPtranslation = Constants.Targeting.KP_TRANSLATION;//kP value for forward (translation) motion
+    double kPstrafe = Constants.Targeting.KP_STRAFE;  //kP value for the sideways 
+    private double tv, pipeline;
     
     private Swerve s_Swerve;    
   

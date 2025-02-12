@@ -46,7 +46,7 @@ public class TargetForwardDistance extends Command {
     // if it is too low, the robot will never reach its target
     // if the robot never turns in the correct direction, kP should be inverted.
 
-    double kPtranslation = 1.0; //kP for the Forward direction
+    double kPtranslation = Constants.Targeting.KP_TRANSLATION;//kP value for forward (translation) motion
     private double pipeline = 0; 
     private double tv;
     //private double strafeSup, rotationSup; 

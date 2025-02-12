@@ -34,8 +34,7 @@ public class TargetSideDistance extends Command {
     // if it is too high, the robot will oscillate.
     // if it is too low, the robot will never reach its target
     // if the robot never turns in the correct direction, kP should be inverted.
-  
-    double kPstrafe = 1.2;  //kP value for the sideways (strafe) motion
+    double kPstrafe = Constants.Targeting.KP_STRAFE;  //kP value for the sideways 
     private double pipeline = 0; 
     private double tv;
     private double standoffSide; // desired horiz distance in inches from camera to target; pass into command

@@ -28,7 +28,7 @@ public class TargetAngle extends Command {
     // if it is too high, the robot will oscillate.
     // if it is too low, the robot will never reach its target
     // if the robot never turns in the correct direction, kP should be inverted.
-    double kProtation = 0.014; //0.02 also works //kP value for rotation
+    double kProtation = Constants.Targeting.KP_ROTATION;//kP value for rotation
     private double pipeline = 0; 
     private double tv, poseAngle;
    // private double translationSup, strafeSup;
