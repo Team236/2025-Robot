@@ -17,7 +17,7 @@ public class CoralRightTarget extends SequentialCommandGroup {
   //Targeting with Limelight
   public CoralRightTarget(Swerve s_Swerve) {
     addCommands(
-      new TargetAllParallel(s_Swerve, 6, -6.5).withTimeout(1.5),
-      new DriveFwd(s_Swerve, false, 3).withTimeout(1));
+      new TargetAllParallel(s_Swerve, 9, -6.5).withTimeout(1.5),
+      new DriveFwd(s_Swerve, false, 9).withTimeout(1));
   }
 }

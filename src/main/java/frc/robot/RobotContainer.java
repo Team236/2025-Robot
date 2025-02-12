@@ -90,7 +90,7 @@ public class RobotContainer {
     private final TargetAllParallel targetAllParallel = new TargetAllParallel(s_Swerve, 6, 0);
     private final TargetAllSeries targetAllSeries = new TargetAllSeries(s_Swerve, 6, 0);
     private final TargetAngle targetAngle =  new TargetAngle(s_Swerve);
-    private final TargetForwardDistance targetForwardDistance = new TargetForwardDistance(s_Swerve, 6);
+    private final TargetForwardDistance targetForwardDistance = new TargetForwardDistance(s_Swerve, 9);
     private final TargetSideDistance targetsideDistance = new TargetSideDistance(s_Swerve, 0);
     private final TargetSideDistance targetSideDistanceChanged  = new TargetSideDistance(s_Swerve,0);
     private final TargetMegaTag2 target3DMegaTag2 = new TargetMegaTag2(s_Swerve);
@@ -208,13 +208,21 @@ public class RobotContainer {
     //y button is already assigned to ZeroGyro
     //leftBumper lb button is already assigned to RobotCentric
 
-   a.whileTrue(coralLeftorAlgaeTarget);
-   b.whileTrue(coralRightTarget);
+    // a.whileTrue(coralLeftorAlgaeTarget);
+    // b.whileTrue(coralRightTarget);
   
 
-   rb.whileTrue(targetAllParallel);
-  upPov.whileTrue(targetForwardDistance);
-   downPov.whileTrue(targetsideDistance);
+    // rb.whileTrue(targetAllParallel);
+    // upPov.whileTrue(targetForwardDistance);
+    // downPov.whileTrue(targetsideDistance);
+
+    a.onTrue(targetAngle);
+    b.onTrue(targetForwardDistance);
+    x.onTrue(targetsideDistance);
+    upPov.onTrue(targetAllParallel);
+    downPov.onTrue(coralLeftorAlgaeTarget);
+    leftPov.onTrue(coralRightTarget);
+
 
     //rb.whileTrue(elevatorDown);
     //rm.whileTrue(elevatorUp);
