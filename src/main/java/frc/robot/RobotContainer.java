@@ -40,6 +40,7 @@ import frc.robot.commands.CoralPivotCommands.ManualCoralPivot;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
 import frc.robot.commands.ElevatorCommands.ManualUpDown;
 import frc.robot.commands.ElevatorCommands.PIDToHeight;
+import frc.robot.commands.Pathautos.SinglePathFollowing;
 import frc.robot.commands.Targeting.CoralLeftorAlgaeTarget;
 import frc.robot.commands.Targeting.CoralRightTarget;
 import frc.robot.commands.Targeting.TargetAllParallel;
@@ -92,7 +93,8 @@ public class RobotContainer {
     private final JoystickButton robotCentric = new JoystickButton(driverController, XboxController.Button.kLeftBumper.value);
 
    //COMMANDS
-
+   //PathPlanner command
+    private final SinglePathFollowing SinglePathCommand = new SinglePathFollowing(s_Swerve,"Reef-K_Coral-10.path");
    //Targeting
     private final CoralLeftorAlgaeTarget coralLeftorAlgaeTarget = new CoralLeftorAlgaeTarget(s_Swerve);
     private final CoralRightTarget coralRightTarget = new CoralRightTarget(s_Swerve);
@@ -266,9 +268,10 @@ public class RobotContainer {
     //b.onTrue(pidAlgaePivot2);
 
  // a.onTrue(driveFwdCenter55);
-  //b.onTrue(turn);
-  //upPov.onTrue(driveFwd113);
-  //x.onTrue(fullRunRight); 
+  //  b.onTrue(turn);
+  //  upPov.onTrue(driveFwd113);
+  //  x.onTrue(fullRunRight); 
+  x.onTrue(); 
 
   //downPov.whileTrue(algaeTarget);
   //leftPov.whileTrue(coralLeftTarget);
