@@ -36,9 +36,6 @@ public class PathFollowingCmd extends Command {
   public void execute() {
     //TODO determine where to define public StartingTrajectory
     // assign the passed tarjectory to the starting point 
-    
-    // TODO do all-these commands come for free in single PathPlanner declaration ?
-    // can we reuse this command or create unique commands for each ?
 
     /* parallel commands group 
     *  1a. drivePath1 from BlueOne to reef 60-A position (AKA -startingTrajectory)
