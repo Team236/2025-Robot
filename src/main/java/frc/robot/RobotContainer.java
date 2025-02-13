@@ -94,7 +94,7 @@ public class RobotContainer {
 
    //COMMANDS
    //PathPlanner command
-    private final SinglePathFollowing SinglePathCommand = new SinglePathFollowing(s_Swerve,"Reef-K_Coral-10.path");
+    private final SinglePathFollowing SinglePathCommand = new SinglePathFollowing(s_Swerve,"Reef-K_Coral-10");
    //Targeting
     private final CoralLeftorAlgaeTarget coralLeftorAlgaeTarget = new CoralLeftorAlgaeTarget(s_Swerve);
     private final CoralRightTarget coralRightTarget = new CoralRightTarget(s_Swerve);

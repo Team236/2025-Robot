@@ -4,6 +4,7 @@
 
 package frc.robot.commands.Pathautos;
 
+import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.commands.PathPlannerAuto;
 import com.pathplanner.lib.path.PathPlannerPath;
 
@@ -14,6 +15,7 @@ import frc.robot.Constants.Swerve;
 public class SinglePathFollowing extends Command {
 private Swerve s_swerve;
 private String pathName;
+private PathPlannerPath path;
 
   /** Creates a new SinglePathFollowing. */
   public SinglePathFollowing(Swerve swerve, String pathName) {
@@ -30,7 +32,7 @@ private String pathName;
     try{
       // PathPlannerAuto.getPathGroupFromAutoFile("auto1");
       // PathPlannerPath path = PathPlannerPath.fromPathFile("Reef-K_Coral-10.path");
-      PathPlannerPath path = PathPlannerPath.fromPathFile(pathName);
+      this.path = PathPlannerPath.fromPathFile(pathName);
 
     } catch (Exception e) { 
       System.out.println("report: "+ e.getStackTrace() );
@@ -38,7 +40,7 @@ private String pathName;
     
     
 
-    
+    AutoBuilder.followPath(this.path);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
