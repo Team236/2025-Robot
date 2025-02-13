@@ -67,7 +67,7 @@ public final class Constants {
     public static final double DIST_TO_CENTER = 18;
     //use this with TargetPose-CameraSpace:
     public static final double DIST_CAMERA_TO_BUMPER_FWD = 7.25;//inches (4.25 to bumper)
-    public static final double DIST_CAM_TO_ROBOT_CENTER = 6.5; //TO DO change to -6.5 or other for camera on right
+    public static final double DIST_CAM_TO_BUMPER_SIDE = 6.5; //TO DO change to -6.5 or other for camera on right
     //Distances below assume Limelight camera will be centered on the Coral Device 
     //TODO:  get actual for algae side below, verify others with camera on the right over Coral device
     public static final double DIST_L_CORAL_SIDE = 6.5; //from LL camera to Left Coral branch
