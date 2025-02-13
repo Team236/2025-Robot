@@ -96,7 +96,9 @@ private PathPlannerPath path;
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-
+    // call stop elevator
+    // call stop coralIntakeHold
+    // stop Coralpivot and AlgaePivot at current position
   }
 
   // Returns true when the command should end.
