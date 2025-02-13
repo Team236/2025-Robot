@@ -33,7 +33,6 @@ public class Robot extends TimedRobot {
   public UsbCamera usbCamera0;
 
   private Command m_autonomousCommand;
-
   private RobotContainer m_robotContainer;
 
  public Field2d field;
@@ -81,9 +80,12 @@ public class Robot extends TimedRobot {
 */
 
     //Need to do this once in order to have Limelight communication while tethered
+    //TODO add the forwarding for limelight-two 
     for (int port = 5800; port <= 5805; port++){
       PortForwarder.add(port, "limelight.local", port);
     }
+
+    SmartDashboard.putData("Field", field);
   }
 
   /**
@@ -100,6 +102,9 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+
+    // update field2d with robots current pose 
+    // field.setRobotPose(getPose());
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
