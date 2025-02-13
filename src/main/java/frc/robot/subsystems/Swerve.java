@@ -1,40 +1,22 @@
 package frc.robot.subsystems;
 
-import frc.robot.SwerveModule;
-import frc.robot.commands.Targeting.TargetAngle;
-import frc.robot.Constants;
-import frc.robot.LimelightHelpers;
-import frc.robot.Robot;
-import frc.robot.RobotContainer;
-import edu.wpi.first.math.kinematics.ChassisSpeeds;
-import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
-import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
-import edu.wpi.first.math.kinematics.SwerveModulePosition;
-
-import java.io.IOException;
-import java.util.Optional;
-
 import com.ctre.phoenix6.configs.Pigeon2Configuration;
 import com.ctre.phoenix6.hardware.Pigeon2;
-import com.pathplanner.lib.commands.FollowPathCommand;
-import com.pathplanner.lib.config.PIDConstants;
-import com.pathplanner.lib.config.RobotConfig;
-import com.pathplanner.lib.controllers.PPHolonomicDriveController;
-import com.pathplanner.lib.path.PathPlannerPath;
 
 import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
+import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
+import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
-import edu.wpi.first.math.util.Units;
-import edu.wpi.first.util.struct.parser.ParseException;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
+import frc.robot.SwerveModule;
 
 public class Swerve extends SubsystemBase {
     public SwerveDriveOdometry swerveOdometry;
@@ -44,10 +26,6 @@ public class Swerve extends SubsystemBase {
     public double poseAngle;
     public double poseForwardDistance;
     public double poseSideDistance;
-
-         // pathPlanner stuff
-    public static PathPlannerPath pathPlannerPath;
-    private static RobotConfig robotConfig;
 
     public Swerve() {
         gyro = new Pigeon2(Constants.Swerve.pigeonID, "usb");
@@ -62,13 +40,6 @@ public class Swerve extends SubsystemBase {
         };
 
         swerveOdometry = new SwerveDriveOdometry(Constants.Swerve.swerveKinematics, getGyroYaw(), getModulePositions());
-
-        // read the robot configuration from the PathPlanner GUI settings
-        try {
-            robotConfig = RobotConfig.fromGUISettings();
-        } catch (Exception  e) {
-            DriverStation.reportError("ParseException" + e.getMessage(), e.getStackTrace());
-        }
 
 /* Here we use SwerveDrivePoseEstimator so that we can fuse odometry readings, for 3D targeting. 
 The numbers used below are robot specific, and should be tuned. */
@@ -142,10 +113,6 @@ The numbers used below are robot specific, and should be tuned. */
         swerveOdometry.resetPosition(getGyroYaw(), getModulePositions(), pose);
     }
 
-    public void resetPose(Pose2d pose) {
-        swerveOdometry.resetPosition(getGyroYaw(), getModulePositions(), pose);
-    }
-
     public Rotation2d getHeading(){
         return getPose().getRotation();
     }
@@ -167,11 +134,6 @@ The numbers used below are robot specific, and should be tuned. */
         for(SwerveModule mod : mSwerveMods){
             mod.resetToAbsolute();
         }
-    }
-
-    public ChassisSpeeds getRobotRelativeSpeeds()
-    {
-        return 
     }
 /* 
     public double getLLAngleDegrees() {
@@ -212,35 +174,11 @@ The numbers used below are robot specific, and should be tuned. */
        poseAngle = LimelightHelpers.getTargetPose_CameraSpace("limelight")[5];
        SmartDashboard.putNumber("TargetingAngle in swerve: ", poseAngle);
        poseForwardDistance = LimelightHelpers.getTargetPose_CameraSpace("limelight")[2];
-      SmartDashboard.putNumber("TargetingForwardDistance in swerve: ", poseForwardDistance / 0.0254);
-      poseSideDistance = LimelightHelpers.getTargetPose_CameraSpace("limelight")[0];
+        SmartDashboard.putNumber("TargetingForwardDistance in swerve: ", poseForwardDistance / 0.0254);
+        poseSideDistance = LimelightHelpers.getTargetPose_CameraSpace("limelight")[0];
        SmartDashboard.putNumber("TargetingSideDistance in swerve: ", poseSideDistance / 0.0254);
        */
     }
 
-
- // PathPlanner method to follow path specified in the calling of the method from a command class
-    public Command followPathCommand(String pathName) {
-        Optional<Pose2d> poseArray = RobotContainer.auto1_path1.getStartingHolonomicPose();
-        
-        
-        try {
-            m_pathCommand = new FollowPathCommand( 
-                pathPlannerPath,
-                poseArray, //this::getPose, // Robot pose supplier
-                this::getRobotRelativeSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
-                this::drive, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds, AND feedforwards
-                new PPHolonomicDriveController( // PPHolonomicController is the built in path following controller for holonomic drive trains
-                    new PIDConstants(5.0, 0.0, 0.0), new PIDConstants(5.0, 0.0, 0.0) ),// Translation and Rotation PID constants
-                robotConfig, // robot configuration pulled from PathPlanner file
-                () -> { return false;  },
-                this );     // Reference to this subsystem to set requirements
-        
-        } catch (Exception e) {
-            DriverStation.reportError("Big oops: " + e.getMessage(), e.getStackTrace());
-            return Commands.none();
-        }
-
-    }
 }
 

@@ -94,7 +94,7 @@ public class RobotContainer {
 
    //COMMANDS
    //PathPlanner command
-    private final SinglePathFollowing SinglePathCommand = new SinglePathFollowing(s_Swerve,"Reef-K_Coral-10");
+    private final SinglePathFollowing presetPathFollowing = new SinglePathFollowing(s_Swerve);
    //Targeting
     private final CoralLeftorAlgaeTarget coralLeftorAlgaeTarget = new CoralLeftorAlgaeTarget(s_Swerve);
     private final CoralRightTarget coralRightTarget = new CoralRightTarget(s_Swerve);
@@ -271,7 +271,7 @@ public class RobotContainer {
   //  b.onTrue(turn);
   //  upPov.onTrue(driveFwd113);
   //  x.onTrue(fullRunRight); 
-  x.onTrue(); 
+  x.onTrue(presetPathFollowing); 
 
   //downPov.whileTrue(algaeTarget);
   //leftPov.whileTrue(coralLeftTarget);

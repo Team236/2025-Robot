@@ -5,28 +5,37 @@
 package frc.robot.commands.Pathautos;
 
 import com.pathplanner.lib.auto.AutoBuilder;
-import com.pathplanner.lib.commands.PathPlannerAuto;
 import com.pathplanner.lib.path.PathPlannerPath;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.Constants.Swerve;
+import frc.robot.subsystems.Swerve;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class SinglePathFollowing extends Command {
-private Swerve s_swerve;
-private String pathName;
+private Swerve swerve;
+private String pathName="Reef-K_Coral-10";
+// private String hardPath ="Reef-K_Coral-10";
 private PathPlannerPath path;
 
   /** Creates a new SinglePathFollowing. */
   public SinglePathFollowing(Swerve swerve, String pathName) {
-    this.s_swerve = swerve;
+    this.swerve = swerve;
     this.pathName = pathName;
     
     // Use addRequirements() here to declare subsystem dependencies.
-    // addRequirements(this.swerve);
+    addRequirements(this.swerve);
   }
 
-  // Called when the command is initially scheduled.
+   /** Creates a new SinglePathFollowing. */
+   public SinglePathFollowing(Swerve swerve) {
+    this.swerve = swerve;
+    
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(this.swerve);
+  }
+
+
+// Called when the command is initially scheduled.
   @Override
   public void initialize() {
     try{
