@@ -19,11 +19,11 @@ public class CoralRightTarget extends SequentialCommandGroup {
   public CoralRightTarget(Swerve s_Swerve) {
     addCommands(
        //TODO: TRY TargetAllParallel with 0 standoffSideways, and then DriveFwdAndSide 
-      new TargetAllParallel(s_Swerve, 9, -6.5).withTimeout(1.5),
-      new DriveFwd(s_Swerve, false, 9).withTimeout(1).withTimeout(3));
+      //new TargetAllParallel(s_Swerve, 9, -6.5).withTimeout(1.5),
+      //new DriveFwd(s_Swerve, false, 9).withTimeout(1).withTimeout(3));
 
-    // new TargetAllParallel(s_Swerve, 9, 0).withTimeout(1.5),
-    //new DriveFwdAndSideAndTurn(s_Swerve, false, 9, -6.5, 0).withTimeout(3);
+     new TargetAllParallel(s_Swerve, 9, 0).withTimeout(2.0),
+    new DriveFwdAndSideAndTurn(s_Swerve, false, 9, -6.5, 0).withTimeout(3));
   }
 }
 
