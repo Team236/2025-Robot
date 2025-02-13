@@ -6,6 +6,7 @@ package frc.robot.commands.Targeting;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.AutoCommands.DriveFwd;
+import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
 import frc.robot.subsystems.Swerve;
 
 
@@ -19,7 +20,10 @@ public class CoralRightTarget extends SequentialCommandGroup {
     addCommands(
        //TODO: TRY TargetAllParallel with 0 standoffSideways, and then DriveFwdAndSide 
       new TargetAllParallel(s_Swerve, 9, -6.5).withTimeout(1.5),
-      new DriveFwd(s_Swerve, false, 9).withTimeout(1).withTimeout(1));
+      new DriveFwd(s_Swerve, false, 9).withTimeout(1).withTimeout(3));
+
+    // new TargetAllParallel(s_Swerve, 9, 0).withTimeout(1.5),
+    //new DriveFwdAndSideAndTurn(s_Swerve, false, 9, -6.5, 0).withTimeout(3);
   }
 }
 

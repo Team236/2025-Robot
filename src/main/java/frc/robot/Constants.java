@@ -66,8 +66,16 @@ public final class Constants {
     //only use DIST_TO_CENTER if we switch to TargetPose-RobotSpace
     public static final double DIST_TO_CENTER = 18;
     //use this with TargetPose-CameraSpace:
-    public static final double DIST_CAMERA_TO_BUMPER_FWD = 7.25;  //inches
-    public static final double DIST_CAM_TO_ROBOT_CENTER = 6.5;  //TO DO change to -6.5 or other for camera on right
+    public static final double DIST_CAMERA_TO_BUMPER_FWD = 7.25;//inches (4.25 to bumper)
+    public static final double DIST_CAM_TO_ROBOT_CENTER = 6.5; //TO DO change to -6.5 or other for camera on right
+    //Distances below assume Limelight camera will be centered on the Coral Device 
+    //TODO:  get actual for algae side below, verify others with camera on the right over Coral device
+    public static final double DIST_L_CORAL_SIDE = 6.5; //from LL camera to Left Coral branch
+    public static final double DIST_R_CORAL_SIDE = -DIST_L_CORAL_SIDE; //from LL camera to Right Coral Branch
+    public static final double DIST_ALGAE_SIDE = 12; //to get to Algae center (from RCoral center)
+    public static final double DIST_FWD = 9; //required fwd standoff to keep target in sight
+  
+
     public static final double KP_ROTATION = 0.008; //kP value for rotation
     public static final double KP_TRANSLATION = 0.4;//kP value for forward (translation) motion
     public static final double KP_STRAFE = 0.4;  //kP value for the sideways (strafe) motion
