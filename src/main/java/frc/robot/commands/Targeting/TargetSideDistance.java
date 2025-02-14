@@ -36,7 +36,7 @@ public class TargetSideDistance extends Command {
     // if the robot never turns in the correct direction, kP should be inverted.
   
     double kPstrafe = 1.2;  //kP value for the sideways (strafe) motion
-    private double pipeline = 0; 
+    private int pipeline = 0; 
     private double tv;
     private double standoffSide; // desired horiz distance in inches from camera to target; pass into command
     private double poseSide , errorSide;
@@ -52,44 +52,45 @@ public class TargetSideDistance extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    // turn on the LED,  3 = force on
-    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
-    NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(pipeline);
-   // SmartDashboard.putBoolean("starting tsd", true);
-    // TODO swap to LimelightHelpers alternative instead of above methods ?
-    // LimelightHelpers.setLEDMode_ForceOn("limelight");
-    // LimelightHelpers.setPipelineIndex("limelight", pipeline);
+    
+    // LimelightHelpers to set leds and choose pipeline for primary Limelight
+    LimelightHelpers.setLEDMode_ForceOn("limelight");
+    LimelightHelpers.setPipelineIndex("limelight", pipeline);
+    // LIMELIGHT_TWO  set leds and choose pipeline
+    LimelightHelpers.setLEDMode_ForceOn("limelight-two");
+    LimelightHelpers.setPipelineIndex("limelight-two", pipeline);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
 
+// Boolean hasTarget = LimelightHelpers.getTV("limelight");
     tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);
 
-    if (tv ==1) { //tv =1 means Limelight sees a target
+// if(hasTarget) {
+    if (tv ==1) {           //tv =1 means Limelight sees a target
+      //poseSide is first element in the pose array - which is sideways distance from center of LL camera to the AprilTag in meters  
+        poseSide = LimelightHelpers.getTargetPose_CameraSpace("limelight")[0];
+        double finalStandoff = Units.inchesToMeters(standoffSide);  //convert desired standoff from inches to meters
+        errorSide = poseSide - finalStandoff; 
+        double targetingSidewaysSpeed = errorSide*kPstrafe;
+      // SmartDashboard.putNumber("Side to side distance - camera to target, in inches: ", dx/0.0254);
+        targetingSidewaysSpeed *= -1.0;  //IS NEEDED
+        double strafeVal = targetingSidewaysSpeed;
 
-    //poseSide is first element in the pose array - which is sideways distance from center of LL camera to the AprilTag in meters  
-    poseSide = LimelightHelpers.getTargetPose_CameraSpace("limelight")[0];
-    double finalStandoff = Units.inchesToMeters(standoffSide);  //convert desired standoff from inches to meters
-    errorSide = poseSide - finalStandoff; 
-    double targetingSidewaysSpeed = errorSide*kPstrafe;
-   // SmartDashboard.putNumber("Side to side distance - camera to target, in inches: ", dx/0.0254);
-    targetingSidewaysSpeed *= -1.0;  //IS NEEDED
-    double strafeVal = targetingSidewaysSpeed;
-   
-   //This sets Y and rotational movement equal to the value passed when command called (which is joystick value)
-   // or try strafeVal and rotationVal = 0 if needed (no rotation or movement in Y directions)
-   double translationVal = 0; //MathUtil.applyDeadband(translationSup, Constants.stickDeadband);
-   double rotationVal = 0; // MathUtil.applyDeadband(rotationSup, Constants.stickDeadband);
-   
-   /* Drive */
-   s_Swerve.drive(
-       new Translation2d(translationVal, strafeVal).times(Constants.Swerve.maxSpeed), 
-       rotationVal * Constants.Swerve.maxAngularVelocity, 
-       true,  //true for robot centric
-       true //true for open loop (?)
-   );
+      //This sets Y and rotational movement equal to the value passed when command called (which is joystick value)
+      // or try strafeVal and rotationVal = 0 if needed (no rotation or movement in Y directions)
+        double translationVal = 0; //MathUtil.applyDeadband(translationSup, Constants.stickDeadband);
+        double rotationVal = 0; // MathUtil.applyDeadband(rotationSup, Constants.stickDeadband);
+
+      /* Drive */
+      s_Swerve.drive(
+          new Translation2d(translationVal, strafeVal).times(Constants.Swerve.maxSpeed), 
+          rotationVal * Constants.Swerve.maxAngularVelocity, 
+          true,  //true for robot centric
+          true //true for open loop (?)
+          );
     }
 
     }

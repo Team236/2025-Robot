@@ -16,6 +16,8 @@ import com.pathplanner.lib.util.FileVersionException;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -94,7 +96,7 @@ public class RobotContainer {
 
    //COMMANDS
    //PathPlanner command
-    private final SinglePathFollowing SinglePathCommand = new SinglePathFollowing(s_Swerve,"Reef-K_Coral-10");
+    private final SinglePathFollowing presetPathFollowing = new SinglePathFollowing(s_Swerve);
    //Targeting
     private final CoralLeftorAlgaeTarget coralLeftorAlgaeTarget = new CoralLeftorAlgaeTarget(s_Swerve);
     private final CoralRightTarget coralRightTarget = new CoralRightTarget(s_Swerve);
@@ -154,6 +156,7 @@ public class RobotContainer {
 
   // PATHPLANNER stuff
   private PathPlannerPath currentPath,flipCurrentPath;
+
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -180,6 +183,8 @@ public class RobotContainer {
         }  catch (FileVersionException e) {
           System.out.println("FileVersionException 2Left45_Reef-K :");e.printStackTrace();
         }        
+
+       
   }
 
   /**
@@ -271,7 +276,7 @@ public class RobotContainer {
   //  b.onTrue(turn);
   //  upPov.onTrue(driveFwd113);
   //  x.onTrue(fullRunRight); 
-  x.onTrue(); 
+  x.onTrue(presetPathFollowing); 
 
   //downPov.whileTrue(algaeTarget);
   //leftPov.whileTrue(coralLeftTarget);

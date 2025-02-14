@@ -5,28 +5,37 @@
 package frc.robot.commands.Pathautos;
 
 import com.pathplanner.lib.auto.AutoBuilder;
-import com.pathplanner.lib.commands.PathPlannerAuto;
 import com.pathplanner.lib.path.PathPlannerPath;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.Constants.Swerve;
+import frc.robot.subsystems.Swerve;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class SinglePathFollowing extends Command {
-private Swerve s_swerve;
-private String pathName;
+private Swerve swerve;
+private String pathName="Reef-K_Coral-10";
+// private String hardPath ="Reef-K_Coral-10";
 private PathPlannerPath path;
 
   /** Creates a new SinglePathFollowing. */
   public SinglePathFollowing(Swerve swerve, String pathName) {
-    this.s_swerve = swerve;
+    this.swerve = swerve;
     this.pathName = pathName;
     
     // Use addRequirements() here to declare subsystem dependencies.
-    // addRequirements(this.swerve);
+    addRequirements(this.swerve);
   }
 
-  // Called when the command is initially scheduled.
+   /** Creates a new SinglePathFollowing. */
+   public SinglePathFollowing(Swerve swerve) {
+    this.swerve = swerve;
+    
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(this.swerve);
+  }
+
+
+// Called when the command is initially scheduled.
   @Override
   public void initialize() {
     try{
@@ -48,12 +57,48 @@ private PathPlannerPath path;
   public void execute() {
     //TODO command the this.swerve to drive the pathPlannerPath
     // swerve.drive();
+
+    /* parallel commands group 
+    *  1a. drivePath1 from BlueOne to reef 60-A position (AKA -startingTrajectory)
+    *  1b. coralPivot to ready to Top_coral_deploy (so elevator is free to move)
+    *  1c. algaePivot to unstowed                  (so elevator is free to move)     */
+    
+    // 2. elavator to Top_coral_deploy position
+    // 3. CoralDeploy 
+
+    /* parallel commands group 
+    * 4a. elevator goto retrieve_coral_position
+    * 4b. coralPivot to retrieve_coral_position  
+    * 4c. drivePath from reef 60-A to CoralSupply      */
+    
+    // 5. CoralIntake_and_Hold
+    
+    /* parallel commands
+    *  6a. drivePath from CoralSupply to reef 60b 
+    *  6b. coralPivot to ready to Top_coral_deploy 
+    *  6c. elavator raise to Top_coral_deploy position  */
+
+    // 7. CoralDeploy
+
+    /* parallel commands group 
+    * 8a. elevator goto retrieve_coral_position
+    * 8b. coralPivot to retrieve_coral_position  
+    * 8c. drivePath from reef 60-B to CoralSupply  */
+  
+    // 9. CoralIntake_and_Hold
+    
+    /* parallel commands
+    *  10a. drivePath from CoralSupply to reef 60b 
+    *  10b. coralPivot to ready to Top_coral_deploy 
+    *  10c. elavator to Top_coral_deploy position  */
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-
+    // call stop elevator
+    // call stop coralIntakeHold
+    // stop Coralpivot and AlgaePivot at current position
   }
 
   // Returns true when the command should end.

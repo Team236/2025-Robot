@@ -1,20 +1,5 @@
 package frc.robot.subsystems;
 
-import frc.robot.SwerveModule;
-import frc.robot.commands.Targeting.TargetAngle;
-import frc.robot.Constants;
-import frc.robot.LimelightHelpers;
-import frc.robot.Robot;
-import frc.robot.RobotContainer;
-import edu.wpi.first.math.kinematics.ChassisSpeeds;
-import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
-import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
-import edu.wpi.first.math.kinematics.SwerveModulePosition;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Optional;
-
 import com.ctre.phoenix6.configs.Pigeon2Configuration;
 import com.ctre.phoenix6.hardware.Pigeon2;
 import com.pathplanner.lib.commands.FollowPathCommand;
@@ -28,14 +13,17 @@ import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
+import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
+import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
-import edu.wpi.first.math.util.Units;
-import edu.wpi.first.util.struct.parser.ParseException;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
+import frc.robot.SwerveModule;
 
 public class Swerve extends SubsystemBase {
     public SwerveDriveOdometry swerveOdometry;
@@ -235,8 +223,8 @@ The numbers used below are robot specific, and should be tuned. */
        poseAngle = LimelightHelpers.getTargetPose_CameraSpace("limelight")[5];
        SmartDashboard.putNumber("TargetingAngle in swerve: ", poseAngle);
        poseForwardDistance = LimelightHelpers.getTargetPose_CameraSpace("limelight")[2];
-      SmartDashboard.putNumber("TargetingForwardDistance in swerve: ", poseForwardDistance / 0.0254);
-      poseSideDistance = LimelightHelpers.getTargetPose_CameraSpace("limelight")[0];
+        SmartDashboard.putNumber("TargetingForwardDistance in swerve: ", poseForwardDistance / 0.0254);
+        poseSideDistance = LimelightHelpers.getTargetPose_CameraSpace("limelight")[0];
        SmartDashboard.putNumber("TargetingSideDistance in swerve: ", poseSideDistance / 0.0254);
        */
     }
