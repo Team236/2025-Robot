@@ -10,13 +10,14 @@ import com.pathplanner.lib.path.PathPlannerPath;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Swerve;
 
-/* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
+/* You should consider using the more terse Command factories API instead 
+https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
+
 public class SinglePathFollowing extends Command {
 private Swerve swerve;
 private String pathName="Reef-K_Coral-10";
 // private String hardPath ="Reef-K_Coral-10";
 private PathPlannerPath path;
-path = PathPlannerPath.fromPathFile(pathName + ".path");
 
   /** Creates a new SinglePathFollowing. */
   public SinglePathFollowing(Swerve swerve, String pathName) {
@@ -43,55 +44,17 @@ path = PathPlannerPath.fromPathFile(pathName + ".path");
       // PathPlannerAuto.getPathGroupFromAutoFile("auto1");
       // PathPlannerPath path = PathPlannerPath.fromPathFile("Reef-K_Coral-10.path");
       this.path = PathPlannerPath.fromPathFile(pathName);
-
     } catch (Exception e) { 
       System.out.println("report: "+ e.getStackTrace() );
     }
     
-    
-
     AutoBuilder.followPath(this.path);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //TODO command the this.swerve to drive the pathPlannerPath
-    // swerve.drive();
-
-    /* parallel commands group 
-    *  1a. drivePath1 from BlueOne to reef 60-A position (AKA -startingTrajectory)
-    *  1b. coralPivot to ready to Top_coral_deploy (so elevator is free to move)
-    *  1c. algaePivot to unstowed                  (so elevator is free to move)     */
-    
-    // 2. elavator to Top_coral_deploy position
-    // 3. CoralDeploy 
-
-    /* parallel commands group 
-    * 4a. elevator goto retrieve_coral_position
-    * 4b. coralPivot to retrieve_coral_position  
-    * 4c. drivePath from reef 60-A to CoralSupply      */
-    
-    // 5. CoralIntake_and_Hold
-    
-    /* parallel commands
-    *  6a. drivePath from CoralSupply to reef 60b 
-    *  6b. coralPivot to ready to Top_coral_deploy 
-    *  6c. elavator raise to Top_coral_deploy position  */
-
-    // 7. CoralDeploy
-
-    /* parallel commands group 
-    * 8a. elevator goto retrieve_coral_position
-    * 8b. coralPivot to retrieve_coral_position  
-    * 8c. drivePath from reef 60-B to CoralSupply  */
-  
-    // 9. CoralIntake_and_Hold
-    
-    /* parallel commands
-    *  10a. drivePath from CoralSupply to reef 60b 
-    *  10b. coralPivot to ready to Top_coral_deploy 
-    *  10c. elavator to Top_coral_deploy position  */
+   
   }
 
   // Called once the command ends or is interrupted.

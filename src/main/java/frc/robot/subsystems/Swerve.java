@@ -245,26 +245,6 @@ The numbers used below are robot specific, and should be tuned. */
         Command m_pathCommand;
         //List<Pose2d> poseArray = pathPlannerPath.getPathPoses();
         try { 
-         
-         /* this was taken out of the java API constructor for FollowPathCommand() 
-          * unknown is where or how to generate BiConsumer<ChassisSpeeds,DriveFeedforwards>  
-                  m_pathCommand = new FollowPathCommand( 
-                      pathPlannerPath,
-                      poseArray, //this::getPose, // Robot pose supplier
-                      this::getSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
-                      this::drive, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds, AND feedforwards
-                      new PPHolonomicDriveController( // PPHolonomicController is the built in path following controller for holonomic drive trains
-                          new PIDConstants(5.0, 0.0, 0.0), 
-                          new PIDConstants(5.0, 0.0, 0.0) ),  // Translation and Rotation PID constants
-                      robotConfig, // robot configuration pulled from PathPlanner file
-                      () -> { return false;  },
-                      this );     // Reference to this subsystem to set requirements
-
-              } catch (Exception e) {
-                  DriverStation.reportError("Big oops: " + e.getMessage(), e.getStackTrace());
-                  return Commands.none();
-              }
-            */
 
         // Create a path following command using AutoBuilder. This will also trigger event markers.
         try {
