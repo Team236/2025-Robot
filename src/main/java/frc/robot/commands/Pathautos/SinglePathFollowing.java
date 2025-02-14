@@ -16,6 +16,7 @@ private Swerve swerve;
 private String pathName="Reef-K_Coral-10";
 // private String hardPath ="Reef-K_Coral-10";
 private PathPlannerPath path;
+path = PathPlannerPath.fromPathFile(pathName + ".path");
 
   /** Creates a new SinglePathFollowing. */
   public SinglePathFollowing(Swerve swerve, String pathName) {

@@ -1,5 +1,7 @@
 package frc.robot.subsystems;
 
+import java.util.List;
+
 import com.ctre.phoenix6.configs.Pigeon2Configuration;
 import com.ctre.phoenix6.hardware.Pigeon2;
 import com.pathplanner.lib.commands.FollowPathCommand;
@@ -159,9 +161,9 @@ The numbers used below are robot specific, and should be tuned. */
     }
 
     
-      public ChassisSpeeds getSpeeds() {
-        return kinematics.toChassisSpeeds(getModuleStates());
-      }
+    public ChassisSpeeds getSpeeds() {
+        return Constants.Swerve.swerveKinematics.toChassisSpeeds(getModuleStates());
+    }
 // **********
 
     // public ChassisSpeeds getCurrentSpeeds() {
@@ -169,21 +171,21 @@ The numbers used below are robot specific, and should be tuned. */
     //     //     Constants.Swerve.swerveKinematics.toSwerveModuleStates(gyro.);
     //     // );
     // }
-    public ChassisSpeeds getRobotRelativeSpeeds()
-    {
-        return ChassisSpeeds.fromFieldRelativeSpeeds(
-            // swerveOdometry
-            // RobotContainer.driverController.getLeftX(),
-            // RobotContainer.driverController.getLeftY(),
-            // RobotContainer.  getRightX(),
-            // getHeading()
-            return new ChassisSpeeds(
-                gyro.getAngularVelocityXDevice(),
-                gyro.getAngularVelocityYDevice(),
-                gyro.getA(),
-            )
-        );
-    }
+    // public ChassisSpeeds getRobotRelativeSpeeds()
+    // {
+    //     return ChassisSpeeds.fromFieldRelativeSpeeds(
+    //         // swerveOdometry
+    //         // RobotContainer.driverController.getLeftX(),
+    //         // RobotContainer.driverController.getLeftY(),
+    //         // RobotContainer.  getRightX(),
+    //         // getHeading()
+    //         return new ChassisSpeeds(
+    //             gyro.getAngularVelocityXDevice(),
+    //             gyro.getAngularVelocityYDevice(),
+    //             gyro.getA(),
+    //         )
+    //     );
+    // }
 /* 
     public double getLLAngleDegrees() {
         return (LimelightHelpers.getTargetPose_CameraSpace("limelight")[5]);
@@ -230,19 +232,20 @@ The numbers used below are robot specific, and should be tuned. */
     }
 
 
- // PathPlanner method to follow path specified in the calling of the method from a command class
+    // PathPlanner method to follow path specified in the calling of the method from a command class
     public Command followPathCommand(String pathName) {
-        List<Pose2d> poseArray = pathPlannerPath.getPathPoses().get(0);
+        pathPlannerPath = PathPlannerPath.fromPathFile(pathName + ".path");
+        List<Pose2d> poseArray = pathPlannerPath.getPathPoses();
         
-        
+        Command m_pathCommand;
         try {
             m_pathCommand = new FollowPathCommand( 
                 pathPlannerPath,
                 poseArray, //this::getPose, // Robot pose supplier
-                this::getRobotRelativeSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
+                this::getSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
                 this::drive, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds, AND feedforwards
                 new PPHolonomicDriveController( // PPHolonomicController is the built in path following controller for holonomic drive trains
-                    new PIDConstants(5.0, 0.0, 0.0), new PIDConstants(5.0, 0.0, 0.0) ),// Translation and Rotation PID constants
+                new PIDConstants(5.0, 0.0, 0.0), new PIDConstants(5.0, 0.0, 0.0) ),// Translation and Rotation PID constants
                 robotConfig, // robot configuration pulled from PathPlanner file
                 () -> { return false;  },
                 this );     // Reference to this subsystem to set requirements
@@ -251,7 +254,7 @@ The numbers used below are robot specific, and should be tuned. */
             DriverStation.reportError("Big oops: " + e.getMessage(), e.getStackTrace());
             return Commands.none();
         }
-
+        return m_pathCommand;
     }
 }
 
