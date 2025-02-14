@@ -4,11 +4,13 @@ import java.util.List;
 
 import com.ctre.phoenix6.configs.Pigeon2Configuration;
 import com.ctre.phoenix6.hardware.Pigeon2;
+import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.commands.FollowPathCommand;
 import com.pathplanner.lib.config.PIDConstants;
 import com.pathplanner.lib.config.RobotConfig;
 import com.pathplanner.lib.controllers.PPHolonomicDriveController;
 import com.pathplanner.lib.path.PathPlannerPath;
+import com.pathplanner.lib.util.DriveFeedforwards;
 
 import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
@@ -20,6 +22,7 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
@@ -67,17 +70,19 @@ The numbers used below are robot specific, and should be tuned. */
      Constants.Swerve.swerveKinematics,
       gyro.getRotation2d(),
       new SwerveModulePosition[] {
-        mSwerveMods[0].getPosition(), //front left
-        mSwerveMods[1].getPosition(), //front right
-        mSwerveMods[2].getPosition(), //back left
-        mSwerveMods[3].getPosition()  //back right
-      },
+        mSwerveMods[0].getPosition(),       //front left
+        mSwerveMods[1].getPosition(),       //front right
+        mSwerveMods[2].getPosition(),       //back left
+        mSwerveMods[3].getPosition()  },    //back right   
       new Pose2d(),
       VecBuilder.fill(0.05, 0.05, Math.toRadians(5)), //std deviations in X, Y (meters), and angle of the pose estimate
-      VecBuilder.fill(0.5, 0.5, Math.toRadians(30)));  //std deviations  in X, Y (meters) and angle of the vision (LL) measurement
+      VecBuilder.fill(0.5, 0.5, Math.toRadians(30))); //std deviations in X, Y (meters) and angle of the vision (LL) measurement
     }
 
 //Methods start here:
+    public void drive(ChassisSpeeds chassisSpeed , DriveFeedforwards driveFeedforward){
+        
+    }
 
     public void drive(Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop) {
         SwerveModuleState[] swerveModuleStates =
@@ -234,25 +239,37 @@ The numbers used below are robot specific, and should be tuned. */
 
     // PathPlanner method to follow path specified in the calling of the method from a command class
     public Command followPathCommand(String pathName) {
-        pathPlannerPath = PathPlannerPath.fromPathFile(pathName + ".path");
-        List<Pose2d> poseArray = pathPlannerPath.getPathPoses();
+        pathPlannerPath = PathPlannerPath.fromPathFile(pathName);
+        
         
         Command m_pathCommand;
+        //List<Pose2d> poseArray = pathPlannerPath.getPathPoses();
+        try { 
+         
+         /* this was taken out of the java API constructor for FollowPathCommand() 
+          * unknown is where or how to generate BiConsumer<ChassisSpeeds,DriveFeedforwards>  
+                  m_pathCommand = new FollowPathCommand( 
+                      pathPlannerPath,
+                      poseArray, //this::getPose, // Robot pose supplier
+                      this::getSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
+                      this::drive, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds, AND feedforwards
+                      new PPHolonomicDriveController( // PPHolonomicController is the built in path following controller for holonomic drive trains
+                          new PIDConstants(5.0, 0.0, 0.0), 
+                          new PIDConstants(5.0, 0.0, 0.0) ),  // Translation and Rotation PID constants
+                      robotConfig, // robot configuration pulled from PathPlanner file
+                      () -> { return false;  },
+                      this );     // Reference to this subsystem to set requirements
+
+              } catch (Exception e) {
+                  DriverStation.reportError("Big oops: " + e.getMessage(), e.getStackTrace());
+                  return Commands.none();
+              }
+            */
+
+        // Create a path following command using AutoBuilder. This will also trigger event markers.
         try {
-            m_pathCommand = new FollowPathCommand( 
-                pathPlannerPath,
-                poseArray, //this::getPose, // Robot pose supplier
-                this::getSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
-                this::drive, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds, AND feedforwards
-                new PPHolonomicDriveController( // PPHolonomicController is the built in path following controller for holonomic drive trains
-                new PIDConstants(5.0, 0.0, 0.0), new PIDConstants(5.0, 0.0, 0.0) ),// Translation and Rotation PID constants
-                robotConfig, // robot configuration pulled from PathPlanner file
-                () -> { return false;  },
-                this );     // Reference to this subsystem to set requirements
-        
-        } catch (Exception e) {
-            DriverStation.reportError("Big oops: " + e.getMessage(), e.getStackTrace());
-            return Commands.none();
+                m_pathCommand = AutoBuilder.followPath(pathPlannerPath);
+            } catch (Exception e) {System.out.print("something bad: " + e.getStackTrace() )  
         }
         return m_pathCommand;
     }
