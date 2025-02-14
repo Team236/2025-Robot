@@ -239,39 +239,22 @@ The numbers used below are robot specific, and should be tuned. */
 
     // PathPlanner method to follow path specified in the calling of the method from a command class
     public Command followPathCommand(String pathName) {
-        pathPlannerPath = PathPlannerPath.fromPathFile(pathName);
-        
-        
-        Command m_pathCommand;
-        //List<Pose2d> poseArray = pathPlannerPath.getPathPoses();
-        try { 
-         
-         /* this was taken out of the java API constructor for FollowPathCommand() 
-          * unknown is where or how to generate BiConsumer<ChassisSpeeds,DriveFeedforwards>  
-                  m_pathCommand = new FollowPathCommand( 
-                      pathPlannerPath,
-                      poseArray, //this::getPose, // Robot pose supplier
-                      this::getSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
-                      this::drive, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds, AND feedforwards
-                      new PPHolonomicDriveController( // PPHolonomicController is the built in path following controller for holonomic drive trains
-                          new PIDConstants(5.0, 0.0, 0.0), 
-                          new PIDConstants(5.0, 0.0, 0.0) ),  // Translation and Rotation PID constants
-                      robotConfig, // robot configuration pulled from PathPlanner file
-                      () -> { return false;  },
-                      this );     // Reference to this subsystem to set requirements
-
-              } catch (Exception e) {
-                  DriverStation.reportError("Big oops: " + e.getMessage(), e.getStackTrace());
-                  return Commands.none();
-              }
-            */
-
-        // Create a path following command using AutoBuilder. This will also trigger event markers.
-        try {
-                m_pathCommand = AutoBuilder.followPath(pathPlannerPath);
-            } catch (Exception e) {System.out.print("something bad: " + e.getStackTrace() )  
+        PathPlannerPath pathPlannerPath;
+        Command m_pathCommand = null;
+        try{
+            pathPlannerPath = PathPlannerPath.fromPathFile(pathName);
+        } catch  (Exception e) {
+            System.out.print("fromPathFile exception: " + e.getStackTrace() );  
         }
-        return m_pathCommand;
-    }
-}
+        
 
+        // Create a path following command using AutoBuilder. This would also trigger event markers.
+        try {
+            m_pathCommand = AutoBuilder.followPath(pathPlannerPath);
+            } catch (Exception e) {
+                System.out.print("followPath exception: " + e.getStackTrace() );  
+            }
+        return m_pathCommand;
+    } 
+
+}
