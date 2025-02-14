@@ -239,6 +239,7 @@ The numbers used below are robot specific, and should be tuned. */
 
     // PathPlanner method to follow path specified in the calling of the method from a command class
     public Command followPathCommand(String pathName) {
+
         PathPlannerPath pathPlannerPath;
         Command m_pathCommand = null;
         try{
