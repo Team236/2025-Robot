@@ -40,7 +40,7 @@ public class Swerve extends SubsystemBase {
     public double poseSideDistance;
 
          // pathPlanner stuff
-    public static PathPlannerPath pathPlannerPath;
+    public static PathPlannerPath pathPlannerPath2;
     private static RobotConfig robotConfig;
 
     public Swerve() {
@@ -77,6 +77,14 @@ The numbers used below are robot specific, and should be tuned. */
       new Pose2d(),
       VecBuilder.fill(0.05, 0.05, Math.toRadians(5)), //std deviations in X, Y (meters), and angle of the pose estimate
       VecBuilder.fill(0.5, 0.5, Math.toRadians(30))); //std deviations in X, Y (meters) and angle of the vision (LL) measurement
+
+      RobotConfig config;
+    try{
+      config = RobotConfig.fromGUISettings();
+    } catch (Exception e) {
+      // Handle exception as needed
+      e.printStackTrace();
+    }
     }
 
 //Methods start here:
@@ -236,24 +244,26 @@ The numbers used below are robot specific, and should be tuned. */
        */
     }
 
+    
 
     // PathPlanner method to follow path specified in the calling of the method from a command class
     public Command followPathCommand(String pathName) {
-
         // PathPlannerPath pathPlannerPath;
         Command m_pathCommand = null;
+        // PathPlannerPath currentPath = null;
         try{
-            pathPlannerPath = PathPlannerPath.fromPathFile(pathName);
+            pathPlannerPath2 = PathPlannerPath.fromPathFile(pathName);
+            
         } catch  (Exception e) {
-            System.out.print("fromPathFile exception: " + e.getStackTrace() );  
+            System.out.print("fromPathFile exception2: " + e.getStackTrace() );  
         }
-        
+        // currentPath = pathPlannerPath.mirrorPath();
 
         // Create a path following command using AutoBuilder. This would also trigger event markers.
         try {
-            m_pathCommand = AutoBuilder.followPath(pathPlannerPath);
+            m_pathCommand = AutoBuilder.followPath(pathPlannerPath2);
         } catch (Exception e) {
-            System.out.print("followPath exception: " + e.getStackTrace() );  
+            System.out.print("followPath exception2: " + e.getStackTrace() );  
         }
         return m_pathCommand;
     } 

@@ -6,6 +6,8 @@ package frc.robot;
 import java.io.IOException;
 
 import org.json.simple.parser.ParseException;
+
+import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.commands.PathPlannerAuto;
 import com.pathplanner.lib.config.RobotConfig;
 import com.pathplanner.lib.path.PathPlannerPath;
@@ -177,11 +179,11 @@ public class RobotContainer {
     try {
        currentPath = PathPlannerPath.fromPathFile("2Left45_Reef-K");
         } catch (IOException e) {     //  could convert to single Exception catch
-          System.out.println("IO exception 2Left45_Reef-K :");e.printStackTrace();
+          System.out.println("IO exception 2Left_Reef-K :");e.printStackTrace();
         } catch (ParseException e) {
-          System.out.println("ParseException 2Left45_Reef-K :");e.printStackTrace();
+          System.out.println("ParseException 2Left_Reef-K :");e.printStackTrace();
         }  catch (FileVersionException e) {
-          System.out.println("FileVersionException 2Left45_Reef-K :");e.printStackTrace();
+          System.out.println("FileVersionException 2Left_Reef-K :");e.printStackTrace();
         }        
 
        
@@ -276,7 +278,8 @@ public class RobotContainer {
   //  b.onTrue(turn);
   //  upPov.onTrue(driveFwd113);
   //  x.onTrue(fullRunRight); 
-  x.onTrue(presetPathFollowing); 
+  x.onTrue(s_Swerve.followPathCommand("2Left45_Reef-K")); 
+  // x.onTrue(AutoBuilder.followPath(currentPath.mirrorPath() )); 
 
   //downPov.whileTrue(algaeTarget);
   //leftPov.whileTrue(coralLeftTarget);
