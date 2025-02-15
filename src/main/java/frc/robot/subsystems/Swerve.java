@@ -240,7 +240,7 @@ The numbers used below are robot specific, and should be tuned. */
     // PathPlanner method to follow path specified in the calling of the method from a command class
     public Command followPathCommand(String pathName) {
 
-        PathPlannerPath pathPlannerPath;
+        // PathPlannerPath pathPlannerPath;
         Command m_pathCommand = null;
         try{
             pathPlannerPath = PathPlannerPath.fromPathFile(pathName);
@@ -252,9 +252,9 @@ The numbers used below are robot specific, and should be tuned. */
         // Create a path following command using AutoBuilder. This would also trigger event markers.
         try {
             m_pathCommand = AutoBuilder.followPath(pathPlannerPath);
-            } catch (Exception e) {
-                System.out.print("followPath exception: " + e.getStackTrace() );  
-            }
+        } catch (Exception e) {
+            System.out.print("followPath exception: " + e.getStackTrace() );  
+        }
         return m_pathCommand;
     } 
 
