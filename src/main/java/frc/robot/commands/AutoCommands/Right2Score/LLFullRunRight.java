@@ -24,11 +24,11 @@ public class LLFullRunRight extends SequentialCommandGroup {
 
           //LEG 1:
           new DriveFwdAndSideAndTurn(s_Swerve, false, 
-          Constants.AutoConstants.RIGHT_LEG1_FWD_X-5, 
-          Constants.AutoConstants.RIGHT_LEG1_SIDE_Y+10,
+          Constants.AutoConstants.RIGHT_LEG1_FWD_X-16, 
+          Constants.AutoConstants.RIGHT_LEG1_SIDE_Y+4,
           Constants.AutoConstants.RIGHT_LEG1_ANGLE_CCW).withTimeout(3),
-          new TargetAllParallel(s_Swerve, 9, 0).withTimeout(2)
-          //new DriveFwd(s_Swerve, false, 9)
+          new TargetAllParallel(s_Swerve,12, 0).withTimeout(5),
+          new DriveFwd(s_Swerve, false, 9)
          /* //LEG2:
           new DriveReverse(s_Swerve, true,Constants.AutoConstants.RIGHT_LEG2_INITIAL_REVERSE).withTimeout(1),
           new DriveFwdAndSideAndTurn(s_Swerve, false, 
