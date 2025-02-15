@@ -197,8 +197,8 @@ public static final class Swerve {
     }
 
     public static final class AutoConstants { //TODO: The below constants are used in the example auto, and must be tuned to specific robot
-        public static final double kMaxSpeedMetersPerSecond = 2.5; //4
-        public static final double kMaxAccelerationMetersPerSecondSquared = 2.5; //4
+        public static final double kMaxSpeedMetersPerSecond = 3.0; //4 //2.5
+        public static final double kMaxAccelerationMetersPerSecondSquared = 3.0; //4 //2.5
         public static final double kMaxAngularSpeedRadiansPerSecond = 4*Math.PI;
         public static final double kMaxAngularSpeedRadiansPerSecondSquared = 4*Math.PI;
         //X = forward, Y = to the left, Theta positive CCW for swerve

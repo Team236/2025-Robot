@@ -218,12 +218,12 @@ public class RobotContainer {
     // upPov.whileTrue(targetForwardDistance);
     // downPov.whileTrue(targetsideDistance);
 
-    a.onTrue(targetAngle);
-    b.onTrue(targetForwardDistance);
-    x.onTrue(targetsideDistance);
-    upPov.onTrue(targetAllParallel);
-    downPov.onTrue(coralLeftTarget);
-    leftPov.onTrue(coralRightTarget);
+    a.whileTrue(targetAngle);
+    b.whileTrue(targetForwardDistance);
+    x.whileTrue(targetsideDistance);
+    upPov.whileTrue(targetAllParallel);
+    downPov.whileTrue(coralLeftTarget);
+    leftPov.whileTrue(coralRightTarget);
 
 
     //rb.whileTrue(elevatorDown);
@@ -253,8 +253,8 @@ public class RobotContainer {
  // a.onTrue(driveFwdCenter55);
   //b.onTrue(turn);
   //upPov.onTrue(driveFwd113);
-  //x.onTrue(fullRunRight); 
-  x.onTrue(fullRunCenter);
+  x.whileTrue(fullRunRight); 
+  //x.onTrue(fullRunCenter);
 
   //downPov.whileTrue(algaeTarget);
   //leftPov.whileTrue(coralLeftTarget);
