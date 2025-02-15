@@ -6,9 +6,11 @@ package frc.robot.commands.AutoCommands.Right2Score;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
+import frc.robot.commands.ZeroPose;
 import frc.robot.commands.AutoCommands.DriveFwd;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
 import frc.robot.commands.AutoCommands.DriveReverse;
+import frc.robot.commands.AutoCommands.DriveSideways;
 import frc.robot.commands.Targeting.TargetAllParallel;
 import frc.robot.subsystems.Swerve;
 
@@ -28,19 +30,21 @@ public class LLFullRunRight extends SequentialCommandGroup {
           Constants.AutoConstants.RIGHT_LEG1_SIDE_Y+3,
           Constants.AutoConstants.RIGHT_LEG1_ANGLE_CCW).withTimeout(3),
           new TargetAllParallel(s_Swerve,12, 0).withTimeout(2),
-          new DriveFwdAndSideAndTurn(s_Swerve, false, 9, -6, 0).withTimeout(2)
-         /* //LEG2:
-          new DriveReverse(s_Swerve, true,Constants.AutoConstants.RIGHT_LEG2_INITIAL_REVERSE).withTimeout(1),
+          new DriveFwdAndSideAndTurn(s_Swerve, false, 9, -6, 0).withTimeout(2),
+          //LEG2:
+          // new ZeroPose(s_Swerve),
+          new DriveSideways(s_Swerve, false, 84).withTimeout(2),
+          // new DriveReverse(s_Swerve, true,Constants.AutoConstants.RIGHT_LEG2_INITIAL_REVERSE).withTimeout(1),
           new DriveFwdAndSideAndTurn(s_Swerve, false, 
-          Constants.AutoConstants.RIGHT_LEG2_FWD_X, 
-          Constants.AutoConstants.RIGHT_LEG2_SIDE_Y, 
+          -15, 
+          97, 
           Constants.AutoConstants.RIGHT_LEG2_ANGLE_CCW),
           //LEG3:
           new DriveFwdAndSideAndTurn(s_Swerve, true, 
-          Constants.AutoConstants.RIGHT_LEG3_FWD_X, 
-          Constants.AutoConstants.RIGHT_LEG3_SIDE_Y, 
-          Constants.AutoConstants.RIGHT_LEG3_ANGLE_CCW)
-      */
+          120, 
+          -13, 
+          6).withTimeout(3.5),
+          new TargetAllParallel(s_Swerve,12, 0).withTimeout(2)
 
     );
   
