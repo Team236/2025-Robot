@@ -24,7 +24,7 @@ public class ToLeg1Left extends SequentialCommandGroup {
       new DriveFwdAndSideAndTurn(s_Swerve, false, 
       Constants.AutoConstants.LEFT_LEG1_FWD_X, 
       Constants.AutoConstants.LEFT_LEG1_SIDE_Y, 
-      Constants.AutoConstants.LEFT_LEG1_ANGLE_CCW),
+      Constants.AutoConstants.LEFT_LEG1_ANGLE_CCW)
     );
   
   }
