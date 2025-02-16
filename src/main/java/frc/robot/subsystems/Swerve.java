@@ -1,14 +1,9 @@
 package frc.robot.subsystems;
 
-import java.util.List;
-
 import com.ctre.phoenix6.configs.Pigeon2Configuration;
 import com.ctre.phoenix6.hardware.Pigeon2;
 import com.pathplanner.lib.auto.AutoBuilder;
-import com.pathplanner.lib.commands.FollowPathCommand;
-import com.pathplanner.lib.config.PIDConstants;
 import com.pathplanner.lib.config.RobotConfig;
-import com.pathplanner.lib.controllers.PPHolonomicDriveController;
 import com.pathplanner.lib.path.PathPlannerPath;
 import com.pathplanner.lib.util.DriveFeedforwards;
 
@@ -25,7 +20,6 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.SwerveModule;
@@ -88,9 +82,14 @@ The numbers used below are robot specific, and should be tuned. */
     }
 
 //Methods start here:
-    public void drive(ChassisSpeeds chassisSpeed , DriveFeedforwards driveFeedforward){
-        
-    }
+public void drive(ChassisSpeeds chassisSpeed , DriveFeedforwards driveFeedforward){
+
+};
+
+
+    public ChassisSpeeds drive() {
+        return Constants.Swerve.swerveKinematics.toChassisSpeeds(getModuleStates());
+    };
 
     public void drive(Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop) {
         SwerveModuleState[] swerveModuleStates =
@@ -138,16 +137,38 @@ The numbers used below are robot specific, and should be tuned. */
         return positions;
     }
 
-    public Pose2d getPose() {
-        return swerveOdometry.getPoseMeters();
-    }
-
     public void setPose(Pose2d pose) {
         swerveOdometry.resetPosition(getGyroYaw(), getModulePositions(), pose);
     }
 
+    // . getRobotRelativeSpeeds  -Returns current robot-relative ChassisSpeeds.
+        // or 
+    // 2. getCurrentSpeeds         - Returns current robot-relative ChassisSpeeds. 
+            //  can be calculated using one of WPILib's drive kinematics classes
+    // 3. driveRobotRelative or drive - Outputs commands given robot-relative ChassisSpeeds. 
+            // This can be converted to either 
+            // a. module states  
+            // b. wheel speeds using WPILib's drive kinematics classes.
+
+    // 1st required for pathplanner according to docs
+    public Pose2d getPose() {
+        return swerveOdometry.getPoseMeters();
+    }
+
+    // 2nd required for pathplanner according to docs
     public void resetPose(Pose2d pose) {
         swerveOdometry.resetPosition(getGyroYaw(), getModulePositions(), pose);
+    }
+
+    // 3rd required for pathplanner according to docs
+    public ChassisSpeeds getRobotRelativeSpeeds()
+    {
+        return Constants.Swerve.swerveKinematics.toChassisSpeeds(getModuleStates());
+    }
+
+    // also 3rd required for pathplanner according to docs
+    public ChassisSpeeds getCurrentSpeeds() {
+        return Constants.Swerve.swerveKinematics.toChassisSpeeds(getModuleStates());
     }
 
     public Rotation2d getHeading(){
@@ -173,32 +194,10 @@ The numbers used below are robot specific, and should be tuned. */
         }
     }
 
-    
     public ChassisSpeeds getSpeeds() {
         return Constants.Swerve.swerveKinematics.toChassisSpeeds(getModuleStates());
     }
-// **********
 
-    // public ChassisSpeeds getCurrentSpeeds() {
-    //     // return Constants.Swerve.swerveKinematics.toChassisSpeeds(
-    //     //     Constants.Swerve.swerveKinematics.toSwerveModuleStates(gyro.);
-    //     // );
-    // }
-    // public ChassisSpeeds getRobotRelativeSpeeds()
-    // {
-    //     return ChassisSpeeds.fromFieldRelativeSpeeds(
-    //         // swerveOdometry
-    //         // RobotContainer.driverController.getLeftX(),
-    //         // RobotContainer.driverController.getLeftY(),
-    //         // RobotContainer.  getRightX(),
-    //         // getHeading()
-    //         return new ChassisSpeeds(
-    //             gyro.getAngularVelocityXDevice(),
-    //             gyro.getAngularVelocityYDevice(),
-    //             gyro.getA(),
-    //         )
-    //     );
-    // }
 /* 
     public double getLLAngleDegrees() {
         return (LimelightHelpers.getTargetPose_CameraSpace("limelight")[5]);
