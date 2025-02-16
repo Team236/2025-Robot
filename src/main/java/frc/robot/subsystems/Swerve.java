@@ -3,7 +3,9 @@ package frc.robot.subsystems;
 import com.ctre.phoenix6.configs.Pigeon2Configuration;
 import com.ctre.phoenix6.hardware.Pigeon2;
 import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.config.PIDConstants;
 import com.pathplanner.lib.config.RobotConfig;
+import com.pathplanner.lib.controllers.PPHolonomicDriveController;
 import com.pathplanner.lib.path.PathPlannerPath;
 import com.pathplanner.lib.util.DriveFeedforwards;
 
@@ -72,16 +74,44 @@ The numbers used below are robot specific, and should be tuned. */
       VecBuilder.fill(0.05, 0.05, Math.toRadians(5)), //std deviations in X, Y (meters), and angle of the pose estimate
       VecBuilder.fill(0.5, 0.5, Math.toRadians(30))); //std deviations in X, Y (meters) and angle of the vision (LL) measurement
 
-      RobotConfig config;
-    try{
-      config = RobotConfig.fromGUISettings();
+    try{  
+        robotConfig = RobotConfig.fromGUISettings();  
     } catch (Exception e) {
-      // Handle exception as needed
-      e.printStackTrace();
-    }
+        System.out.println("fromGUISettings " + e.printStackTrace());
     }
 
-//Methods start here:
+    // Configure AutoBuilder last
+    AutoBuilder.configure(
+            this::getPose,                          // Robot pose supplier
+            this::resetPose,                        // Method to reset odometry (will be called if your auto has a starting pose)
+            this::getRobotRelativeSpeeds,           // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
+            (speeds, feedforwards) -> driveRobotRelative(speeds),       // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds. Also optionally outputs individual module feedforwards
+                        new PPHolonomicDriveController(                             // PPHolonomicController is the built in path following controller for holonomic drive trains
+                                new PIDConstants(5.0, 0.0, 0.0),        // Translation PID constants
+                                new PIDConstants(5.0, 0.0, 0.0)         // Rotation PID constants
+                        ),
+                        robotConfig, // The robot configuration
+                        () -> {
+                          // Boolean supplier that controls when the path will be mirrored for the red alliance
+                          // This will flip the path being followed to the red side of the field.
+                          // THE ORIGIN WILL REMAIN ON THE BLUE SIDE
+                          var alliance = DriverStation.getAlliance();
+                          if (alliance.isPresent()) {
+                            return alliance.get() == DriverStation.Alliance.Red;
+                          }
+                          return false;
+                        },
+                        this // Reference to this subsystem to set requirements
+                );
+            
+            }
+            
+            private Object driveRobotRelative(ChassisSpeeds speeds) {
+                    // TODO Auto-generated method stub
+                    throw new UnsupportedOperationException("Unimplemented method 'driveRobotRelative'");
+                }
+            
+            //Methods start here:
 public void drive(ChassisSpeeds chassisSpeed , DriveFeedforwards driveFeedforward){
 
 };
@@ -230,20 +260,17 @@ public void drive(ChassisSpeeds chassisSpeed , DriveFeedforwards driveFeedforwar
            SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Velocity", mod.getState().speedMetersPerSecond);
            SmartDashboard.putNumber("Mod " + mod.moduleNumber + " CANcoder degrees", mod.getCANcoder().getDegrees());
            SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Angle degrees", mod.getPosition().angle.getDegrees());
-           SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Velocity", mod.getState().speedMetersPerSecond);
           //Can't use m/s in the key!! SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Velocity m/s", mod.getState().speedMetersPerSecond);
          }
-         /* 
-       poseAngle = LimelightHelpers.getTargetPose_CameraSpace("limelight")[5];
-       SmartDashboard.putNumber("TargetingAngle in swerve: ", poseAngle);
-       poseForwardDistance = LimelightHelpers.getTargetPose_CameraSpace("limelight")[2];
+    /* 
+        poseAngle = LimelightHelpers.getTargetPose_CameraSpace("limelight")[5];
+        SmartDashboard.putNumber("TargetingAngle in swerve: ", poseAngle);
+        poseForwardDistance = LimelightHelpers.getTargetPose_CameraSpace("limelight")[2];
         SmartDashboard.putNumber("TargetingForwardDistance in swerve: ", poseForwardDistance / 0.0254);
         poseSideDistance = LimelightHelpers.getTargetPose_CameraSpace("limelight")[0];
-       SmartDashboard.putNumber("TargetingSideDistance in swerve: ", poseSideDistance / 0.0254);
-       */
+        SmartDashboard.putNumber("TargetingSideDistance in swerve: ", poseSideDistance / 0.0254);
+    */
     }
-
-    
 
     // PathPlanner method to follow path specified in the calling of the method from a command class
     public Command followPathCommand(String pathName) {
