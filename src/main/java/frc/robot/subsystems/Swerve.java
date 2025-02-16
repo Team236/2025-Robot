@@ -77,7 +77,7 @@ The numbers used below are robot specific, and should be tuned. */
     try{  
         robotConfig = RobotConfig.fromGUISettings();  
     } catch (Exception e) {
-        System.out.println("fromGUISettings " + e.printStackTrace());
+        System.out.print("fromGUISettings " + e.getStackTrace() );
     }
 
     // Configure AutoBuilder last
@@ -273,7 +273,7 @@ public void drive(ChassisSpeeds chassisSpeed , DriveFeedforwards driveFeedforwar
     }
 
     // PathPlanner method to follow path specified in the calling of the method from a command class
-    public Command followPathCommand(String pathName) {
+    public Command followSringPathCommand(String pathName) {
         // PathPlannerPath pathPlannerPath;
         Command m_pathCommand = null;
         // PathPlannerPath currentPath = null;
@@ -289,9 +289,23 @@ public void drive(ChassisSpeeds chassisSpeed , DriveFeedforwards driveFeedforwar
         try {
             m_pathCommand = AutoBuilder.followPath(pathPlannerPath2);
         } catch (Exception e) {
-            System.out.print("followPath exception2: " + e.getStackTrace() );  
+            System.out.print("followPath pathName exception: " + e.getStackTrace() );  
         }
         return m_pathCommand;
     } 
+
+     // PathPlanner method to follow path specified in the calling of the method from a command class
+     public Command followPathCommand(PathPlannerPath path) {
+        // PathPlannerPath pathPlannerPath;
+        Command m_Command = null;
+
+     // Create a path following command using AutoBuilder. This would also trigger event markers.
+         try {
+            m_Command = AutoBuilder.followPath(path);
+        } catch (Exception e) {
+            System.out.print("followPath Path exception: " + e.getStackTrace() );  
+        }
+        return m_Command;
+    }
 
 }
