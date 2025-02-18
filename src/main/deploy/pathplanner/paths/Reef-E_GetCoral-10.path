@@ -1,0 +1,59 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 5.032023073278538,
+        "y": 2.426950658407104
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 4.135691573926867,
+        "y": 1.8813195548489658
+      },
+      "isLocked": false,
+      "linkedName": "Reef_135_E"
+    },
+    {
+      "anchor": {
+        "x": 1.6080683624801264,
+        "y": 0.7102941176470574
+      },
+      "prevControl": {
+        "x": 2.5871224165341804,
+        "y": 1.1710254372019073
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "Coralpickup3"
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.24276527331189884,
+      "rotationDegrees": 119.99999999999999
+    }
+  ],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 2.9,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 710.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 53.01709307365533
+  },
+  "reversed": true,
+  "folder": null,
+  "idealStartingState": {
+    "velocity": 0.0,
+    "rotation": 119.99999999999999
+  },
+  "useDefaultConstraints": true
+}
