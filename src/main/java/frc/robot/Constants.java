@@ -241,6 +241,15 @@ public static final class Swerve {
         public static final double LEFT_LEG3_FWD_X = RIGHT_LEG3_FWD_X;
         public static final double LEFT_LEG3_SIDE_Y = -RIGHT_LEG3_SIDE_Y;
         public static final double LEFT_LEG3_ANGLE_CCW = -RIGHT_LEG3_ANGLE_CCW ;
+
+        //Left Ctr Auto Path (inches)
+        public static final double LEFT_CENTER_LEG1_FWD_DIST = 55;
+
+        public static final double LEFT_CENTER_LEG2_REVERSE_DIST = -12;
+        public static final double LEFT_CENTER_LEG2_FWD_X = 80;
+        public static final double LEFT_CENTER_LEG2_SIDE_Y = -40;
+        public static final double LEFT_CENTER_LEG2_ANGLE_CCW = 80;
+
                 
     }
 
