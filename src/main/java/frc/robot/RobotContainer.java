@@ -160,7 +160,7 @@ public class RobotContainer {
   private PathPlannerPath currentPath,flipCurrentPath;
 
   
-  /** The container for the robot. Contains subsystems, OI devices, and commands. */
+  /** The container for the robot. Contains subsystems, OI declarations, and commands. */
   public RobotContainer() {
     s_Swerve.setDefaultCommand(
             new TeleopSwerve(
@@ -200,15 +200,16 @@ public class RobotContainer {
    */
   private void configureBindings() {
     //Buttons
- zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroHeading()));
+    zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroHeading()));
+
     //Main Xbox Controller
     JoystickButton a = new JoystickButton(driverController, Constants.XboxController.A);
     JoystickButton b = new JoystickButton(driverController, Constants.XboxController.B);
-      //Y on driver controller is assigned to "zeroGyro" above
+   // Y on driver controller is assigned to "zeroGyro" above
    // JoystickButton y = new JoystickButton(driver, Constants.XboxController.Y);
-   //leftBumper on driver controller is assigned to "robotCentric" above
+   // leftBumper on driver controller is assigned to "robotCentric" above
    // JoystickButton lb = new JoystickButton(driver, Constants.XboxController.LB);
-    // JoystickButton y = new JoystickButton(driverController, Constants.XboxController.Y);
+   // JoystickButton y = new JoystickButton(driverController, Constants.XboxController.Y);
     JoystickButton x = new JoystickButton(driverController, Constants.XboxController.X);
    // JoystickButton lb = new JoystickButton(driverController, Constants.XboxController.LB);
     JoystickButton rb = new JoystickButton(driverController, Constants.XboxController.RB);
@@ -237,6 +238,7 @@ public class RobotContainer {
     POVButton leftPov1 = new POVButton(auxController,Constants.XboxController.POVXbox.LEFT_ANGLE);
     POVButton rightPov1 = new POVButton(auxController,Constants.XboxController.POVXbox.RIGHT_ANGLE);
 
+    Trigger Combo_view_x = new Trigger( view.and(x) );
     //Inputs
 
     //y button is already assigned to ZeroGyro
@@ -245,9 +247,8 @@ public class RobotContainer {
    a.whileTrue(coralLeftorAlgaeTarget);
    b.whileTrue(coralRightTarget);
   
-
    rb.whileTrue(targetAllParallel);
-  upPov.whileTrue(targetForwardDistance);
+   upPov.whileTrue(targetForwardDistance);
    downPov.whileTrue(targetsideDistance);
 
     //rb.whileTrue(elevatorDown);
@@ -278,7 +279,9 @@ public class RobotContainer {
   //  b.onTrue(turn);
   //  upPov.onTrue(driveFwd113);
   //  x.onTrue(fullRunRight); 
-  x.onTrue(s_Swerve.followPathCommand("2Left45_Reef-K")); 
+  x.onTrue(s_Swerve.followPathCommand(currentPath));
+  Combo_view_x.onTrue(s_Swerve.followSringPathCommand("2Left45_Reef-K")); 
+
   // x.onTrue(AutoBuilder.followPath(currentPath.mirrorPath() )); 
 
   //downPov.whileTrue(algaeTarget);
@@ -286,6 +289,10 @@ public class RobotContainer {
   //rightPov.whileTrue(coralRightTarget);
   }
   
+  
+  /** 
+   * @return Command
+   */
   public Command getAutonomousCommand() {
    return new FullRunRight(s_Swerve);
   }

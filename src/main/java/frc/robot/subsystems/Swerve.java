@@ -1,11 +1,8 @@
 package frc.robot.subsystems;
 
-import java.util.List;
-
 import com.ctre.phoenix6.configs.Pigeon2Configuration;
 import com.ctre.phoenix6.hardware.Pigeon2;
 import com.pathplanner.lib.auto.AutoBuilder;
-import com.pathplanner.lib.commands.FollowPathCommand;
 import com.pathplanner.lib.config.PIDConstants;
 import com.pathplanner.lib.config.RobotConfig;
 import com.pathplanner.lib.controllers.PPHolonomicDriveController;
@@ -25,7 +22,6 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.SwerveModule;
@@ -78,19 +74,52 @@ The numbers used below are robot specific, and should be tuned. */
       VecBuilder.fill(0.05, 0.05, Math.toRadians(5)), //std deviations in X, Y (meters), and angle of the pose estimate
       VecBuilder.fill(0.5, 0.5, Math.toRadians(30))); //std deviations in X, Y (meters) and angle of the vision (LL) measurement
 
-      RobotConfig config;
-    try{
-      config = RobotConfig.fromGUISettings();
+    try{  
+        robotConfig = RobotConfig.fromGUISettings();  
     } catch (Exception e) {
-      // Handle exception as needed
-      e.printStackTrace();
-    }
+        System.out.print("fromGUISettings " + e.getStackTrace() );
     }
 
-//Methods start here:
-    public void drive(ChassisSpeeds chassisSpeed , DriveFeedforwards driveFeedforward){
-        
-    }
+    // Configure AutoBuilder last
+    AutoBuilder.configure(
+            this::getPose,                          // Robot pose supplier
+            this::resetPose,                        // Method to reset odometry (will be called if your auto has a starting pose)
+            this::getRobotRelativeSpeeds,           // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
+            (speeds, feedforwards) -> driveRobotRelative(speeds),       // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds. Also optionally outputs individual module feedforwards
+                        new PPHolonomicDriveController(                             // PPHolonomicController is the built in path following controller for holonomic drive trains
+                                new PIDConstants(5.0, 0.0, 0.0),        // Translation PID constants
+                                new PIDConstants(5.0, 0.0, 0.0)         // Rotation PID constants
+                        ),
+                        robotConfig, // The robot configuration
+                        () -> {
+                          // Boolean supplier that controls when the path will be mirrored for the red alliance
+                          // This will flip the path being followed to the red side of the field.
+                          // THE ORIGIN WILL REMAIN ON THE BLUE SIDE
+                          var alliance = DriverStation.getAlliance();
+                          if (alliance.isPresent()) {
+                            return alliance.get() == DriverStation.Alliance.Red;
+                          }
+                          return false;
+                        },
+                        this // Reference to this subsystem to set requirements
+                );
+            
+            }
+            
+            private Object driveRobotRelative(ChassisSpeeds speeds) {
+                    // TODO Auto-generated method stub
+                    throw new UnsupportedOperationException("Unimplemented method 'driveRobotRelative'");
+                }
+            
+            //Methods start here:
+public void drive(ChassisSpeeds chassisSpeed , DriveFeedforwards driveFeedforward){
+
+};
+
+
+    public ChassisSpeeds drive() {
+        return Constants.Swerve.swerveKinematics.toChassisSpeeds(getModuleStates());
+    };
 
     public void drive(Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop) {
         SwerveModuleState[] swerveModuleStates =
@@ -138,16 +167,38 @@ The numbers used below are robot specific, and should be tuned. */
         return positions;
     }
 
-    public Pose2d getPose() {
-        return swerveOdometry.getPoseMeters();
-    }
-
     public void setPose(Pose2d pose) {
         swerveOdometry.resetPosition(getGyroYaw(), getModulePositions(), pose);
     }
 
+    // . getRobotRelativeSpeeds  -Returns current robot-relative ChassisSpeeds.
+        // or 
+    // 2. getCurrentSpeeds         - Returns current robot-relative ChassisSpeeds. 
+            //  can be calculated using one of WPILib's drive kinematics classes
+    // 3. driveRobotRelative or drive - Outputs commands given robot-relative ChassisSpeeds. 
+            // This can be converted to either 
+            // a. module states  
+            // b. wheel speeds using WPILib's drive kinematics classes.
+
+    // 1st required for pathplanner according to docs
+    public Pose2d getPose() {
+        return swerveOdometry.getPoseMeters();
+    }
+
+    // 2nd required for pathplanner according to docs
     public void resetPose(Pose2d pose) {
         swerveOdometry.resetPosition(getGyroYaw(), getModulePositions(), pose);
+    }
+
+    // 3rd required for pathplanner according to docs
+    public ChassisSpeeds getRobotRelativeSpeeds()
+    {
+        return Constants.Swerve.swerveKinematics.toChassisSpeeds(getModuleStates());
+    }
+
+    // also 3rd required for pathplanner according to docs
+    public ChassisSpeeds getCurrentSpeeds() {
+        return Constants.Swerve.swerveKinematics.toChassisSpeeds(getModuleStates());
     }
 
     public Rotation2d getHeading(){
@@ -173,32 +224,10 @@ The numbers used below are robot specific, and should be tuned. */
         }
     }
 
-    
     public ChassisSpeeds getSpeeds() {
         return Constants.Swerve.swerveKinematics.toChassisSpeeds(getModuleStates());
     }
-// **********
 
-    // public ChassisSpeeds getCurrentSpeeds() {
-    //     // return Constants.Swerve.swerveKinematics.toChassisSpeeds(
-    //     //     Constants.Swerve.swerveKinematics.toSwerveModuleStates(gyro.);
-    //     // );
-    // }
-    // public ChassisSpeeds getRobotRelativeSpeeds()
-    // {
-    //     return ChassisSpeeds.fromFieldRelativeSpeeds(
-    //         // swerveOdometry
-    //         // RobotContainer.driverController.getLeftX(),
-    //         // RobotContainer.driverController.getLeftY(),
-    //         // RobotContainer.  getRightX(),
-    //         // getHeading()
-    //         return new ChassisSpeeds(
-    //             gyro.getAngularVelocityXDevice(),
-    //             gyro.getAngularVelocityYDevice(),
-    //             gyro.getA(),
-    //         )
-    //     );
-    // }
 /* 
     public double getLLAngleDegrees() {
         return (LimelightHelpers.getTargetPose_CameraSpace("limelight")[5]);
@@ -231,23 +260,20 @@ The numbers used below are robot specific, and should be tuned. */
            SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Velocity", mod.getState().speedMetersPerSecond);
            SmartDashboard.putNumber("Mod " + mod.moduleNumber + " CANcoder degrees", mod.getCANcoder().getDegrees());
            SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Angle degrees", mod.getPosition().angle.getDegrees());
-           SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Velocity", mod.getState().speedMetersPerSecond);
           //Can't use m/s in the key!! SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Velocity m/s", mod.getState().speedMetersPerSecond);
          }
-         /* 
-       poseAngle = LimelightHelpers.getTargetPose_CameraSpace("limelight")[5];
-       SmartDashboard.putNumber("TargetingAngle in swerve: ", poseAngle);
-       poseForwardDistance = LimelightHelpers.getTargetPose_CameraSpace("limelight")[2];
+    /* 
+        poseAngle = LimelightHelpers.getTargetPose_CameraSpace("limelight")[5];
+        SmartDashboard.putNumber("TargetingAngle in swerve: ", poseAngle);
+        poseForwardDistance = LimelightHelpers.getTargetPose_CameraSpace("limelight")[2];
         SmartDashboard.putNumber("TargetingForwardDistance in swerve: ", poseForwardDistance / 0.0254);
         poseSideDistance = LimelightHelpers.getTargetPose_CameraSpace("limelight")[0];
-       SmartDashboard.putNumber("TargetingSideDistance in swerve: ", poseSideDistance / 0.0254);
-       */
+        SmartDashboard.putNumber("TargetingSideDistance in swerve: ", poseSideDistance / 0.0254);
+    */
     }
 
-    
-
     // PathPlanner method to follow path specified in the calling of the method from a command class
-    public Command followPathCommand(String pathName) {
+    public Command followSringPathCommand(String pathName) {
         // PathPlannerPath pathPlannerPath;
         Command m_pathCommand = null;
         // PathPlannerPath currentPath = null;
@@ -263,9 +289,23 @@ The numbers used below are robot specific, and should be tuned. */
         try {
             m_pathCommand = AutoBuilder.followPath(pathPlannerPath2);
         } catch (Exception e) {
-            System.out.print("followPath exception2: " + e.getStackTrace() );  
+            System.out.print("followPath pathName exception: " + e.getStackTrace() );  
         }
         return m_pathCommand;
     } 
+
+     // PathPlanner method to follow path specified in the calling of the method from a command class
+     public Command followPathCommand(PathPlannerPath path) {
+        // PathPlannerPath pathPlannerPath;
+        Command m_Command = null;
+
+     // Create a path following command using AutoBuilder. This would also trigger event markers.
+         try {
+            m_Command = AutoBuilder.followPath(path);
+        } catch (Exception e) {
+            System.out.print("followPath Path exception: " + e.getStackTrace() );  
+        }
+        return m_Command;
+    }
 
 }
