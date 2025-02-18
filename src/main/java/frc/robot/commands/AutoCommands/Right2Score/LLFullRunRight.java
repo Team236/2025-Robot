@@ -28,8 +28,8 @@ public class LLFullRunRight extends SequentialCommandGroup {
           new DriveFwdAndSideAndTurn(s_Swerve, false, 63.6, -85.35, -58).withTimeout(3),
           //Use limelight to get exactly 12" from front frame (9" from bumper) to AprilTag
           new TargetAllParallel(s_Swerve,12, 0).withTimeout(2),
-          //Needs to end  with Limelight camera centered 1.6" to the right of the AprilTag center
-          new DriveFwdAndSideAndTurn(s_Swerve, false, 9, -1.6, 0),
+          //Needs to end  with Limelight camera centered 1.6" to the left of the AprilTag center
+          new DriveFwdAndSideAndTurn(s_Swerve, false, 9, 1.6, 0),
         
           //LEG2:
           //Tweak as needed to end against the Coral Loading station, not close to side of field
@@ -42,8 +42,8 @@ public class LLFullRunRight extends SequentialCommandGroup {
           new DriveFwdAndSideAndTurn(s_Swerve, true,120, -13, 6).withTimeout(3.5),
           //Use limelight to get exactly 12" from front frame (9" from bumper) to AprilTag
           new TargetAllParallel(s_Swerve, 12, 0).withTimeout(2),
-          //Needs to end  with Limelight camera centered 1.6" to the right of the AprilTag center
-          new DriveFwdAndSideAndTurn(s_Swerve, false, 9, -1.6, 0)
+          //Needs to end  with Limelight camera centered 0.4" to the left of the AprilTag center
+          new DriveFwdAndSideAndTurn(s_Swerve, false, 9, 0.4, 0)
 
     );
   

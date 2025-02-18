@@ -23,7 +23,7 @@ public class CoralRightTarget extends SequentialCommandGroup {
       //new DriveFwd(s_Swerve, false, 9).withTimeout(1).withTimeout(3));
 
      new TargetAllParallel(s_Swerve, 9, 0).withTimeout(2.0),
-    new DriveFwdAndSideAndTurn(s_Swerve, false, 9, -6.5, 0).withTimeout(3));
+    new DriveFwdAndSideAndTurn(s_Swerve, false, 9, -1.6, 0).withTimeout(3));
   }
 }
 
