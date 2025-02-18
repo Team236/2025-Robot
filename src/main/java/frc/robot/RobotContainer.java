@@ -22,8 +22,6 @@ import frc.robot.commands.AutoCommands.TurnOnly;
 import frc.robot.commands.AutoCommands.Center.CtrScore1;
 import frc.robot.commands.AutoCommands.Right2Score.FullRunRight;
 import frc.robot.commands.AutoCommands.Right2Score.LLFullRunRight;
-import frc.robot.commands.AutoCommands.Right2Score.Leg1Series;
-import frc.robot.commands.AutoCommands.Right2Score.Leg2Series;
 import frc.robot.commands.CoralHoldCommands.CoralGrabWithCounter;
 import frc.robot.commands.CoralHoldCommands.CoralGrab;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;

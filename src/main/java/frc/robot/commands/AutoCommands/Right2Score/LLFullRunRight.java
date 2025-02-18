@@ -24,25 +24,16 @@ public class LLFullRunRight extends SequentialCommandGroup {
       //TODO  add the commands for scoring and receiving coral
 
           //LEG 1:
-          new DriveFwdAndSideAndTurn(s_Swerve, false, 
-          63.6,  //78.6-15
-          -85.35,//-88.35+3
-          Constants.AutoConstants.RIGHT_LEG1_ANGLE_CCW).withTimeout(3),
+          new DriveFwdAndSideAndTurn(s_Swerve, false, 63.6, -85.35, -58).withTimeout(3),
           new TargetAllParallel(s_Swerve,12, 0).withTimeout(2),
           new DriveFwdAndSideAndTurn(s_Swerve, false, 9, -6, 0),
         
           //LEG2:
           new DriveSideways(s_Swerve, false, 84).withTimeout(2),
-          new DriveFwdAndSideAndTurn(s_Swerve, false, 
-         -15,
-          97,
-           Constants.AutoConstants.RIGHT_LEG2_ANGLE_CCW),
+          new DriveFwdAndSideAndTurn(s_Swerve, false, -15, 97, -68),
           //LEG3:
-          new DriveFwdAndSideAndTurn(s_Swerve, true, 
-          120, 
-          -13, 
-         6).withTimeout(3.5),
-         new TargetAllParallel(s_Swerve, 12, 0).withTimeout(2)
+          new DriveFwdAndSideAndTurn(s_Swerve, true,120, -13, 6).withTimeout(3.5),
+          new TargetAllParallel(s_Swerve, 12, 0).withTimeout(2)
 
     );
   
