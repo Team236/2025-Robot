@@ -20,6 +20,7 @@ import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
 import frc.robot.commands.AutoCommands.DriveSideways;
 import frc.robot.commands.AutoCommands.TurnOnly;
 import frc.robot.commands.AutoCommands.Center.CtrScore1;
+import frc.robot.commands.AutoCommands.Center.FullRunLeftCtr;
 import frc.robot.commands.AutoCommands.Right2Score.FullRunRight;
 import frc.robot.commands.AutoCommands.Right2Score.LLFullRunRight;
 import frc.robot.commands.CoralHoldCommands.CoralGrabWithCounter;
@@ -109,6 +110,7 @@ public class RobotContainer {
     private final FullRunRight fullRunRight = new FullRunRight(s_Swerve);
     private final CtrScore1 fullRunCenter = new CtrScore1(s_Swerve);
     private final LLFullRunRight llFullRunRight = new LLFullRunRight(s_Swerve);
+    private final FullRunLeftCtr fullRunLeftCtr = new FullRunLeftCtr(s_Swerve);
     
       
   //Elevator
@@ -254,7 +256,8 @@ public class RobotContainer {
  // a.onTrue(driveFwdCenter55);
   //b.onTrue(turn);
   //upPov.onTrue(driveFwd113);
-  x.onTrue(llFullRunRight); 
+  x.onTrue(llFullRunRight);
+  rightPov.onTrue(fullRunLeftCtr);
   //x.onTrue(fullRunCenter);
 
   //downPov.whileTrue(algaeTarget);
