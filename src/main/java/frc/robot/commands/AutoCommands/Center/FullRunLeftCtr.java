@@ -17,12 +17,13 @@ import frc.robot.subsystems.Swerve;
 public class FullRunLeftCtr extends SequentialCommandGroup {
   /** Creates a new FullRunLeftCtr. */
   public FullRunLeftCtr(Swerve s_Swerve) {
-    // Add your commands in the addCommands() call, e.g.
-    // addCommands(new FooCommand(), new BarCommand());
+ 
     addCommands(
       //LEG 1
       new DriveFwd(s_Swerve, false, Constants.AutoConstants.LEFT_CENTER_LEG1_FWD_DIST),
 
+//***TODO - FIX LEG2 SO ROBOT GOES TO LOADING STATION BACKWARDS FOR LOADING!!!! */
+//**** ALSO FIX SO ROBOT USES Limelight TARGETING ON LEG3 (check if needed for Leg1) */
       //LEG 2
       new DriveReverse(s_Swerve, true, Constants.AutoConstants.LEFT_CENTER_LEG2_REVERSE_DIST).withTimeout(2),
       new DriveFwdAndSideAndTurn(s_Swerve, false,
