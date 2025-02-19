@@ -246,9 +246,13 @@ public static final class Swerve {
         public static final double LEFT_CENTER_LEG1_FWD_DIST = 55;
 
         public static final double LEFT_CENTER_LEG2_REVERSE_DIST = -12;
-        public static final double LEFT_CENTER_LEG2_FWD_X = 80;
-        public static final double LEFT_CENTER_LEG2_SIDE_Y = -40;
-        public static final double LEFT_CENTER_LEG2_ANGLE_CCW = 80;
+        public static final double LEFT_CENTER_LEG2_FWD_X = 0;
+        public static final double LEFT_CENTER_LEG2_SIDE_Y = 45;
+        public static final double LEFT_CENTER_LEG2_ANGLE = 0;
+
+        public static final double LEFT_CENTER_LEG3_FWD_X = 190;
+        public static final double LEFT_CENTER_LEG3_SIDE_Y = 46;
+        public static final double LEFT_CENTER_LEG3_ANGLE_CCW = 50;
 
                 
     }
