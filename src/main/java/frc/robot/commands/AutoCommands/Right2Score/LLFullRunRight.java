@@ -29,21 +29,21 @@ public class LLFullRunRight extends SequentialCommandGroup {
           //Use limelight to get exactly 12" from front frame (9" from bumper) to AprilTag
           new TargetAllParallel(s_Swerve,12, 0).withTimeout(2),
           //Needs to end  with Limelight camera centered 1.6" to the left of the AprilTag center
-          new DriveFwdAndSideAndTurn(s_Swerve, false, 9, 1.6, 0),
+          new DriveFwdAndSideAndTurn(s_Swerve, false, 10, 1.6, 0),
         
           //LEG2:
           //Tweak as needed to end against the Coral Loading station, not close to side of field
           //note - camera on 2025 robot will be on opposite side of robot compared with the swerve testbed
           new DriveSideways(s_Swerve, false, 84).withTimeout(2),
-          new DriveFwdAndSideAndTurn(s_Swerve, false, -15, 97, -68),
+          new DriveFwdAndSideAndTurn(s_Swerve, false, -22, 90, -68),
 
           //LEG3:
           //First command to drive with odometry and end 9" from bumper to AprilTag, centered on Tag  
-          new DriveFwdAndSideAndTurn(s_Swerve, true,120, -13, 6).withTimeout(3.5),
+          new DriveFwdAndSideAndTurn(s_Swerve, true,120, -8, 6).withTimeout(3.5),
           //Use limelight to get exactly 12" from front frame (9" from bumper) to AprilTag
           new TargetAllParallel(s_Swerve, 12, 0).withTimeout(2),
           //Needs to end  with Limelight camera centered 0.4" to the left of the AprilTag center
-          new DriveFwdAndSideAndTurn(s_Swerve, false, 9, 0.4, 0)
+          new DriveFwdAndSideAndTurn(s_Swerve, false, 9, 1.6, 0)
 
     );
   
