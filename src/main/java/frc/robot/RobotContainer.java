@@ -21,8 +21,8 @@ import frc.robot.commands.AutoCommands.DriveSideways;
 import frc.robot.commands.AutoCommands.TurnOnly;
 import frc.robot.commands.AutoCommands.Center.CtrScore1;
 import frc.robot.commands.AutoCommands.Center.FullRunLeftCtr;
-import frc.robot.commands.AutoCommands.Right2Score.FullRunRight;
-import frc.robot.commands.AutoCommands.Right2Score.LLFullRunRight;
+import frc.robot.commands.AutoCommands.Right.FullRunRight;
+import frc.robot.commands.AutoCommands.Right.FullRunRight;
 import frc.robot.commands.CoralHoldCommands.CoralGrabWithCounter;
 import frc.robot.commands.CoralHoldCommands.CoralGrab;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
@@ -109,7 +109,7 @@ public class RobotContainer {
     //private final FullRun fullRunParallel = new FullRun(s_Swerve);
     private final FullRunRight fullRunRight = new FullRunRight(s_Swerve);
     private final CtrScore1 fullRunCenter = new CtrScore1(s_Swerve);
-    private final LLFullRunRight llFullRunRight = new LLFullRunRight(s_Swerve);
+    private final FullRunRight llFullRunRight = new FullRunRight(s_Swerve);
     private final FullRunLeftCtr fullRunLeftCtr = new FullRunLeftCtr(s_Swerve);
     
       
