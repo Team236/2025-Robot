@@ -26,9 +26,13 @@ public class FullRunLeftCtr extends SequentialCommandGroup {
       //LEG 2
       new DriveReverse(s_Swerve, true, Constants.AutoConstants.LEFT_CENTER_LEG2_REVERSE_DIST).withTimeout(2),
       new DriveFwdAndSideAndTurn(s_Swerve, false,
-      Constants.AutoConstants.LEFT_CENTER_LEG2_FWD_X, 
-      Constants.AutoConstants.LEFT_CENTER_LEG2_SIDE_Y, 
-      Constants.AutoConstants.LEFT_CENTER_LEG2_ANGLE_CCW)
+      /*Constants.AutoConstants.LEFT_CENTER_LEG2_FWD_X */0, 
+      /*Constants.AutoConstants.LEFT_CENTER_LEG2_SIDE_Y*/45, 
+      /*Constants.AutoConstants.LEFT_CENTER_LEG2_ANGLE_CCW*/0),
+
+
+      //LEG 3
+      new DriveFwdAndSideAndTurn(s_Swerve, false, 190, 46, 50)
       
       //LEG 3
     );
