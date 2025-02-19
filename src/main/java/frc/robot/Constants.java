@@ -49,31 +49,33 @@ public final class Constants {
     public static final int ID_ELEVATOR_RIGHT_TALON = 12;
 
     //AlgaeHold
-    public static final int ID_ALGAE_HOLD = 49; //TODO find actual
+    public static final int ID_ALGAE_HOLD = 49; 
 
    //CoralHold
-    public static final int ID_CORAL_HOLD_MOTOR = 1;//BRUSHED!!! TODO find actual
+    public static final int ID_CORAL_HOLD_MOTOR = 1;//BRUSHED!!!
 
     //AlgaePivot 
-    public static final int ID_ALGAE_PIVOT = 50;//TODO find actual
+    public static final int ID_ALGAE_PIVOT = 50;
 
      //CoralPivot 
-     public static final int ID_CORAL_PIVOT = 2;//BRUSHED!!!  TODO find actual
+     public static final int ID_CORAL_PIVOT = 2;//BRUSHED!!! 
   }
 
   public static final class  Targeting {
+    //use this with TargetPose-CameraSpace:
+    public static final double DIST_FORWARDS_CAMERA_TO_FRAME = 4.25; //inches  TODO- update for 2025 robot
+    public static final double BUMPER_THICKNESS = 2.5; // inches, TODO update for 2025 bot
+    public static final double DIST_CAMERA_TO_BUMPER_FWD = BUMPER_THICKNESS + DIST_FORWARDS_CAMERA_TO_FRAME;
     //forward distance robot center to robot bumper, inches 
     //only use DIST_TO_CENTER if we switch to TargetPose-RobotSpace
-    public static final double DIST_TO_CENTER = 18;
-    //use this with TargetPose-CameraSpace:
-    public static final double DIST_CAMERA_TO_BUMPER_FWD = 7.25;//inches (4.25 to bumper)
-    public static final double DIST_CAM_TO_BUMPER_SIDE = 6.5; //TO DO change to -6.5 or other for camera on right
-    //Distances below assume Limelight camera will be centered on the Coral Device 
+    public static final double DIST_TO_CENTER = 15 + BUMPER_THICKNESS;
+    //Distances below assume Limelight camera will be centered on the AprilTag when targeting 
+    //Make LL camera be centered 2" from side of frame
     //TODO:  get actual for algae side below, verify others with camera on the right over Coral device
-    public static final double DIST_L_CORAL_SIDE = 6.5; //from LL camera to Left Coral branch
-    public static final double DIST_R_CORAL_SIDE = -DIST_L_CORAL_SIDE; //from LL camera to Right Coral Branch
-    public static final double DIST_ALGAE_SIDE = 12; //to get to Algae center (from RCoral center)
-    public static final double DIST_FWD = 9; //required fwd standoff to keep target in sight
+    public static final double DIST_L_CORAL_SIDE = 1.6; //from LL camera to Left Coral branch
+    public static final double DIST_R_CORAL_SIDE = -11.4; //from LL camera to Right Coral Branch
+    public static final double DIST_ALGAE_SIDE = -16; //to get to Algae center (from AprilTag center)
+    public static final double DIST_FWD = 9; //required fwd standoff (from bumper) to keep target in sight
   
 
     public static final double KP_ROTATION = 0.008; //kP value for rotation

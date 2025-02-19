@@ -4,8 +4,14 @@
 
 package frc.robot.commands.Targeting;
 
+import java.util.Optional;
+
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.LimelightHelpers;
 import frc.robot.subsystems.Swerve;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
@@ -14,6 +20,7 @@ public class ResetPoseWithLL extends Command {
 
   private double pipeline = 0; 
   private double tv;
+  private Pose2d poseLL;
   private Swerve s_Swerve;    
 
   public ResetPoseWithLL(Swerve s_Swerve)  {
@@ -25,7 +32,7 @@ public class ResetPoseWithLL extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-        // turn on the LED,  3 = force on
+    // turn on the LED,  3 = force on
     NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
     NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(pipeline);
    // s_Swerve.zeroHeading(); //added this to fix the targeting going the wrong way
@@ -34,11 +41,21 @@ public class ResetPoseWithLL extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //get pose from LL, if valid target
-    //get red/blue status from a station
-    //if pose and blue, set odometry pose to LL pose
-    //if pose and red, same but reverse the yaw
-    //if no pose do nothing
+  //tv =1 means Limelight sees a target
+    tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);
+
+      Optional<Alliance> ally = DriverStation.getAlliance();
+       if (ally.isPresent()  && (tv == 1)) { //have alliance color and see target
+         if (ally.get() == Alliance.Red){
+          poseLL = LimelightHelpers.getBotPose2d_wpiBlue("limelight");
+          s_Swerve.setPose(poseLL);
+         }
+         if (ally.get() == Alliance.Blue){
+          poseLL = LimelightHelpers.getBotPose2d_wpiBlue("limelight");
+          s_Swerve.setPose(poseLL);
+         }   
+        }
+        //else do nothing
   }
 
   // Called once the command ends or is interrupted.
