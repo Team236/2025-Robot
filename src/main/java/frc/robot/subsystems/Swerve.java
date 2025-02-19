@@ -103,12 +103,10 @@ The numbers used below are robot specific, and should be tuned. */
                         },
                         this // Reference to this subsystem to set requirements
                 );
-            
             }
             
-            private Object driveRobotRelative(ChassisSpeeds speeds) {
-                    // TODO Auto-generated method stub
-                    throw new UnsupportedOperationException("Unimplemented method 'driveRobotRelative'");
+            private SwerveModuleState[] driveRobotRelative(ChassisSpeeds speeds) {
+                return Constants.Swerve.swerveKinematics.toSwerveModuleStates(speeds);
                 }
             
             //Methods start here:
