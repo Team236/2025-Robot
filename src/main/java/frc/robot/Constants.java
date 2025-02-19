@@ -254,7 +254,7 @@ public static final class Swerve {
 
         public static final double LEFT_CENTER_LEG3_FWD_X = 190;
         public static final double LEFT_CENTER_LEG3_SIDE_Y = 46;
-        public static final double LEFT_CENTER_LEG3_ANGLE_CCW = 50;
+        public static final double LEFT_CENTER_LEG3_ANGLE_CCW = 230;
 
                 
     }
