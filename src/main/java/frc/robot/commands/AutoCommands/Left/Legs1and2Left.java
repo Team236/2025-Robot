@@ -10,10 +10,13 @@ import frc.robot.subsystems.Swerve;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class Leg3Left extends SequentialCommandGroup {
-  /** Creates a new Leg3Left. */
-  public Leg3Left(Swerve s_Swerve) {
- //!!!!! TODO MAKE ALL Y DISTANCES AND ALL ANGLES OPPOSITE TO Right !!!!
-    addCommands();
+public class Legs1and2Left extends SequentialCommandGroup {
+  /** Creates a new Legs1and2Left. */
+  public Legs1and2Left(Swerve s_Swerve) {
+
+    addCommands(
+    // new Leg1Left(s_Swerve),
+    // new Leg2Left(s_Swerve)
+    );
   }
 }
