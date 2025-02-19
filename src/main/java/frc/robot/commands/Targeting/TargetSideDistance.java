@@ -54,6 +54,8 @@ public class TargetSideDistance extends Command {
     // turn on the LED,  3 = force on
     NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
     NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(pipeline);
+    //  s_Swerve.zeroHeading(); //added this to fix the targeting going the wrong way
+    
    // SmartDashboard.putBoolean("starting tsd", true);
     // TODO swap to LimelightHelpers alternative instead of above methods ?
     // LimelightHelpers.setLEDMode_ForceOn("limelight");

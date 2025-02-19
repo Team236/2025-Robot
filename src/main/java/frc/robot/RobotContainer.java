@@ -33,7 +33,6 @@ import frc.robot.commands.ElevatorCommands.PIDToHeight;
 import frc.robot.commands.Targeting.CoralLeftTarget;
 import frc.robot.commands.Targeting.CoralRightTarget;
 import frc.robot.commands.Targeting.TargetAllParallel;
-import frc.robot.commands.Targeting.TargetAllSeries;
 import frc.robot.commands.Targeting.TargetAngle;
 import frc.robot.commands.Targeting.TargetAngleSide;
 import frc.robot.commands.Targeting.TargetForwardDistance;
@@ -89,7 +88,6 @@ public class RobotContainer {
 
 //NOTE - STANDOFF FWD IS WITHOUT THE BUMPER - ADD BUMPER DEPTH AS NEEDEDD
     private final TargetAllParallel targetAllParallel = new TargetAllParallel(s_Swerve, 6, 0);
-    private final TargetAllSeries targetAllSeries = new TargetAllSeries(s_Swerve, 6, 0);
     private final TargetAngle targetAngle =  new TargetAngle(s_Swerve);
     private final TargetForwardDistance targetForwardDistance = new TargetForwardDistance(s_Swerve, 9);
     private final TargetSideDistance targetsideDistance = new TargetSideDistance(s_Swerve, 0);
@@ -109,7 +107,6 @@ public class RobotContainer {
     //private final FullRun fullRunParallel = new FullRun(s_Swerve);
     private final FullRunRight fullRunRight = new FullRunRight(s_Swerve);
     private final CtrScore1 fullRunCenter = new CtrScore1(s_Swerve);
-    private final FullRunRight llFullRunRight = new FullRunRight(s_Swerve);
     private final FullRunLeftCtr fullRunLeftCtr = new FullRunLeftCtr(s_Swerve);
     
       
@@ -256,7 +253,7 @@ public class RobotContainer {
  // a.onTrue(driveFwdCenter55);
   //b.onTrue(turn);
   //upPov.onTrue(driveFwd113);
-  x.onTrue(llFullRunRight);
+  x.onTrue(fullRunRight);
   rightPov.onTrue(fullRunLeftCtr);
   a.onTrue(fullRunCenter);
   //x.onTrue(fullRunCenter);

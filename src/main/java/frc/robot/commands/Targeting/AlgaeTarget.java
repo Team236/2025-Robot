@@ -14,15 +14,13 @@ import frc.robot.subsystems.Swerve;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class AlgaeTarget extends SequentialCommandGroup {
-  /** Creates a new TargetAllSeries. */  
-  //Targeting with Limelight
+  //Targeting with Limelight and then odometry
+  
   public AlgaeTarget(Swerve s_Swerve) {
     addCommands(
-       //TODO:  TRY TargetAllParallel with 0 standoffSideways, and then DriveFwdAndSide 
-      //new TargetAllParallel(s_Swerve, 9, 6.5).withTimeout(1.5),
-      //new DriveFwd(s_Swerve, false, 9).withTimeout(1).withTimeout(3));
-
       new TargetAllParallel(s_Swerve, 9, 0).withTimeout(2.0),
-     new DriveFwdAndSideAndTurn(s_Swerve, false, 9, 6.5, 0).withTimeout(3));
-}
+    //****TODO:  ADD COMMAND HERE TO RESET POSE WITH LIMELIGHT, BEFORE DRIVING WITH ODOMETRY
+      new DriveFwdAndSideAndTurn(s_Swerve, false, 9, 6.5, 0).withTimeout(3));
+  }
+
 }
