@@ -10,6 +10,8 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 
+import java.util.Optional;
+
 import com.ctre.phoenix6.configs.Pigeon2Configuration;
 import com.ctre.phoenix6.hardware.Pigeon2;
 
@@ -20,6 +22,8 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -140,27 +144,6 @@ The numbers used below are robot specific, and should be tuned. */
             mod.resetToAbsolute();
         }
     }
-/* 
-    public double getLLAngleDegrees() {
-        return (LimelightHelpers.getTargetPose_CameraSpace("limelight")[5]);
-    }
-
-    public double getLLFwdDistMeters() {
-        return (LimelightHelpers.getTargetPose_CameraSpace("limelight")[2]);
-    }
-
-    public double getLLSideDistMeters() {
-        return (LimelightHelpers.getTargetPose_CameraSpace("limelight")[0]);
-    }
-
-    // public double getLLFwdDistInch() {
-    //     return Units.metersToInches(LimelightHelpers.getTargetPose_CameraSpace("limelight")[2]);
-    // }
-    
-    public double getLLSideDistInch() {
-        return Units.metersToInches(LimelightHelpers.getTargetPose_CameraSpace("limelight")[0]);
-    }
- */
 
     @Override
     public void periodic(){
@@ -175,6 +158,8 @@ The numbers used below are robot specific, and should be tuned. */
            SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Velocity", mod.getState().speedMetersPerSecond);
           //Can't use m/s in the key!! SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Velocity m/s", mod.getState().speedMetersPerSecond);
          }
+      // SmartDashboard.putNumber("pose yaw:", LimelightHelpers.getBotPose("limelight")[5]);   
+     
          /* 
        poseAngle = LimelightHelpers.getTargetPose_CameraSpace("limelight")[5];
        SmartDashboard.putNumber("TargetingAngle in swerve: ", poseAngle);
@@ -183,7 +168,7 @@ The numbers used below are robot specific, and should be tuned. */
       poseSideDistance = LimelightHelpers.getTargetPose_CameraSpace("limelight")[0];
        SmartDashboard.putNumber("TargetingSideDistance in swerve: ", poseSideDistance / 0.0254);
        */
-    }
+     }
 
-}
+}   
 
