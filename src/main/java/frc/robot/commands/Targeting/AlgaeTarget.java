@@ -15,11 +15,12 @@ import frc.robot.subsystems.Swerve;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class AlgaeTarget extends SequentialCommandGroup {
   //Targeting with Limelight and then odometry
-  
+
   public AlgaeTarget(Swerve s_Swerve) {
     addCommands(
       new TargetAllParallel(s_Swerve, 9, 0).withTimeout(2.0),
-    //****TODO:  ADD COMMAND HERE TO RESET POSE WITH LIMELIGHT, BEFORE DRIVING WITH ODOMETRY
+    //****TODO:  ADD COMMAND HERE TO RESET POSE WITH LIMELIGHT, BEFORE DRIVING WITH ODOMETRY:
+  // new ResetPoseWithLL(s_Swerve),
       new DriveFwdAndSideAndTurn(s_Swerve, false, 9, 6.5, 0).withTimeout(3));
   }
 

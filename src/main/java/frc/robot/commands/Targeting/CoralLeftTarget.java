@@ -20,7 +20,8 @@ public class CoralLeftTarget extends SequentialCommandGroup {
   public CoralLeftTarget(Swerve s_Swerve) {
     addCommands(  
       new TargetAllParallel(s_Swerve, 12, 0).withTimeout(2.0),
-    //****TODO:  ADD COMMAND HERE TO RESET POSE WITH LIMELIGHT, BEFORE DRIVING WITH ODOMETRY
+    //****TODO:  ADD COMMAND HERE TO RESET POSE WITH LIMELIGHT, BEFORE DRIVING WITH ODOMETRY:
+   // new ResetPoseWithLL(s_Swerve),
       new DriveFwdAndSideAndTurn(s_Swerve, false, 10, 1.6, 0).withTimeout(3)); 
   }
 

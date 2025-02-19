@@ -24,6 +24,7 @@ public class Leg3Right extends SequentialCommandGroup {
           new TargetAllParallel(s_Swerve, 12, 0).withTimeout(2),
 
     //****TODO:  ADD COMMAND HERE TO RESET POSE WITH LIMELIGHT, BEFORE DRIVING WITH ODOMETRY
+       // new ResetPoseWithLL(s_Swerve),
 
           //Needs to end  with Limelight camera centered 0.4" to the left of the AprilTag center
           new DriveFwdAndSideAndTurn(s_Swerve, false, 9, 1.6, 0)

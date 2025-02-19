@@ -31,7 +31,6 @@ public class TargetAngle extends Command {
     double kProtation = Constants.Targeting.KP_ROTATION;//kP value for rotation
     private double pipeline = 0; 
     private double tv, poseAngle;
-   // private double translationSup, strafeSup;
     private Swerve s_Swerve;    
   
   /** Creates a new TargetAngle. */
