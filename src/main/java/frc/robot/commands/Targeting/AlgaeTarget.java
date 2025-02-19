@@ -21,7 +21,7 @@ public class AlgaeTarget extends SequentialCommandGroup {
       new TargetAllParallel(s_Swerve, 9, 0).withTimeout(2.0),
     //****TODO:  ADD COMMAND HERE TO RESET POSE WITH LIMELIGHT, BEFORE DRIVING WITH ODOMETRY:
   // new ResetPoseWithLL(s_Swerve),
-      new DriveFwdAndSideAndTurn(s_Swerve, false, 9, 6.5, 0).withTimeout(3));
+      new DriveFwdAndSideAndTurn(s_Swerve, false, 9, -16, 0).withTimeout(3));
   }
 
 }

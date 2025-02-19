@@ -18,6 +18,10 @@ import frc.robot.subsystems.Swerve;
 public class ResetPoseWithLL extends Command {
   /** Creates a new ResetPoseWithLL. */
 
+  //this command sets a new pose based on Limelight seeing an AprilTag, and based on which color alliance you are on
+  //so that the robot yaw will be correct
+  //for testing, alliance color can be set from the Driver Station (see “Team Station” on the Operation Tab).
+  
   private double pipeline = 0; 
   private double tv;
   private Pose2d poseLL;
