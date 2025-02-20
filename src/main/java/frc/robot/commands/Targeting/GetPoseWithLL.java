@@ -22,8 +22,6 @@ public class GetPoseWithLL extends Command {
   //so that the robot yaw will be correct
   //for testing, alliance color can be set from the Driver Station (see “Team Station” on the Operation Tab).
   
-  private double pipeline = 0; 
-  private double tv;
   public Pose2d poseLL; //want to use this pose after this command, after moving with odometry
   private Swerve s_Swerve;    
 
@@ -36,28 +34,8 @@ public class GetPoseWithLL extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    // turn on the LED,  3 = force on
-    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
-    NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(pipeline);
-   // s_Swerve.zeroHeading(); //added this to fix the targeting going the wrong way
-
-  //tv =1 means Limelight sees a target
-  tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);
-
-  Optional<Alliance> ally = DriverStation.getAlliance();
-   if (ally.isPresent()  && (tv == 1)) { //have alliance color and see target
-     if (ally.get() == Alliance.Red){
-      poseLL = LimelightHelpers.getBotPose2d_wpiRed("limelight");
-    //  s_Swerve.setPose(poseLL); //do this later in ResetPose command
-     }
-     if (ally.get() == Alliance.Blue){
-      poseLL = LimelightHelpers.getBotPose2d_wpiBlue("limelight");
-     // s_Swerve.setPose(poseLL); //do this later in ResetPose command
-     }   
-    }
-    //else do nothing
+    s_Swerve.getLLPose();
   }
-
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {

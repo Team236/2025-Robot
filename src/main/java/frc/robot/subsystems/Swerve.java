@@ -22,6 +22,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -35,6 +36,11 @@ public class Swerve extends SubsystemBase {
     public double poseAngle;
     public double poseForwardDistance;
     public double poseSideDistance;
+
+    //ll stuff
+    private double pipeline = 0; 
+    private double tv;
+    public Pose2d poseLL; //want to use this pose after this command, after moving with odometry
 
     public Swerve() {
         gyro = new Pigeon2(Constants.Swerve.pigeonID, "usb");
@@ -143,6 +149,33 @@ The numbers used below are robot specific, and should be tuned. */
         for(SwerveModule mod : mSwerveMods){
             mod.resetToAbsolute();
         }
+    }
+
+    public void getLLPose() {
+            // turn on the LED,  3 = force on
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(pipeline);
+        // s_Swerve.zeroHeading(); //added this to fix the targeting going the wrong way
+
+        //tv =1 means Limelight sees a target
+        tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);
+
+        Optional<Alliance> ally = DriverStation.getAlliance();
+        if (ally.isPresent()  && (tv == 1)) { //have alliance color and see target
+            if (ally.get() == Alliance.Red){
+            poseLL = LimelightHelpers.getBotPose2d_wpiRed("limelight");
+            //  s_Swerve.setPose(poseLL); //do this later in ResetPose command
+            }
+            if (ally.get() == Alliance.Blue){
+            poseLL = LimelightHelpers.getBotPose2d_wpiBlue("limelight");
+            // s_Swerve.setPose(poseLL); //do this later in ResetPose command
+            }   
+        }
+        //else do nothing
+    }
+
+    public void resetLLPose() {
+        setPose(poseLL);
     }
 
     @Override

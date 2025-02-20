@@ -67,7 +67,7 @@ public class TargetAngleSide extends Command {
     // turn on the LED,  3 = force on
     NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
     NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(pipeline);
-    //s_Swerve.zeroHeading(); //added this to fix the targeting going the wrong way
+    s_Swerve.zeroHeading(); //added this to fix the targeting going the wrong way
   }
 
   // Called every time the scheduler runs while the command is scheduled.

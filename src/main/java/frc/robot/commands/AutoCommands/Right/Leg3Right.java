@@ -6,6 +6,8 @@ package frc.robot.commands.AutoCommands.Right;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
+import frc.robot.commands.Targeting.GetPoseWithLL;
+import frc.robot.commands.Targeting.ResetPoseWithLL;
 import frc.robot.commands.Targeting.TargetAllParallel;
 import frc.robot.subsystems.Swerve;
 
@@ -24,14 +26,14 @@ public class Leg3Right extends SequentialCommandGroup {
           //Use limelight to get exactly 12" from front frame (9" from bumper) to AprilTag
           new TargetAllParallel(s_Swerve, 12, 0).withTimeout(2),
 
-         //****TODO:  ADD COMMAND HERE TO RESET POSE WITH LIMELIGHT, BEFORE DRIVING WITH ODOMETRY
-         // new GetPoseWithLL(s_Swerve),
+         //**** ADD COMMAND HERE TO RESET POSE WITH LIMELIGHT, BEFORE DRIVING WITH ODOMETRY
+         new GetPoseWithLL(s_Swerve),
 
           //Needs to end  with Limelight camera centered 0.4" to the left of the AprilTag center
-          new DriveFwdAndSideAndTurn(s_Swerve, false, 9, 1.6, 0)
+          new DriveFwdAndSideAndTurn(s_Swerve, false, 9, 1.6, 0),
 
-          //****TODO:  ADD COMMAND HERE TO RESET POSE TO VALUE FROM GetPoseWithLL
-          //, new ResetPoseWithLL(s_Swerve)
+          //**** ADD COMMAND HERE TO RESET POSE TO VALUE FROM GetPoseWithLL
+          new ResetPoseWithLL(s_Swerve)
     );
   }
 

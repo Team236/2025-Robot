@@ -29,8 +29,8 @@ public class ResetPoseWithLL extends Command {
 
   // Called when the command is initially scheduled.
   public void initialize() {
-   s_Swerve.setPose(poseLL);
-     } 
+   s_Swerve.resetLLPose();
+  } 
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override

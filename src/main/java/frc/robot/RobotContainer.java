@@ -253,9 +253,9 @@ public class RobotContainer {
  // a.onTrue(driveFwdCenter55);
   //b.onTrue(turn);
   //upPov.onTrue(driveFwd113);
-  x.onTrue(fullRunRight);
-  rightPov.onTrue(fullRunLeftCtr);
-  a.onTrue(fullRunCenter);
+  //x.onTrue(fullRunRight);
+  //rightPov.onTrue(fullRunLeftCtr);
+  //a.onTrue(fullRunCenter);
   //x.onTrue(fullRunCenter);
 
   //downPov.whileTrue(algaeTarget);

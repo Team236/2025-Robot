@@ -19,14 +19,9 @@ public class AlgaeTarget extends SequentialCommandGroup {
   public AlgaeTarget(Swerve s_Swerve) {
     addCommands(
       new TargetAllParallel(s_Swerve, 9, 0).withTimeout(2.0),
-
-      //****TODO:  ADD COMMAND HERE TO RESET POSE WITH LIMELIGHT, BEFORE DRIVING WITH ODOMETRY
-      // new GetPoseWithLL(s_Swerve),
-
+      new GetPoseWithLL(s_Swerve),
       new DriveFwdAndSideAndTurn(s_Swerve, false, 9, -16, 0).withTimeout(3));
-  
-      //****TODO:  ADD COMMAND HERE TO RESET POSE TO VALUE FROM GetPoseWithLL
-      //, new ResetPoseWithLL(s_Swerve)
+      new ResetPoseWithLL(s_Swerve);
   }
 
 }

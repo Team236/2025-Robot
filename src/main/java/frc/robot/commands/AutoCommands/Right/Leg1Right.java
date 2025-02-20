@@ -26,15 +26,12 @@ public class Leg1Right extends SequentialCommandGroup {
           //Use limelight to get exactly 12" from front frame (9" from bumper) to AprilTag
           new TargetAllParallel(s_Swerve,12, 0).withTimeout(2),
 
-          //****TODO:  ADD COMMAND HERE TO GET POSE WITH LIMELIGHT, BEFORE DRIVING WITH ODOMETRY
-          // new GetPoseWithLL(s_Swerve),
+          new GetPoseWithLL(s_Swerve),
         
           //Needs to end  with Limelight camera centered 1.6" to the left of the AprilTag center
-          new DriveFwdAndSideAndTurn(s_Swerve, false, 10, 1.6, 0)
-          //Can set pose using teh poseLL from GetPoseWithLL???
+          new DriveFwdAndSideAndTurn(s_Swerve, false, 10, 1.6, 0),
 
-          //****TODO:  ADD COMMAND HERE TO RESET POSE TO VALUE FROM GetPoseWithLL
-          //, new ResetPoseWithLL(s_Swerve)
+          new ResetPoseWithLL(s_Swerve)
     );
   }
 

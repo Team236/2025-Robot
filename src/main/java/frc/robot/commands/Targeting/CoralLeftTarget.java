@@ -4,6 +4,7 @@
 
 package frc.robot.commands.Targeting;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.AutoCommands.DriveFwd;
@@ -20,14 +21,9 @@ public class CoralLeftTarget extends SequentialCommandGroup {
   public CoralLeftTarget(Swerve s_Swerve) {
     addCommands(  
       new TargetAllParallel(s_Swerve, 12, 0).withTimeout(2.0),
-
-      //****TODO:  ADD COMMAND HERE TO RESET POSE WITH LIMELIGHT, BEFORE DRIVING WITH ODOMETRY
-      // new GetPoseWithLL(s_Swerve),
-
-      new DriveFwdAndSideAndTurn(s_Swerve, false, 10, 1.6, 0).withTimeout(3)); 
-  
-      //****TODO:  ADD COMMAND HERE TO RESET POSE TO VALUE FROM GetPoseWithLL
-      //, new ResetPoseWithLL(s_Swerve)
+      new GetPoseWithLL(s_Swerve),
+      new DriveFwdAndSideAndTurn(s_Swerve, false, 10, 1.6, 0).withTimeout(3),
+      new ResetPoseWithLL(s_Swerve));
   }
 
 }
