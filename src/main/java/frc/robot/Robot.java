@@ -15,7 +15,9 @@ import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.net.PortForwarder;
+import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -30,8 +32,9 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 public class Robot extends TimedRobot {
   public static final CTREConfigs ctreConfigs = new CTREConfigs();
 
-  public UsbCamera usbCamera0;
-
+ // public UsbCamera usbCamera;
+ //public PowerDistribution myPDH = new PowerDistribution(0, ModuleType.kRev);
+ 
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
@@ -48,12 +51,14 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
 
+   // myPDH.setSwitchableChannel(true);
+
   //USB camera
-	try {
-    usbCamera0 = CameraServer.startAutomaticCapture(0);
-    } catch (Exception e)  {
-   SmartDashboard.putString("camera capture failed", "failed");
-    }
+	//try {
+  //  usbCamera0 = CameraServer.startAutomaticCapture(0);
+  //  } catch (Exception e)  {
+  // SmartDashboard.putString("camera capture failed", "failed");
+  //  }
 
    TrajectoryConfig config =
            new TrajectoryConfig(
@@ -61,24 +66,6 @@ public class Robot extends TimedRobot {
                    Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared)
                .setKinematics(Constants.Swerve.swerveKinematics).setReversed(false);
 
-  /* 
-    Trajectory trajectory =
-            TrajectoryGenerator.generateTrajectory(
-                // Start at the origin facing the +X direction
-                new Pose2d(0, 0, new Rotation2d(0)),
-                // Pass through these two interior waypoints, making an 's' curve path
-                List.of(new Translation2d(1, 1 ), new Translation2d(0, 2)),
-                // End 3 meters straight ahead of where we started, facing forward
-                new Pose2d(0, 3, new Rotation2d(0)),
-                config);
-
-    field = new Field2d();
-    SmartDashboard.putData(field);
-    
-    field.getObject("trajectory").setTrajectory(trajectory);
-    field.getObject("PIPose2d").setPose(new Pose2d(2,3,new Rotation2d(Math.PI)));
-    field.getObject("zero Pose2d").setPose(new Pose2d(5,3,new Rotation2d(0)));
-*/
 
     //Need to do this once in order to have Limelight communication while tethered
     for (int port = 5800; port <= 5805; port++){
@@ -100,6 +87,13 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+   
+    //double totalCUrrent = myPDH.getTotalCurrent();
+    //double current7 = myPDH.getCurrent(7);
+    //SmartDashboard.putNumber("PDH total current: ", totalCUrrent);
+   // SmartDashboard.putNumber("PDH channel 7 current: ", current7);
+
+
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
