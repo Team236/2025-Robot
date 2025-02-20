@@ -46,7 +46,7 @@ public class CoralHold extends SubsystemBase {
     
     // SPARK MAX
     //TODO Change to using a brushed motor (with SparkMax controller)
-    coralHoldMotor = new SparkMax(Constants.MotorControllers.ID_CORAL_HOLD_MOTOR , MotorType.kBrushed);
+    coralHoldMotor = new SparkMax(Constants.MotorControllers.ID_CORAL_HOLD_MOTOR , MotorType.kBrushless);
 
     coralHoldConfig = new SparkMaxConfig();
 
@@ -69,7 +69,7 @@ public class CoralHold extends SubsystemBase {
     counter.reset(); //sets counter to zero
   }
 
-  //METHOSD START HERE
+  //METHODS START HERE
 
   public void resetCount() {
     // automaticaly sets counter to 0 at start 
@@ -124,7 +124,7 @@ public class CoralHold extends SubsystemBase {
   public void periodic() {
   // This method will be called once per scheduler run
    SmartDashboard.putNumber("Coral count is:", getCoralHCount());
-   SmartDashboard.putBoolean("HasNote: ", counter.get()>0);
+   SmartDashboard.putBoolean("Has Coral: ", counter.get()>0);
   }
 
 }

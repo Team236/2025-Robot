@@ -87,7 +87,7 @@ public class RobotContainer {
     private final CoralRightTarget coralRightTarget = new CoralRightTarget(s_Swerve);
 
 //NOTE - STANDOFF FWD IS WITHOUT THE BUMPER - ADD BUMPER DEPTH AS NEEDEDD
-    private final TargetAllParallel targetAllParallel = new TargetAllParallel(s_Swerve, 6, 0);
+    private final TargetAllParallel targetAllParallel = new TargetAllParallel(s_Swerve, 12, 0);
     private final TargetAngle targetAngle =  new TargetAngle(s_Swerve);
     private final TargetForwardDistance targetForwardDistance = new TargetForwardDistance(s_Swerve, 9);
     private final TargetSideDistance targetsideDistance = new TargetSideDistance(s_Swerve, 0);
@@ -100,6 +100,7 @@ public class RobotContainer {
     private final TurnOnly turn = new TurnOnly(s_Swerve, false, -58);
     private final DriveFwd driveFwd113 = new DriveFwd(s_Swerve, false, 113);
     private final DriveSideways driveSideways60 = new DriveSideways(s_Swerve, false, 60);
+    private final DriveFwdAndSideAndTurn driveFwdAndSideAndTurn = new DriveFwdAndSideAndTurn(s_Swerve, false, 9, 0, 0);
 
     //private final DriveFwdAndSideAndTurn leg1Parallel = new DriveFwdAndSideAndTurn(s_Swerve, false, 57.6, -86, -60);
     //private final DriveFwdAndSideAndTurn leg2Parallel = new DriveFwdAndSideAndTurn(s_Swerve, false, 0, 168, -73);
@@ -223,7 +224,8 @@ public class RobotContainer {
    // x.whileTrue(targetsideDistance);
     upPov.whileTrue(targetAllParallel);
     downPov.whileTrue(coralLeftTarget);
-    leftPov.whileTrue(coralRightTarget);
+    leftPov.whileTrue(driveFwdAndSideAndTurn);
+    //leftPov.whileTrue(coralRightTarget);
 
 
     //rb.whileTrue(elevatorDown);
