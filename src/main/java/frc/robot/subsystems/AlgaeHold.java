@@ -9,6 +9,8 @@ import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.config.SparkMaxConfig;
 
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -16,18 +18,40 @@ public class AlgaeHold extends SubsystemBase {
   
   private SparkMax algaeHoldMotor;
   private SparkMaxConfig algaeHoldConfig;
-
+  private DigitalInput algaeHoldLimit;
+  private boolean isAHoldException;
 
   public AlgaeHold() {
-    algaeHoldMotor = new SparkMax(Constants.MotorControllers.ID_ALGAE_HOLD, MotorType.kBrushless);
-
+    algaeHoldMotor = new SparkMax(Constants.MotorControllers.ID_ALGAE_PIVOT, MotorType.kBrushless);
     algaeHoldConfig = new SparkMaxConfig();
     
     algaeHoldConfig.inverted(false);
     algaeHoldConfig.smartCurrentLimit(Constants.MotorControllers.SMART_CURRENT_LIMIT);
 
     algaeHoldMotor.configure(algaeHoldConfig, ResetMode.kResetSafeParameters, PersistMode.kNoPersistParameters);
+
+    try {
+      algaeHoldLimit = new DigitalInput(Constants.AlgaePivot.DIO_EXT_LIMIT);
+    } catch (Exception e)
+    {
+      isAHoldException = true;
+      SmartDashboard.putBoolean("AlgaeHold Limit switch threw an exception", true);
+    }
+}
+
+
+//METHODS Start Here
+public boolean isAHoldLimit()
+ {
+  if (isAHoldException)
+  {
+    return true;
+  } else
+  {
+    return algaeHoldLimit.get();
   }
+ }
+
 
   public void stopAlgaeHold()
   {

@@ -62,6 +62,7 @@ public class CoralPivot extends SubsystemBase {
       isCoralPivotRetException = true;
       SmartDashboard.putBoolean("exception thrown for Coral Retract limit: ", isCoralPivotRetException);
     }
+    
 }
 
 // methods start here

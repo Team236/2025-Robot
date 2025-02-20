@@ -42,23 +42,18 @@ public final class Constants {
 
   public static class MotorControllers {
     public static final int SMART_CURRENT_LIMIT = 40;
-
-    //Motor ID Numbers
+   //Motor ID Numbers
     //Elevator 
     public static final int ID_ELEVATOR_LEFT_TALON = 11;
     public static final int ID_ELEVATOR_RIGHT_TALON = 12;
-
     //AlgaeHold
     public static final int ID_ALGAE_HOLD = 49; 
-
-   //CoralHold
+    //CoralHold
     public static final int ID_CORAL_HOLD_MOTOR = 1;//BRUSHED!!!
-
     //AlgaePivot 
     public static final int ID_ALGAE_PIVOT = 50;
-
-     //CoralPivot 
-     public static final int ID_CORAL_PIVOT = 2;//BRUSHED!!! 
+    //CoralPivot 
+    public static final int ID_CORAL_PIVOT = 2;//BRUSHED!!! 
   }
 
   public static final class  Targeting {
@@ -76,7 +71,6 @@ public final class Constants {
     public static final double DIST_R_CORAL_SIDE = -11.4; //from LL camera to Right Coral Branch
     public static final double DIST_ALGAE_SIDE = -16; //to get to Algae center (from AprilTag center)
     public static final double DIST_FWD = 9; //required fwd standoff (from bumper) to keep target in sight
-  
 
     public static final double KP_ROTATION = 0.008; //kP value for rotation
     public static final double KP_TRANSLATION = 0.4;//kP value for forward (translation) motion
@@ -134,10 +128,7 @@ public static final class Swerve {
         public static final double angleKI = chosenModule.angleKI;
         public static final double angleKD = chosenModule.angleKD;
 
-        //TODO remove until we use closed loop driving
-
         /* Drive Motor PID Values */    
-
         public static final double driveKP = 2.5; //0.5, 1 //TODO: This must be tuned to specific robot, default is 0.1
         public static final double driveKI = 0; //2
         public static final double driveKD = 0.0;
@@ -148,8 +139,7 @@ public static final class Swerve {
         public static final double driveKV = 0; //1.51;
         public static final double driveKA = 0; //.27; 
 
-        /* Swerve Profiling Values */
-        /** Meters per Second*/
+        /* Swerve Profiling Values, Meters per Second*/
         public static final double maxSpeed = 4.5; //TODO: This must be tuned to specific robot
         /** Radians per Second */
         public static final double maxAngularVelocity = 10.0; //TODO: This must be tuned to specific robot
@@ -198,7 +188,7 @@ public static final class Swerve {
         }
     }
 
-    public static final class AutoConstants { //TODO: The below constants are used in the example auto, and must be tuned to specific robot
+    public static final class AutoConstants { //TODO: these are for example auto - must be tuned to specific robot
         public static final double kMaxSpeedMetersPerSecond = 3.0; //4 //2.5
         public static final double kMaxAccelerationMetersPerSecondSquared = 3.0; //4 //2.5
         public static final double kMaxAngularSpeedRadiansPerSecond = 4*Math.PI;
@@ -274,9 +264,7 @@ public static final class Swerve {
 
         public static final double RIGHT_CENTER_LEG3_FWD_X = 0;
         public static final double RIGHT_CENTER_LEG3_SIDE_Y = 0;
-        public static final double RIGHT_CENTER_LEG3_ANGLE = 0;
-
-                
+        public static final double RIGHT_CENTER_LEG3_ANGLE = 0;         
     }
 
   public static class Elevator {
@@ -307,6 +295,7 @@ public static final class Swerve {
 public static class AlgaeHold {
   public static final double HOLD_SPEED = 0.1;
   public static final double RELEASE_SPEED = -0.1;
+  public static final double DIO_AH_LIMIT = 13;
 }
 
 public static class CoralHold {
