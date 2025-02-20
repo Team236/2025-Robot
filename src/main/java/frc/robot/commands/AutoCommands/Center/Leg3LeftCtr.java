@@ -7,6 +7,7 @@ package frc.robot.commands.AutoCommands.Center;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
+import frc.robot.commands.Targeting.CoralRightTarget;
 import frc.robot.subsystems.Swerve;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -21,7 +22,8 @@ public class Leg3LeftCtr extends SequentialCommandGroup {
       new DriveFwdAndSideAndTurn(s_Swerve, false,
       Constants.AutoConstants.LEFT_CENTER_LEG3_FWD_X, 
       Constants.AutoConstants.LEFT_CENTER_LEG3_SIDE_Y,
-      Constants.AutoConstants.LEFT_CENTER_LEG3_ANGLE_CCW)
+      Constants.AutoConstants.LEFT_CENTER_LEG3_ANGLE),
+      new CoralRightTarget(s_Swerve)
     );
   }
 }

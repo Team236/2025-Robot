@@ -21,9 +21,13 @@ public class Leg2LeftCtr extends SequentialCommandGroup {
     addCommands(
       new DriveReverse(s_Swerve, true, Constants.AutoConstants.LEFT_CENTER_LEG2_REVERSE_DIST).withTimeout(2),
       new DriveFwdAndSideAndTurn(s_Swerve, false,
-      Constants.AutoConstants.LEFT_CENTER_LEG2_FWD_X, 
-      Constants.AutoConstants.LEFT_CENTER_LEG2_SIDE_Y, 
-      Constants.AutoConstants.LEFT_CENTER_LEG2_ANGLE)
+      Constants.AutoConstants.LEFT_CENTER_LEG2_A_FWD_X, 
+      Constants.AutoConstants.LEFT_CENTER_LEG2_A_SIDE_Y, 
+      Constants.AutoConstants.LEFT_CENTER_LEG2_A_ANGLE),
+      new DriveFwdAndSideAndTurn(s_Swerve, false,
+      Constants.AutoConstants.LEFT_CENTER_LEG2_B_FWD_X, 
+      Constants.AutoConstants.LEFT_CENTER_LEG2_B_SIDE_Y, 
+      Constants.AutoConstants.LEFT_CENTER_LEG2_B_ANGLE_CCW)
     );
   }
 }
