@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.commands.OrientWithLL;
 import frc.robot.commands.TeleopSwerve;
 import frc.robot.commands.AlgaeHoldCommands.AlgaeGrab;
 import frc.robot.commands.AlgaePivotCommands.ManualAlgaePivot;
@@ -82,6 +83,9 @@ public class RobotContainer {
 
    //COMMANDS
 
+   //Drive
+    private final OrientWithLL orientWithLL = new OrientWithLL(s_Swerve);
+
    //Targeting
     private final CoralLeftTarget coralLeftTarget = new CoralLeftTarget(s_Swerve);
     private final CoralRightTarget coralRightTarget = new CoralRightTarget(s_Swerve);
@@ -98,14 +102,8 @@ public class RobotContainer {
     //Auto
     private final DriveFwd driveFwdCenter55 = new DriveFwd(s_Swerve, false, 55);//88 + (3 for bumper) -36)
     private final TurnOnly turn = new TurnOnly(s_Swerve, false, -58);
-    private final DriveFwd driveFwd113 = new DriveFwd(s_Swerve, false, 113);
-    private final DriveSideways driveSideways60 = new DriveSideways(s_Swerve, false, 60);
     private final DriveFwdAndSideAndTurn driveFwdAndSideAndTurn = new DriveFwdAndSideAndTurn(s_Swerve, false, 9, 0, 0);
 
-    //private final DriveFwdAndSideAndTurn leg1Parallel = new DriveFwdAndSideAndTurn(s_Swerve, false, 57.6, -86, -60);
-    //private final DriveFwdAndSideAndTurn leg2Parallel = new DriveFwdAndSideAndTurn(s_Swerve, false, 0, 168, -73);
-    //private final DriveFwdAndSideAndTurn leg3Parallel = new DriveFwdAndSideAndTurn(s_Swerve, true, -120, 59, 5.9);
-    //private final FullRun fullRunParallel = new FullRun(s_Swerve);
     private final FullRunRight fullRunRight = new FullRunRight(s_Swerve);
     private final CtrScore1 fullRunCenter = new CtrScore1(s_Swerve);
     private final FullRunLeftCtr fullRunLeftCtr = new FullRunLeftCtr(s_Swerve);
