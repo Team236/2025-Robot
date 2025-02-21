@@ -306,8 +306,7 @@ public static class CoralHold {
 }
 
   public static class AlgaePivot {
-    public static final int DIO_EXT_LIMIT = 6;
-    public static final int DIO_RET_LIMIT = 7;
+    public static final int DIO_LIMIT = 6;
     public static final double ENC_REVS_MAX = -700000; //TODO find actual
     public static final double ENC_REVS_TEST1 = -5;
     public static final double ENC_REVS_TEST2 = -10;
