@@ -319,8 +319,7 @@ public static class CoralHold {
   }
   
   public static class CoralPivot {
-    public static final int DIO_EXT_LIMIT = 8; 
-    public static final int DIO_RET_LIMIT = 9; 
+    public static final int DIO_LIMIT = 8; 
     public static final double ENC_REVS_MAX = -700000;//TODO determine actual
     public static final double ENC_REVS_TEST1 = 5;
     public static final double ENC_REVS_TEST2 = 10;

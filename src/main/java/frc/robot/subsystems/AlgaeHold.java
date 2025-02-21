@@ -31,7 +31,7 @@ public class AlgaeHold extends SubsystemBase {
     algaeHoldMotor.configure(algaeHoldConfig, ResetMode.kResetSafeParameters, PersistMode.kNoPersistParameters);
 
     try {
-      algaeHoldLimit = new DigitalInput(Constants.AlgaePivot.DIO_EXT_LIMIT);
+      algaeHoldLimit = new DigitalInput(Constants.AlgaePivot.DIO_LIMIT);
     } catch (Exception e)
     {
       isAHoldException = true;
