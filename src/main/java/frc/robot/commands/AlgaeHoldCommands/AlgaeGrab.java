@@ -32,12 +32,14 @@ public class AlgaeGrab extends Command {
   @Override
   public boolean isFinished() {
     //stop if ingesting Algae and the algae limit switch is hit
-    if ((speed > 0) && (algaeHold.isAHoldLimit())) {
-      return true;
-    }
-    else {
-      return false;
-    }
+    //Use logic below if limit switch added:
+    
+     // if ((speed > 0) && (algaeHold.isAHoldLimit())) {
+     // return true;
+     //}
+     //else {
+       return false;
+    // }
    
   }
 }
