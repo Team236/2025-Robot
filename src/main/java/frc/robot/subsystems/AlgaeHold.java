@@ -22,7 +22,7 @@ public class AlgaeHold extends SubsystemBase {
   private boolean isAHoldException;
 
   public AlgaeHold() {
-    algaeHoldMotor = new SparkMax(Constants.MotorControllers.ID_ALGAE_PIVOT, MotorType.kBrushless);
+    algaeHoldMotor = new SparkMax(Constants.MotorControllers.ID_ALGAE_HOLD, MotorType.kBrushless);
     algaeHoldConfig = new SparkMaxConfig();
     
     algaeHoldConfig.inverted(false);

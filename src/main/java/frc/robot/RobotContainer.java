@@ -23,6 +23,7 @@ import frc.robot.commands.AutoCommands.TurnOnly;
 import frc.robot.commands.AutoCommands.Center.CtrScore1;
 import frc.robot.commands.AutoCommands.Center.FullRunLeftCtr;
 import frc.robot.commands.AutoCommands.Right.FullRunRight;
+import frc.robot.commands.AutoCommands.Right.Leg1Right;
 import frc.robot.commands.AutoCommands.Right.FullRunRight;
 import frc.robot.commands.CoralHoldCommands.CoralGrabWithCounter;
 import frc.robot.commands.CoralHoldCommands.CoralGrab;
@@ -105,6 +106,7 @@ public class RobotContainer {
     private final DriveFwdAndSideAndTurn driveFwdAndSideAndTurn = new DriveFwdAndSideAndTurn(s_Swerve, false, 9, 0, 0);
 
     private final FullRunRight fullRunRight = new FullRunRight(s_Swerve);
+    private final Leg1Right leg1Right = new Leg1Right(s_Swerve);
     private final CtrScore1 fullRunCenter = new CtrScore1(s_Swerve);
     private final FullRunLeftCtr fullRunLeftCtr = new FullRunLeftCtr(s_Swerve);
     
@@ -219,7 +221,7 @@ public class RobotContainer {
 
     a.whileTrue(targetAngle);
     b.whileTrue(targetForwardDistance);
-   // x.whileTrue(targetsideDistance);
+    x.whileTrue(leg1Right);
     upPov.whileTrue(targetAllParallel);
     downPov.whileTrue(coralLeftTarget);
     leftPov.whileTrue(driveFwdAndSideAndTurn);

@@ -49,9 +49,9 @@ public final class Constants {
     //AlgaeHold
     public static final int ID_ALGAE_HOLD = 49; 
     //CoralHold
-    public static final int ID_CORAL_HOLD_MOTOR = 1;//BRUSHED!!!
+    public static final int ID_CORAL_HOLD_MOTOR = 1;
     //AlgaePivot 
-    public static final int ID_ALGAE_PIVOT = 50;
+    public static final int ID_ALGAE_PIVOT = 50; //50
     //CoralPivot 
     public static final int ID_CORAL_PIVOT = 2;//BRUSHED!!! 
   }
