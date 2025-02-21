@@ -24,7 +24,7 @@ public class AlgaePivot extends SubsystemBase {
   private SparkMaxConfig algaePivotConfig;
 
   private DigitalInput algaeLimit;
-  private boolean isPivotException, atExtendLimit, atRetractLimit;
+  private boolean isPivotException;
 
   private RelativeEncoder algaePivotEncoder;
   //private boolean hasResetPivotEncoder;

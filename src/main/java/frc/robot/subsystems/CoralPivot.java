@@ -31,7 +31,7 @@ public class CoralPivot extends SubsystemBase {
   private SparkBaseConfig coralPivotConfig;
   //private RelativeEncoder coralPivotEncoder;
   private Encoder coralPivotEncoder;
-  private boolean isCoralPivotException, atExtendLimit, atRetractLimit;
+  private boolean isCoralPivotException;
   private DigitalInput CoralLimit;
  
 
