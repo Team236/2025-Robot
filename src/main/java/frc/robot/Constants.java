@@ -59,7 +59,7 @@ public final class Constants {
   public static final class  Targeting {
     //use this with TargetPose-CameraSpace:
     public static final double DIST_FORWARDS_CAMERA_TO_FRAME = 4.25; //inches  TODO- update for 2025 robot
-    public static final double BUMPER_THICKNESS = 2.5; // inches, TODO update for 2025 bot
+    public static final double BUMPER_THICKNESS = 3.25; //inches, for 2025 bot
     public static final double DIST_CAMERA_TO_BUMPER_FWD = BUMPER_THICKNESS + DIST_FORWARDS_CAMERA_TO_FRAME;
     //forward distance robot center to robot bumper, inches 
     //only use DIST_TO_CENTER if we switch to TargetPose-RobotSpace
@@ -78,7 +78,7 @@ public final class Constants {
 }
 
 public static final class Swerve {
-        public static final int pigeonID = 1;
+        public static final int pigeonID = 1; //gryo
 
         public static final COTSTalonFXSwerveConstants chosenModule =  //TODO: This must be tuned to specific robot
         COTSTalonFXSwerveConstants.SDS.MK4.KrakenX60(COTSTalonFXSwerveConstants.SDS.MK4.driveRatios.L2);
