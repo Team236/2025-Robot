@@ -22,7 +22,7 @@ public class Leg2Right extends SequentialCommandGroup {
           //Tweak as needed to end against the Coral Loading station, not close to side of field
           //note - camera on 2025 robot will be on opposite side of robot compared with the swerve testbed
           new DriveSideways(s_Swerve, false, 60).withTimeout(2),
-          new DriveFwdAndSideAndTurn(s_Swerve, false, -8.3, 96, -62)
+          new DriveFwdAndSideAndTurn(s_Swerve, false, 5.5, 99, -63)
     );
   }
 
