@@ -295,7 +295,7 @@ public static final class Swerve {
 public static class AlgaeHold {
   public static final double HOLD_SPEED = 0.3;//MUST BE POSITIVE!!!
   public static final double RELEASE_SPEED = -0.3;
-  public static final double DIO_AH_LIMIT = 13;
+  public static final int DIO_AH_LIMIT = 13;
 }
 
 public static class CoralHold {
