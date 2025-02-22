@@ -34,22 +34,32 @@ public class DriveWithPath extends SequentialCommandGroup {
         // An example trajectory to follow.  All units in meters.
         Trajectory exampleTrajectory =
         TrajectoryGenerator.generateTrajectory(
-            new Pose2d(7.170291487008191,7.170291487008191,new Rotation2d(-3.1396414314172425)),
-	// Pass through these interior waypoints
+            new Pose2d(7.170291487008191,0.8077008574090883, new Rotation2d(3.141592653589793)),
+            // Pass through these interior waypoints
 	List.of(
-		new Translation2d(6.270045790650829,1.6295163257959588),
-		new Translation2d(6.107231772927737,1.8028919298664268),
-		new Translation2d(5.945051892036425,1.977142632681524) ,
-		new Translation2d(5.787114115105524,2.147955465660495) ,
-		new Translation2d(5.637026409263667,2.3110174602225864),
-		new Translation2d(5.498396741639484,2.462015647787042) ,
-		new Translation2d(5.374833079361604,2.5966370597731077),
-		new Translation2d(5.2699433895586605,2.7105687276000285),
-		new Translation2d(5.200108901567801,2.785839613470134) ,
-		new Translation2d(5.14741654092824,2.841727318992451)  ,
-		new Translation2d(5.117537960654374,2.8621667684629086),
-		new Translation2d(5.117537960654374,2.8621667684629086)),
-	new Pose2d(5.117537960654374,5.117537960654374,new Rotation2d(2.096022658820897)),config);
+		//new Translation2d(7.170291487008191,0.8077008574090883),
+        new Translation2d(7.006835109821566,0.8247141290212392),
+        //new Translation2d(6.842876084723803,0.8732535003135834),
+        //new Translation2d(6.6795651811188455,0.9495683059699576),
+        new Translation2d(6.518053168410637,1.0499078806741988),
+        //new Translation2d(6.3594908160031185,1.170521559110144),
+        //new Translation2d(6.205028893300234,1.3076586759616302),
+        //new Translation2d(6.055818169705926,1.457568565912494),
+        new Translation2d(5.913009414624137,1.6165005636465726),
+        //new Translation2d(5.777753397458811,1.780704003847703),
+        //new Translation2d(5.651200887613891,1.9464282211997217),
+        //new Translation2d(5.534502654493317,2.1099225503864663),
+        new Translation2d(5.4288094675010345,2.2674363260917736),
+        //new Translation2d(5.335272096040986,2.41521888299948),
+        //new Translation2d(5.255041309517113,2.5495195557934225),
+        //new Translation2d(5.162694130974405,2.71646854545881),
+        new Translation2d(5.131475259827449,2.7781554431581728)),
+        //new Translation2d(5.108000453827693,2.828680509447413),
+        //new Translation2d(5.094054325548219,2.863755779625048),
+        //new Translation2d(5.117537960654374,2.8621667684629086),
+        //new Translation2d(5.117537960654374,2.8621667684629086)),
+        //new Translation2d(5.117537960654374,2.8621667684629086)),
+    new Pose2d(5.117537960654374,2.8621667684629086, new Rotation2d(2.0943951023931953)),config);
             
         var thetaController =
             new ProfiledPIDController(

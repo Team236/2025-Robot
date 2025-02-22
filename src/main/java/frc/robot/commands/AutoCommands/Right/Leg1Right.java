@@ -5,6 +5,7 @@
 package frc.robot.commands.AutoCommands.Right;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.commands.ZeroPose;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
 import frc.robot.commands.Targeting.GetPoseWithLL;
 import frc.robot.commands.Targeting.ResetPoseWithLL;
@@ -21,10 +22,10 @@ public class Leg1Right extends SequentialCommandGroup {
       //TODO  add the commands for scoring and receiving coral
  
           //First command to drive with odometry and end 9" from bumper to AprilTag, centered on Tag
-          new DriveFwdAndSideAndTurn(s_Swerve, false, 83, -73, -58).withTimeout(1.5),
+          new DriveFwdAndSideAndTurn(s_Swerve, false, 83, -73, -58).withTimeout(3),
           
           //Use limelight to get exactly 12" from front frame (9" from bumper) to AprilTag
-          new TargetAllParallel(s_Swerve,12, 0).withTimeout(1.5),
+          new TargetAllParallel(s_Swerve,12, 0).withTimeout(1),
 
           new GetPoseWithLL(s_Swerve),
         

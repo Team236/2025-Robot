@@ -27,6 +27,7 @@ import frc.robot.commands.AutoCommands.Right.FullRunRight;
 import frc.robot.commands.AutoCommands.Right.Leg1Right;
 import frc.robot.commands.AutoCommands.Right.Leg2Right;
 import frc.robot.commands.AutoCommands.Right.Leg3Right;
+import frc.robot.commands.AutoCommands.Right.Legs1and2Right;
 import frc.robot.commands.AutoCommands.Right.FullRunRight;
 import frc.robot.commands.CoralHoldCommands.CoralGrabWithCounter;
 import frc.robot.commands.CoralHoldCommands.CoralGrab;
@@ -117,6 +118,7 @@ public class RobotContainer {
     private final CtrScore1 fullRunCenter = new CtrScore1(s_Swerve);
     private final FullRunLeftCtr fullRunLeftCtr = new FullRunLeftCtr(s_Swerve);
     private final DriveWithPath driveWithPathLeg1 = new DriveWithPath(s_Swerve, false);
+    private final Legs1and2Right legs1and2Right = new Legs1and2Right(s_Swerve);
     
       
   //Elevator
@@ -227,7 +229,7 @@ public class RobotContainer {
     // upPov.whileTrue(targetForwardDistance);
     // downPov.whileTrue(targetsideDistance);
 
-    a.whileTrue(targetAngle);
+    a.whileTrue(legs1and2Right);
     //b.whileTrue(targetForwardDistance);
     b.whileTrue(driveWithPathLeg1);
     x.whileTrue(leg2Right);
