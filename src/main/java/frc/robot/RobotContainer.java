@@ -24,6 +24,8 @@ import frc.robot.commands.AutoCommands.Center.CtrScore1;
 import frc.robot.commands.AutoCommands.Center.FullRunLeftCtr;
 import frc.robot.commands.AutoCommands.Right.FullRunRight;
 import frc.robot.commands.AutoCommands.Right.Leg1Right;
+import frc.robot.commands.AutoCommands.Right.Leg2Right;
+import frc.robot.commands.AutoCommands.Right.Leg3Right;
 import frc.robot.commands.AutoCommands.Right.FullRunRight;
 import frc.robot.commands.CoralHoldCommands.CoralGrabWithCounter;
 import frc.robot.commands.CoralHoldCommands.CoralGrab;
@@ -32,6 +34,7 @@ import frc.robot.commands.CoralPivotCommands.ManualCoralPivot;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
 import frc.robot.commands.ElevatorCommands.ManualUpDown;
 import frc.robot.commands.ElevatorCommands.PIDToHeight;
+import frc.robot.commands.Targeting.AlgaeTarget;
 import frc.robot.commands.Targeting.CoralLeftTarget;
 import frc.robot.commands.Targeting.CoralRightTarget;
 import frc.robot.commands.Targeting.TargetAllParallel;
@@ -88,6 +91,7 @@ public class RobotContainer {
     private final OrientWithLL orientWithLL = new OrientWithLL(s_Swerve);
 
    //Targeting
+    private final AlgaeTarget algaeTarget = new AlgaeTarget(s_Swerve);
     private final CoralLeftTarget coralLeftTarget = new CoralLeftTarget(s_Swerve);
     private final CoralRightTarget coralRightTarget = new CoralRightTarget(s_Swerve);
 
@@ -107,6 +111,8 @@ public class RobotContainer {
 
     private final FullRunRight fullRunRight = new FullRunRight(s_Swerve);
     private final Leg1Right leg1Right = new Leg1Right(s_Swerve);
+    private final Leg2Right leg2Right = new Leg2Right(s_Swerve);
+    private final Leg3Right leg3Right = new Leg3Right(s_Swerve);
     private final CtrScore1 fullRunCenter = new CtrScore1(s_Swerve);
     private final FullRunLeftCtr fullRunLeftCtr = new FullRunLeftCtr(s_Swerve);
     
@@ -220,11 +226,12 @@ public class RobotContainer {
     // downPov.whileTrue(targetsideDistance);
 
     a.whileTrue(targetAngle);
-    b.whileTrue(targetForwardDistance);
-    x.whileTrue(leg1Right);
-    upPov.whileTrue(targetAllParallel);
-    downPov.whileTrue(coralLeftTarget);
-    leftPov.whileTrue(driveFwdAndSideAndTurn);
+    //b.whileTrue(targetForwardDistance);
+    b.whileTrue(leg3Right);
+    x.whileTrue(leg2Right);
+    upPov.whileTrue(leg1Right);
+   // downPov.whileTrue(coralLeftTarget);
+    //leftPov.whileTrue(driveFwdAndSideAndTurn);
     //leftPov.whileTrue(coralRightTarget);
 
 
@@ -260,9 +267,9 @@ public class RobotContainer {
   //a.onTrue(fullRunCenter);
   //x.onTrue(fullRunCenter);
 
-  //downPov.whileTrue(algaeTarget);
-  //leftPov.whileTrue(coralLeftTarget);
-  //rightPov.whileTrue(coralRightTarget);
+  downPov.whileTrue(algaeTarget);
+  leftPov.whileTrue(coralLeftTarget);
+  rightPov.whileTrue(coralRightTarget);
   }
   
   public Command getAutonomousCommand() {
