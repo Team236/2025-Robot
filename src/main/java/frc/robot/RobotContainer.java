@@ -239,23 +239,23 @@ public class RobotContainer {
     //leftPov.whileTrue(coralRightTarget);
 
 
-    //a.whileTrue(elevatorDown);
-    //x.whileTrue(elevatorUp);
-    //downPov.onTrue(pidElevatorL1);
-    //leftPov.onTrue(pidElevatorL2);
-    //upPov.onTrue(pidElevatorL3);
+    // a.whileTrue(elevatorDown);
+    // x.whileTrue(elevatorUp);
+    // downPov.onTrue(pidElevatorL1);
+    // leftPov.onTrue(pidElevatorL2);
+    // upPov.onTrue(pidElevatorL3);
 
-    //upPov.whileTrue(coralPivotUp);
-    //downPov.whileTrue(coralPivotDown);
-    //a.onTrue(pidCoralPivot1);
-    //b.onTrue(pidCoralPivot2);
+    upPov.whileTrue(coralPivotUp);
+    downPov.whileTrue(coralPivotDown);
+    a.onTrue(pidCoralPivot1);
+    b.onTrue(pidCoralPivot2);
 
     //rb.whileTrue(algaeGrab);
     //rm.whileTrue(algaeRelease);
 
-    a.whileTrue(coralGrab);
-    b.whileTrue(coralRelease);
-    leftPov.whileTrue(coralGrabWithCounter);
+    // a.whileTrue(coralGrab);
+    // b.whileTrue(coralRelease);
+    // leftPov.whileTrue(coralGrabWithCounter);
    // rightPov.whileTrue(coralReleaseL4);
 
     //upPov.whileTrue(algaePivotUp);

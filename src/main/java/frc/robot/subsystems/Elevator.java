@@ -12,6 +12,7 @@ import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.configs.TalonFXConfigurator;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.InvertedValue;
+import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.revrobotics.RelativeEncoder;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -37,12 +38,16 @@ public class Elevator extends SubsystemBase {
     // configure motors
     leftTalonConfig = new TalonFXConfiguration();
     leftTalonConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+    leftTalonConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
     leftTalonConfig.CurrentLimits.SupplyCurrentLimit = Constants.MotorControllers.SMART_CURRENT_LIMIT;
+    leftTalonConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
     leftElevatorMotor.getConfigurator().apply(leftTalonConfig);
 
     rightTalonConfig = new TalonFXConfiguration();
     rightTalonConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+    rightTalonConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
     rightTalonConfig.CurrentLimits.SupplyCurrentLimit = Constants.MotorControllers.SMART_CURRENT_LIMIT;
+    rightTalonConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
     rightElevatorMotor.getConfigurator().apply(rightTalonConfig);
 
     // leftConfig = leftElevatorMotor.getConfigurator();
@@ -124,10 +129,8 @@ public class Elevator extends SubsystemBase {
   }
 
   public void setElevSpeed(double speed) {
-    leftElevatorMotor.set(speed);
-    rightElevatorMotor.set(speed);
    
-    /*if (speed > 0) {  
+    if (speed > 0) {  
       if (isETopLimit() || isTop()) {
           // if elevator limit is tripped or elevator is near the top limit switch going up, stop 
           stopElevator();
@@ -148,7 +151,7 @@ public class Elevator extends SubsystemBase {
         rightElevatorMotor.set(speed);
       }
     }
-    */
+    
   } 
 
   public double getElevatorLeftSpeed() {
@@ -161,6 +164,12 @@ public class Elevator extends SubsystemBase {
 
   @Override
   public void periodic() {
+    if (isEBotLimit()) {
+      //elevator going down and is at the bottom,stop and zero encoder
+      stopElevator();
+      resetElevatorEncoders();
+    }
+
     // This method will be called once per scheduler run
     SmartDashboard.putNumber("Elevator height: ", getElevatorHeight());
     SmartDashboard.putBoolean("Elevator at top? ", isETopLimit());

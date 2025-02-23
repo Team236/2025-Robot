@@ -271,8 +271,8 @@ public static final class Swerve {
     public static final int DIO_ELEV_TOP = 4;
     public static final int DIO_ELEV_BOTTOM = 5;
 
-    public static final double ELEV_UP_SPEED = 0.3;
-    public static final double ELEV_DOWN_SPEED = -0.3;
+    public static final double ELEV_UP_SPEED = 0.15;
+    public static final double ELEV_DOWN_SPEED = -0.15;
 
     //placeholder conversion factors
     public static final double ELEV_REV_TO_IN = 0.32327;//TODO find actual
@@ -301,7 +301,7 @@ public static class AlgaeHold {
 public static class CoralHold {
   public static final int DIO_COUNTER = 10;
   public static final double HOLD_SPEED = 0.15;
-  public static final double RELEASE_SPEED = 0.3;
+  public static final double RELEASE_SPEED = 0.75;
   public static final double L4_RELEASE_SPEED = 0.1;
 }
 
@@ -323,8 +323,8 @@ public static class CoralHold {
     public static final double ENC_REVS_MAX = -700000;//TODO determine actual
     public static final double ENC_REVS_TEST1 = 5;
     public static final double ENC_REVS_TEST2 = 10;
-    public static final double MAN_EXT_SPEED = -0.1;
-    public static final double MAN_RET_SPEED = 0.1;
+    public static final double MAN_EXT_SPEED = -0.3;
+    public static final double MAN_RET_SPEED = 0.3;
     public static final double KP = 0.029; //TODO find actual
     public static final double KI = 0;
     public static final double KD = 0;
