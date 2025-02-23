@@ -5,6 +5,7 @@
 package frc.robot.commands.CoralPivotCommands;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.subsystems.AlgaePivot;
@@ -34,12 +35,16 @@ public class PIDCoralPivot extends Command {
   @Override
   public void initialize() {
     pidController.reset();
+    coralPivot.setIsInitialExtend(true);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+   // SmartDashboard.putBoolean(("executing setCPspeed in PID CP: "), true);
     coralPivot.setCoralPivotSpeed(pidController.calculate(coralPivot.getCoralEncoder()));
+   // SmartDashboard.putBoolean(("setting initial extend state false PID CP: "), true);
+    coralPivot.setIsInitialExtend(false);
   }
 
   // Called once the command ends or is interrupted.
