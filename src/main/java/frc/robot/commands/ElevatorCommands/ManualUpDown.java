@@ -24,13 +24,13 @@ public class ManualUpDown extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    SmartDashboard.putBoolean("Initialize manualUpDown", true);
+   // SmartDashboard.putBoolean("Initialize manualUpDown", true);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    SmartDashboard.putBoolean("Executeing Elevator speed", true);
+    //SmartDashboard.putBoolean("Executeing Elevator speed", true);
     elevator.setElevSpeed(speed);
   }
 

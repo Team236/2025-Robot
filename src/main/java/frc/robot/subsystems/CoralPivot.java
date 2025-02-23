@@ -32,6 +32,7 @@ public class CoralPivot extends SubsystemBase {
   //private RelativeEncoder coralPivotEncoder;
   private Encoder coralPivotEncoder;
   private boolean isCoralPivotException;
+  public boolean isInitialExtend;
   private DigitalInput CoralLimit;
  
 
@@ -86,18 +87,22 @@ if (isCoralPivotException) {
 }
 }
 
-public boolean isFullyExtended() {
+public boolean isFullyExtended() { //revs max is a negative number
   return (getCoralEncoder() <= Constants.CoralPivot.ENC_REVS_MAX);
-  //return (getCoralEncoder() <= Constants.CoralPivot.ENC_REVS_MAX);
+}
+
+public void setIsInitialExtend(boolean initialExtendState) {
+  isInitialExtend = initialExtendState;
 }
 
 public boolean atExtendLimit(){
-  if ((getCoralPivotSpeed() < 0) && isCoralLimit()){ //negative speed means extending
+  if ((getCoralPivotSpeed() < 0) && isCoralLimit() && !isInitialExtend){ //negative speed means extending
    return true;
     } else {
      return false;
     }
   }
+
 
 public boolean atRetractLimit(){
   if ((getCoralPivotSpeed() > 0) && isCoralLimit()){ //positive speed means retracting
@@ -163,11 +168,12 @@ public void setFF(double kFF) {
 }
 */
 
-
 @Override
   public void periodic() {
-    SmartDashboard.putNumber("Coral Pivot Speed is: ", getCoralPivotSpeed());
     SmartDashboard.putBoolean("Coral Pivot Limit is hit:", isCoralLimit());
+    SmartDashboard.putBoolean("CP at Retract Limit: ", atRetractLimit());
+    SmartDashboard.putBoolean("CP at Extend Limit: ", atExtendLimit());
+    SmartDashboard.putBoolean("CP is intial extend: ", isInitialExtend);
     SmartDashboard.putBoolean("Coral Pivot is fully extended: ", isFullyExtended());
     SmartDashboard.putNumber("Coral Pivot Encoder Revolutions ", getCoralEncoder());
   }

@@ -13,6 +13,7 @@ public class ManualCoralPivot extends Command {
 
   private CoralPivot coralPivot;
   private double coralSpeed;
+  public boolean isInitialExtend;
 
   /** Creates a new ManualMove. */
   public ManualCoralPivot(CoralPivot coralPivot, double coralSpeed) {
@@ -24,14 +25,18 @@ public class ManualCoralPivot extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    SmartDashboard.putBoolean("Manual coral pivot command initualized", true);
+    coralPivot.setIsInitialExtend(true);
+    //SmartDashboard.putBoolean("Manual coral pivot command initualized", true);
   }
 
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    coralPivot.setCoralPivotSpeed(coralSpeed);
+  SmartDashboard.putBoolean(("executing setCPspeed in ManualCP: "), true);
+  coralPivot.setCoralPivotSpeed(coralSpeed);
+  SmartDashboard.putBoolean(("setting initial extend state to false in CP: "), true);
+  coralPivot.setIsInitialExtend(false);
   }
 
   // Called once the command ends or is interrupted.

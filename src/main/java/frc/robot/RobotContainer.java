@@ -19,7 +19,7 @@ import frc.robot.commands.AlgaePivotCommands.PIDAlgaePivot;
 import frc.robot.commands.AutoCommands.DriveFwd;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
 import frc.robot.commands.AutoCommands.DriveSideways;
-import frc.robot.commands.AutoCommands.DriveWithPath;
+//mport frc.robot.commands.AutoCommands.DriveWithPath;
 import frc.robot.commands.AutoCommands.TurnOnly;
 import frc.robot.commands.AutoCommands.Center.CtrScore1;
 import frc.robot.commands.AutoCommands.Center.FullRunLeftCtr;
@@ -117,7 +117,7 @@ public class RobotContainer {
     private final Leg3Right leg3Right = new Leg3Right(s_Swerve);
     private final CtrScore1 fullRunCenter = new CtrScore1(s_Swerve);
     private final FullRunLeftCtr fullRunLeftCtr = new FullRunLeftCtr(s_Swerve);
-    private final DriveWithPath driveWithPathLeg1 = new DriveWithPath(s_Swerve, false);
+   // private final DriveWithPath driveWithPathLeg1 = new DriveWithPath(s_Swerve, false);
     private final Legs1and2Right legs1and2Right = new Legs1and2Right(s_Swerve);
     
       
