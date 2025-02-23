@@ -212,7 +212,7 @@ public static final class Swerve {
     public static final int DIO_ELEV_BOTTOM = 5;
 
     public static final double ELEV_UP_SPEED = 0.15;
-    public static final double ELEV_DOWN_SPEED = -0.15;
+    public static final double ELEV_DOWN_SPEED = -0.1;
 
     //placeholder conversion factors
     public static final double ELEV_REV_TO_IN = 0.32327;//TODO find actual
@@ -223,7 +223,6 @@ public static final class Swerve {
     public static final double L3_HEIGHT = 9;//TODO find actual
     public static final double L4_HEIGHT = 12;//TODO find actual
     
-    public static final double MIN_HEIGHT = 1.5; //TODO find actual
     public static final double MAX_HEIGHT = 1500000;//15;  //TODO find actual
 
     //placeholder PID values
@@ -233,8 +232,8 @@ public static final class Swerve {
   }
 
 public static class AlgaeHold {
-  public static final double HOLD_SPEED1 = 0.5;//MUST BE POSITIVE!!!
-  public static final double HOLD_SPEED2 = 0.2;//MUST BE POSITIVE!!!
+  public static final double HOLD_SPEED1 = 0.5;//MUST BE POSITIVE!
+  public static final double HOLD_SPEED2 = 0.2;//MUST BE POSITIVE!
   public static final double RELEASE_SPEED = -0.3;
   public static final int DIO_AH_LIMIT = 13;
 }
