@@ -9,11 +9,12 @@ import frc.robot.subsystems.AlgaeHold;
 
 public class AlgaeGrab extends Command {
   private AlgaeHold algaeHold;
-  private double speed;
+  private double speed1, speed2;
 
-  public AlgaeGrab(AlgaeHold algaeHold, double speed) {
+  public AlgaeGrab(AlgaeHold algaeHold, double speed1, double speed2) {
     this.algaeHold = algaeHold;
-    this.speed = speed;
+    this.speed1 = speed1;
+    this.speed2 = speed2;
     addRequirements(this.algaeHold);
   }
 
@@ -22,7 +23,7 @@ public class AlgaeGrab extends Command {
   
   @Override
   public void execute() {
-    this.algaeHold.setAlgaeHoldSpeed(speed);
+    this.algaeHold.setAlgaeHoldSpeed(speed1, speed2);
   }
   
   @Override
@@ -31,15 +32,8 @@ public class AlgaeGrab extends Command {
   }
   @Override
   public boolean isFinished() {
-    //stop if ingesting Algae and the algae limit switch is hit
-    //Use logic below if limit switch added:
-    
-     // if ((speed > 0) && (algaeHold.isAHoldLimit())) {
-     // return true;
-     //}
-     //else {
+    //if want to STOP when limit hit, could return 
+    //return algaeHold.getAHoldLimit();
        return false;
-    // }
-   
   }
 }

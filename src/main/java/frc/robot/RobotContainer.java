@@ -131,8 +131,8 @@ public class RobotContainer {
   private final PIDToHeight pidElevatorL4 = new PIDToHeight(elevator, Constants.Elevator.L4_HEIGHT);
 
   //AlgaeHold
-  private final AlgaeGrab algaeGrab = new AlgaeGrab(algaeHold, Constants.AlgaeHold.HOLD_SPEED);
-  private final AlgaeGrab algaeRelease = new AlgaeGrab(algaeHold, Constants.AlgaeHold.RELEASE_SPEED);
+  private final AlgaeGrab algaeGrab = new AlgaeGrab(algaeHold, Constants.AlgaeHold.HOLD_SPEED1, Constants.AlgaeHold.HOLD_SPEED2);
+  private final AlgaeGrab algaeRelease = new AlgaeGrab(algaeHold, Constants.AlgaeHold.RELEASE_SPEED, Constants.AlgaeHold.RELEASE_SPEED);
 
   //AlgaePivot
   private final ManualAlgaePivot algaePivotDown = new ManualAlgaePivot(algaePivot, Constants.AlgaePivot.MAN_EXT_SPEED);

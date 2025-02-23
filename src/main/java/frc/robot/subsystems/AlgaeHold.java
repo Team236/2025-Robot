@@ -3,6 +3,8 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.subsystems;
+import javax.print.attribute.standard.RequestingUserName;
+
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
@@ -39,32 +41,37 @@ public class AlgaeHold extends SubsystemBase {
     }
 }
 
-
 //METHODS Start Here
-public boolean isAHoldLimit()
- {
-  if (isAHoldException)
-  {
-    return true;
-  } else
-  {
+public boolean isAHoldLimit(){
+  if (isAHoldException){
+    return true; } 
+  else{
     return algaeHoldLimit.get();
   }
  }
 
+ public boolean getAHoldLimit() {
+    return algaeHoldLimit.get();
+ }
 
-  public void stopAlgaeHold()
-  {
+  public void stopAlgaeHold(){
     algaeHoldMotor.set(0);
   }
 
-  public void setAlgaeHoldSpeed(double speed)
-  {
-    algaeHoldMotor.set(speed);
-  }
+
+  public void setAlgaeHoldSpeed(double speed1, double speed2)
+  { // algaeHoldMotor.set(speed);
+ 
+    if (isAHoldLimit()){
+      algaeHoldMotor.set(speed2);
+    } else {
+      algaeHoldMotor.set(speed1);
+    }
+    }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putBoolean("AlgaeHold limit:", isAHoldLimit());
   }
 }
