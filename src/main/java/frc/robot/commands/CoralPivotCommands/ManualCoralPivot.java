@@ -25,7 +25,7 @@ public class ManualCoralPivot extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    coralPivot.setIsInitialExtend(true);
+    //coralPivot.setIsInitialExtend(true);
     //SmartDashboard.putBoolean("Manual coral pivot command initualized", true);
   }
 
@@ -35,8 +35,8 @@ public class ManualCoralPivot extends Command {
   public void execute() {
   SmartDashboard.putBoolean(("executing setCPspeed in ManualCP: "), true);
   coralPivot.setCoralPivotSpeed(coralSpeed);
-  SmartDashboard.putBoolean(("setting initial extend state to false in CP: "), true);
-  coralPivot.setIsInitialExtend(false);
+ // SmartDashboard.putBoolean(("setting initial extend state to false in CP: "), true);
+ // coralPivot.setIsInitialExtend(false);
   }
 
   // Called once the command ends or is interrupted.

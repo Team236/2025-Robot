@@ -96,8 +96,9 @@ public void setIsInitialExtend(boolean initialExtendState) {
 }
 
 public boolean atExtendLimit(){  //TODO : find reasonable encoder value 
-  if ((getCoralPivotSpeed() < 0) && isCoralLimit() && !isInitialExtend){ //negative speed means extending
- // if ((getCoralPivotSpeed() < 0) && isCoralLimit() && !isInitialExtend && (getCoralEncoder() < -5)){
+ // if ((getCoralPivotSpeed() < 0) && isCoralLimit() && !isInitialExtend){ //negative speed means extending
+ //TODO - get realistic encoder value for being partly extended
+ if ((getCoralPivotSpeed() < 0) && isCoralLimit() && (getCoralEncoder() < -50)){
     return true;
     } else {
      return false;

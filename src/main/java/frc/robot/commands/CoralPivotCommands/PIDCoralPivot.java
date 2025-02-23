@@ -35,7 +35,7 @@ public class PIDCoralPivot extends Command {
   @Override
   public void initialize() {
     pidController.reset();
-    coralPivot.setIsInitialExtend(true);
+    //coralPivot.setIsInitialExtend(true);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -44,7 +44,7 @@ public class PIDCoralPivot extends Command {
    // SmartDashboard.putBoolean(("executing setCPspeed in PID CP: "), true);
     coralPivot.setCoralPivotSpeed(pidController.calculate(coralPivot.getCoralEncoder()));
    // SmartDashboard.putBoolean(("setting initial extend state false PID CP: "), true);
-    coralPivot.setIsInitialExtend(false);
+    //coralPivot.setIsInitialExtend(false);
   }
 
   // Called once the command ends or is interrupted.
