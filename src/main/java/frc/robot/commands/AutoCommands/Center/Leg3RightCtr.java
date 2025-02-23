@@ -19,11 +19,7 @@ public class Leg3RightCtr extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new DriveFwdAndSideAndTurn(s_Swerve, false,
-      Constants.AutoConstants.RIGHT_CENTER_LEG3_FWD_X, 
-      Constants.AutoConstants.RIGHT_CENTER_LEG3_SIDE_Y,
-      Constants.AutoConstants.RIGHT_CENTER_LEG3_ANGLE),
-      new CoralRightTarget(s_Swerve)
+      new DriveFwdAndSideAndTurn(s_Swerve, false, 0, 0, 0)
     );
   }
 }

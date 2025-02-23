@@ -205,66 +205,6 @@ public static final class Swerve {
 
       //Center Auto path (inches)
         public static final double CENTER_FWD_DIST = 55; //if starting 1" behind start line
-
-      //Right Auto path (inches), starting 12" from sideline, bumper just covering black start line
-        public static final double RIGHT_LEG1_FWD_X = 78.6;//ADD TO X TO BACK UP BEHIND START LINE
-        public static final double RIGHT_LEG1_SIDE_Y = -91/1.03;
-        public static final double RIGHT_LEG1_ANGLE_CCW = -58;
-     
-        public static final double RIGHT_LEG2_INITIAL_REVERSE = -12;
-        public static final double RIGHT_LEG2_FWD_X = 12;
-        public static final double RIGHT_LEG2_SIDE_Y = 171/1.03;//Find the correct constant for 2025 bot
-        public static final double RIGHT_LEG2_ANGLE_CCW = -68;
-
-        public static final double RIGHT_LEG3_FWD_X = 129;
-        public static final double RIGHT_LEG3_SIDE_Y = -26.5/1.03;
-        public static final double RIGHT_LEG3_ANGLE_CCW = 4;
-
-        //Left Auto path (inches)
-        public static final double LEFT_LEG1_FWD_X = RIGHT_LEG1_FWD_X;
-        public static final double LEFT_LEG1_SIDE_Y = -RIGHT_LEG1_SIDE_Y;
-        public static final double LEFT_LEG1_ANGLE_CCW = -RIGHT_LEG1_ANGLE_CCW ;
-     
-        public static final double LEFT_LEG2_INITIAL_REVERSE = RIGHT_LEG2_INITIAL_REVERSE;
-        public static final double LEFT_LEG2_FWD_X = RIGHT_LEG2_FWD_X;
-        public static final double LEFT_LEG2_SIDE_Y = -RIGHT_LEG2_SIDE_Y;
-        public static final double LEFT_LEG2_ANGLE_CCW = -RIGHT_LEG2_ANGLE_CCW;
-
-        public static final double LEFT_LEG3_FWD_X = RIGHT_LEG3_FWD_X;
-        public static final double LEFT_LEG3_SIDE_Y = -RIGHT_LEG3_SIDE_Y;
-        public static final double LEFT_LEG3_ANGLE_CCW = -RIGHT_LEG3_ANGLE_CCW ;
-
-        //Left Ctr Auto Path (inches)
-        public static final double LEFT_CENTER_LEG1_FWD_DIST = 55;
-
-        public static final double LEFT_CENTER_LEG2_REVERSE_DIST = -12;
-        public static final double LEFT_CENTER_LEG2_A_FWD_X = 0;
-        public static final double LEFT_CENTER_LEG2_A_SIDE_Y = 45;
-        public static final double LEFT_CENTER_LEG2_A_ANGLE = 0;
-
-        public static final double LEFT_CENTER_LEG2_B_FWD_X = 190;
-        public static final double LEFT_CENTER_LEG2_B_SIDE_Y = 46;
-        public static final double LEFT_CENTER_LEG2_B_ANGLE_CCW = 230;
-
-        public static final double LEFT_CENTER_LEG3_FWD_X = -60;
-        public static final double LEFT_CENTER_LEG3_SIDE_Y = 0;
-        public static final double LEFT_CENTER_LEG3_ANGLE = 180;
-
-        //Right Ctr Auto Path (inches)
-        public static final double RIGHT_CENTER_LEG1_FWD_DIST = 0;  //TODO PUT IN VALUES INVERSED FROM LEFT CENTER AS THEY ARE NOT FINAL
-
-        public static final double RIGHT_CENTER_LEG2_REVERSE_DIST = 0;
-        public static final double RIGHT_CENTER_LEG2_A_FWD_X = 0;
-        public static final double RIGHT_CENTER_LEG2_A_SIDE_Y = 0;
-        public static final double RIGHT_CENTER_LEG2_A_ANGLE = 0;
-
-        public static final double RIGHT_CENTER_LEG2_B_FWD_X = 0;
-        public static final double RIGHT_CENTER_LEG2_B_SIDE_Y = 0;
-        public static final double RIGHT_CENTER_LEG2_B_ANGLE_CCW = 0;
-
-        public static final double RIGHT_CENTER_LEG3_FWD_X = 0;
-        public static final double RIGHT_CENTER_LEG3_SIDE_Y = 0;
-        public static final double RIGHT_CENTER_LEG3_ANGLE = 0;         
     }
 
   public static class Elevator {

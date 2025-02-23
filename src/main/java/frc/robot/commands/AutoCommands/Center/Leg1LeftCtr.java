@@ -19,7 +19,7 @@ public class Leg1LeftCtr extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new DriveFwd(s_Swerve, false, Constants.AutoConstants.LEFT_CENTER_LEG1_FWD_DIST),
+      new DriveFwd(s_Swerve, false, 55),
       new CoralLeftTarget(s_Swerve)
     );
   }
