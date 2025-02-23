@@ -95,9 +95,10 @@ public void setIsInitialExtend(boolean initialExtendState) {
   isInitialExtend = initialExtendState;
 }
 
-public boolean atExtendLimit(){
+public boolean atExtendLimit(){  //TODO : find reasonable encoder value 
   if ((getCoralPivotSpeed() < 0) && isCoralLimit() && !isInitialExtend){ //negative speed means extending
-   return true;
+ // if ((getCoralPivotSpeed() < 0) && isCoralLimit() && !isInitialExtend && (getCoralEncoder() < -5)){
+    return true;
     } else {
      return false;
     }
