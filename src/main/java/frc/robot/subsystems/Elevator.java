@@ -42,14 +42,14 @@ public class Elevator extends SubsystemBase {
     leftConfig.apply(leftCurrentConfigs);
     leftConfig.apply(leftOutputConfigs);
 
-    rightConfig = leftElevatorMotor.getConfigurator();
+    rightConfig = rightElevatorMotor.getConfigurator();
     rightCurrentConfigs = new CurrentLimitsConfigs();
     rightCurrentConfigs.StatorCurrentLimitEnable = true;   
     rightCurrentConfigs.StatorCurrentLimit = (Constants.MotorControllers.SMART_CURRENT_LIMIT);
     rightOutputConfigs = new MotorOutputConfigs();
     rightOutputConfigs.Inverted = InvertedValue.CounterClockwise_Positive;//TODO- both CCW or both CW
-    rightConfig.apply(leftCurrentConfigs);
-    rightConfig.apply(leftOutputConfigs);
+    rightConfig.apply(rightCurrentConfigs);
+    rightConfig.apply(rightOutputConfigs);
 
     try {
       elevatorTopLimit = new DigitalInput(Constants.Elevator.DIO_ELEV_TOP);
@@ -112,7 +112,10 @@ public class Elevator extends SubsystemBase {
   }
 
   public void setElevSpeed(double speed) {
-    if (speed > 0) {  
+    leftElevatorMotor.set(speed);
+    rightElevatorMotor.set(speed);
+   
+    /*if (speed > 0) {  
       if (isETopLimit() || isTop()) {
           // if elevator limit is tripped or elevator is near the top limit switch going up, stop 
           stopElevator();
@@ -133,6 +136,7 @@ public class Elevator extends SubsystemBase {
         rightElevatorMotor.set(speed);
       }
     }
+    */
   } 
 
   public double getElevatorLeftSpeed() {
@@ -149,6 +153,7 @@ public class Elevator extends SubsystemBase {
     SmartDashboard.putNumber("Elevator height: ", getElevatorHeight());
     SmartDashboard.putBoolean("Elevator at top? ", isETopLimit());
     SmartDashboard.putBoolean("Elevator at bottom? ", isEBotLimit());
+    SmartDashboard.putBoolean("Is Elevator Top ", isTop());
     SmartDashboard.putNumber("Elevator left enc revs = ", getElevLeftEncoder());
     SmartDashboard.putNumber("Elevator right enc revs = ", getElevRightEncoder());
   }

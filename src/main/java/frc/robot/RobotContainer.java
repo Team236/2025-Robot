@@ -229,21 +229,21 @@ public class RobotContainer {
     // upPov.whileTrue(targetForwardDistance);
     // downPov.whileTrue(targetsideDistance);
 
-    a.whileTrue(legs1and2Right);
+      //a.whileTrue(legs1and2Right);
     //b.whileTrue(targetForwardDistance);
-    b.whileTrue(driveWithPathLeg1);
-    x.whileTrue(leg2Right);
-    upPov.whileTrue(leg1Right);
+      //b.whileTrue(driveWithPathLeg1);
+      //x.whileTrue(leg2Right);
+      //upPov.whileTrue(leg1Right);
    // downPov.whileTrue(coralLeftTarget);
     //leftPov.whileTrue(driveFwdAndSideAndTurn);
     //leftPov.whileTrue(coralRightTarget);
 
 
-    //rb.whileTrue(elevatorDown);
-    //rm.whileTrue(elevatorUp);
-    //downPov.onTrue(pidElevatorL1);
-    //leftPov.onTrue(pidElevatorL2);
-    //upPov.onTrue(pidElevatorL3);
+    a.whileTrue(elevatorDown);
+    x.whileTrue(elevatorUp);
+    downPov.onTrue(pidElevatorL1);
+    leftPov.onTrue(pidElevatorL2);
+    upPov.onTrue(pidElevatorL3);
 
     //upPov.whileTrue(coralPivotUp);
     //downPov.whileTrue(coralPivotDown);
@@ -271,9 +271,9 @@ public class RobotContainer {
   //a.onTrue(fullRunCenter);
   //x.onTrue(fullRunCenter);
 
-  downPov.whileTrue(algaeTarget);
-  leftPov.whileTrue(coralLeftTarget);
-  rightPov.whileTrue(coralRightTarget);
+  //downPov.whileTrue(algaeTarget);
+  //leftPov.whileTrue(coralLeftTarget);
+  //rightPov.whileTrue(coralRightTarget);
   }
   
   public Command getAutonomousCommand() {
