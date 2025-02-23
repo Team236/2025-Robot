@@ -172,9 +172,9 @@ public class Elevator extends SubsystemBase {
 
     // This method will be called once per scheduler run
     SmartDashboard.putNumber("Elevator height: ", getElevatorHeight());
-    SmartDashboard.putBoolean("Elevator at top? ", isETopLimit());
-    SmartDashboard.putBoolean("Elevator at bottom? ", isEBotLimit());
-    SmartDashboard.putBoolean("Is Elevator Top ", isTop());
+    SmartDashboard.putBoolean("Elevator at top limit: ", isETopLimit());
+    SmartDashboard.putBoolean("Elevator at bottom limit: ", isEBotLimit());
+    SmartDashboard.putBoolean("Elevator at Max height: ", isTop());
     SmartDashboard.putNumber("Elevator left enc revs = ", getElevLeftEncoder());
     SmartDashboard.putNumber("Elevator right enc revs = ", getElevRightEncoder());
   }
