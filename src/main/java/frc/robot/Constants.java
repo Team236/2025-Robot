@@ -44,8 +44,8 @@ public final class Constants {
     public static final int SMART_CURRENT_LIMIT = 40;
    //Motor ID Numbers
     //Elevator 
-    public static final int ID_ELEVATOR_LEFT_TALON = 11;
-    public static final int ID_ELEVATOR_RIGHT_TALON = 12;
+    public static final int ID_ELEVATOR_LEFT_TALON = 21;
+    public static final int ID_ELEVATOR_RIGHT_TALON = 22;
     //AlgaeHold
     public static final int ID_ALGAE_HOLD = 49; 
     //CoralHold

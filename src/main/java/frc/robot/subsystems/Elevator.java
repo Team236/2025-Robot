@@ -8,6 +8,7 @@ import frc.robot.Constants;
 
 import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
 import com.ctre.phoenix6.configs.MotorOutputConfigs;
+import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.configs.TalonFXConfigurator;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.InvertedValue;
@@ -21,6 +22,7 @@ public class Elevator extends SubsystemBase {
   /** Creates a new Elevator. */
   private TalonFX leftElevatorMotor, rightElevatorMotor;
   private TalonFXConfigurator leftConfig, rightConfig;
+  private TalonFXConfiguration leftTalonConfig, rightTalonConfig;
 
   private CurrentLimitsConfigs leftCurrentConfigs, rightCurrentConfigs;
   private MotorOutputConfigs leftOutputConfigs, rightOutputConfigs;
@@ -29,27 +31,37 @@ public class Elevator extends SubsystemBase {
   private boolean isTException, isBException;
 
   public Elevator() {
-    leftElevatorMotor = new TalonFX(Constants.MotorControllers.ID_ELEVATOR_LEFT_TALON);
-    rightElevatorMotor = new TalonFX(Constants.MotorControllers.ID_ELEVATOR_RIGHT_TALON);
+    leftElevatorMotor = new TalonFX(Constants.MotorControllers.ID_ELEVATOR_LEFT_TALON, "usb");
+    rightElevatorMotor = new TalonFX(Constants.MotorControllers.ID_ELEVATOR_RIGHT_TALON, "usb");
 
     // configure motors
-    leftConfig = leftElevatorMotor.getConfigurator();
-    leftCurrentConfigs = new CurrentLimitsConfigs();
-    leftCurrentConfigs.StatorCurrentLimitEnable = true;   
-    leftCurrentConfigs.StatorCurrentLimit = (Constants.MotorControllers.SMART_CURRENT_LIMIT);
-    leftOutputConfigs = new MotorOutputConfigs();
-    leftOutputConfigs.Inverted = InvertedValue.CounterClockwise_Positive;//TODO- both CCW or both CW
-    leftConfig.apply(leftCurrentConfigs);
-    leftConfig.apply(leftOutputConfigs);
+    leftTalonConfig = new TalonFXConfiguration();
+    leftTalonConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+    leftTalonConfig.CurrentLimits.SupplyCurrentLimit = Constants.MotorControllers.SMART_CURRENT_LIMIT;
+    leftElevatorMotor.getConfigurator().apply(leftTalonConfig);
 
-    rightConfig = rightElevatorMotor.getConfigurator();
-    rightCurrentConfigs = new CurrentLimitsConfigs();
-    rightCurrentConfigs.StatorCurrentLimitEnable = true;   
-    rightCurrentConfigs.StatorCurrentLimit = (Constants.MotorControllers.SMART_CURRENT_LIMIT);
-    rightOutputConfigs = new MotorOutputConfigs();
-    rightOutputConfigs.Inverted = InvertedValue.CounterClockwise_Positive;//TODO- both CCW or both CW
-    rightConfig.apply(rightCurrentConfigs);
-    rightConfig.apply(rightOutputConfigs);
+    rightTalonConfig = new TalonFXConfiguration();
+    rightTalonConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+    rightTalonConfig.CurrentLimits.SupplyCurrentLimit = Constants.MotorControllers.SMART_CURRENT_LIMIT;
+    rightElevatorMotor.getConfigurator().apply(rightTalonConfig);
+
+    // leftConfig = leftElevatorMotor.getConfigurator();
+    // leftCurrentConfigs = new CurrentLimitsConfigs();
+    // leftCurrentConfigs.StatorCurrentLimitEnable = true;   
+    // leftCurrentConfigs.StatorCurrentLimit = (Constants.MotorControllers.SMART_CURRENT_LIMIT);
+    // leftOutputConfigs = new MotorOutputConfigs();
+    // leftOutputConfigs.Inverted = InvertedValue.CounterClockwise_Positive;//TODO- both CCW or both CW
+    // leftConfig.apply(leftCurrentConfigs);
+    // leftConfig.apply(leftOutputConfigs);
+
+    // rightConfig = rightElevatorMotor.getConfigurator();
+    // rightCurrentConfigs = new CurrentLimitsConfigs();
+    // rightCurrentConfigs.StatorCurrentLimitEnable = true;   
+    // rightCurrentConfigs.StatorCurrentLimit = (Constants.MotorControllers.SMART_CURRENT_LIMIT);
+    // rightOutputConfigs = new MotorOutputConfigs();
+    // rightOutputConfigs.Inverted = InvertedValue.CounterClockwise_Positive;//TODO- both CCW or both CW
+    // rightConfig.apply(rightCurrentConfigs);
+    // rightConfig.apply(rightOutputConfigs);
 
     try {
       elevatorTopLimit = new DigitalInput(Constants.Elevator.DIO_ELEV_TOP);
