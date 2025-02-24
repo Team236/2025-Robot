@@ -91,7 +91,8 @@ public class AlgaePivot extends SubsystemBase {
   }
   
   public boolean atExtendLimit(){
-    if ((getPivotSpeed() < 0) && isLimit()){ //negative speed means extending
+    //TODO : find reasonable encoder value for partly extended
+    if ((getPivotSpeed() < 0) && isLimit() && (getPivotEncoder() < -50)){ //negative speed means extending
      return true;
       } else {
        return false;
@@ -99,7 +100,7 @@ public class AlgaePivot extends SubsystemBase {
     }
 
   public boolean atRetractLimit(){
-    if ((getPivotSpeed() > 0) && isLimit()){ //positive speed means retracting
+    if ((getPivotSpeed() >= 0) && isLimit()){ //positive speed means retracting
       return true;
        } else {
         return false;
