@@ -107,7 +107,7 @@ public boolean atExtendLimit(){  //TODO : find reasonable encoder value
 
 
 public boolean atRetractLimit(){
-  if ((getCoralPivotSpeed() > 0) && isCoralLimit()){ //positive speed means retracting
+  if ((getCoralPivotSpeed() >= 0) && isCoralLimit()){ //positive speed means retracting
     return true;
      } else {
       return false;
@@ -175,7 +175,7 @@ public void setFF(double kFF) {
     SmartDashboard.putBoolean("Coral Pivot Limit is hit:", isCoralLimit());
     SmartDashboard.putBoolean("CP at Retract Limit: ", atRetractLimit());
     SmartDashboard.putBoolean("CP at Extend Limit: ", atExtendLimit());
-    SmartDashboard.putBoolean("CP is intial extend: ", isInitialExtend);
+   // SmartDashboard.putBoolean("CP is intial extend: ", isInitialExtend);
     SmartDashboard.putBoolean("Coral Pivot is fully extended: ", isFullyExtended());
     SmartDashboard.putNumber("Coral Pivot Encoder Revolutions ", getCoralEncoder());
   }
