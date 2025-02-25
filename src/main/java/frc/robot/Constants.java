@@ -218,6 +218,7 @@ public static final class Swerve {
     public static final double ELEV_REV_TO_IN = 1.362;//TODO find actual
     public static final double ELEV_IN_TO_REV = 1/ELEV_REV_TO_IN;
 
+    public static final double BOTTOM_HEIGHT = 10; //TODO find actual
     public static final double L1_HEIGHT = 10; //TODO find actual
     public static final double L2_HEIGHT =20;//TODO find actual
     public static final double L3_HEIGHT = 30;//TODO find actual

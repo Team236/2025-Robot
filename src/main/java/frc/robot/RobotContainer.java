@@ -125,6 +125,7 @@ public class RobotContainer {
   private final ManualUpDown elevatorUp = new ManualUpDown(elevator, Constants.Elevator.ELEV_UP_SPEED);
   private final ManualUpDown elevatorDown = new ManualUpDown(elevator, Constants.Elevator.ELEV_DOWN_SPEED);
 
+  private final PIDToHeight pidElevToBottom = new PIDToHeight(elevator, Constants.Elevator.BOTTOM_HEIGHT);
   private final PIDToHeight pidElevatorL1 = new PIDToHeight(elevator, Constants.Elevator.L1_HEIGHT);
   private final PIDToHeight pidElevatorL2 = new PIDToHeight(elevator, Constants.Elevator.L2_HEIGHT);
   private final PIDToHeight pidElevatorL3 = new PIDToHeight(elevator, Constants.Elevator.L3_HEIGHT);
@@ -238,13 +239,13 @@ public class RobotContainer {
     //leftPov.whileTrue(driveFwdAndSideAndTurn);
     //leftPov.whileTrue(coralRightTarget);
 
-
-
     // a.whileTrue(elevatorDown);
     // x.whileTrue(elevatorUp);
+   // b.onTrue(pidElevToBottom);
     // downPov.onTrue(pidElevatorL1);
     // leftPov.onTrue(pidElevatorL2);
     // upPov.onTrue(pidElevatorL3);
+    //rightPov.onTrue(pidElevatorL4);
 
     // upPov.whileTrue(coralPivotUp);
     // downPov.whileTrue(coralPivotDown);
