@@ -226,26 +226,12 @@ public void drive(ChassisSpeeds chassisSpeed , DriveFeedforwards driveFeedforwar
         return Constants.Swerve.swerveKinematics.toChassisSpeeds(getModuleStates());
     }
 
-/* 
-    public double getLLAngleDegrees() {
-        return (LimelightHelpers.getTargetPose_CameraSpace("limelight")[5]);
-    }
-
-    public double getLLFwdDistMeters() {
-        return (LimelightHelpers.getTargetPose_CameraSpace("limelight")[2]);
-    }
-
-    public double getLLSideDistMeters() {
-        return (LimelightHelpers.getTargetPose_CameraSpace("limelight")[0]);
-    }
-
-    public double getLLFwdDistInch() {
-        return Units.metersToInches(LimelightHelpers.getTargetPose_CameraSpace("limelight")[2]);
-    }
-    
-    public double getLLSideDistInch() {
-        return Units.metersToInches(LimelightHelpers.getTargetPose_CameraSpace("limelight")[0]);
-    }
+/*  limelight methods retrieval target pose in CameraSpace in SWERVE class
+    public double getLLAngleDegrees() { return (LimelightHelpers.getTargetPose_CameraSpace("limelight")[5]);    }
+    public double getLLFwdDistMeters() { return (LimelightHelpers.getTargetPose_CameraSpace("limelight")[2]);    }
+    public double getLLSideDistMeters() { return (LimelightHelpers.getTargetPose_CameraSpace("limelight")[0]);    }
+    public double getLLFwdDistInch() { return Units.metersToInches(LimelightHelpers.getTargetPose_CameraSpace("limelight")[2]);    }
+    public double getLLSideDistInch() { return Units.metersToInches(LimelightHelpers.getTargetPose_CameraSpace("limelight")[0]);    }
  */
 
     @Override
@@ -260,35 +246,35 @@ public void drive(ChassisSpeeds chassisSpeed , DriveFeedforwards driveFeedforwar
            SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Angle degrees", mod.getPosition().angle.getDegrees());
           //Can't use m/s in the key!! SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Velocity m/s", mod.getState().speedMetersPerSecond);
          }
-    /* 
+
+    /*  publish current limelight data to smartdashboard CameraSpace
         poseAngle = LimelightHelpers.getTargetPose_CameraSpace("limelight")[5];
         SmartDashboard.putNumber("TargetingAngle in swerve: ", poseAngle);
         poseForwardDistance = LimelightHelpers.getTargetPose_CameraSpace("limelight")[2];
         SmartDashboard.putNumber("TargetingForwardDistance in swerve: ", poseForwardDistance / 0.0254);
-        poseSideDistance = LimelightHelpers.getTargetPose_CameraSpace("limelight")[0];
+        poseSideDistance = LimelightHelpers.getTargetPose_CameraSpace("limelight")[0];  
         SmartDashboard.putNumber("TargetingSideDistance in swerve: ", poseSideDistance / 0.0254);
     */
     }
 
-    // PathPlanner method to follow path specified in the calling of the method from a command class
-    public Command followSringPathCommand(String pathName) {
+    // new PathPlanner method to follow path specified in the calling of the method from a command class
+    public Command followStringPathCommand(String pathName) {
         // PathPlannerPath pathPlannerPath;
         Command m_pathCommand = null;
         // PathPlannerPath currentPath = null;
         try{
             pathPlannerPath2 = PathPlannerPath.fromPathFile(pathName);
-            
-        } catch  (Exception e) {
-            System.out.print("fromPathFile exception2: " + e.getStackTrace() );  
-        }
+            } catch  (Exception e) {
+                System.out.print("fromPathFile exception2: " + e.getStackTrace() );  
+            }
         // currentPath = pathPlannerPath.mirrorPath();
 
         // Create a path following command using AutoBuilder. This would also trigger event markers.
         try {
             m_pathCommand = AutoBuilder.followPath(pathPlannerPath2);
-        } catch (Exception e) {
-            System.out.print("followPath pathName exception: " + e.getStackTrace() );  
-        }
+            } catch (Exception e) {
+                System.out.print("followPath pathName exception: " + e.getStackTrace() );  
+            }
         return m_pathCommand;
     } 
 

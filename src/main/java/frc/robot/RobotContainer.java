@@ -280,7 +280,7 @@ public class RobotContainer {
   //  upPov.onTrue(driveFwd113);
   //  x.onTrue(fullRunRight); 
   x.onTrue(s_Swerve.followPathCommand(currentPath));
-  Combo_view_x.onTrue(s_Swerve.followSringPathCommand("2Left45_Reef-K")); 
+  Combo_view_x.onTrue(s_Swerve.followStringPathCommand("2Left45_Reef-K")); 
 
   // x.onTrue(AutoBuilder.followPath(currentPath.mirrorPath() )); 
 
