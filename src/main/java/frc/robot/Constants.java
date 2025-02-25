@@ -223,6 +223,9 @@ public static final class Swerve {
     public static final double L2_HEIGHT =20;//TODO find actual
     public static final double L3_HEIGHT = 30;//TODO find actual
     public static final double L4_HEIGHT = 40;//TODO find actual
+    public static final double PICK_ALGAE_1_HEIGHT = 25;//TODO find actual
+    public static final double PICK_ALGAE_2_HEIGHT = 35;//TODO find actual
+    public static final double SCORE_ALGAE_NET_HEIGHT = 52; //TODO find actual
     
     public static final double MAX_HEIGHT = 57;//15;  //TODO find actual
 
@@ -249,8 +252,8 @@ public static class CoralHold {
   public static class AlgaePivot {
     public static final int DIO_LIMIT = 6;
     public static final double ENC_REVS_MAX = -700000; //TODO find actual
-    public static final double ENC_REVS_TEST1 = -5;
-    public static final double ENC_REVS_TEST2 = -10;
+    public static final double ENC_REVS_ALGAE_PICKUP = -10;
+    public static final double ENC_REVS_SCORE_NET = -2;
     public static final double MAN_EXT_SPEED = -0.1;
     public static final double MAN_RET_SPEED = 0.1;
     public static final double KP = 0.029;  //TODO find actual
@@ -262,8 +265,10 @@ public static class CoralHold {
   public static class CoralPivot {
     public static final int DIO_LIMIT = 8; 
     public static final double ENC_REVS_MAX = -700000;//TODO determine actual
-    public static final double ENC_REVS_TEST1 = 5;
-    public static final double ENC_REVS_TEST2 = 10;
+    public static final double ENC_REVS_LEVEL1 = -2;
+    public static final double ENC_REVS_LEVEL2 = -4;
+    public static final double ENC_REVS_LEVEL3 = -6;
+    public static final double ENC_REVS_LEVEL4 = -9;
     public static final double MAN_EXT_SPEED = -0.3;
     public static final double MAN_RET_SPEED = 0.3;
     public static final double KP = 0.029; //TODO find actual

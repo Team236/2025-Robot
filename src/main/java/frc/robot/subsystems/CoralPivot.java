@@ -99,8 +99,7 @@ public boolean isFullyExtended() { //revs max is a negative number
 }
 
 
-public boolean atExtendLimit(){  //TODO : find reasonable encoder value 
- // if ((getCoralPivotSpeed() < 0) && isCoralLimit() && !isInitialExtend){ //negative speed means extending
+public boolean atExtendLimit(){  
  //TODO - get realistic encoder value for being partly extended
  if ((getCoralPivotSpeed() < 0 || desiredSpeed < 0) && isCoralLimit() && (getCoralEncoder() < -50)){
     return true;

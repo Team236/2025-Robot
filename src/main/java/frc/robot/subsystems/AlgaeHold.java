@@ -58,15 +58,18 @@ public boolean isAHoldLimit(){ //Leave normally open
     algaeHoldMotor.set(0);
   }
 
-
   public void setAlgaeHoldSpeed(double speed1, double speed2)
-  { // algaeHoldMotor.set(speed);
- 
+  {
     if (isAHoldLimit()){
       algaeHoldMotor.set(speed2);
     } else {
       algaeHoldMotor.set(speed1);
     }
+    }
+    
+  public void setAlgaeReleaseSpeed(double speed){ 
+    //pass in a negative speed here
+    algaeHoldMotor.set(speed);
     }
 
   @Override
