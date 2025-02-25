@@ -93,15 +93,13 @@ The numbers used below are robot specific, and should be tuned. */
                         robotConfig, // The robot configuration
                         () -> {
                           // Boolean supplier that controls when the path will be mirrored for the red alliance
-                          // This will flip the path being followed to the red side of the field.
-                          // THE ORIGIN WILL REMAIN ON THE BLUE SIDE
                           var alliance = DriverStation.getAlliance();
-                          if (alliance.isPresent()) {
-                            return alliance.get() == DriverStation.Alliance.Red;
-                          }
+                        if (alliance.isPresent()) { 
+                            return alliance.get() == DriverStation.Alliance.Red; 
+                        }
                           return false;
                         },
-                        this // Reference to this subsystem to set requirements
+                        this    // Reference to this subsystem to set requirements
                 );
             }
             
@@ -139,6 +137,10 @@ public void drive(ChassisSpeeds chassisSpeed , DriveFeedforwards driveFeedforwar
             mod.setDesiredState(swerveModuleStates[mod.moduleNumber], isOpenLoop);
         }
     }    
+
+    public ChassisSpeeds drive(){
+
+    }
 
     /* Used by SwerveControllerCommand in Auto */
     public void setModuleStates(SwerveModuleState[] desiredStates) {
