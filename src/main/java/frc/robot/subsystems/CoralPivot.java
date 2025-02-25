@@ -63,6 +63,11 @@ public class CoralPivot extends SubsystemBase {
 }
 
 // methods start here
+
+//public double getRawEncoder() {
+//return coralPivotEncoder.getRaw();
+//}
+
 public double getCoralEncoder() {  //gives encoder reading in Revs
   //return coralPivotEncoder.getPosition();
   return coralPivotEncoder.getRaw(); // 512 counts per rev
@@ -93,9 +98,6 @@ public boolean isFullyExtended() { //revs max is a negative number
   return (getCoralEncoder() <= Constants.CoralPivot.ENC_REVS_MAX);
 }
 
-public void setIsInitialExtend(boolean initialExtendState) {
-  isInitialExtend = initialExtendState;
-}
 
 public boolean atExtendLimit(){  //TODO : find reasonable encoder value 
  // if ((getCoralPivotSpeed() < 0) && isCoralLimit() && !isInitialExtend){ //negative speed means extending
@@ -106,7 +108,6 @@ public boolean atExtendLimit(){  //TODO : find reasonable encoder value
      return false;
     }
   }
-
 
 public boolean atRetractLimit(){
   if ((getCoralPivotSpeed() >= 0 || desiredSpeed >= 0) && isCoralLimit()){ //positive speed means retracting
@@ -119,38 +120,31 @@ public boolean atRetractLimit(){
 
 public void setCoralPivotSpeed(double speed) {
   desiredSpeed = speed;
-  if (speed <= 0) 
-  
-  { //negative speed means extending 
+  if (speed <= 0) { //negative speed means extending 
     if (atExtendLimit() || isFullyExtended()) {
-      SmartDashboard.putBoolean("the CP speed negative and extend limit is hit- stop: ", true);
+      //SmartDashboard.putBoolean("the CP speed negative and extend limit is hit- stop: ", true);
       // if extend limit is tripped or at the maximum desired extension and going out, stop 
         stopCoralPivot();
      }  else {
-      SmartDashboard.putBoolean("the CP speed negative and extend limit is not hit- : go", true);
+        //SmartDashboard.putBoolean("the CP speed negative and extend limit is not hit- : go", true);
         //extending out but fully extended limit is not tripped, go at commanded speed
        coralPivotMotor.set(speed);
       }
  } 
-
- else 
- 
- { //speed > 0, so retracting
+ else { //speed > 0, so retracting
       if (atRetractLimit()) {
-        SmartDashboard.putBoolean("the CP speed positive and retract limit is hit- stop: ", true);
+        //SmartDashboard.putBoolean("the CP speed positive and retract limit is hit- stop: ", true);
         //retracting and retract limit is tripped, stop and zero encoder
         stopCoralPivot();
         resetCoralEncoder();
       } else {
         // retracting but fully retracted limit is not tripped, go at commanded speed
-        SmartDashboard.putBoolean("the CP speed positive and retact limit not hit - go: ", true);
+        //SmartDashboard.putBoolean("the CP speed positive and retact limit not hit - go: ", true);
         coralPivotMotor.set(speed); 
       }
      }
 
 }
-
-
 
 //Begin things that may not be relevant
 //these are things that might be useful in the future if we use CANSparkMax PID
@@ -186,7 +180,6 @@ public void setFF(double kFF) {
     SmartDashboard.putBoolean("Coral Pivot Limit is hit:", isCoralLimit());
     SmartDashboard.putBoolean("CP at Retract Limit: ", atRetractLimit());
     SmartDashboard.putBoolean("CP at Extend Limit: ", atExtendLimit());
-   // SmartDashboard.putBoolean("CP is intial extend: ", isInitialExtend);
     SmartDashboard.putBoolean("Coral Pivot is fully extended: ", isFullyExtended());
     SmartDashboard.putNumber("Coral Pivot Encoder Revolutions ", getCoralEncoder());
   }
