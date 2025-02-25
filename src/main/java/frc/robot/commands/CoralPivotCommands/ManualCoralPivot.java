@@ -26,7 +26,7 @@ public class ManualCoralPivot extends Command {
   @Override
   public void initialize() {
     //coralPivot.setIsInitialExtend(true);
-    //SmartDashboard.putBoolean("Manual coral pivot command initualized", true);
+    SmartDashboard.putBoolean("Manual coral pivot command initualized", true);
   }
 
 

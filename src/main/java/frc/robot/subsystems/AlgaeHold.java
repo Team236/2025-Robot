@@ -42,16 +42,16 @@ public class AlgaeHold extends SubsystemBase {
 }
 
 //METHODS Start Here
-public boolean isAHoldLimit(){
+public boolean isAHoldLimit(){ //Leave normally open
   if (isAHoldException){
     return true; } 
   else{
-    return algaeHoldLimit.get();
+    return !algaeHoldLimit.get(); //TODO: Change back for actual switch (temporarily inverted
   }
  }
 
  public boolean getAHoldLimit() {
-    return algaeHoldLimit.get();
+    return !algaeHoldLimit.get(); //TODO: Change back for actual switch (temporarily inverted)
  }
 
   public void stopAlgaeHold(){

@@ -26,6 +26,7 @@ public class AlgaePivot extends SubsystemBase {
   private DigitalInput algaeLimit;
   private boolean isPivotException;
 
+  private double desiredSpeed;
   private RelativeEncoder algaePivotEncoder;
   //private boolean hasResetPivotEncoder;
 
@@ -92,40 +93,42 @@ public class AlgaePivot extends SubsystemBase {
   
   public boolean atExtendLimit(){
     //TODO : find reasonable encoder value for partly extended
-    if ((getPivotSpeed() < 0) && isLimit() && (getPivotEncoder() < -50)){ //negative speed means extending
-     return true;
-      } else {
-       return false;
-      }
+    if ((getPivotSpeed() < 0 || desiredSpeed < 0) && isLimit() && (getPivotEncoder() < -50)){ //negative speed means extending
+      return true;
+    } else {
+      return false;
     }
+  }
 
   public boolean atRetractLimit(){
-    if ((getPivotSpeed() >= 0) && isLimit()){ //positive speed means retracting
+    if ((getPivotSpeed() >= 0 || desiredSpeed >= 0) && isLimit()){ //positive speed means retracting
       return true;
        } else {
         return false;
        }
      }
 
-     public void setAlgaePivotSpeed(double speed){  
-      if (speed <= 0){ //negative speed means extending
-        //Extending
-        if (atExtendLimit() || isFullyExtended()){
-          stopAlgaePivot();
-        } else
-        {
-          algaePivotMotor.set(speed);
-        }
-      } else //speed >0 so is retracting
-      {//Retracting
-        if (atRetractLimit()){
-          stopAlgaePivot();
-          resetPivotEncoder();
-        } else{
-          algaePivotMotor.set(speed);
-        }
+  public void setAlgaePivotSpeed(double speed){  
+    desiredSpeed = speed;
+
+    if (speed <= 0){ //negative speed means extending
+      //Extending
+      if (atExtendLimit() || isFullyExtended()){
+        stopAlgaePivot();
+      } else
+      {
+        algaePivotMotor.set(speed);
+      }
+    } else //speed >0 so is retracting
+    {//Retracting
+      if (atRetractLimit()){
+        stopAlgaePivot();
+        resetPivotEncoder();
+      } else{
+        algaePivotMotor.set(speed);
       }
     }
+  }
   
   @Override
   public void periodic() {

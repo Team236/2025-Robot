@@ -47,11 +47,11 @@ public final class Constants {
     public static final int ID_ELEVATOR_LEFT_TALON = 21;
     public static final int ID_ELEVATOR_RIGHT_TALON = 22;
     //AlgaeHold
-    public static final int ID_ALGAE_HOLD = 49; 
+    public static final int ID_ALGAE_HOLD = 56; 
     //CoralHold
     public static final int ID_CORAL_HOLD_MOTOR = 1;
     //AlgaePivot 
-    public static final int ID_ALGAE_PIVOT = 50; //50
+    public static final int ID_ALGAE_PIVOT = 57;
     //CoralPivot 
     public static final int ID_CORAL_PIVOT = 2;//BRUSHED!!! 
   }
@@ -74,7 +74,7 @@ public final class Constants {
 
     public static final double KP_ROTATION = 0.008; //kP value for rotation
     public static final double KP_TRANSLATION = 0.4;//kP value for forward (translation) motion
-    public static final double KP_STRAFE = 0.4;  //kP value for the sideways (strafe) motion
+    public static final double KP_STRAFE = 0.4;  //kP value for the sideways (strafe) motio%n
 }
 
 public static final class Swerve {
@@ -211,30 +211,30 @@ public static final class Swerve {
     public static final int DIO_ELEV_TOP = 4;
     public static final int DIO_ELEV_BOTTOM = 5;
 
-    public static final double ELEV_UP_SPEED = 0.15;
+    public static final double ELEV_UP_SPEED = 0.1;
     public static final double ELEV_DOWN_SPEED = -0.1;
 
     //placeholder conversion factors
-    public static final double ELEV_REV_TO_IN = 0.32327;//TODO find actual
+    public static final double ELEV_REV_TO_IN = 1.362;//TODO find actual
     public static final double ELEV_IN_TO_REV = 1/ELEV_REV_TO_IN;
 
-    public static final double L1_HEIGHT = 3; //TODO find actual
-    public static final double L2_HEIGHT = 6;//TODO find actual
-    public static final double L3_HEIGHT = 9;//TODO find actual
-    public static final double L4_HEIGHT = 12;//TODO find actual
+    public static final double L1_HEIGHT = 10; //TODO find actual
+    public static final double L2_HEIGHT =20;//TODO find actual
+    public static final double L3_HEIGHT = 30;//TODO find actual
+    public static final double L4_HEIGHT = 40;//TODO find actual
     
-    public static final double MAX_HEIGHT = 1500000;//15;  //TODO find actual
+    public static final double MAX_HEIGHT = 57;//15;  //TODO find actual
 
     //placeholder PID values
-    public static final double KP_ELEV = 0.2;
+    public static final double KP_ELEV = 0.05;
     public static final double KI_ELEV = 0;
     public static final double KD_ELEV = 0;
   }
 
 public static class AlgaeHold {
   public static final double HOLD_SPEED1 = 0.5;//MUST BE POSITIVE!
-  public static final double HOLD_SPEED2 = 0.2;//MUST BE POSITIVE!
-  public static final double RELEASE_SPEED = -0.3;
+  public static final double HOLD_SPEED2 = 0;//MUST BE POSITIVE!
+  public static final double RELEASE_SPEED = -1.0;
   public static final int DIO_AH_LIMIT = 13;
 }
 
@@ -269,8 +269,8 @@ public static class CoralHold {
     public static final double KI = 0;
     public static final double KD = 0;
     public static final double KFF = 0;
-    public static final int DIO_ENC_A = 11;
-    public static final int DIO_ENC_B = 12;
+    public static final int DIO_ENC_A = 11;//11
+    public static final int DIO_ENC_B = 12;//12
   }
   
   public static class XboxController {
