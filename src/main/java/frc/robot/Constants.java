@@ -219,16 +219,17 @@ public static final class Swerve {
     public static final double ELEV_REV_TO_IN = 1.362;//TODO find actual
     public static final double ELEV_IN_TO_REV = 1/ELEV_REV_TO_IN;
 
-    public static final double BOTTOM_HEIGHT = 10; //TODO find actual
+    public static final double BOTTOM_HEIGHT = 5; //TODO find actual
     public static final double L1_HEIGHT = 10; //TODO find actual
     public static final double L2_HEIGHT =20;//TODO find actual
     public static final double L3_HEIGHT = 30;//TODO find actual
     public static final double L4_HEIGHT = 40;//TODO find actual
     public static final double PICK_ALGAE_1_HEIGHT = 25;//TODO find actual
     public static final double PICK_ALGAE_2_HEIGHT = 35;//TODO find actual
-    public static final double SCORE_ALGAE_NET_HEIGHT = 52; //TODO find actual
-    
-    public static final double MAX_HEIGHT = 57;//15;  //TODO find actual
+    public static final double SCORE_ALGAE_NET_HEIGHT = 50; //TODO find actual
+    public static final double CLIMB_START_HEIGHT = 12;  //TODO find actual
+    public static final double CLIMB_END_HEIGHT = 5; //TODO find actual
+    public static final double MAX_HEIGHT = 57;
 
     //placeholder PID values
     public static final double KP_ELEV = 0.04;
