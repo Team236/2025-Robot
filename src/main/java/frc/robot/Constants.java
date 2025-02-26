@@ -213,6 +213,7 @@ public static final class Swerve {
 
     public static final double ELEV_UP_SPEED = 0.1;
     public static final double ELEV_DOWN_SPEED = -0.1;
+    public static final double ELEV_CLIMB_DOWN_SPEED = -0.3;
 
     //placeholder conversion factors
     public static final double ELEV_REV_TO_IN = 1.362;//TODO find actual
