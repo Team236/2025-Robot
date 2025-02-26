@@ -245,15 +245,15 @@ public class RobotContainer {
     //downPov.whileTrue(coralLeftTarget);
     //leftPov.whileTrue(driveFwdAndSideAndTurn);
     //leftPov.whileTrue(coralRightTarget);
-    
-    leftPov.whileTrue(elevatorClimbDown);
+
+    downPov.whileTrue(elevatorClimbDown);
     a.whileTrue(elevatorDown);
     x.whileTrue(elevatorUp);
     b.onTrue(pidElevToBottom);
-    downPov.onTrue(pidElevatorL1);
+   // downPov.onTrue(pidElevatorL1);
    // leftPov.onTrue(pidElevatorL2);
-    upPov.onTrue(pidElevatorL3);
-    rightPov.onTrue(pidElevatorL4);
+   // upPov.onTrue(pidElevatorL3);
+   // rightPov.onTrue(pidElevatorL4);
   
 
     // upPov.whileTrue(coralPivotUp);
