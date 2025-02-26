@@ -21,10 +21,13 @@ public class Algae_Score extends SequentialCommandGroup {
   /** Creates a new Algae_Score. */
   public Algae_Score(Elevator elevator, AlgaeHold algaeHold,AlgaePivot algaePivot) {
   addCommands(
-   Commands.parallel(
-      new PIDToHeight(elevator, Constants.Elevator. SCORE_ALGAE_NET_HEIGHT),
-      new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_SCORE_NET)
-    ),
+   //Likely cannot do these in parallel, since Algae grabber may hit elevator 
+   //Commands.parallel(
+   //  new PIDToHeight(elevator, Constants.Elevator. SCORE_ALGAE_NET_HEIGHT),
+   //  new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_SCORE_NET)
+   // ),
+    new PIDToHeight(elevator, Constants.Elevator. SCORE_ALGAE_NET_HEIGHT),
+    new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_SCORE_NET),
     new AlgaeRelease(algaeHold, Constants.AlgaeHold.RELEASE_SPEED)
     );
   }

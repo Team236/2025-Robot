@@ -12,7 +12,7 @@ import frc.robot.Constants;
 import frc.robot.subsystems.Elevator;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class TrapezoidPID extends Command {
+public class ProfiledPIDToHeight extends Command {
     private Elevator elevator;
   private double desiredHeight; //desired height in inches
   private double kP = Constants.Elevator.KP_ELEV;
@@ -22,7 +22,7 @@ public class TrapezoidPID extends Command {
   private final ProfiledPIDController pidController;
 
   /** Creates a new TrapezoidPID. */
-  public TrapezoidPID(Elevator elevator, double desiredHeight) {
+  public ProfiledPIDToHeight(Elevator elevator, double desiredHeight) {
     this.elevator = elevator;
     this.desiredHeight = desiredHeight;
     addRequirements(elevator);
