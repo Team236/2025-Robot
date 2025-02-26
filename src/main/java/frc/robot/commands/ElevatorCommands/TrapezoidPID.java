@@ -4,51 +4,53 @@
 
 package frc.robot.commands.ElevatorCommands;
 
-import frc.robot.Constants;
-import frc.robot.subsystems.*;
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.controller.ProfiledPIDController;
+import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.wpilibj2.command.Command;
-// import edu.wpi.first.wpilibj2.command.PIDCommand;
+import frc.robot.Constants;
+import frc.robot.subsystems.Elevator;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class PIDToHeight extends Command {
-  private Elevator elevator;
+public class TrapezoidPID extends Command {
+    private Elevator elevator;
   private double desiredHeight; //desired height in inches
-  private final PIDController pidController;
   private double kP = Constants.Elevator.KP_ELEV;
   private double kI = Constants.Elevator.KI_ELEV;
   private double kD = Constants.Elevator.KD_ELEV;
+  private final TrapezoidProfile.Constraints constraints;
+  private final ProfiledPIDController pidController;
 
-  /** Creates a new SetElevatorHeight. */
-  public PIDToHeight(Elevator elevator, double desiredHeight) {
+  /** Creates a new TrapezoidPID. */
+  public TrapezoidPID(Elevator elevator, double desiredHeight) {
+    this.elevator = elevator;
+    this.desiredHeight = desiredHeight;
+    addRequirements(elevator);
 
-  pidController = new PIDController(kP, kI, kD);
-  this.elevator = elevator;
-  this.desiredHeight = desiredHeight;
-  // Use addRequirements() here to declare subsystem dependencies.
-  addRequirements(elevator);
-  pidController.setSetpoint(this.desiredHeight);
+    //max velocity and acceleration in m/s 
+    constraints = new TrapezoidProfile.Constraints(1.25, 1.25);
+    pidController = new ProfiledPIDController(kP, kI, kD, constraints);
+
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    pidController.reset();
+    pidController.reset(desiredHeight);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
-
+  @Override
   public void execute() {
+    pidController.setGoal(desiredHeight);
     elevator.setElevSpeed(pidController.calculate(elevator.getElevatorHeight()));
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    //Removed statement below - may have been the cause of the jolting from one level to another!
-   // elevator.stopElevator();
+    //elevator.stopElevator();
   }
-
 
   // Returns true when the command should end.
   @Override
