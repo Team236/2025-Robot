@@ -292,7 +292,46 @@ public class RobotContainer {
   }
   
   public Command getAutonomousCommand() {
-   return null;//new FullRunRight(s_Swerve);
+    // SmartDashboard.putString("autokey", "Entering getAutoCommand now");
+    Command command = null;
+    //Switch 1 is in the "ON" spot on the box
+   /*  if (!autoSwitch1.get() && autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {
+      command = wooferLeft;
+    } else if (autoSwitch1.get() && !autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {
+      command = frontTwoShots;
+    } else if (autoSwitch1.get() && autoSwitch2.get() && !autoSwitch3.get() && autoSwitch4.get()) {
+      command = oneWooferShot;
+    } else if (autoSwitch1.get() && autoSwitch2.get() && autoSwitch3.get() && !autoSwitch4.get()) {
+      command =  wooferRight;
+    } else if (!autoSwitch1.get() && !autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {
+      command =  leftRedToMidfield2;
+    } else if (autoSwitch1.get() && autoSwitch2.get() && !autoSwitch3.get() && !autoSwitch4.get()) {
+      command = rightBlueToMidfield2;
+    } else if (!autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && autoSwitch4.get()) {
+      command = centerRedToMidfield3;
+    } else if (autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && !autoSwitch4.get()) {
+      command =  centerBlueToMidfield3;
+    } else if (!autoSwitch1.get() && !autoSwitch2.get() && autoSwitch3.get() && !autoSwitch4.get()) {
+      command =  centerRed2Speaker1Amp;
+   }  else if (!autoSwitch1.get() && autoSwitch2.get() && !autoSwitch3.get() && !autoSwitch4.get()) {
+      command =  centerBlue2Speaker1Amp;
+   }  else if (!autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && !autoSwitch4.get()) {
+      command =  leftRed1Spkr1AmpToMid;
+   }  else if (autoSwitch1.get() && autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {
+      command =  rightBlue1Spkr1AmpToMid;
+   }  else if (!autoSwitch1.get() && autoSwitch2.get() && autoSwitch3.get() && !autoSwitch4.get()) {
+      command =  leftBlueToMidfield2;
+   }  else if (autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && autoSwitch4.get()) {
+      command =  rightRedToMidfield2;
+   }  else if (!autoSwitch1.get() && autoSwitch2.get() && !autoSwitch3.get() && autoSwitch4.get()) {
+      command =  l_WooferShotPullOut;
+   }  else if (autoSwitch1.get() && !autoSwitch2.get() && autoSwitch3.get() && !autoSwitch4.get()) {
+      command =  r_WooferShotPullOut;
+   }
+      */
+   return command;
   }
 
-}
+  }
+
+
