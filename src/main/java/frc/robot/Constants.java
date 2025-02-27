@@ -241,7 +241,7 @@ public static class AlgaeHold {
   public static final double HOLD_SPEED1 = 0.5;//MUST BE POSITIVE!
   public static final double HOLD_SPEED2 = 0;//MUST BE POSITIVE!
   public static final double RELEASE_SPEED = -1.0;
-  public static final int DIO_AH_LIMIT = 13;
+  public static final int DIO_AH_LIMIT = 9;
 }
 
 public static class CoralHold {
