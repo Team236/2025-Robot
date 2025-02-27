@@ -247,7 +247,7 @@ public static class AlgaeHold {
 public static class CoralHold {
   public static final int DIO_COUNTER = 10;
   public static final double HOLD_SPEED = 0.15;
-  public static final double RELEASE_SPEED = 0.75;
+  public static final double RELEASE_SPEED = 0.5;
   public static final double L4_RELEASE_SPEED = 0.1;
 }
 
@@ -271,8 +271,8 @@ public static class CoralHold {
     public static final double ENC_REVS_LEVEL2 = -4;
     public static final double ENC_REVS_LEVEL3 = -6;
     public static final double ENC_REVS_LEVEL4 = -9;
-    public static final double MAN_EXT_SPEED = -0.3;
-    public static final double MAN_RET_SPEED = 0.3;
+    public static final double MAN_EXT_SPEED = -0.6;
+    public static final double MAN_RET_SPEED = 0.6;
     public static final double KP = 0.029; //TODO find actual
     public static final double KI = 0;
     public static final double KD = 0;
