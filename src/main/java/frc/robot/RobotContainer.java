@@ -126,17 +126,17 @@ public class RobotContainer {
     
       
   //Elevator
-  private final ManualUpDown elevatorUp = new ManualUpDown(elevator, Constants.Elevator.ELEV_UP_SPEED);
-  private final ManualUpDown elevatorDown = new ManualUpDown(elevator, Constants.Elevator.ELEV_DOWN_SPEED);
-  private final ManualUpDown elevatorClimbDown = new ManualUpDown(elevator, Constants.Elevator.ELEV_CLIMB_DOWN_SPEED);
+  private final ManualUpDown elevatorUp = new ManualUpDown(elevator, algaePivot, Constants.Elevator.ELEV_UP_SPEED);
+  private final ManualUpDown elevatorDown = new ManualUpDown(elevator, algaePivot, Constants.Elevator.ELEV_DOWN_SPEED);
+  private final ManualUpDown elevatorClimbDown = new ManualUpDown(elevator, algaePivot, Constants.Elevator.ELEV_CLIMB_DOWN_SPEED);
 
-  private final PIDToHeight pidPrepForClimb = new PIDToHeight(elevator, Constants.Elevator.CLIMB_START_HEIGHT);
-  private final PIDToHeight pidClimb = new PIDToHeight(elevator, Constants.Elevator.CLIMB_END_HEIGHT);
-  private final PIDToHeight pidElevToBottom = new PIDToHeight(elevator, Constants.Elevator.BOTTOM_HEIGHT);
-  private final PIDToHeight pidElevatorL1 = new PIDToHeight(elevator, Constants.Elevator.L1_HEIGHT);
-  private final PIDToHeight pidElevatorL2 = new PIDToHeight(elevator, Constants.Elevator.L2_HEIGHT);
-  private final PIDToHeight pidElevatorL3 = new PIDToHeight(elevator, Constants.Elevator.L3_HEIGHT);
-  private final PIDToHeight pidElevatorL4 = new PIDToHeight(elevator, Constants.Elevator.L4_HEIGHT);
+  private final PIDToHeight pidPrepForClimb = new PIDToHeight(elevator, algaePivot, Constants.Elevator.CLIMB_START_HEIGHT);
+  private final PIDToHeight pidClimb = new PIDToHeight(elevator, algaePivot, Constants.Elevator.CLIMB_END_HEIGHT);
+  private final PIDToHeight pidElevToBottom = new PIDToHeight(elevator, algaePivot, Constants.Elevator.BOTTOM_HEIGHT);
+  private final PIDToHeight pidElevatorL1 = new PIDToHeight(elevator,algaePivot, Constants.Elevator.L1_HEIGHT);
+  private final PIDToHeight pidElevatorL2 = new PIDToHeight(elevator, algaePivot, Constants.Elevator.L2_HEIGHT);
+  private final PIDToHeight pidElevatorL3 = new PIDToHeight(elevator, algaePivot, Constants.Elevator.L3_HEIGHT);
+  private final PIDToHeight pidElevatorL4 = new PIDToHeight(elevator, algaePivot, Constants.Elevator.L4_HEIGHT);
 
   //AlgaeHold
   private final AlgaeGrab algaeGrab = new AlgaeGrab(algaeHold, Constants.AlgaeHold.HOLD_SPEED1, Constants.AlgaeHold.HOLD_SPEED2);

@@ -4,57 +4,31 @@
 
 package frc.robot.commands.ElevatorCommands;
 
-import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.math.controller.ProfiledPIDController;
-import edu.wpi.first.math.trajectory.TrapezoidProfile;
-import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
+import frc.robot.commands.AlgaePivotCommands.PIDAlgaePivot;
+import frc.robot.subsystems.AlgaeHold;
+import frc.robot.subsystems.AlgaePivot;
 import frc.robot.subsystems.Elevator;
 
-/* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class ProfiledPIDToHeight extends Command {
-    private Elevator elevator;
-  private double desiredHeight; //desired height in inches
-  private double kP = Constants.Elevator.KP_ELEV;
-  private double kI = Constants.Elevator.KI_ELEV;
-  private double kD = Constants.Elevator.KD_ELEV;
-  private final TrapezoidProfile.Constraints constraints;
-  private final ProfiledPIDController pidController;
+// NOTE:  Consider using this command inline, rather than writing a subclass.  For more
+// information, see:
+// https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
+public class ProfiledPIDToHeight extends SequentialCommandGroup {
+  /** Creates a new ManualUpDown. */
+  public ProfiledPIDToHeight(Elevator elevator, AlgaePivot algaePivot, double desiredHeight) {
 
-  /** Creates a new TrapezoidPID. */
-  public ProfiledPIDToHeight(Elevator elevator, double desiredHeight) {
-    this.elevator = elevator;
-    this.desiredHeight = desiredHeight;
-    addRequirements(elevator);
+    if (algaePivot.getPivotEncoder() > Constants.AlgaePivot.ENC_REVS_ELEVATOR_SAFE_POSITION){
+      addCommands(
+      new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_ELEVATOR_SAFE_POSITION),
+      new WaitCommand(1), //Adjust as needed
+      new DangerProfiledPIDToHeight(elevator, desiredHeight));
+    }
+    else{
+      addCommands(
+      new DangerProfiledPIDToHeight(elevator, desiredHeight));
+    }
 
-    //max velocity and acceleration in m/s 
-    constraints = new TrapezoidProfile.Constraints(1.25, 1.25);
-    pidController = new ProfiledPIDController(kP, kI, kD, constraints);
-
-  }
-
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    pidController.reset(desiredHeight);
-  }
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-    pidController.setGoal(desiredHeight);
-    elevator.setElevSpeed(pidController.calculate(elevator.getElevatorHeight()));
-  }
-
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-    //elevator.stopElevator();
-  }
-
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
   }
 }

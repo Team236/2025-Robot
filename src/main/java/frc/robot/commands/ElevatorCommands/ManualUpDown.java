@@ -4,45 +4,31 @@
 
 package frc.robot.commands.ElevatorCommands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.Constants;
+import frc.robot.commands.AlgaePivotCommands.PIDAlgaePivot;
+import frc.robot.subsystems.AlgaeHold;
+import frc.robot.subsystems.AlgaePivot;
 import frc.robot.subsystems.Elevator;
 
-/* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class ManualUpDown extends Command {
-
-  private Elevator elevator;
-  private double speed;
-
+// NOTE:  Consider using this command inline, rather than writing a subclass.  For more
+// information, see:
+// https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
+public class ManualUpDown extends SequentialCommandGroup {
   /** Creates a new ManualUpDown. */
-  public ManualUpDown(Elevator elevator, double speed) {
-    this.elevator = elevator;
-    this.speed = speed;
-    addRequirements(this.elevator);
-  }
+  public ManualUpDown(Elevator elevator, AlgaePivot algaePivot, double speed) {
 
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-   // SmartDashboard.putBoolean("Initialize manualUpDown", true);
-  }
+    if (algaePivot.getPivotEncoder() > Constants.AlgaePivot.ENC_REVS_ELEVATOR_SAFE_POSITION){
+      addCommands(
+      new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_ELEVATOR_SAFE_POSITION),
+      new WaitCommand(1), //Adjust as needed
+      new DangerManualUpDown(elevator, speed));
+    }
+    else{
+      addCommands(
+      new DangerManualUpDown(elevator, speed));
+    }
 
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-    //SmartDashboard.putBoolean("Executeing Elevator speed", true);
-    elevator.setElevSpeed(speed);
-  }
-
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-    elevator.stopElevator();
-  }
-
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
   }
 }

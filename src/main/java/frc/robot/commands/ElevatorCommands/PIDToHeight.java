@@ -4,55 +4,31 @@
 
 package frc.robot.commands.ElevatorCommands;
 
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
-import frc.robot.subsystems.*;
-import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.wpilibj2.command.Command;
-// import edu.wpi.first.wpilibj2.command.PIDCommand;
+import frc.robot.commands.AlgaePivotCommands.PIDAlgaePivot;
+import frc.robot.subsystems.AlgaeHold;
+import frc.robot.subsystems.AlgaePivot;
+import frc.robot.subsystems.Elevator;
 
-/* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class PIDToHeight extends Command {
-  private Elevator elevator;
-  private double desiredHeight; //desired height in inches
-  private final PIDController pidController;
-  private double kP = Constants.Elevator.KP_ELEV;
-  private double kI = Constants.Elevator.KI_ELEV;
-  private double kD = Constants.Elevator.KD_ELEV;
+// NOTE:  Consider using this command inline, rather than writing a subclass.  For more
+// information, see:
+// https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
+public class PIDToHeight extends SequentialCommandGroup {
+  /** Creates a new ManualUpDown. */
+  public PIDToHeight(Elevator elevator, AlgaePivot algaePivot, double desiredHeight) {
 
-  /** Creates a new SetElevatorHeight. */
-  public PIDToHeight(Elevator elevator, double desiredHeight) {
+    if (algaePivot.getPivotEncoder() > Constants.AlgaePivot.ENC_REVS_ELEVATOR_SAFE_POSITION){
+      addCommands(
+      new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_ELEVATOR_SAFE_POSITION),
+      new WaitCommand(1), //Adjust as needed
+      new DangerPIDToHeight(elevator, desiredHeight));
+    }
+    else{
+      addCommands(
+      new DangerPIDToHeight(elevator, desiredHeight));
+    }
 
-  pidController = new PIDController(kP, kI, kD);
-  this.elevator = elevator;
-  this.desiredHeight = desiredHeight;
-  // Use addRequirements() here to declare subsystem dependencies.
-  addRequirements(elevator);
-  pidController.setSetpoint(this.desiredHeight);
-  }
-
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    pidController.reset();
-  }
-
-  // Called every time the scheduler runs while the command is scheduled.
-
-  public void execute() {
-    elevator.setElevSpeed(pidController.calculate(elevator.getElevatorHeight()));
-  }
-
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-    //Removed statement below - may have been the cause of the jolting from one level to another!
-   // elevator.stopElevator();
-  }
-
-
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
   }
 }

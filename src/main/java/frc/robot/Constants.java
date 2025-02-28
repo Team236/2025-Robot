@@ -255,7 +255,8 @@ public static class CoralHold {
     public static final int DIO_LIMIT = 6;
     public static final double ENC_REVS_MAX = -18;
     public static final double ENC_REVS_ALGAE_PICKUP = -10;
-    public static final double ENC_REVS_SCORE_NET = -6;
+    public static final double ENC_REVS_SCORE_NET = -6; //TODO find actual - should be 0?
+    public static final double ENC_REVS_ELEVATOR_SAFE_POSITION = -8;//TODO find actual - unsafe if higher
     public static final double MAN_EXT_SPEED = -0.1;
     public static final double MAN_RET_SPEED = 0.1;
     public static final double KP = 0.001;  //TODO find actual
