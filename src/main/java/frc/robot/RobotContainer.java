@@ -5,6 +5,7 @@
 package frc.robot;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -227,6 +228,7 @@ public class RobotContainer {
     POVButton leftPov1 = new POVButton(auxController,Constants.XboxController.POVXbox.LEFT_ANGLE);
     POVButton rightPov1 = new POVButton(auxController,Constants.XboxController.POVXbox.RIGHT_ANGLE);
 
+    SmartDashboard.putBoolean("The robot says hi ========)", true);
     //Inputs
 
     //y button is already assigned to ZeroGyro
@@ -289,6 +291,7 @@ public class RobotContainer {
 
  // a.onTrue(driveFwdCenter55);
   //b.onTrue(turn);
+  
   //upPov.onTrue(driveFwd113);
   //x.onTrue(fullRunRight);
   //rightPov.onTrue(fullRunLeftCtr);

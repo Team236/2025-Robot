@@ -258,7 +258,7 @@ public static class CoralHold {
     public static final double ENC_REVS_SCORE_NET = -6;
     public static final double MAN_EXT_SPEED = -0.1;
     public static final double MAN_RET_SPEED = 0.1;
-    public static final double KP = 0.03;  //TODO find actual
+    public static final double KP = 0.001;  //TODO find actual
     public static final double KI = 0;
     public static final double KD = 0;
     public static final double KFF = 0;
@@ -266,14 +266,14 @@ public static class CoralHold {
   
   public static class CoralPivot {
     public static final int DIO_LIMIT = 8; 
-    public static final double ENC_REVS_MAX = -700000;//TODO determine actual
-    public static final double ENC_REVS_LEVEL1 = -2;
-    public static final double ENC_REVS_LEVEL2 = -4;
-    public static final double ENC_REVS_LEVEL3 = -6;
-    public static final double ENC_REVS_LEVEL4 = -9;
+    public static final double ENC_REVS_MAX = -32;//TODO determine actual
+    public static final double ENC_REVS_LEVEL1 = -5;
+    public static final double ENC_REVS_LEVEL2 = -10;
+    public static final double ENC_REVS_LEVEL3 = -20;
+    public static final double ENC_REVS_LEVEL4 = -30;
     public static final double MAN_EXT_SPEED = -0.6;
     public static final double MAN_RET_SPEED = 0.6;
-    public static final double KP = 0.029; //TODO find actual
+    public static final double KP = 0.06; //TODO find actual
     public static final double KI = 0;
     public static final double KD = 0;
     public static final double KFF = 0;

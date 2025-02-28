@@ -17,9 +17,9 @@ public class PIDCoralPivot extends Command {
   private CoralPivot coralPivot;
     
   private final PIDController pidController;
-  private double kP = Constants.AlgaePivot.KP;
-  private double kI = Constants.AlgaePivot.KI;
-  private double kD = Constants.AlgaePivot.KD;
+  private double kP = Constants.CoralPivot.KP;
+  private double kI = Constants.CoralPivot.KI;
+  private double kD = Constants.CoralPivot.KD;
   //private double revs;
 
   public PIDCoralPivot(CoralPivot coralPivot, double revs) {
@@ -50,7 +50,7 @@ public class PIDCoralPivot extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    coralPivot.stopCoralPivot();
+    //coralPivot.stopCoralPivot();
   }
 
   // Returns true when the command should end.
