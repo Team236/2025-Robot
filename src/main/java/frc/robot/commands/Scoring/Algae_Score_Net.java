@@ -17,16 +17,16 @@ import frc.robot.subsystems.Elevator;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class Algae_Score extends SequentialCommandGroup {
+public class Algae_Score_Net extends SequentialCommandGroup {
   /** Creates a new Algae_Score. */
-  public Algae_Score(Elevator elevator, AlgaeHold algaeHold,AlgaePivot algaePivot) {
+  public Algae_Score_Net(Elevator elevator, AlgaeHold algaeHold, AlgaePivot algaePivot) {
   addCommands(
    //Likely cannot do these in parallel, since Algae grabber may hit elevator 
    //Commands.parallel(
    //  new PIDToHeight(elevator, Constants.Elevator. SCORE_ALGAE_NET_HEIGHT),
    //  new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_SCORE_NET)
    // ),
-    new PIDToHeight(elevator, Constants.Elevator. SCORE_ALGAE_NET_HEIGHT),
+    new PIDToHeight(elevator, algaePivot, Constants.Elevator. SCORE_ALGAE_NET_HEIGHT),
     new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_SCORE_NET),
     new AlgaeRelease(algaeHold, Constants.AlgaeHold.RELEASE_SPEED)
     );

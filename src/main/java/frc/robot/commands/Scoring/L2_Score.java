@@ -10,6 +10,7 @@ import frc.robot.Constants;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
 import frc.robot.commands.ElevatorCommands.PIDToHeight;
+import frc.robot.subsystems.AlgaePivot;
 import frc.robot.subsystems.CoralHold;
 import frc.robot.subsystems.CoralPivot;
 import frc.robot.subsystems.Elevator;
@@ -19,15 +20,15 @@ import frc.robot.subsystems.Elevator;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class L2_Score extends SequentialCommandGroup {
   /** Creates a new L2_Score. */
-  public L2_Score(Elevator elevator, CoralHold coralHold, CoralPivot coralPivot) {
+  public L2_Score(Elevator elevator, CoralHold coralHold, CoralPivot coralPivot, AlgaePivot algaePivot) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
      Commands.parallel(
-      new PIDToHeight(elevator, Constants.Elevator.L2_HEIGHT),
+      new PIDToHeight(elevator, algaePivot, Constants.Elevator.L2_HEIGHT),
       new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL2)
     ),
-    new CoralRelease(coralHold, Constants.CoralHold.RELEASE_SPEED)
+    new CoralRelease(coralHold, Constants.CoralHold.L2_RELEASE_SPEED)
     );
   }
 }
