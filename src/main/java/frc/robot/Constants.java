@@ -247,7 +247,7 @@ public static class AlgaeHold {
 public static class CoralHold {
   public static final int DIO_COUNTER = 10;
   public static final double HOLD_SPEED = 0.15;
-  public static final double RELEASE_SPEED = 0.5;
+  public static final double RELEASE_SPEED = 0.5;//0.5;
   public static final double L4_RELEASE_SPEED = 0.1;
 }
 

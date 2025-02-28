@@ -267,29 +267,30 @@ public class RobotContainer {
     // leftPOV.onTrue(pidCoraltoL3);
     // rightPOV.onTrue(pidCoraltoL4);
 
-    //x.whileTrue(algaeGrab);
-    //a.whileTrue(algaeRelease);
+    x.whileTrue(algaeGrab);
+    a.whileTrue(algaeRelease);
 
-    a.whileTrue(coralGrab);
-    b.whileTrue(coralRelease);
-    leftPov.whileTrue(coralGrabWithCounter);
+   // /a.whileTrue(coralGrab);
+    //b.whileTrue(coralRelease);
+    //leftPov.whileTrue(coralGrabWithCounter);
 
-    //upPov.whileTrue(algaePivotUp);
-    //downPov.whileTrue(algaePivotDown);
+    upPov.whileTrue(algaePivotUp);
+    downPov.whileTrue(algaePivotDown);
 
     //a.onTrue(pidAlgaePickup); //pivot Algae to pickup from Reef position
-    //b.onTrue(pidAlgaeScoreNet); //pivot Algae to score in Net position
+    b.onTrue(pidAlgaeScoreNet); //pivot Algae to score in Net position
 
-    upPov.whileTrue(coralPivotUp);
-    downPov.whileTrue(coralPivotDown);
+    //upPov.whileTrue(coralPivotUp);
+    //downPov.whileTrue(coralPivotDown);
 
-    x.onTrue(pidCoraltoL2);
+    //x.onTrue(pidCoraltoL2);
     //b.onTrue(pidCoraltoL2);
     //x.onTrue(pidCoraltoL3);
-    rightPov.onTrue(pidCoraltoL4);
+    //rightPov.onTrue(pidCoraltoL4);
 
 
  // a.onTrue(driveFwdCenter55);
+
   //b.onTrue(turn);
 
   //upPov.onTrue(driveFwd113);
