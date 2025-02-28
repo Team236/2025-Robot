@@ -57,8 +57,8 @@ public final class Constants {
   }
 
   public static final class  Targeting {
-    //use this with TargetPose-CameraSpace:
-    public static final double DIST_FORWARDS_CAMERA_TO_FRAME = 4.25; //inches  TODO- update for 2025 robot
+    //use this with TargetPose-CameraSpace:  
+    public static final double DIST_FORWARDS_CAMERA_TO_FRAME = 6;//4.25;//inches  TODO- update for 2025 robot
     public static final double BUMPER_THICKNESS = 3.25; //inches, for 2025 bot
     public static final double DIST_CAMERA_TO_BUMPER_FWD = BUMPER_THICKNESS + DIST_FORWARDS_CAMERA_TO_FRAME;
     //forward distance robot center to robot bumper, inches 
@@ -67,9 +67,9 @@ public final class Constants {
     //Distances below assume Limelight camera will be centered on the AprilTag when targeting 
     //Make LL camera be centered 2" from side of frame
     //TODO:  get actual for algae side below, verify others with camera on the right over Coral device
-    public static final double DIST_L_CORAL_SIDE = 1.6; //from LL camera to Left Coral branch
-    public static final double DIST_R_CORAL_SIDE = -11.4; //from LL camera to Right Coral Branch
-    public static final double DIST_ALGAE_SIDE = -16; //to get to Algae center (from AprilTag center)
+    public static final double DIST_L_CORAL_SIDE = 2.225;//1.6; //from LL camera to Left Coral branch
+    public static final double DIST_R_CORAL_SIDE = -10.775;//-11.4; //from LL camera to Right Coral Branch
+    public static final double DIST_ALGAE_SIDE = -14.625;//-16; //to get to Algae center (from AprilTag center)
     public static final double DIST_FWD = 9; //required fwd standoff (from bumper) to keep target in sight
 
     public static final double KP_ROTATION = 0.008; //kP value for rotation
@@ -204,7 +204,7 @@ public static final class Swerve {
                 kMaxAngularSpeedRadiansPerSecond, kMaxAngularSpeedRadiansPerSecondSquared);
 
       //Center Auto path (inches)
-        public static final double CENTER_FWD_DIST = 55; //if starting 1" behind start line
+        public static final double CENTER_FWD_DIST = 57; //if starting 3" behind start line
     }
 
   public static class Elevator {
@@ -216,17 +216,17 @@ public static final class Swerve {
     public static final double ELEV_CLIMB_DOWN_SPEED = -0.3;
 
     //placeholder conversion factors
-    public static final double ELEV_REV_TO_IN = 1.362;//TODO find actual
+    public static final double ELEV_REV_TO_IN = 1.362;
     public static final double ELEV_IN_TO_REV = 1/ELEV_REV_TO_IN;
 
-    public static final double BOTTOM_HEIGHT = 5; //TODO find actual
-    public static final double L1_HEIGHT = 10; //TODO find actual
-    public static final double L2_HEIGHT =3.47;//TODO find actual
-    public static final double L3_HEIGHT = 30;//TODO find actual
-    public static final double L4_HEIGHT = 40;//TODO find actual
-    public static final double PICK_ALGAE_1_HEIGHT = 25;//TODO find actual
-    public static final double PICK_ALGAE_2_HEIGHT = 35;//TODO find actual
-    public static final double SCORE_ALGAE_NET_HEIGHT = 50; //TODO find actual
+    public static final double BOTTOM_HEIGHT = 0;
+    public static final double L1_HEIGHT = 0;//TODO determine actual
+    public static final double L2_HEIGHT =3.47;
+    public static final double L3_HEIGHT = 13.5;
+    public static final double L4_HEIGHT = 35.5;
+    public static final double PICK_ALGAE_1_HEIGHT = 3.47;//TODO find actual
+    public static final double PICK_ALGAE_2_HEIGHT = 35.5;//TODO find actual
+    public static final double SCORE_ALGAE_NET_HEIGHT = 55; //TODO find actual
     public static final double CLIMB_START_HEIGHT = 12;  //TODO find actual
     public static final double CLIMB_END_HEIGHT = 5; //TODO find actual
     public static final double MAX_HEIGHT = 57;
@@ -267,18 +267,18 @@ public static class CoralHold {
   public static class CoralPivot {
     public static final int DIO_LIMIT = 8; 
     public static final double ENC_REVS_MAX = -32;//TODO determine actual
-    public static final double ENC_REVS_LEVEL1 = -5;
+    public static final double ENC_REVS_LEVEL1 = -32;//TODO determine actual
     public static final double ENC_REVS_LEVEL2 = -6;
-    public static final double ENC_REVS_LEVEL3 = -20;
-    public static final double ENC_REVS_LEVEL4 = -30;
+    public static final double ENC_REVS_LEVEL3 = -8;
+    public static final double ENC_REVS_LEVEL4 = -25;
     public static final double MAN_EXT_SPEED = -0.6;
     public static final double MAN_RET_SPEED = 0.6;
-    public static final double KP = 0.06; //TODO find actual
+    public static final double KP = 0.06; //TODO tune better?
     public static final double KI = 0;
     public static final double KD = 0;
     public static final double KFF = 0;
-    public static final int DIO_ENC_A = 11;//11
-    public static final int DIO_ENC_B = 12;//12
+    public static final int DIO_ENC_A = 11;
+    public static final int DIO_ENC_B = 12;
   }
   
   public static class XboxController {
