@@ -306,6 +306,19 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // SmartDashboard.putString("autokey", "Entering getAutoCommand now");
     Command command = null;
+    AutoSwitchHelpers autoSwitchHelpers = new AutoSwitchHelpers();
+
+    //NEW WAY TO DO IT
+
+    //if (autoSwitchHelpers.switchesAre(true, true, true, true))
+    //{
+    //  command = wooferLeft;
+    //}
+
+    
+
+    
+
     //Switch 1 is in the "ON" spot on the box
    /*  if (!autoSwitch1.get() && autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {
       command = wooferLeft;
