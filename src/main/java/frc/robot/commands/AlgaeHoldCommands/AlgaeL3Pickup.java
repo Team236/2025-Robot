@@ -13,14 +13,16 @@ import frc.robot.subsystems.AlgaeHold;
 import frc.robot.subsystems.AlgaePivot;
 import frc.robot.subsystems.Elevator;
 
-public class AlgaeHighPickup extends SequentialCommandGroup {
+public class AlgaeL3Pickup extends SequentialCommandGroup {
   /** Creates a new Algae_Score. */
-  public AlgaeHighPickup(Elevator elevator, AlgaeHold algaeHold, AlgaePivot algaePivot) {
+  public AlgaeL3Pickup(Elevator elevator, AlgaeHold algaeHold, AlgaePivot algaePivot) {
   addCommands(
-   Commands.parallel(
-      new PIDToHeight(elevator, Constants.Elevator.PICK_ALGAE_2_HEIGHT),
-      new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_ALGAE_PICKUP)
-    ),
+  // Commands.parallel(
+  //    new PIDToHeight(elevator, algaePivot, Constants.Elevator.PICK_ALGAE_2_HEIGHT),
+   //   new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_ALGAE_PICKUP)
+  //  ),
+    new PIDToHeight(elevator, algaePivot, Constants.Elevator.PICK_ALGAE_L3_HEIGHT),
+    new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_ALGAE_PICKUP),
     new AlgaeGrab(algaeHold, Constants.AlgaeHold.HOLD_SPEED1, Constants.AlgaeHold.HOLD_SPEED2)
     );
   }

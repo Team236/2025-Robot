@@ -15,8 +15,8 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.OrientWithLL;
 import frc.robot.commands.TeleopSwerve;
 import frc.robot.commands.AlgaeHoldCommands.AlgaeGrab;
-import frc.robot.commands.AlgaeHoldCommands.AlgaeHighPickup;
-import frc.robot.commands.AlgaeHoldCommands.AlgaeLowPickup;
+import frc.robot.commands.AlgaeHoldCommands.AlgaeL3Pickup;
+import frc.robot.commands.AlgaeHoldCommands.AlgaeL2Pickup;
 import frc.robot.commands.AlgaeHoldCommands.AlgaeRelease;
 import frc.robot.commands.AlgaePivotCommands.ManualAlgaePivot;
 import frc.robot.commands.AlgaePivotCommands.PIDAlgaePivot;
@@ -141,8 +141,8 @@ public class RobotContainer {
   //AlgaeHold
   private final AlgaeGrab algaeGrab = new AlgaeGrab(algaeHold, Constants.AlgaeHold.HOLD_SPEED1, Constants.AlgaeHold.HOLD_SPEED2);
   private final AlgaeRelease algaeRelease = new AlgaeRelease(algaeHold, Constants.AlgaeHold.RELEASE_SPEED);
-  private final AlgaeHighPickup algaeHighPickup = new AlgaeHighPickup(elevator, algaeHold, algaePivot);
-  private final AlgaeLowPickup algaeLowPickup = new AlgaeLowPickup(elevator, algaeHold, algaePivot);
+  private final AlgaeL3Pickup algaeHighPickup = new AlgaeL3Pickup(elevator, algaeHold, algaePivot);
+  private final AlgaeL2Pickup algaeLowPickup = new AlgaeL2Pickup(elevator, algaeHold, algaePivot);
 
   //AlgaePivot
   private final ManualAlgaePivot algaePivotDown = new ManualAlgaePivot(algaePivot, Constants.AlgaePivot.MAN_EXT_SPEED);
@@ -153,7 +153,7 @@ public class RobotContainer {
   //CoralHold
   private final CoralGrab coralGrab = new CoralGrab(coralHold, Constants.CoralHold.HOLD_SPEED);
   private final CoralGrabWithCounter coralGrabWithCounter = new CoralGrabWithCounter(coralHold, Constants.CoralHold.HOLD_SPEED);
-  private final CoralRelease coralRelease = new CoralRelease(coralHold, Constants.CoralHold.RELEASE_SPEED);
+  private final CoralRelease coralRelease = new CoralRelease(coralHold, Constants.CoralHold.L2_RELEASE_SPEED);
   //private final CoralRelease coralReleaseL4 = new CoralRelease(coralHold, Constants.CoralHold.L4_RELEASE_SPEED);
 
   //CoralPivot
