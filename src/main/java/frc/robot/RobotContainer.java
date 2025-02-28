@@ -270,9 +270,9 @@ public class RobotContainer {
     //x.whileTrue(algaeGrab);
     //a.whileTrue(algaeRelease);
 
-    //a.whileTrue(coralGrab);
-    //b.whileTrue(coralRelease);
-    //leftPov.whileTrue(coralGrabWithCounter);
+    a.whileTrue(coralGrab);
+    b.whileTrue(coralRelease);
+    leftPov.whileTrue(coralGrabWithCounter);
 
     //upPov.whileTrue(algaePivotUp);
     //downPov.whileTrue(algaePivotDown);
@@ -283,15 +283,15 @@ public class RobotContainer {
     upPov.whileTrue(coralPivotUp);
     downPov.whileTrue(coralPivotDown);
 
-    a.onTrue(pidCoraltoL1);
-    b.onTrue(pidCoraltoL2);
-    x.onTrue(pidCoraltoL3);
+    x.onTrue(pidCoraltoL2);
+    //b.onTrue(pidCoraltoL2);
+    //x.onTrue(pidCoraltoL3);
     rightPov.onTrue(pidCoraltoL4);
 
 
  // a.onTrue(driveFwdCenter55);
   //b.onTrue(turn);
-  
+
   //upPov.onTrue(driveFwd113);
   //x.onTrue(fullRunRight);
   //rightPov.onTrue(fullRunLeftCtr);
@@ -308,7 +308,7 @@ public class RobotContainer {
     Command command = null;
     AutoSwitchHelpers autoSwitchHelpers = new AutoSwitchHelpers();
 
-    //NEW WAY TO DO IT
+    //NEW WAY TO DO IT (good job emmet you are awesome saucem)
 
     //if (autoSwitchHelpers.switchesAre(true, true, true, true))
     //{
