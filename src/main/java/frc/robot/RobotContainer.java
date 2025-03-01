@@ -38,6 +38,7 @@ import frc.robot.commands.CoralHoldCommands.CoralGrab;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
 import frc.robot.commands.CoralPivotCommands.ManualCoralPivot;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
+import frc.robot.commands.ElevatorCommands.ClimbDownSequence;
 import frc.robot.commands.ElevatorCommands.ManualUpDown;
 import frc.robot.commands.ElevatorCommands.PIDToHeight;
 import frc.robot.commands.Targeting.AlgaeTarget;
@@ -128,10 +129,10 @@ public class RobotContainer {
   //Elevator
   private final ManualUpDown elevatorUp = new ManualUpDown(elevator, algaePivot, Constants.Elevator.ELEV_UP_SPEED);
   private final ManualUpDown elevatorDown = new ManualUpDown(elevator, algaePivot, Constants.Elevator.ELEV_DOWN_SPEED);
-  private final ManualUpDown elevatorClimbDown = new ManualUpDown(elevator, algaePivot, Constants.Elevator.ELEV_CLIMB_DOWN_SPEED);
+  // private final ManualUpDown elevatorClimbDown = new ManualUpDown(elevator, algaePivot, Constants.Elevator.ELEV_CLIMB_DOWN_SPEED);
 
   private final PIDToHeight pidPrepForClimb = new PIDToHeight(elevator, algaePivot, Constants.Elevator.CLIMB_START_HEIGHT);
-  private final PIDToHeight pidClimb = new PIDToHeight(elevator, algaePivot, Constants.Elevator.CLIMB_END_HEIGHT);
+  private final ClimbDownSequence pidClimb = new ClimbDownSequence(elevator, algaePivot);
   private final PIDToHeight pidElevToBottom = new PIDToHeight(elevator, algaePivot, Constants.Elevator.BOTTOM_HEIGHT);
   private final PIDToHeight pidElevatorL1 = new PIDToHeight(elevator,algaePivot, Constants.Elevator.L1_HEIGHT);
   private final PIDToHeight pidElevatorL2 = new PIDToHeight(elevator, algaePivot, Constants.Elevator.L2_HEIGHT);
@@ -252,7 +253,7 @@ public class RobotContainer {
     //leftPov.whileTrue(coralRightTarget);
 
     upPov.onTrue(pidPrepForClimb);
-    downPov.whileTrue(elevatorClimbDown);
+    downPov.onTrue(pidClimb);
     a.whileTrue(elevatorDown);
     x.whileTrue(elevatorUp);
     //b.onTrue(pidElevToBottom);
@@ -264,6 +265,7 @@ public class RobotContainer {
 
    // upPov.whileTrue(coralPivotUp);
    // downPov.whileTrue(coralPivotDown);
+
    // rb.onTrue(pidCoraltoL1); //pivots coral Nto score on Level 1
    // rm.onTrue(pidCoraltoL2);
    // leftPov.onTrue(pidCoraltoL3);

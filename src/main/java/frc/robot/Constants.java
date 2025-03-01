@@ -213,7 +213,7 @@ public static final class Swerve {
 
     public static final double ELEV_UP_SPEED = 0.1;
     public static final double ELEV_DOWN_SPEED = -0.1;
-    public static final double ELEV_CLIMB_DOWN_SPEED = -0.3;
+    public static final double ELEV_CLIMB_DOWN_SPEED = -0.5;
 
     //placeholder conversion factors
     public static final double ELEV_REV_TO_IN = 1.362;
@@ -232,7 +232,7 @@ public static final class Swerve {
     public static final double MAX_HEIGHT = 57;
 
     //placeholder PID values
-    public static final double KP_ELEV = 0.04;
+    public static final double KP_ELEV = 0.055;
     public static final double KI_ELEV = 0;
     public static final double KD_ELEV = 0;
   }
@@ -260,7 +260,7 @@ public static class CoralHold {
     public static final double ENC_REVS_REEF_PICKUP = -18;
     public static final double ENC_REVS_FLOOR_PICKUP = -23.7;
     public static final double ENC_REVS_SCORE_NET = 0; //TODO find actual - should be 0?
-    public static final double ENC_REVS_ELEVATOR_SAFE_POSITION = -13;//TODO find actual - unsafe if higher
+    public static final double ENC_REVS_ELEVATOR_SAFE_POSITION = -18;//TODO find actual - unsafe if higher
     public static final double MAN_EXT_SPEED = -0.1;
     public static final double MAN_RET_SPEED = 0.1;
     public static final double KP = 0.05;  //TODO find actual

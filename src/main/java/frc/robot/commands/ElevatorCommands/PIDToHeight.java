@@ -21,8 +21,8 @@ public class PIDToHeight extends SequentialCommandGroup {
 
     if (algaePivot.getPivotEncoder() > Constants.AlgaePivot.ENC_REVS_ELEVATOR_SAFE_POSITION){
       addCommands(
-      new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_ELEVATOR_SAFE_POSITION),
-      new WaitCommand(1), //Adjust as needed
+      // new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_ELEVATOR_SAFE_POSITION),
+      // new WaitCommand(5), //Adjust as needed
       new DangerPIDToHeight(elevator, desiredHeight));
     }
     else{

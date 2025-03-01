@@ -21,8 +21,8 @@ public class ManualUpDown extends SequentialCommandGroup {
 
     if (algaePivot.getPivotEncoder() > Constants.AlgaePivot.ENC_REVS_ELEVATOR_SAFE_POSITION){
       addCommands(
-      new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_ELEVATOR_SAFE_POSITION),
-      new WaitCommand(1), //Adjust as needed
+      // new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_ELEVATOR_SAFE_POSITION),
+      // new AWaitCommand(5), //Adjust as needed
       new DangerManualUpDown(elevator, speed));
     }
     else{
