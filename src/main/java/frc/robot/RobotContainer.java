@@ -147,8 +147,9 @@ public class RobotContainer {
   //AlgaePivot
   private final ManualAlgaePivot algaePivotDown = new ManualAlgaePivot(algaePivot, Constants.AlgaePivot.MAN_EXT_SPEED);
   private final ManualAlgaePivot algaePivotUp = new ManualAlgaePivot(algaePivot, Constants.AlgaePivot.MAN_RET_SPEED);
-  private final PIDAlgaePivot pidAlgaePickup = new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_ALGAE_PICKUP);
+  private final PIDAlgaePivot pidReefPickup = new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_REEF_PICKUP);
   private final PIDAlgaePivot pidAlgaeScoreNet = new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_SCORE_NET);
+  private final PIDAlgaePivot pidAlgaeSafe = new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_ELEVATOR_SAFE_POSITION);
 
   //CoralHold
   private final CoralGrab coralGrab = new CoralGrab(coralHold, Constants.CoralHold.HOLD_SPEED);
@@ -277,8 +278,10 @@ public class RobotContainer {
     upPov.whileTrue(algaePivotUp);
     downPov.whileTrue(algaePivotDown);
 
-    //a.onTrue(pidAlgaePickup); //pivot Algae to pickup from Reef position
+    leftPov.onTrue(pidReefPickup); //pivot Algae to pickup from Reef position
+   // leftPov.onTrue(pidAlgaeSafe);
     b.onTrue(pidAlgaeScoreNet); //pivot Algae to score in Net position
+
 
     //upPov.whileTrue(coralPivotUp);
     //downPov.whileTrue(coralPivotDown);

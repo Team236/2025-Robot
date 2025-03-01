@@ -27,7 +27,7 @@ public class DriveFwdAndSideAndTurn extends SequentialCommandGroup {
     public DriveFwdAndSideAndTurn(Swerve s_Swerve, boolean reversed, double fwdDist, double sideD, double turnAngle) {
         
         //****WAS NOT DRIVINg ENOUGH SIDEWAYS WITHOUT THIS FACTOR!!*****
-        double sideDist = sideD * 1.03;  //TODO find this factor for 2025 
+        double sideDist = sideD * 1.00; //1.03 //TODO find this factor for 2025 
 
 
         TrajectoryConfig config =

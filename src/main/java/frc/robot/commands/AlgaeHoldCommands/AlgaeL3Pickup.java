@@ -22,7 +22,7 @@ public class AlgaeL3Pickup extends SequentialCommandGroup {
    //   new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_ALGAE_PICKUP)
   //  ),
     new PIDToHeight(elevator, algaePivot, Constants.Elevator.PICK_ALGAE_L3_HEIGHT),
-    new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_ALGAE_PICKUP),
+    new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_REEF_PICKUP),
     
     new AlgaeGrab(algaeHold, Constants.AlgaeHold.HOLD_SPEED1, Constants.AlgaeHold.HOLD_SPEED2)
     );

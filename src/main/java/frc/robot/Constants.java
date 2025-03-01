@@ -155,7 +155,7 @@ public static final class Swerve {
             public static final int driveMotorID = 7;
             public static final int angleMotorID = 6;
             public static final int canCoderID = 3;
-            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(-125.5);//(81.1+180); TESTBED
+            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(-119.79);//(81.1+180); TESTBED
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
         }
@@ -164,7 +164,7 @@ public static final class Swerve {
             public static final int driveMotorID = 3;
             public static final int angleMotorID = 2;
             public static final int canCoderID = 1;
-            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(129.3);//(-20.83+180); TESTBED
+            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(130.87);//(-20.83+180); TESTBED
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
         }    
@@ -173,7 +173,7 @@ public static final class Swerve {
             public static final int driveMotorID = 5;
             public static final int angleMotorID = 4;
             public static final int canCoderID = 2;
-            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(101.7);//(8.1+180); TESTBED 
+            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(106.35);//(8.1+180); TESTBED 
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
         }
@@ -182,7 +182,7 @@ public static final class Swerve {
             public static final int driveMotorID = 1;
             public static final int angleMotorID = 10;
             public static final int canCoderID = 0;
-            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(134.5);//(-17.75+180);  TESTBED
+            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(130.87);//(-17.75+180);  TESTBED
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
         }
@@ -239,8 +239,9 @@ public static final class Swerve {
 
 public static class AlgaeHold {
   public static final double HOLD_SPEED1 = 0.5;//MUST BE POSITIVE!
-  public static final double HOLD_SPEED2 = 0;//MUST BE POSITIVE!
+  public static final double HOLD_SPEED2 = 0.05;//MUST BE POSITIVE!
   public static final double RELEASE_SPEED = -1.0;
+  public static final double PROCESSOR_SPEED = -0.5;
   public static final int DIO_AH_LIMIT = 9;
 }
 
@@ -255,13 +256,14 @@ public static class CoralHold {
 
   public static class AlgaePivot {
     public static final int DIO_LIMIT = 6;
-    public static final double ENC_REVS_MAX = -18;
-    public static final double ENC_REVS_ALGAE_PICKUP = -10;
-    public static final double ENC_REVS_SCORE_NET = -6; //TODO find actual - should be 0?
-    public static final double ENC_REVS_ELEVATOR_SAFE_POSITION = -8;//TODO find actual - unsafe if higher
+    public static final double ENC_REVS_MAX = -23.7;
+    public static final double ENC_REVS_REEF_PICKUP = -18;
+    public static final double ENC_REVS_FLOOR_PICKUP = -23.7;
+    public static final double ENC_REVS_SCORE_NET = 0; //TODO find actual - should be 0?
+    public static final double ENC_REVS_ELEVATOR_SAFE_POSITION = -13;//TODO find actual - unsafe if higher
     public static final double MAN_EXT_SPEED = -0.1;
     public static final double MAN_RET_SPEED = 0.1;
-    public static final double KP = 0.001;  //TODO find actual
+    public static final double KP = 0.05;  //TODO find actual
     public static final double KI = 0;
     public static final double KD = 0;
     public static final double KFF = 0;
