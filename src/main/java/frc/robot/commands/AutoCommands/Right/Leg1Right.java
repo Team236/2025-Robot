@@ -41,21 +41,16 @@ public class Leg1Right extends SequentialCommandGroup {
           //Needs to end  with Limelight camera centered 1.6" to the left of the AprilTag center
           new DriveFwdAndSideAndTurn(s_Swerve, false, 10.25, 2.23, 0).withTimeout(1),
 
-          new ResetPoseWithLL(s_Swerve)
+          new ResetPoseWithLL(s_Swerve),
+        
+          Commands.parallel(
+           new PIDToHeight(elevator, algaePivot, Constants.Elevator.L4_HEIGHT),
+           new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL4)
+           ),
 
-//ADD IN THE SCORING:
-       // , new PIDToHeight(elevator, algaePivot, Constants.Elevator.L4_HEIGHT),
-        //  new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL4),
-        //  new CoralRelease(coralHold, Constants.CoralHold.L4_RELEASE_SPEED)
-      
-      ///OR:
-       // , Commands.parallel(
-       //    new PIDToHeight(elevator, algaePivot, Constants.Elevator.L4_HEIGHT),
-       //    new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL4)
-       //    ),
-        //  new CoralRelease(coralHold, Constants.CoralHold.L4_RELEASE_SPEED)
-
+          new CoralRelease(coralHold, Constants.CoralHold.L4_RELEASE_SPEED)
     );
+    
   }
 
 }

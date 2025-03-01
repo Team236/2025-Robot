@@ -4,6 +4,7 @@
 
 package frc.robot.commands.ElevatorCommands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
@@ -20,12 +21,16 @@ public class PIDToHeight extends SequentialCommandGroup {
   public PIDToHeight(Elevator elevator, AlgaePivot algaePivot, double desiredHeight) {
 
     if (algaePivot.getPivotEncoder() > Constants.AlgaePivot.ENC_REVS_ELEVATOR_SAFE_POSITION){
+      SmartDashboard.putNumber("AP enc revs is: ", algaePivot.getPivotEncoder());
+      SmartDashboard.putBoolean("In the danger zone coder area: ", true);
       addCommands(
       // new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_ELEVATOR_SAFE_POSITION),
       // new WaitCommand(5), //Adjust as needed
       new DangerPIDToHeight(elevator, desiredHeight));
     }
     else{
+      SmartDashboard.putNumber("AP enc revs is: ", algaePivot.getPivotEncoder());
+      SmartDashboard.putBoolean("In the danger zone coder area: ", false);
       addCommands(
       new DangerPIDToHeight(elevator, desiredHeight));
     }

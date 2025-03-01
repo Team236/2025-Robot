@@ -4,8 +4,13 @@
 
 package frc.robot.commands.AutoCommands.Right;
 
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.Constants;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
+import frc.robot.commands.CoralHoldCommands.CoralRelease;
+import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
+import frc.robot.commands.ElevatorCommands.PIDToHeight;
 import frc.robot.commands.Targeting.GetPoseWithLL;
 import frc.robot.commands.Targeting.ResetPoseWithLL;
 import frc.robot.commands.Targeting.TargetAllParallel;
@@ -37,19 +42,14 @@ public class Leg3Right extends SequentialCommandGroup {
           new DriveFwdAndSideAndTurn(s_Swerve, false, 9, 1.6, 0),
 
           //**** ADD COMMAND HERE TO RESET POSE TO VALUE FROM GetPoseWithLL
-          new ResetPoseWithLL(s_Swerve)
+          new ResetPoseWithLL(s_Swerve),
 
-//ADD IN THE SCORING:
-       // , new PIDToHeight(elevator, algaePivot, Constants.Elevator.L4_HEIGHT),
-        //  new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL4),
-        //  new CoralRelease(coralHold, Constants.CoralHold.L4_RELEASE_SPEED)
-      
-      ///OR:
-       // , Commands.parallel(
-       //    new PIDToHeight(elevator, algaePivot, Constants.Elevator.L4_HEIGHT),
-       //    new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL4)
-       //    ),
-        //  new CoralRelease(coralHold, Constants.CoralHold.L4_RELEASE_SPEED)
+          Commands.parallel(
+            new PIDToHeight(elevator, algeaPivot, Constants.Elevator.L4_HEIGHT),
+            new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL4)
+           ),
+
+          new CoralRelease(coralHold, Constants.CoralHold.L4_RELEASE_SPEED)
 
     );
   }

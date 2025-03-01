@@ -28,7 +28,7 @@ public class Leg2Right extends SequentialCommandGroup {
           new DriveFwdAndSideAndTurn(s_Swerve, false, -3.5, 91.5, -63)
 
 //ADD IN RECEIVING CORAL:
-         , new CoralGrab(coralHold, Constants.CoralHold.HOLD_SPEED).withTimeout(2) //adjust as needed
+         , new CoralGrab(coralHold, Constants.CoralHold.HOLD_SPEED).withTimeout(3) //adjust as needed
       
 
     );
