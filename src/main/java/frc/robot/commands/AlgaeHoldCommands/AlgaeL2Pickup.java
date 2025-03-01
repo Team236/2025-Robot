@@ -17,8 +17,13 @@ public class AlgaeL2Pickup extends SequentialCommandGroup {
   /** Creates a new Algae_Score. */
   public AlgaeL2Pickup(Elevator elevator, AlgaeHold algaeHold, AlgaePivot algaePivot) {
   addCommands(
+      // Commands.parallel(
+  //    new PIDToHeight(elevator, algaePivot, Constants.Elevator.PICK_ALGAE_L2_HEIGHT),
+   //   new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_ALGAE_PICKUP)
+  //  ),
     new PIDToHeight(elevator, algaePivot, Constants.Elevator.PICK_ALGAE_L2_HEIGHT),
     new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_ALGAE_PICKUP),
+
     new AlgaeGrab(algaeHold, Constants.AlgaeHold.HOLD_SPEED1, Constants.AlgaeHold.HOLD_SPEED2)
     );
   }

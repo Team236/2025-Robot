@@ -5,6 +5,10 @@
 package frc.robot.commands.AutoCommands.Right;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.subsystems.AlgaePivot;
+import frc.robot.subsystems.CoralHold;
+import frc.robot.subsystems.CoralPivot;
+import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Swerve;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -12,10 +16,10 @@ import frc.robot.subsystems.Swerve;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class Legs1and2Right extends SequentialCommandGroup {
   /** Creates a new Legs1and2Right. */
-  public Legs1and2Right(Swerve s_Swerve) {
+  public Legs1and2Right(Swerve s_Swerve, Elevator elevator, AlgaePivot algaePivot, CoralPivot coralPivot, CoralHold coralHold) {
     addCommands(
-      new Leg1Right(s_Swerve),
-      new Leg2Right(s_Swerve)
+      new Leg1Right(s_Swerve, elevator, algaePivot, coralPivot, coralHold),
+      new Leg2Right(s_Swerve, coralHold)
     );
   }
 }

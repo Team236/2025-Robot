@@ -115,14 +115,14 @@ public class RobotContainer {
     private final TurnOnly turn = new TurnOnly(s_Swerve, false, -58);
     private final DriveFwdAndSideAndTurn driveFwdAndSideAndTurn = new DriveFwdAndSideAndTurn(s_Swerve, false, 9, 0, 0);
 
-    private final FullRunRight fullRunRight = new FullRunRight(s_Swerve);
-    private final Leg1Right leg1Right = new Leg1Right(s_Swerve);
-    private final Leg2Right leg2Right = new Leg2Right(s_Swerve);
-    private final Leg3Right leg3Right = new Leg3Right(s_Swerve);
-    private final CtrScore1 fullRunCenter = new CtrScore1(s_Swerve);
+    private final FullRunRight fullRunRight = new FullRunRight(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
+    private final Leg1Right leg1Right = new Leg1Right(s_Swerve,  elevator, algaePivot, coralPivot, coralHold);
+    private final Leg2Right leg2Right = new Leg2Right(s_Swerve, coralHold);
+    private final Leg3Right leg3Right = new Leg3Right(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
+    private final Legs1and2Right legs1and2Right = new Legs1and2Right(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
+    private final CtrScore1 fullRunCenter = new CtrScore1(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
     private final FullRunLeftCtr fullRunLeftCtr = new FullRunLeftCtr(s_Swerve);
    // private final DriveWithPath driveWithPathLeg1 = new DriveWithPath(s_Swerve, false);
-    private final Legs1and2Right legs1and2Right = new Legs1and2Right(s_Swerve);
     
       
   //Elevator
@@ -316,45 +316,9 @@ public class RobotContainer {
     //  command = wooferLeft;
     //}
 
-    
-
-    
-
+  
     //Switch 1 is in the "ON" spot on the box
-   /*  if (!autoSwitch1.get() && autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {
-      command = wooferLeft;
-    } else if (autoSwitch1.get() && !autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {
-      command = frontTwoShots;
-    } else if (autoSwitch1.get() && autoSwitch2.get() && !autoSwitch3.get() && autoSwitch4.get()) {
-      command = oneWooferShot;
-    } else if (autoSwitch1.get() && autoSwitch2.get() && autoSwitch3.get() && !autoSwitch4.get()) {
-      command =  wooferRight;
-    } else if (!autoSwitch1.get() && !autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {
-      command =  leftRedToMidfield2;
-    } else if (autoSwitch1.get() && autoSwitch2.get() && !autoSwitch3.get() && !autoSwitch4.get()) {
-      command = rightBlueToMidfield2;
-    } else if (!autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && autoSwitch4.get()) {
-      command = centerRedToMidfield3;
-    } else if (autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && !autoSwitch4.get()) {
-      command =  centerBlueToMidfield3;
-    } else if (!autoSwitch1.get() && !autoSwitch2.get() && autoSwitch3.get() && !autoSwitch4.get()) {
-      command =  centerRed2Speaker1Amp;
-   }  else if (!autoSwitch1.get() && autoSwitch2.get() && !autoSwitch3.get() && !autoSwitch4.get()) {
-      command =  centerBlue2Speaker1Amp;
-   }  else if (!autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && !autoSwitch4.get()) {
-      command =  leftRed1Spkr1AmpToMid;
-   }  else if (autoSwitch1.get() && autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {
-      command =  rightBlue1Spkr1AmpToMid;
-   }  else if (!autoSwitch1.get() && autoSwitch2.get() && autoSwitch3.get() && !autoSwitch4.get()) {
-      command =  leftBlueToMidfield2;
-   }  else if (autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && autoSwitch4.get()) {
-      command =  rightRedToMidfield2;
-   }  else if (!autoSwitch1.get() && autoSwitch2.get() && !autoSwitch3.get() && autoSwitch4.get()) {
-      command =  l_WooferShotPullOut;
-   }  else if (autoSwitch1.get() && !autoSwitch2.get() && autoSwitch3.get() && !autoSwitch4.get()) {
-      command =  r_WooferShotPullOut;
-   }
-      */
+  
    return command;
   }
 

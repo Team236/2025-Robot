@@ -18,11 +18,12 @@ public class AlgaeL3Pickup extends SequentialCommandGroup {
   public AlgaeL3Pickup(Elevator elevator, AlgaeHold algaeHold, AlgaePivot algaePivot) {
   addCommands(
   // Commands.parallel(
-  //    new PIDToHeight(elevator, algaePivot, Constants.Elevator.PICK_ALGAE_2_HEIGHT),
+  //    new PIDToHeight(elevator, algaePivot, Constants.Elevator.PICK_ALGAE_L3_HEIGHT),
    //   new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_ALGAE_PICKUP)
   //  ),
     new PIDToHeight(elevator, algaePivot, Constants.Elevator.PICK_ALGAE_L3_HEIGHT),
     new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_ALGAE_PICKUP),
+    
     new AlgaeGrab(algaeHold, Constants.AlgaeHold.HOLD_SPEED1, Constants.AlgaeHold.HOLD_SPEED2)
     );
   }

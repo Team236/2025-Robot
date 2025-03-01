@@ -9,6 +9,10 @@ import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
 import frc.robot.commands.Targeting.GetPoseWithLL;
 import frc.robot.commands.Targeting.ResetPoseWithLL;
 import frc.robot.commands.Targeting.TargetAllParallel;
+import frc.robot.subsystems.AlgaePivot;
+import frc.robot.subsystems.CoralHold;
+import frc.robot.subsystems.CoralPivot;
+import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Swerve;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -16,7 +20,7 @@ import frc.robot.subsystems.Swerve;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class Leg3Right extends SequentialCommandGroup {
   /** Creates a new Leg3Right. */
-  public Leg3Right(Swerve s_Swerve) {
+  public Leg3Right(Swerve s_Swerve, Elevator elevator, AlgaePivot algeaPivot, CoralPivot coralPivot, CoralHold coralHold) {
     addCommands(
       //TODO  add the commands for scoring and receiving coral
 
@@ -34,6 +38,19 @@ public class Leg3Right extends SequentialCommandGroup {
 
           //**** ADD COMMAND HERE TO RESET POSE TO VALUE FROM GetPoseWithLL
           new ResetPoseWithLL(s_Swerve)
+
+//ADD IN THE SCORING:
+       // , new PIDToHeight(elevator, algaePivot, Constants.Elevator.L4_HEIGHT),
+        //  new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL4),
+        //  new CoralRelease(coralHold, Constants.CoralHold.L4_RELEASE_SPEED)
+      
+      ///OR:
+       // , Commands.parallel(
+       //    new PIDToHeight(elevator, algaePivot, Constants.Elevator.L4_HEIGHT),
+       //    new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL4)
+       //    ),
+        //  new CoralRelease(coralHold, Constants.CoralHold.L4_RELEASE_SPEED)
+
     );
   }
 

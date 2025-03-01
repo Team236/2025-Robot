@@ -4,12 +4,21 @@
 
 package frc.robot.commands.AutoCommands.Right;
 
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.Constants;
 import frc.robot.commands.ZeroPose;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
+import frc.robot.commands.CoralHoldCommands.CoralRelease;
+import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
+import frc.robot.commands.ElevatorCommands.PIDToHeight;
 import frc.robot.commands.Targeting.GetPoseWithLL;
 import frc.robot.commands.Targeting.ResetPoseWithLL;
 import frc.robot.commands.Targeting.TargetAllParallel;
+import frc.robot.subsystems.AlgaePivot;
+import frc.robot.subsystems.CoralHold;
+import frc.robot.subsystems.CoralPivot;
+import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Swerve;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -17,7 +26,7 @@ import frc.robot.subsystems.Swerve;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class Leg1Right extends SequentialCommandGroup {
   /** Creates a new Leg1Right. */
-  public Leg1Right(Swerve s_Swerve) {
+  public Leg1Right(Swerve s_Swerve, Elevator elevator, AlgaePivot algaePivot, CoralPivot coralPivot, CoralHold coralHold) {
     addCommands(
       //TODO  add the commands for scoring and receiving coral
  
@@ -33,6 +42,18 @@ public class Leg1Right extends SequentialCommandGroup {
           new DriveFwdAndSideAndTurn(s_Swerve, false, 10.25, 2.23, 0).withTimeout(1),
 
           new ResetPoseWithLL(s_Swerve)
+
+//ADD IN THE SCORING:
+       // , new PIDToHeight(elevator, algaePivot, Constants.Elevator.L4_HEIGHT),
+        //  new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL4),
+        //  new CoralRelease(coralHold, Constants.CoralHold.L4_RELEASE_SPEED)
+      
+      ///OR:
+       // , Commands.parallel(
+       //    new PIDToHeight(elevator, algaePivot, Constants.Elevator.L4_HEIGHT),
+       //    new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL4)
+       //    ),
+        //  new CoralRelease(coralHold, Constants.CoralHold.L4_RELEASE_SPEED)
 
     );
   }

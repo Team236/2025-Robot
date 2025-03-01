@@ -11,6 +11,10 @@ import frc.robot.commands.AutoCommands.DriveReverse;
 import frc.robot.commands.AutoCommands.Right.Leg1Right;
 import frc.robot.commands.AutoCommands.Right.Leg2Right;
 import frc.robot.commands.AutoCommands.Right.Leg3Right;
+import frc.robot.subsystems.AlgaePivot;
+import frc.robot.subsystems.CoralHold;
+import frc.robot.subsystems.CoralPivot;
+import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Swerve;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -19,13 +23,13 @@ import frc.robot.subsystems.Swerve;
 
 public class FullRunLeft extends SequentialCommandGroup {
   /** Creates a new FullRunParallel. */
-  public FullRunLeft(Swerve s_Swerve) {
+  public FullRunLeft(Swerve s_Swerve, Elevator elevator, AlgaePivot algaePivot, CoralPivot coralPivot, CoralHold coralHold) {
     addCommands(
     //!!!!! TODO MAKE ALL Y DISTANCES AND ALL ANGLES OPPOSITE TO FullRunRight !!!!
 
-    // new Leg1Left(s_Swerve),
-    // new Leg2Left(s_Swerve),
-    // new Leg3Left(s_Swerve) 
+    // new Leg1Left(s_Swerve, elevator, algaePivot, coralPivot, coralHold),
+    // new Leg2Left(s_Swerve, coralHold),
+    // new Leg3Left(s_Swerve, elevator, algaePivot, coralPivot, coralHold) 
   
     );
   
