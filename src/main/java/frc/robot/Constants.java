@@ -67,8 +67,8 @@ public final class Constants {
     //Distances below assume Limelight camera will be centered on the AprilTag when targeting 
     //Make LL camera be centered 2" from side of frame
     //TODO:  get actual for algae side below, verify others with camera on the right over Coral device
-    public static final double DIST_L_CORAL_SIDE = 1.875;//1.6; //from LL camera to Left Coral branch
-    public static final double DIST_R_CORAL_SIDE = -11.125;//-11.4; //from LL camera to Right Coral Branch
+    public static final double DIST_L_CORAL_SIDE = 2.375;//1.6; //from LL camera to Left Coral branch
+    public static final double DIST_R_CORAL_SIDE = -10.625;//-11.4; //from LL camera to Right Coral Branch
     public static final double DIST_ALGAE_SIDE = -14.375;//-16; //to get to Algae center (from AprilTag center)
     public static final double DIST_FWD = 9; //required fwd standoff (from bumper) to keep target in sight
 
