@@ -17,8 +17,8 @@ public class ClimbDownSequence extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new PIDToHeight(elevator, algaePivot, 6).withTimeout(2)
-      // new PIDToHeight(elevator, algaePivot, 0)
+      new PIDToHeight(elevator, algaePivot, 6).withTimeout(2),
+      new PIDForClimb(elevator, algaePivot, 0)
     );
   }
 }
