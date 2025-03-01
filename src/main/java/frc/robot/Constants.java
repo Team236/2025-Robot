@@ -228,7 +228,7 @@ public static final class Swerve {
     public static final double PICK_ALGAE_L3_HEIGHT = 13.5;//TODO find actual
     public static final double SCORE_ALGAE_NET_HEIGHT = 55; //TODO find actual
     public static final double CLIMB_START_HEIGHT = 12;  //TODO find actual
-    public static final double CLIMB_END_HEIGHT = 5; //TODO find actual
+    public static final double CLIMB_END_HEIGHT = 0; //TODO find actual
     public static final double MAX_HEIGHT = 57;
 
     //placeholder PID values
@@ -271,10 +271,10 @@ public static class CoralHold {
   
   public static class CoralPivot {
     public static final int DIO_LIMIT = 8; 
-    public static final double ENC_REVS_MAX = -999999;//TODO determine actual  -  32
+    public static final double ENC_REVS_MAX = -32;//TODO determine actual  -  32
     public static final double ENC_REVS_LEVEL1 = -32;//TODO determine actual
     public static final double ENC_REVS_LEVEL2 = -6;
-    public static final double ENC_REVS_LEVEL3 = -8;
+    public static final double ENC_REVS_LEVEL3 = -8; //-8
     public static final double ENC_REVS_LEVEL4 = -25;
     public static final double MAN_EXT_SPEED = -0.6;
     public static final double MAN_RET_SPEED = 0.6;
@@ -284,7 +284,6 @@ public static class CoralHold {
     public static final double KFF = 0;
     public static final int DIO_ENC_A = 11;
     public static final int DIO_ENC_B = 12;
-    public static final double ENC_DIST_PER_PULSE = 512;
   }
   
   public static class XboxController {

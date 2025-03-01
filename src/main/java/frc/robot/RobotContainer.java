@@ -251,9 +251,10 @@ public class RobotContainer {
     //leftPov.whileTrue(driveFwdAndSideAndTurn);
     //leftPov.whileTrue(coralRightTarget);
 
-    //downPov.whileTrue(elevatorClimbDown);
-    //a.whileTrue(elevatorDown);
-    //x.whileTrue(elevatorUp);
+    upPov.onTrue(pidPrepForClimb);
+    downPov.whileTrue(elevatorClimbDown);
+    a.whileTrue(elevatorDown);
+    x.whileTrue(elevatorUp);
     //b.onTrue(pidElevToBottom);
    // downPov.onTrue(pidElevatorL1);
    // leftPov.onTrue(pidElevatorL2);
@@ -261,25 +262,25 @@ public class RobotContainer {
    // rightPov.onTrue(pidElevatorL4);
   
 
-    upPov.whileTrue(coralPivotUp);
-    downPov.whileTrue(coralPivotDown);
-    rb.onTrue(pidCoraltoL1); //pivots coral Nto score on Level 1
-    rm.onTrue(pidCoraltoL2);
-    leftPov.onTrue(pidCoraltoL3);
-    rightPov.onTrue(pidCoraltoL4);
+   // upPov.whileTrue(coralPivotUp);
+   // downPov.whileTrue(coralPivotDown);
+   // rb.onTrue(pidCoraltoL1); //pivots coral Nto score on Level 1
+   // rm.onTrue(pidCoraltoL2);
+   // leftPov.onTrue(pidCoraltoL3);
+    //rightPov.onTrue(pidCoraltoL4);
 
   //   x.whileTrue(algaeGrab);
   //   a.whileTrue(algaeRelease);
 
-    a.whileTrue(coralGrab);
-    b.whileTrue(coralRelease);
-    x.whileTrue(coralGrabWithCounter);
+   // a.whileTrue(coralGrab);
+    //b.whileTrue(coralRelease);
+   // x.whileTrue(coralGrabWithCounter);
 
-  //   upPov.whileTrue(algaePivotUp);
-  //   downPov.whileTrue(algaePivotDown);
+  rm.whileTrue(algaePivotUp);
+  rb.whileTrue(algaePivotDown);
 
-  //   leftPov.onTrue(pidReefPickup); //pivot Algae to pickup from Reef position
-  //  // leftPov.onTrue(pidAlgaeSafe);
+   rightPov.onTrue(pidReefPickup); //pivot Algae to pickup from Reef position
+   leftPov.onTrue(pidAlgaeSafe);
   //   b.onTrue(pidAlgaeScoreNet); //pivot Algae to score in Net position
 
 

@@ -40,10 +40,9 @@ public class CoralPivot extends SubsystemBase {
     /** Creates a new CoralPivot. */
     public CoralPivot() {
     coralPivotMotor = new SparkMax(Constants.MotorControllers.ID_CORAL_PIVOT, MotorType.kBrushed);
-    //coralPivotEncoder = coralPivotMotor.getEncoder(); 
-
+    // coralPivotEncoder = coralPivotMotor.getEncoder(); 
     coralPivotEncoder = new Encoder(Constants.CoralPivot.DIO_ENC_A, Constants.CoralPivot.DIO_ENC_B);
-    coralPivotEncoder.setDistancePerPulse(Constants.CoralPivot.ENC_DIST_PER_PULSE);
+
 
     coralPivotConfig = new SparkMaxConfig();
     coralPivotConfig.inverted(false); //TODO change to false when using 2024 Robot Tilt motor ID50
@@ -72,7 +71,7 @@ public class CoralPivot extends SubsystemBase {
 public double getCoralEncoder() {  //gives encoder reading in Revs
   //return coralPivotEncoder.getPosition(); // if using SparkMax internal encoder
   //for extenal Bourne encoder (512 counts per rev):
-  return coralPivotEncoder.getDistance(); //getRaw gets actual count unscaled by the 1, 2 or 4x scale
+  return coralPivotEncoder.getRaw(); //getRaw gets actual count unscaled by the 1, 2 or 4x scale
   //return coralPivotEncoder.get(); //gets count adjusted for the 1, 2 or 4x scale factor
 }
 
