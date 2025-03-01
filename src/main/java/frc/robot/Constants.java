@@ -233,7 +233,6 @@ public static final class Swerve {
 
     //placeholder PID values
     public static final double KP_ELEV = 0.045;
-    public static final double KP_ELEV_CLIMB = 0.07;
     public static final double KI_ELEV = 0;
     public static final double KD_ELEV = 0;
   }

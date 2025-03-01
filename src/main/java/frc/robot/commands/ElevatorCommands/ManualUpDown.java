@@ -4,6 +4,7 @@
 
 package frc.robot.commands.ElevatorCommands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
@@ -20,12 +21,16 @@ public class ManualUpDown extends SequentialCommandGroup {
   public ManualUpDown(Elevator elevator, AlgaePivot algaePivot, double speed) {
 
     if (algaePivot.getPivotEncoder() > Constants.AlgaePivot.ENC_REVS_ELEVATOR_SAFE_POSITION){
+      SmartDashboard.putNumber("AP enc revs in ManualUpDown is: ", algaePivot.getPivotEncoder());
+      SmartDashboard.putBoolean("In the danger zone coder area in ManUpDown: ", true);
       addCommands(
       // new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_ELEVATOR_SAFE_POSITION),
       // new AWaitCommand(5), //Adjust as needed
       new DangerManualUpDown(elevator, speed));
     }
     else{
+      SmartDashboard.putNumber("AP enc revs in ManUpDown is: ", algaePivot.getPivotEncoder());
+      SmartDashboard.putBoolean("In the danger zone coder area in ManUpDown: ", false);
       addCommands(
       new DangerManualUpDown(elevator, speed));
     }
