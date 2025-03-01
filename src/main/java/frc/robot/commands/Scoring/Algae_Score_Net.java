@@ -22,6 +22,7 @@ public class Algae_Score_Net extends SequentialCommandGroup {
   public Algae_Score_Net(Elevator elevator, AlgaeHold algaeHold, AlgaePivot algaePivot) {
   addCommands(
    //Likely cannot do these in parallel, since Algae grabber may hit elevator 
+   //PIDToHeight makes sure the AlgaePivot is out far enough before moving elevator
    //Commands.parallel(
    //  new PIDToHeight(elevator, Constants.Elevator. SCORE_ALGAE_NET_HEIGHT),
    //  new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_SCORE_NET)

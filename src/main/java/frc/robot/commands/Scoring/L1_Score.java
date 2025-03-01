@@ -23,14 +23,21 @@ import frc.robot.subsystems.Elevator;
 public class L1_Score extends SequentialCommandGroup {
   /** Creates a new L1_Score. */
   public L1_Score(Elevator elevator, CoralHold coralHold, CoralPivot coralPivot, AlgaePivot algaePivot) {
-    // Add your commands in the addCommands() call, e.g.
-    // addCommands(new FooCommand(), new BarCommand());
+
     addCommands(
-   Commands.parallel(
-      new PIDToHeight(elevator, algaePivot, Constants.Elevator.L1_HEIGHT),
-      new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL1)
-    ),
-    new CoralRelease(coralHold, Constants.CoralHold.L1_RELEASE_SPEED)
+
+       new PIDToHeight(elevator, algaePivot, Constants.Elevator.L1_HEIGHT),
+       new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL1),
+       new CoralRelease(coralHold, Constants.CoralHold.L1_RELEASE_SPEED)
     );
+
+//OR, IF CORAL WON'T HIT ELEVATOR:
+   //Commands.parallel(
+   //   new PIDToHeight(elevator, algaePivot, Constants.Elevator.L1_HEIGHT),
+   //   new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL1)
+   // ),
+   //new CoralRelease(coralHold, Constants.CoralHold.L1_RELEASE_SPEED)
+   //);
+
   }
 }
