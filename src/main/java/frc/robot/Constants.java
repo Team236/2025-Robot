@@ -58,7 +58,7 @@ public final class Constants {
 
   public static final class  Targeting {
     //use this with TargetPose-CameraSpace:  
-    public static final double DIST_FORWARDS_CAMERA_TO_FRAME = 6;//4.25;//inches  TODO- update for 2025 robot
+    public static final double DIST_FORWARDS_CAMERA_TO_FRAME = 5.375;//4.25;//inches  TODO- update for 2025 robot
     public static final double BUMPER_THICKNESS = 3.25; //inches, for 2025 bot
     public static final double DIST_CAMERA_TO_BUMPER_FWD = BUMPER_THICKNESS + DIST_FORWARDS_CAMERA_TO_FRAME;
     //forward distance robot center to robot bumper, inches 
@@ -67,9 +67,9 @@ public final class Constants {
     //Distances below assume Limelight camera will be centered on the AprilTag when targeting 
     //Make LL camera be centered 2" from side of frame
     //TODO:  get actual for algae side below, verify others with camera on the right over Coral device
-    public static final double DIST_L_CORAL_SIDE = 2.225;//1.6; //from LL camera to Left Coral branch
-    public static final double DIST_R_CORAL_SIDE = -10.775;//-11.4; //from LL camera to Right Coral Branch
-    public static final double DIST_ALGAE_SIDE = -14.625;//-16; //to get to Algae center (from AprilTag center)
+    public static final double DIST_L_CORAL_SIDE = 1.875;//1.6; //from LL camera to Left Coral branch
+    public static final double DIST_R_CORAL_SIDE = -11.125;//-11.4; //from LL camera to Right Coral Branch
+    public static final double DIST_ALGAE_SIDE = -14.375;//-16; //to get to Algae center (from AprilTag center)
     public static final double DIST_FWD = 9; //required fwd standoff (from bumper) to keep target in sight
 
     public static final double KP_ROTATION = 0.008; //kP value for rotation
@@ -271,7 +271,7 @@ public static class CoralHold {
   
   public static class CoralPivot {
     public static final int DIO_LIMIT = 8; 
-    public static final double ENC_REVS_MAX = -32;//TODO determine actual
+    public static final double ENC_REVS_MAX = -999999;//TODO determine actual  -  32
     public static final double ENC_REVS_LEVEL1 = -32;//TODO determine actual
     public static final double ENC_REVS_LEVEL2 = -6;
     public static final double ENC_REVS_LEVEL3 = -8;
@@ -284,6 +284,7 @@ public static class CoralHold {
     public static final double KFF = 0;
     public static final int DIO_ENC_A = 11;
     public static final int DIO_ENC_B = 12;
+    public static final double ENC_DIST_PER_PULSE = 512;
   }
   
   public static class XboxController {
