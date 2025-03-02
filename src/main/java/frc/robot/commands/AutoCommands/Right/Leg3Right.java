@@ -10,7 +10,7 @@ import frc.robot.Constants;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
-import frc.robot.commands.ElevatorCommands.PIDToHeight;
+import frc.robot.commands.ElevatorCommands.ZOLD_PIDToHeight;
 import frc.robot.commands.Targeting.GetPoseWithLL;
 import frc.robot.commands.Targeting.ResetPoseWithLL;
 import frc.robot.commands.Targeting.TargetAllParallel;
@@ -45,7 +45,7 @@ public class Leg3Right extends SequentialCommandGroup {
           new ResetPoseWithLL(s_Swerve),
 
           Commands.parallel(
-            new PIDToHeight(elevator, algeaPivot, Constants.Elevator.L4_HEIGHT),
+            new ZOLD_PIDToHeight(elevator, algeaPivot, Constants.Elevator.L4_HEIGHT),
             new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL4)
            ),
 

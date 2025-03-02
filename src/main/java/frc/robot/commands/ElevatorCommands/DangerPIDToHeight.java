@@ -15,7 +15,7 @@ public class DangerPIDToHeight extends Command {
   private Elevator elevator;
   private double desiredHeight; //desired height in inches
   private final PIDController pidController;
-  private double kP = Constants.Elevator.KP_ELEV;
+  private double kP; // = Constants.Elevator.KP_ELEV;
   private double kI = Constants.Elevator.KI_ELEV;
   private double kD = Constants.Elevator.KD_ELEV;
 
@@ -33,11 +33,18 @@ public class DangerPIDToHeight extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+
+    if (desiredHeight > elevator.getElevatorHeight()) {//going up
+      kP = Constants.Elevator.KP_ELEV_UP;
+    }
+    else {
+      kP = Constants.Elevator.KP_ELEV_DOWN;
+    }
+  
     pidController.reset();
-  }
+    }
 
   // Called every time the scheduler runs while the command is scheduled.
-
   public void execute() {
     elevator.setElevSpeed(pidController.calculate(elevator.getElevatorHeight()));
   }

@@ -12,7 +12,7 @@ import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
 import frc.robot.commands.AutoCommands.DriveReverse;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
-import frc.robot.commands.ElevatorCommands.PIDToHeight;
+import frc.robot.commands.ElevatorCommands.ZOLD_PIDToHeight;
 import frc.robot.subsystems.AlgaePivot;
 import frc.robot.subsystems.CoralHold;
 import frc.robot.subsystems.CoralPivot;
@@ -30,7 +30,7 @@ public class CtrScore1 extends SequentialCommandGroup {
       //TODO:  add the commands for scoring 
       new DriveFwd(s_Swerve, false, Constants.AutoConstants.CENTER_FWD_DIST),
       Commands.parallel(
-        new PIDToHeight(elevator, algeaPivot, Constants.Elevator.L4_HEIGHT),
+        new ZOLD_PIDToHeight(elevator, algeaPivot, Constants.Elevator.L4_HEIGHT),
         new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL4)
         ),
        new CoralRelease(coralHold, Constants.CoralHold.L4_RELEASE_SPEED)

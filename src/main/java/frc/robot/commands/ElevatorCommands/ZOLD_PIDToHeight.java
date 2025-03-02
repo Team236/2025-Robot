@@ -17,13 +17,14 @@ import frc.robot.subsystems.Elevator;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class ManualUpDown extends SequentialCommandGroup {
+public class ZOLD_PIDToHeight extends SequentialCommandGroup {
   /** Creates a new ManualUpDown. */
-  public ManualUpDown(Elevator elevator, AlgaePivot algaePivot, double speed) {
+  public ZOLD_PIDToHeight(Elevator elevator, AlgaePivot algaePivot, double desiredHeight) {
       addCommands(
-        new PIDToSafeAP(algaePivot),
-        new WaitCommand(5) //Adjust as needed
-      //, new DangerManualUpDown(elevator, speed) //ADD BACK IF FIRST COMMAND WORKS!
-        );
-    }
+      new PIDToSafeAP(algaePivot),
+      new WaitCommand(5) //Adjust as needed
+     // , new DangerPIDToHeight(elevator, desiredHeight) //ADD BACK IF FIRST COMMAND WORKS!
+      );
   }
+
+}

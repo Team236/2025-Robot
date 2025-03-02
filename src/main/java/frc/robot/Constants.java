@@ -220,6 +220,7 @@ public static final class Swerve {
     public static final double ELEV_IN_TO_REV = 1/ELEV_REV_TO_IN;
 
     public static final double BOTTOM_HEIGHT = 0;
+    public static final double TELEOP_HEIGHT = 3.47;
     public static final double L1_HEIGHT = 0;//TODO determine actual
     public static final double L2_HEIGHT =3.47;
     public static final double L3_HEIGHT = 13.5;
@@ -232,7 +233,9 @@ public static final class Swerve {
     public static final double MAX_HEIGHT = 57;
 
     //placeholder PID values
-    public static final double KP_ELEV = 0.045;
+   // public static final double KP_ELEV = 0.045;
+    public static final double KP_ELEV_UP = 0.045;
+    public static final double KP_ELEV_DOWN = 0.035;
     public static final double KI_ELEV = 0;
     public static final double KD_ELEV = 0;
   }

@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
 import frc.robot.commands.AlgaePivotCommands.PIDAlgaePivot;
-import frc.robot.commands.ElevatorCommands.PIDToHeight;
+import frc.robot.commands.ElevatorCommands.ZOLD_PIDToHeight;
 import frc.robot.subsystems.AlgaeHold;
 import frc.robot.subsystems.AlgaePivot;
 import frc.robot.subsystems.Elevator;
@@ -21,7 +21,7 @@ public class AlgaeL2Pickup extends SequentialCommandGroup {
   //    new PIDToHeight(elevator, algaePivot, Constants.Elevator.PICK_ALGAE_L2_HEIGHT),
    //   new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_ALGAE_PICKUP)
   //  ),
-    new PIDToHeight(elevator, algaePivot, Constants.Elevator.PICK_ALGAE_L2_HEIGHT),
+    new ZOLD_PIDToHeight(elevator, algaePivot, Constants.Elevator.PICK_ALGAE_L2_HEIGHT),
     new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_REEF_PICKUP),
 
     new AlgaeGrab(algaeHold, Constants.AlgaeHold.HOLD_SPEED1, Constants.AlgaeHold.HOLD_SPEED2)
