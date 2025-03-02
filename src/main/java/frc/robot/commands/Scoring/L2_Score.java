@@ -23,18 +23,16 @@ public class L2_Score extends SequentialCommandGroup {
   public L2_Score(Elevator elevator, CoralHold coralHold, CoralPivot coralPivot, AlgaePivot algaePivot) {
 
     addCommands(
-
-      new PIDToHeight(elevator, algaePivot, Constants.Elevator.L2_HEIGHT),
-      new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL2),
-      new CoralRelease(coralHold, Constants.CoralHold.L2_RELEASE_SPEED)
+    Commands.parallel(
+       new PIDToHeight(elevator, algaePivot, Constants.Elevator.L2_HEIGHT),
+       new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL2)
+       ),
+    new CoralRelease(coralHold, Constants.CoralHold.L2_RELEASE_SPEED)
     );
 
-//OR IF CORAL WON'T HIT ELEVATOR:
-  //   Commands.parallel(
-  //    new PIDToHeight(elevator, algaePivot, Constants.Elevator.L2_HEIGHT),
-   //   new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL2)
-  //  ),
-   // new CoralRelease(coralHold, Constants.CoralHold.L2_RELEASE_SPEED)
-   // );
+     // new PIDToHeight(elevator, algaePivot, Constants.Elevator.L2_HEIGHT),
+     // new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL2),
+    //  new CoralRelease(coralHold, Constants.CoralHold.L2_RELEASE_SPEED)
+     // );
   }
 }

@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
 import frc.robot.commands.AlgaePivotCommands.PIDAlgaePivot;
+import frc.robot.commands.AlgaePivotCommands.PIDToSafeAP;
 import frc.robot.subsystems.AlgaeHold;
 import frc.robot.subsystems.AlgaePivot;
 import frc.robot.subsystems.Elevator;
@@ -19,21 +20,11 @@ import frc.robot.subsystems.Elevator;
 public class PIDToHeight extends SequentialCommandGroup {
   /** Creates a new ManualUpDown. */
   public PIDToHeight(Elevator elevator, AlgaePivot algaePivot, double desiredHeight) {
-
-    if (algaePivot.getPivotEncoder() > Constants.AlgaePivot.ENC_REVS_ELEVATOR_SAFE_POSITION){
-      SmartDashboard.putNumber("AP enc revs is: ", algaePivot.getPivotEncoder());
-      SmartDashboard.putBoolean("In the danger zone coder area: ", true);
       addCommands(
-      // new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_ELEVATOR_SAFE_POSITION),
-      // new WaitCommand(5), //Adjust as needed
-      new DangerPIDToHeight(elevator, desiredHeight));
-    }
-    else{
-      SmartDashboard.putNumber("AP enc revs is: ", algaePivot.getPivotEncoder());
-      SmartDashboard.putBoolean("In the danger zone coder area: ", false);
-      addCommands(
-      new DangerPIDToHeight(elevator, desiredHeight));
-    }
-
+      new PIDToSafeAP(algaePivot),
+      new WaitCommand(5) //Adjust as needed
+     // , new DangerPIDToHeight(elevator, desiredHeight) //ADD BACK IF FIRST COMMAND WORKS!
+      );
   }
+
 }

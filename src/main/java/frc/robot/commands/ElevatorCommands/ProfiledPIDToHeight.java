@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
 import frc.robot.commands.AlgaePivotCommands.PIDAlgaePivot;
+import frc.robot.commands.AlgaePivotCommands.PIDToSafeAP;
 import frc.robot.subsystems.AlgaeHold;
 import frc.robot.subsystems.AlgaePivot;
 import frc.robot.subsystems.Elevator;
@@ -18,17 +19,11 @@ import frc.robot.subsystems.Elevator;
 public class ProfiledPIDToHeight extends SequentialCommandGroup {
   /** Creates a new ManualUpDown. */
   public ProfiledPIDToHeight(Elevator elevator, AlgaePivot algaePivot, double desiredHeight) {
-
-    if (algaePivot.getPivotEncoder() > Constants.AlgaePivot.ENC_REVS_ELEVATOR_SAFE_POSITION){
       addCommands(
-      // new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_ELEVATOR_SAFE_POSITION),
-      // new WaitCommand(5), //Adjust as needed
-      new DangerProfiledPIDToHeight(elevator, desiredHeight));
-    }
-    else{
-      addCommands(
-      new DangerProfiledPIDToHeight(elevator, desiredHeight));
-    }
-
+        new PIDToSafeAP(algaePivot),
+        new WaitCommand(5) //Adjust as needed
+      //, new DangerProfiledPIDToHeight(elevator, desiredHeight)//ADD BACK IF FIRST COMMAND WORKS!
+      );
   }
 }
+

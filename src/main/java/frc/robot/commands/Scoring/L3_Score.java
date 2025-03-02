@@ -21,21 +21,18 @@ import frc.robot.subsystems.Elevator;
 public class L3_Score extends SequentialCommandGroup {
   /** Creates a new L3_Score. */
   public L3_Score(Elevator elevator, CoralHold coralHold, CoralPivot coralPivot, AlgaePivot algaePivot) {
- 
     addCommands(
-     
-      new PIDToHeight(elevator, algaePivot, Constants.Elevator.L3_HEIGHT),
-      new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL3),
-      new CoralRelease(coralHold, Constants.CoralHold.L3_RELEASE_SPEED)
-    ); 
+     Commands.parallel(
+        new PIDToHeight(elevator, algaePivot, Constants.Elevator.L3_HEIGHT),
+        new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL3)
+        ),
+     new CoralRelease(coralHold, Constants.CoralHold.L3_RELEASE_SPEED)
+    );
 
-    //OR IF CORAL WON'T HIT ELEVATOR:
-    //addCommands(
-    //  Commands.parallel(
-    //  new PIDToHeight(elevator, algaePivot, Constants.Elevator.L3_HEIGHT),
-    //  new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL3)
-   // ),
-   // new CoralRelease(coralHold, Constants.CoralHold.L3_RELEASE_SPEED)
-   // );
+     // new PIDToHeight(elevator, algaePivot, Constants.Elevator.L3_HEIGHT),
+     // new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL3),
+     // new CoralRelease(coralHold, Constants.CoralHold.L3_RELEASE_SPEED)
+   // ); 
+
   }
 }

@@ -20,6 +20,7 @@ import frc.robot.commands.AlgaeHoldCommands.AlgaeL2Pickup;
 import frc.robot.commands.AlgaeHoldCommands.AlgaeRelease;
 import frc.robot.commands.AlgaePivotCommands.ManualAlgaePivot;
 import frc.robot.commands.AlgaePivotCommands.PIDAlgaePivot;
+import frc.robot.commands.AlgaePivotCommands.PIDToSafeAP;
 import frc.robot.commands.AutoCommands.DriveFwd;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
 import frc.robot.commands.AutoCommands.DriveSideways;
@@ -150,7 +151,7 @@ public class RobotContainer {
   private final ManualAlgaePivot algaePivotUp = new ManualAlgaePivot(algaePivot, Constants.AlgaePivot.MAN_RET_SPEED);
   private final PIDAlgaePivot pidReefPickup = new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_REEF_PICKUP);
   private final PIDAlgaePivot pidAlgaeScoreNet = new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_SCORE_NET);
-  private final PIDAlgaePivot pidAlgaeSafe = new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_ELEVATOR_SAFE_POSITION);
+  private final PIDToSafeAP pidToSafeAP = new PIDToSafeAP(algaePivot);
 
   //CoralHold
   private final CoralGrab coralGrab = new CoralGrab(coralHold, Constants.CoralHold.HOLD_SPEED);
@@ -236,63 +237,53 @@ public class RobotContainer {
     //y button is already assigned to ZeroGyro
     //leftBumper lb button is already assigned to RobotCentric
 
-    // a.whileTrue(coralLeftorAlgaeTarget);
-    // b.whileTrue(coralRightTarget);
-  
+    //leftPov.whileTrue(driveFwdAndSideAndTurn);
+
     // rb.whileTrue(targetAllParallel);
     // upPov.whileTrue(targetForwardDistance);
     // downPov.whileTrue(targetsideDistance);
 
-      //a.whileTrue(legs1and2Right);
-    //b.whileTrue(targetForwardDistance);
-      //b.whileTrue(driveWithPathLeg1);
-      //x.whileTrue(leg2Right);
-      //upPov.whileTrue(leg1Right);
-    //downPov.whileTrue(coralLeftTarget);
-    //leftPov.whileTrue(driveFwdAndSideAndTurn);
-    //leftPov.whileTrue(coralRightTarget);
-
-    upPov.onTrue(pidPrepForClimb);
-    downPov.onTrue(pidClimb);
-    a.whileTrue(elevatorDown);
-    x.whileTrue(elevatorUp);
-    //b.onTrue(pidElevToBottom);
-   // downPov.onTrue(pidElevatorL1);
-   // leftPov.onTrue(pidElevatorL2);
-   // upPov.onTrue(pidElevatorL3);
-   // rightPov.onTrue(pidElevatorL4);
+    //upPov.whileTrue(leg1Right);
+    //a.whileTrue(legs1and2Right);
+    //b.whileTrue(driveWithPathLeg1);
+    //x.whileTrue(leg2Right);
   
-
-   // upPov.whileTrue(coralPivotUp);
-   // downPov.whileTrue(coralPivotDown);
-
-   // rb.onTrue(pidCoraltoL1); //pivots coral Nto score on Level 1
-   // rm.onTrue(pidCoraltoL2);
-   // leftPov.onTrue(pidCoraltoL3);
-    //rightPov.onTrue(pidCoraltoL4);
-
-  //   x.whileTrue(algaeGrab);
-  //   a.whileTrue(algaeRelease);
-
-   // a.whileTrue(coralGrab);
-    //b.whileTrue(coralRelease);
-   // x.whileTrue(coralGrabWithCounter);
-
-  rm.whileTrue(algaePivotUp);
-  rb.whileTrue(algaePivotDown);
-
-   rightPov.onTrue(pidReefPickup); //pivot Algae to pickup from Reef position
-   leftPov.onTrue(pidAlgaeSafe);
-  //   b.onTrue(pidAlgaeScoreNet); //pivot Algae to score in Net position
-
+    //downPov.whileTrue(coralLeftTarget);
+    //leftPov.whileTrue(coralRightTarget);
+    //a.whileTrue(algaeTarget);
 
     //upPov.whileTrue(coralPivotUp);
     //downPov.whileTrue(coralPivotDown);
 
+    //a.onTrue(pidCoraltoL1);
     //x.onTrue(pidCoraltoL2);
-    //b.onTrue(pidCoraltoL2);
-    //x.onTrue(pidCoraltoL3);
+    //b.onTrue(pidCoraltoL3);
     //rightPov.onTrue(pidCoraltoL4);
+
+    //a.whileTrue(coralGrab);
+    //b.whileTrue(coralRelease);
+    //x.whileTrue(coralGrabWithCounter);
+
+    //x.whileTrue(algaeGrab);
+    //a.whileTrue(algaeRelease);
+
+   rm.whileTrue(algaePivotUp);
+   rb.whileTrue(algaePivotDown);
+
+   rightPov.onTrue(pidReefPickup); //pivot Algae to position for Reef pickup
+   leftPov.onTrue(pidToSafeAP); //if AP under elevator, move to safe position
+  // b.onTrue(pidAlgaeScoreNet); //pivot Algae to score in Net position
+
+  upPov.onTrue(pidPrepForClimb);
+  downPov.onTrue(pidClimb);
+  a.whileTrue(elevatorDown);
+  x.whileTrue(elevatorUp);
+  //b.onTrue(pidElevToBottom);
+ // downPov.onTrue(pidElevatorL1);
+ // leftPov.onTrue(pidElevatorL2);
+ // upPov.onTrue(pidElevatorL3);
+ // rightPov.onTrue(pidElevatorL4);
+
 
 
  // a.onTrue(driveFwdCenter55);
