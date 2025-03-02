@@ -36,6 +36,7 @@ import frc.robot.commands.AutoCommands.Right.Leg3Right;
 import frc.robot.commands.AutoCommands.Right.Legs1and2Right;
 import frc.robot.commands.AutoCommands.Right.FullRunRight;
 import frc.robot.commands.CoralHoldCommands.CoralGrabWithCounter;
+import frc.robot.commands.CoralHoldCommands.CoralHoldSeqGrabCount;
 import frc.robot.commands.CoralHoldCommands.CoralGrab;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
 import frc.robot.commands.CoralPivotCommands.ManualCoralPivot;
@@ -173,6 +174,7 @@ public class RobotContainer {
   //CoralHold
   private final CoralGrab coralGrab = new CoralGrab(coralHold, Constants.CoralHold.HOLD_SPEED);
   private final CoralGrabWithCounter coralGrabWithCounter = new CoralGrabWithCounter(coralHold, Constants.CoralHold.HOLD_SPEED);
+  private final CoralHoldSeqGrabCount coralHoldSeqGrabCount = new CoralHoldSeqGrabCount(coralPivot, coralHold);
   private final CoralRelease coralRelease = new CoralRelease(coralHold, Constants.CoralHold.L2_RELEASE_SPEED);
   //private final CoralRelease coralReleaseL4 = new CoralRelease(coralHold, Constants.CoralHold.L4_RELEASE_SPEED);
 
@@ -313,7 +315,7 @@ public class RobotContainer {
  upPov.whileTrue(dangerElevatorUp);
  leftPov.whileTrue(coralPivotUp);
  rightPov.whileTrue(coralPivotDown);
- rm.whileTrue(coralGrabWithCounter);
+ rm.whileTrue(coralHoldSeqGrabCount);
 
 // a.onTrue(algaeGrab).onTrue(l3_Score);
 // b.onTrue(algaeGrab).onTrue(l4_Score);

@@ -6,29 +6,20 @@ package frc.robot.commands.CoralHoldCommands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 //seq command to run coralgrab after running coralpivot to retract limit
+import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
+import frc.robot.subsystems.CoralHold;
+import frc.robot.subsystems.CoralPivot;
+
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class CoralGrabCounterSequence extends Command {
-  /** Creates a new CoralGrabCounterSequence. */
-  public CoralGrabCounterSequence() {
-    // Use addRequirements() here to declare subsystem dependencies.
-  }
+//public class CoralGrabCounterSequence SequentialCommandGroup {
+  /** Creates a new Legs1and2Right. */
+  //public CoralGrabCounterSequence(CoralPivot coralPivot, CoralHold coralHold) {
+  //  addCommands(
+   //   new PIDCoralPivot(coralPivot),
+    //  new CoralGrabWithCounter(coralHold, Constants.CoralHold.GRAB_SPEED)
+   // );
+ // }
+//}
 
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {}
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {}
-
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {}
-
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
-}
