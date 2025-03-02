@@ -30,7 +30,7 @@ public class L1_Score extends SequentialCommandGroup {
    // new PIDToElevSafePosition(algaePivot),
    // new WaitCommand(5),
      Commands.parallel(
-       new DangerPIDToHeight(elevator, Constants.Elevator.L1_HEIGHT),
+       new DangerPIDToHeight(elevator, Constants.Elevator.L1_HEIGHT).withTimeout(2),
        new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL1).withTimeout(2)
        ),
     // new WaitCommand(5),

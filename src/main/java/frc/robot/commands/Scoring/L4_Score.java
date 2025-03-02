@@ -28,8 +28,8 @@ public class L4_Score extends SequentialCommandGroup {
    // new PIDToElevSafePosition(algaePivot),
     // new WaitCommand(5),
     Commands.parallel(
-       new DangerPIDToHeight(elevator, Constants.Elevator.L4_HEIGHT),
-       new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL4)
+       new DangerPIDToHeight(elevator, Constants.Elevator.L4_HEIGHT).withTimeout(2),
+       new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL4).withTimeout(2)
        ),
     //new WaitCommand(5),
     new CoralRelease(coralHold, Constants.CoralHold.L4_RELEASE_SPEED).withTimeout(2),

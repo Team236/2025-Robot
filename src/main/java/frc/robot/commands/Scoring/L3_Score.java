@@ -27,8 +27,8 @@ public class L3_Score extends SequentialCommandGroup {
     addCommands(
    // new PIDToElevSafePosition(algaePivot),
      Commands.parallel(
-        new DangerPIDToHeight(elevator, Constants.Elevator.L3_HEIGHT),
-        new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL3).withTimeout(2)
+        new DangerPIDToHeight(elevator, Constants.Elevator.L3_HEIGHT).withTimeout(5),
+        new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL3).withTimeout(5)
         ),
     // new WaitCommand(5),
      new CoralRelease(coralHold, Constants.CoralHold.L3_RELEASE_SPEED).withTimeout(2),
