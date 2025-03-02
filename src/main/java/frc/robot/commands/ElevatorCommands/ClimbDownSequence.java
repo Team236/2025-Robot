@@ -5,7 +5,7 @@
 package frc.robot.commands.ElevatorCommands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.AlgaePivotCommands.PIDToSafeAP;
+import frc.robot.commands.AlgaePivotCommands.PIDMakeAPSafeForElev;
 import frc.robot.subsystems.AlgaePivot;
 import frc.robot.subsystems.Elevator;
 
@@ -18,7 +18,7 @@ public class ClimbDownSequence extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new PIDToSafeAP(algaePivot),
+      new PIDMakeAPSafeForElev(algaePivot),
       new DangerPIDToHeight(elevator, 6).withTimeout(2),
       new DangerManualUpDown(elevator, -0.5).withTimeout(20)
     );

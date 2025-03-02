@@ -8,11 +8,13 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
 import frc.robot.commands.ZeroPose;
-import frc.robot.commands.AlgaePivotCommands.PIDToSafeAP;
+import frc.robot.commands.AlgaePivotCommands.PIDMakeAPSafeForElev;
+import frc.robot.commands.AlgaePivotCommands.PIDToElevSafePosition;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
 import frc.robot.commands.ElevatorCommands.DangerPIDToHeight;
+import frc.robot.commands.Scoring.L4_Score;
 import frc.robot.commands.Targeting.GetPoseWithLL;
 import frc.robot.commands.Targeting.ResetPoseWithLL;
 import frc.robot.commands.Targeting.TargetAllParallel;
@@ -33,7 +35,7 @@ public class Leg1Right extends SequentialCommandGroup {
           Commands.parallel(
           //First command to drive with odometry and end 9" from bumper to AprilTag, centered on Tag
             new DriveFwdAndSideAndTurn(s_Swerve, false, 83, -73, -58),//.withTimeout(3),
-            new PIDToSafeAP(algaePivot)
+            new PIDToElevSafePosition(algaePivot)
              ),
           
           //Use limelight to get exactly 12" from front frame (9" from bumper) to AprilTag
@@ -46,15 +48,10 @@ public class Leg1Right extends SequentialCommandGroup {
 
           new ResetPoseWithLL(s_Swerve),
 
-          new PIDToSafeAP(algaePivot),
-        
-          Commands.parallel(
-           new DangerPIDToHeight(elevator, Constants.Elevator.L4_HEIGHT),
-           new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL4)
-           ),
-
-          new CoralRelease(coralHold, Constants.CoralHold.L4_RELEASE_SPEED).withTimeout(2),
-          new DangerPIDToHeight(elevator, Constants.Elevator.TELEOP_HEIGHT)
+          //new PIDMakeAPSafeForElev(algaePivot),
+          new PIDToElevSafePosition(algaePivot),
+          new L4_Score(elevator, coralHold, coralPivot, algaePivot)
+          
     );
     
   }

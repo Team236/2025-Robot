@@ -10,7 +10,7 @@ import frc.robot.Constants;
 import frc.robot.subsystems.AlgaePivot;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class PIDToSafeAP extends Command {
+public class PIDMakeAPSafeForElev extends Command {
   /** Creates a new PIDAlgaePivot. */
   private AlgaePivot algaePivot;
   //private double revs;
@@ -20,7 +20,7 @@ public class PIDToSafeAP extends Command {
   private double kD = Constants.AlgaePivot.KD;
   private double revs = Constants.AlgaePivot.ENC_REVS_ELEVATOR_SAFE_POSITION;
 
-  public PIDToSafeAP(AlgaePivot algaePivot) {
+  public PIDMakeAPSafeForElev(AlgaePivot algaePivot) {
     pidControllerSafe = new PIDController(kP, kI, kD);
     this.algaePivot = algaePivot;
 
@@ -50,7 +50,7 @@ public class PIDToSafeAP extends Command {
   @Override
   public void end(boolean interrupted) {
     //Removed statement below - may cause jolting from one position to another
-    //algaePivot.stopAlgaePivot();
+    algaePivot.stopAlgaePivot();
   }
 
   // Returns true when the command should end.

@@ -15,7 +15,7 @@ import frc.robot.subsystems.Elevator;
 public class DangerProfiledPIDToHeight extends Command {
     private Elevator elevator;
   private double desiredHeight; //desired height in inches
-  private double kP; // = Constants.Elevator.KP_ELEV;
+  private double kP= Constants.Elevator.KP_ELEV;
   private double kI = Constants.Elevator.KI_ELEV;
   private double kD = Constants.Elevator.KD_ELEV;
   private final TrapezoidProfile.Constraints constraints;
@@ -28,7 +28,7 @@ public class DangerProfiledPIDToHeight extends Command {
     addRequirements(elevator);
 
     //max velocity and acceleration in m/s 
-    constraints = new TrapezoidProfile.Constraints(1.25, 1.25);
+    constraints = new TrapezoidProfile.Constraints(0.2, 0.2);
     pidController = new ProfiledPIDController(kP, kI, kD, constraints);
 
   }
@@ -36,13 +36,6 @@ public class DangerProfiledPIDToHeight extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
-    if (desiredHeight > elevator.getElevatorHeight()) {//going up
-      kP = Constants.Elevator.KP_ELEV_UP;
-    }
-    else {
-      kP = Constants.Elevator.KP_ELEV_DOWN;
-    }
 
     pidController.reset(desiredHeight);
   }

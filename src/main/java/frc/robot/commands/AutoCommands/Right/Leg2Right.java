@@ -22,19 +22,11 @@ public class Leg2Right extends SequentialCommandGroup {
   /** Creates a new Leg2Right. */
   public Leg2Right(Swerve s_Swerve, CoralHold coralHold, frc.robot.subsystems.CoralPivot coralPivot) {
     addCommands(
-      //TODO  add the commands for scoring and receiving coral
-
-          //Tweak as needed to end against the Coral Loading station, not close to side of field
-          //note - camera on 2025 robot will be on opposite side of robot compared with the swerve testbed
           new DriveSideways(s_Swerve, false, 60), //.withTimeout(2),
           new DriveFwdAndSideAndTurn(s_Swerve, false, -3.5, 91.5, -63),
-
 //ADD IN RECEIVING CORAL: 
           new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LOADING), //adjust as needed
-        //  new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LOADING), //adjust as needed
           new CoralGrab(coralHold, Constants.CoralHold.HOLD_SPEED).withTimeout(2) //adjust as needed
-      
-
     );
   }
 

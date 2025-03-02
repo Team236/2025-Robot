@@ -10,7 +10,7 @@ import frc.robot.Constants;
 import frc.robot.subsystems.AlgaePivot;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class PIDAlgaePivot extends Command {
+public class PIDToElevSafePosition extends Command {
   /** Creates a new PIDAlgaePivot. */
   private AlgaePivot algaePivot;
   //private double revs;
@@ -18,12 +18,11 @@ public class PIDAlgaePivot extends Command {
   private double kP = Constants.AlgaePivot.KP;
   private double kI = Constants.AlgaePivot.KI;
   private double kD = Constants.AlgaePivot.KD;
-  private double revs;
+  private double revs = Constants.AlgaePivot.ENC_REVS_ELEVATOR_SAFE_POSITION;
 
-  public PIDAlgaePivot(AlgaePivot algaePivot, double revs) {
+  public PIDToElevSafePosition(AlgaePivot algaePivot) {
     pidController = new PIDController(kP, kI, kD);
     this.algaePivot = algaePivot;
-    this.revs = revs;
 
     addRequirements(this.algaePivot);
 
@@ -39,6 +38,9 @@ public class PIDAlgaePivot extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    //This moves the AP to a safe position for elevator operation
+    //  SmartDashboard.putNumber("AP enc revs is: ", algaePivot.getPivotEncoder());
+    //  SmartDashboard.putBoolean("In the danger zone coder area: ", true);
     algaePivot.setAlgaePivotSpeed(pidController.calculate(algaePivot.getPivotEncoder()));
   }
 

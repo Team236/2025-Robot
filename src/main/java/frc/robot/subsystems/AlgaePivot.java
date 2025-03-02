@@ -113,8 +113,10 @@ public class AlgaePivot extends SubsystemBase {
     } else //speed >0 so is retracting
     {//Retracting
       if (atRetractLimit()){
-        stopAlgaePivot();
+        SmartDashboard.putBoolean("AP Speed > 0 and AP Limit Hit, so resetting encoder", true);
+        //stopAlgaePivot(); // removed so PID keeps holding it
         resetPivotEncoder();
+        SmartDashboard.putBoolean("Resetting Pivot Encoder", true);
       } else{
         algaePivotMotor.set(speed);
       }

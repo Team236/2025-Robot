@@ -7,7 +7,7 @@ package frc.robot.commands.AutoCommands.Center;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
-import frc.robot.commands.AlgaePivotCommands.PIDToSafeAP;
+import frc.robot.commands.AlgaePivotCommands.PIDMakeAPSafeForElev;
 import frc.robot.commands.AutoCommands.DriveFwd;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
 import frc.robot.commands.AutoCommands.DriveReverse;
@@ -31,14 +31,14 @@ public class CtrScore1 extends SequentialCommandGroup {
       //TODO:  add the commands for scoring 
       Commands.parallel(
         new DriveFwd(s_Swerve, false, Constants.AutoConstants.CENTER_FWD_DIST),
-        new PIDToSafeAP(algeaPivot)
+        new PIDMakeAPSafeForElev(algeaPivot)
         ),
       Commands.parallel(
         new DangerPIDToHeight(elevator, Constants.Elevator.L4_HEIGHT),
         new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL4)
         ),
        new CoralRelease(coralHold, Constants.CoralHold.L4_RELEASE_SPEED).withTimeout(2),
-       new PIDToSafeAP(algeaPivot),
+       new PIDMakeAPSafeForElev(algeaPivot),
        new DangerPIDToHeight(elevator, Constants.Elevator.TELEOP_HEIGHT)
     );
 

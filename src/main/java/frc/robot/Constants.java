@@ -223,7 +223,7 @@ public static final class Swerve {
     public static final double TELEOP_HEIGHT = 3.47;
     public static final double L1_HEIGHT = 0;//TODO determine actual
     public static final double L2_HEIGHT =3.47;
-    public static final double L3_HEIGHT = 13.5;
+    public static final double L3_HEIGHT = 22;
     public static final double L4_HEIGHT = 35.5;
     public static final double PICK_ALGAE_L2_HEIGHT = 3.47;//TODO find actual
     public static final double PICK_ALGAE_L3_HEIGHT = 13.5;//TODO find actual
@@ -233,9 +233,7 @@ public static final class Swerve {
     public static final double MAX_HEIGHT = 57;
 
     //placeholder PID values
-   // public static final double KP_ELEV = 0.045;
-    public static final double KP_ELEV_UP = 0.045;
-    public static final double KP_ELEV_DOWN = 0.035;
+    public static final double KP_ELEV = 0.045;
     public static final double KI_ELEV = 0;
     public static final double KD_ELEV = 0;
   }
@@ -250,7 +248,7 @@ public static class AlgaeHold {
 
 public static class CoralHold {
   public static final int DIO_COUNTER = 10;
-  public static final double HOLD_SPEED = 0.2;
+  public static final double HOLD_SPEED = 0.1;
   public static final double L1_RELEASE_SPEED = 0.1;
   public static final double L2_RELEASE_SPEED = 0.5;//0.5;
   public static final double L3_RELEASE_SPEED = 0.5;//0.5;
@@ -263,7 +261,7 @@ public static class CoralHold {
     public static final double ENC_REVS_REEF_PICKUP = -18;
     public static final double ENC_REVS_FLOOR_PICKUP = -23.7;
     public static final double ENC_REVS_SCORE_NET = 0; //TODO find actual - should be 0?
-    public static final double ENC_REVS_ELEVATOR_SAFE_POSITION = -18;//TODO find actual - unsafe if higher
+    public static final double ENC_REVS_ELEVATOR_SAFE_POSITION = -15;//TODO find actual - unsafe if higher
     public static final double MAN_EXT_SPEED = -0.1;
     public static final double MAN_RET_SPEED = 0.1;
     public static final double KP = 0.05;  //TODO find actual

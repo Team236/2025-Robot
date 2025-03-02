@@ -6,8 +6,10 @@ package frc.robot.commands.Scoring;
 
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
-import frc.robot.commands.AlgaePivotCommands.PIDToSafeAP;
+import frc.robot.commands.AlgaePivotCommands.PIDMakeAPSafeForElev;
+import frc.robot.commands.AlgaePivotCommands.PIDToElevSafePosition;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
 import frc.robot.commands.ElevatorCommands.DangerPIDToHeight;
@@ -23,20 +25,20 @@ public class L3_Score extends SequentialCommandGroup {
   /** Creates a new L3_Score. */
   public L3_Score(Elevator elevator, CoralHold coralHold, CoralPivot coralPivot, AlgaePivot algaePivot) {
     addCommands(
-     new PIDToSafeAP(algaePivot),
+   // new PIDToElevSafePosition(algaePivot),
      Commands.parallel(
         new DangerPIDToHeight(elevator, Constants.Elevator.L3_HEIGHT),
-        new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL3)
+        new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL3).withTimeout(2)
         ),
+    // new WaitCommand(5),
      new CoralRelease(coralHold, Constants.CoralHold.L3_RELEASE_SPEED).withTimeout(2),
-     new PIDToSafeAP(algaePivot),
-     new DangerPIDToHeight(elevator, Constants.Elevator.TELEOP_HEIGHT)
+     //new WaitCommand(5),
+    // new PIDToElevSafePosition(algaePivot),
+   //  new WaitCommand(5),
+     new DangerPIDToHeight(elevator, Constants.Elevator.BOTTOM_HEIGHT)
     );
 
-     // new PIDToHeight(elevator, algaePivot, Constants.Elevator.L3_HEIGHT),
-     // new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL3),
-     // new CoralRelease(coralHold, Constants.CoralHold.L3_RELEASE_SPEED)
-   // ); 
+
 
   }
 }
