@@ -120,7 +120,7 @@ public class RobotContainer {
 
     private final FullRunRight fullRunRight = new FullRunRight(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
     private final Leg1Right leg1Right = new Leg1Right(s_Swerve,  elevator, algaePivot, coralPivot, coralHold);
-    private final Leg2Right leg2Right = new Leg2Right(s_Swerve, coralHold);
+    private final Leg2Right leg2Right = new Leg2Right(s_Swerve, coralHold, coralPivot);
     private final Leg3Right leg3Right = new Leg3Right(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
     private final Legs1and2Right legs1and2Right = new Legs1and2Right(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
     private final CtrScore1 fullRunCenter = new CtrScore1(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
@@ -259,9 +259,9 @@ public class RobotContainer {
     //b.onTrue(pidCoraltoL3);
     //rightPov.onTrue(pidCoraltoL4);
 
-    //a.whileTrue(coralGrab);
-    //b.whileTrue(coralRelease);
-    //x.whileTrue(coralGrabWithCounter);
+    a.whileTrue(coralGrab);
+    b.whileTrue(coralRelease);
+    x.whileTrue(coralGrabWithCounter);
 
     //x.whileTrue(algaeGrab);
     //a.whileTrue(algaeRelease);
