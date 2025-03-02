@@ -11,7 +11,6 @@ import frc.robot.commands.AlgaePivotCommands.PIDToSafeAP;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
 import frc.robot.commands.ElevatorCommands.DangerPIDToHeight;
-import frc.robot.commands.ElevatorCommands.ZOLD_PIDToHeight;
 import frc.robot.subsystems.AlgaePivot;
 import frc.robot.subsystems.CoralHold;
 import frc.robot.subsystems.CoralPivot;

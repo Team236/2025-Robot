@@ -40,8 +40,9 @@ import frc.robot.commands.CoralHoldCommands.CoralRelease;
 import frc.robot.commands.CoralPivotCommands.ManualCoralPivot;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
 import frc.robot.commands.ElevatorCommands.ClimbDownSequence;
+import frc.robot.commands.ElevatorCommands.DangerManualUpDown;
+import frc.robot.commands.ElevatorCommands.DangerPIDToHeight;
 import frc.robot.commands.ElevatorCommands.ZOLD_ManualUpDown;
-import frc.robot.commands.ElevatorCommands.ZOLD_PIDToHeight;
 import frc.robot.commands.Targeting.AlgaeTarget;
 import frc.robot.commands.Targeting.CoralLeftTarget;
 import frc.robot.commands.Targeting.CoralRightTarget;
@@ -128,17 +129,15 @@ public class RobotContainer {
     
       
   //Elevator
-  private final ZOLD_ManualUpDown elevatorUp = new ZOLD_ManualUpDown(elevator, algaePivot, Constants.Elevator.ELEV_UP_SPEED);
-  private final ZOLD_ManualUpDown elevatorDown = new ZOLD_ManualUpDown(elevator, algaePivot, Constants.Elevator.ELEV_DOWN_SPEED);
-  // private final ManualUpDown elevatorClimbDown = new ManualUpDown(elevator, algaePivot, Constants.Elevator.ELEV_CLIMB_DOWN_SPEED);
-
-  private final ZOLD_PIDToHeight pidPrepForClimb = new ZOLD_PIDToHeight(elevator, algaePivot, Constants.Elevator.CLIMB_START_HEIGHT);
-  private final ClimbDownSequence pidClimb = new ClimbDownSequence(elevator, algaePivot);
-  private final ZOLD_PIDToHeight pidElevToBottom = new ZOLD_PIDToHeight(elevator, algaePivot, Constants.Elevator.BOTTOM_HEIGHT);
-  private final ZOLD_PIDToHeight pidElevatorL1 = new ZOLD_PIDToHeight(elevator,algaePivot, Constants.Elevator.L1_HEIGHT);
-  private final ZOLD_PIDToHeight pidElevatorL2 = new ZOLD_PIDToHeight(elevator, algaePivot, Constants.Elevator.L2_HEIGHT);
-  private final ZOLD_PIDToHeight pidElevatorL3 = new ZOLD_PIDToHeight(elevator, algaePivot, Constants.Elevator.L3_HEIGHT);
-  private final ZOLD_PIDToHeight pidElevatorL4 = new ZOLD_PIDToHeight(elevator, algaePivot, Constants.Elevator.L4_HEIGHT);
+  private final DangerManualUpDown dangerElevatorUp = new DangerManualUpDown(elevator, Constants.Elevator.ELEV_UP_SPEED);
+  private final DangerManualUpDown dangerElevatorDown = new DangerManualUpDown(elevator, Constants.Elevator.ELEV_DOWN_SPEED);
+  private final ClimbDownSequence climbDownSequence= new ClimbDownSequence(elevator, algaePivot);
+  private final DangerPIDToHeight pidPrepForClimb = new DangerPIDToHeight(elevator,  Constants.Elevator.CLIMB_START_HEIGHT);
+  //private final DangerPIDToHeight pidElevToBottom = new DangerPIDToHeight(elevator, Constants.Elevator.BOTTOM_HEIGHT);
+ // private final ZOLD_PIDToHeight pidElevatorL1 = new ZOLD_PIDToHeight(elevator, Constants.Elevator.L1_HEIGHT);
+ // private final ZOLD_PIDToHeight pidElevatorL2 = new ZOLD_PIDToHeight(elevator, Constants.Elevator.L2_HEIGHT);
+  //private final ZOLD_PIDToHeight pidElevatorL3 = new ZOLD_PIDToHeight(elevator,  Constants.Elevator.L3_HEIGHT);
+ // private final ZOLD_PIDToHeight pidElevatorL4 = new ZOLD_PIDToHeight(elevator,  Constants.Elevator.L4_HEIGHT);
 
   //AlgaeHold
   private final AlgaeGrab algaeGrab = new AlgaeGrab(algaeHold, Constants.AlgaeHold.HOLD_SPEED1, Constants.AlgaeHold.HOLD_SPEED2);
@@ -252,8 +251,8 @@ public class RobotContainer {
     //leftPov.whileTrue(coralRightTarget);
     //a.whileTrue(algaeTarget);
 
-    //upPov.whileTrue(coralPivotUp);
-    //downPov.whileTrue(coralPivotDown);
+    upPov.whileTrue(coralPivotUp);
+    downPov.whileTrue(coralPivotDown);
 
     //a.onTrue(pidCoraltoL1);
     //x.onTrue(pidCoraltoL2);
@@ -267,17 +266,17 @@ public class RobotContainer {
     //x.whileTrue(algaeGrab);
     //a.whileTrue(algaeRelease);
 
-   rm.whileTrue(algaePivotUp);
-   rb.whileTrue(algaePivotDown);
+  // rm.whileTrue(algaePivotUp);
+  /// rb.whileTrue(algaePivotDown);
 
-   rightPov.onTrue(pidReefPickup); //pivot Algae to position for Reef pickup
-   leftPov.onTrue(pidToSafeAP); //if AP under elevator, move to safe position
+  // rightPov.onTrue(pidReefPickup); //pivot Algae to position for Reef pickup
+   //leftPov.onTrue(pidToSafeAP); //if AP under elevator, move to safe position
   // b.onTrue(pidAlgaeScoreNet); //pivot Algae to score in Net position
 
-  upPov.onTrue(pidPrepForClimb);
-  downPov.onTrue(pidClimb);
-  a.whileTrue(elevatorDown);
-  x.whileTrue(elevatorUp);
+ // upPov.onTrue(pidPrepForClimb);
+  //downPov.onTrue(pidClimb);
+  //a.whileTrue(elevatorDown);
+  //x.whileTrue(elevatorUp);
   //b.onTrue(pidElevToBottom);
  // downPov.onTrue(pidElevatorL1);
  // leftPov.onTrue(pidElevatorL2);

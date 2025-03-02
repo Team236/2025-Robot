@@ -11,7 +11,6 @@ import frc.robot.commands.AlgaeHoldCommands.AlgaeRelease;
 import frc.robot.commands.AlgaePivotCommands.PIDAlgaePivot;
 import frc.robot.commands.AlgaePivotCommands.PIDToSafeAP;
 import frc.robot.commands.ElevatorCommands.DangerPIDToHeight;
-import frc.robot.commands.ElevatorCommands.ZOLD_PIDToHeight;
 import frc.robot.subsystems.AlgaeHold;
 import frc.robot.subsystems.AlgaePivot;
 import frc.robot.subsystems.Elevator;
