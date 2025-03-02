@@ -221,11 +221,11 @@ public static final class Swerve {
 
     public static final double BOTTOM_HEIGHT = 0;
     public static final double TELEOP_HEIGHT = 3.47;
-    public static final double L1_HEIGHT = 0;//TODO determine actual
+    public static final double L1_HEIGHT = 0;
     public static final double L2_HEIGHT =3.47;
     public static final double L3_HEIGHT = 22;
-    public static final double L4_HEIGHT = 35.5;
-    public static final double PICK_ALGAE_L2_HEIGHT = 3.47;//TODO find actual
+    public static final double L4_HEIGHT = 55;
+    public static final double PICK_ALGAE_L2_HEIGHT = 3.47;
     public static final double PICK_ALGAE_L3_HEIGHT = 13.5;//TODO find actual
     public static final double SCORE_ALGAE_NET_HEIGHT = 55; //TODO find actual
     public static final double CLIMB_START_HEIGHT = 12;  //TODO find actual
@@ -275,8 +275,9 @@ public static class CoralHold {
     public static final double ENC_REVS_MAX = -120;
     public static final double ENC_REVS_LEVEL1 = -32;
     public static final double ENC_REVS_LEVEL2 = -6;
-    public static final double ENC_REVS_LEVEL3 = -20; 
-    public static final double ENC_REVS_LEVEL4 = -120;
+    public static final double ENC_REVS_LEVEL3 = -22; 
+    public static final double ENC_REVS_LEVEL4 = -110;
+    public static final double ENC_REVS_FULL_RETRACT = 0;
     public static final double MAN_EXT_SPEED = -0.6;
     public static final double MAN_RET_SPEED = 0.6;
     public static final double ENC_REVS_LOADING = 0;
