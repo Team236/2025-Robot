@@ -8,9 +8,11 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
 import frc.robot.commands.ZeroPose;
+import frc.robot.commands.AlgaePivotCommands.PIDToSafeAP;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
+import frc.robot.commands.ElevatorCommands.DangerPIDToHeight;
 import frc.robot.commands.ElevatorCommands.ZOLD_PIDToHeight;
 import frc.robot.commands.Targeting.GetPoseWithLL;
 import frc.robot.commands.Targeting.ResetPoseWithLL;
@@ -29,28 +31,34 @@ public class Leg1Right extends SequentialCommandGroup {
   public Leg1Right(Swerve s_Swerve, Elevator elevator, AlgaePivot algaePivot, CoralPivot coralPivot, CoralHold coralHold) {
     addCommands(
       //TODO  add the commands for scoring and receiving coral
- 
+          Commands.parallel(
           //First command to drive with odometry and end 9" from bumper to AprilTag, centered on Tag
-          new DriveFwdAndSideAndTurn(s_Swerve, false, 83, -73, -58).withTimeout(3),
+            new DriveFwdAndSideAndTurn(s_Swerve, false, 83, -73, -58),//.withTimeout(3),
+            new PIDToSafeAP(algaePivot)
+             ),
           
           //Use limelight to get exactly 12" from front frame (9" from bumper) to AprilTag
-          new TargetAllParallel(s_Swerve,12, 0).withTimeout(1),
+          new TargetAllParallel(s_Swerve,12, 0),//.withTimeout(1),
 
           new GetPoseWithLL(s_Swerve),
         
           //Needs to end  with Limelight camera centered 1.6" to the left of the AprilTag center
-          new DriveFwdAndSideAndTurn(s_Swerve, false, 10.25, 2.23, 0).withTimeout(1),
+          new DriveFwdAndSideAndTurn(s_Swerve, false, 10.25, 2.23, 0),//.withTimeout(1),
 
           new ResetPoseWithLL(s_Swerve),
+
+          new PIDToSafeAP(algaePivot),
         
           Commands.parallel(
-           new ZOLD_PIDToHeight(elevator, algaePivot, Constants.Elevator.L4_HEIGHT),
+           new DangerPIDToHeight(elevator, Constants.Elevator.L4_HEIGHT),
            new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL4)
            ),
 
-          new CoralRelease(coralHold, Constants.CoralHold.L4_RELEASE_SPEED)
+          new CoralRelease(coralHold, Constants.CoralHold.L4_RELEASE_SPEED).withTimeout(2),
+          new DangerPIDToHeight(elevator, Constants.Elevator.TELEOP_HEIGHT)
     );
     
   }
 
 }
+

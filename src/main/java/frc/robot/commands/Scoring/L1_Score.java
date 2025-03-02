@@ -31,7 +31,7 @@ public class L1_Score extends SequentialCommandGroup {
        new DangerPIDToHeight(elevator, Constants.Elevator.L1_HEIGHT),
        new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL1)
        ),
-     new CoralRelease(coralHold, Constants.CoralHold.L1_RELEASE_SPEED),
+     new CoralRelease(coralHold, Constants.CoralHold.L1_RELEASE_SPEED).withTimeout(2),
      new PIDToSafeAP(algaePivot),
      new DangerPIDToHeight(elevator, Constants.Elevator.TELEOP_HEIGHT)
    );

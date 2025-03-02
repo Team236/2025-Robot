@@ -26,7 +26,7 @@ public class Algae_Score_Net extends SequentialCommandGroup {
     new PIDToSafeAP(algaePivot),
     new DangerPIDToHeight(elevator, Constants.Elevator.SCORE_ALGAE_NET_HEIGHT),
     new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_SCORE_NET),
-    new AlgaeRelease(algaeHold, Constants.AlgaeHold.RELEASE_SPEED),
+    new AlgaeRelease(algaeHold, Constants.AlgaeHold.RELEASE_SPEED).withTimeout(2),
     new PIDToSafeAP(algaePivot),
     new DangerPIDToHeight(elevator, Constants.Elevator.TELEOP_HEIGHT)
     );
