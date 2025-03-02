@@ -249,7 +249,7 @@ public static class AlgaeHold {
 public static class CoralHold {
   public static final int DIO_COUNTER = 10;
   public static final double HOLD_SPEED = 0.2;
-  public static final double L1_RELEASE_SPEED = 0.1;
+  public static final double L1_RELEASE_SPEED = 0.2;
   public static final double L2_RELEASE_SPEED = 0.5;//0.5;
   public static final double L3_RELEASE_SPEED = 0.5;//0.5;
   public static final double L4_RELEASE_SPEED = 0.1;
@@ -273,7 +273,7 @@ public static class CoralHold {
   public static class CoralPivot {
     public static final int DIO_LIMIT = 8; 
     public static final double ENC_REVS_MAX = -120;
-    public static final double ENC_REVS_LEVEL1 = -32;
+    public static final double ENC_REVS_LEVEL1 = 0;
     public static final double ENC_REVS_LEVEL2 = -6;
     public static final double ENC_REVS_LEVEL3 = -22; 
     public static final double ENC_REVS_LEVEL4 = -110;
