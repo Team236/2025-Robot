@@ -20,7 +20,7 @@ public class ClimbDownSequence extends SequentialCommandGroup {
     addCommands(
       new PIDMakeAPSafeForElev(algaePivot),
       new DangerPIDToHeight(elevator, 6).withTimeout(2),
-      new DangerManualUpDown(elevator, -0.5).withTimeout(20)
+      new DangerManualUpDown(elevator, -0.15).withTimeout(20)
     );
   }
 }
