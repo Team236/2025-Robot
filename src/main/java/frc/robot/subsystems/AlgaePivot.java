@@ -91,13 +91,13 @@ public class AlgaePivot extends SubsystemBase {
     return algaePivotMotor.get();
   }
 
-  public boolean atRetractLimit(){
-    if ((getPivotSpeed() >= 0 || desiredSpeed >= 0) && isLimit()){ //positive speed means retracting
-      return true;
-       } else {
-        return false;
-       }
-     }
+ // public boolean atRetractLimit(){
+ //   if ((getPivotSpeed() >= 0 || desiredSpeed >= 0) && isLimit()){ //positive speed means retracting
+ //     return true;
+  //     } else {
+  //      return false;
+  //     }
+  //   }
 
   public void setAlgaePivotSpeed(double speed){  
     desiredSpeed = speed;
@@ -106,18 +106,19 @@ public class AlgaePivot extends SubsystemBase {
       //Extending
       if (isFullyExtended()){
         stopAlgaePivot();
-      } else
-      {
+      } else {
         algaePivotMotor.set(speed);
       }
-    } else //speed >0 so is retracting
+    } 
+    else //speed > 0, so is retracting
     {//Retracting
-      if (atRetractLimit()){
-        SmartDashboard.putBoolean("AP Speed > 0 and AP Limit Hit, so resetting encoder", true);
+      if (isLimit()){
+        //Added line below - assuming we should stop at retract limit
+        stopAlgaePivot();
+        SmartDashboard.putBoolean("AP Limit Hit, so resetting encoder", true);
         //stopAlgaePivot(); // removed so PID keeps holding it
         resetPivotEncoder();
-        SmartDashboard.putBoolean("Resetting Pivot Encoder", true);
-      } else{
+      } else {
         algaePivotMotor.set(speed);
       }
     }
@@ -125,10 +126,9 @@ public class AlgaePivot extends SubsystemBase {
   
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("Algae Pivot speed is: ", getPivotSpeed());
+   // SmartDashboard.putNumber("Algae Pivot speed is: ", getPivotSpeed());
     SmartDashboard.putBoolean("Algae Pivot is limit hit", isLimit());
     SmartDashboard.putBoolean("Algae Pivot is fully extended", isFullyExtended());
     SmartDashboard.putNumber("Algae Pivot encoder revolutions", getPivotEncoder());
-    SmartDashboard.putBoolean("AP at retract limit", atRetractLimit());   // SmartDashboard.putBoolean("Algae Pivot PID controls ready to use: ", hasResetPivotEncoder);
   }
 }
