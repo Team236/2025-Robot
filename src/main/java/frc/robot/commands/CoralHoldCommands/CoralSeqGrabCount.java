@@ -4,8 +4,7 @@
 
 package frc.robot.commands.CoralHoldCommands;
 
-import edu.wpi.first.wpilibj2.command.Commands;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import frc.robot.Constants;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
 import frc.robot.subsystems.CoralHold;
@@ -14,16 +13,14 @@ import frc.robot.subsystems.CoralPivot;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class CoralHoldSeqGrabCount extends SequentialCommandGroup {
-  /** Creates a new CoralHoldSeqGrabCount. */
-  public CoralHoldSeqGrabCount(CoralPivot coralPivot, CoralHold coralHold) {
+public class CoralSeqGrabCount extends ParallelCommandGroup {
+  /** Creates a new CoralGrabSeq. */
+  public CoralSeqGrabCount(CoralPivot coralPivot, CoralHold coralHold) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      Commands.parallel(
-       new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LOADING),
-       new CoralGrabWithCounter(coralHold, Constants.CoralHold.HOLD_SPEED)
-    )
+      new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LOADING),
+      new CoralGrabWithCounter(coralHold, Constants.CoralHold.HOLD_SPEED)
     );
   }
 }

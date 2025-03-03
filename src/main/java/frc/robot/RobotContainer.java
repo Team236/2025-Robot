@@ -36,7 +36,7 @@ import frc.robot.commands.AutoCommands.Right.Leg3Right;
 import frc.robot.commands.AutoCommands.Right.Legs1and2Right;
 import frc.robot.commands.AutoCommands.Right.FullRunRight;
 import frc.robot.commands.CoralHoldCommands.CoralGrabWithCounter;
-import frc.robot.commands.CoralHoldCommands.CoralHoldSeqGrabCount;
+import frc.robot.commands.CoralHoldCommands.CoralSeqGrabCount;
 import frc.robot.commands.CoralHoldCommands.CoralGrab;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
 import frc.robot.commands.CoralPivotCommands.ManualCoralPivot;
@@ -139,7 +139,6 @@ public class RobotContainer {
     private final FullRunLeftCtr fullRunLeftCtr = new FullRunLeftCtr(s_Swerve);
    // private final DriveWithPath driveWithPathLeg1 = new DriveWithPath(s_Swerve, false);
     
-      
   //Elevator
   private final DangerManualUpDown dangerElevatorUp = new DangerManualUpDown(elevator, Constants.Elevator.ELEV_UP_SPEED);
   private final DangerManualUpDown dangerElevatorDown = new DangerManualUpDown(elevator, Constants.Elevator.ELEV_DOWN_SPEED);
@@ -174,7 +173,7 @@ public class RobotContainer {
   //CoralHold
   private final CoralGrab coralGrab = new CoralGrab(coralHold, Constants.CoralHold.HOLD_SPEED);
   private final CoralGrabWithCounter coralGrabWithCounter = new CoralGrabWithCounter(coralHold, Constants.CoralHold.HOLD_SPEED);
-  private final CoralHoldSeqGrabCount coralHoldSeqGrabCount = new CoralHoldSeqGrabCount(coralPivot, coralHold);
+  private final CoralSeqGrabCount coralHoldSeqGrabCount = new CoralSeqGrabCount(coralPivot, coralHold);
   private final CoralRelease coralRelease = new CoralRelease(coralHold, Constants.CoralHold.L2_RELEASE_SPEED);
   //private final CoralRelease coralReleaseL4 = new CoralRelease(coralHold, Constants.CoralHold.L4_RELEASE_SPEED);
 
