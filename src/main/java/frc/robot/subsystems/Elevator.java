@@ -50,24 +50,6 @@ public class Elevator extends SubsystemBase {
     rightTalonConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
     rightElevatorMotor.getConfigurator().apply(rightTalonConfig);
 
-    // leftConfig = leftElevatorMotor.getConfigurator();
-    // leftCurrentConfigs = new CurrentLimitsConfigs();
-    // leftCurrentConfigs.StatorCurrentLimitEnable = true;   
-    // leftCurrentConfigs.StatorCurrentLimit = (Constants.MotorControllers.SMART_CURRENT_LIMIT);
-    // leftOutputConfigs = new MotorOutputConfigs();
-    // leftOutputConfigs.Inverted = InvertedValue.CounterClockwise_Positive;//TODO- both CCW or both CW
-    // leftConfig.apply(leftCurrentConfigs);
-    // leftConfig.apply(leftOutputConfigs);
-
-    // rightConfig = rightElevatorMotor.getConfigurator();
-    // rightCurrentConfigs = new CurrentLimitsConfigs();
-    // rightCurrentConfigs.StatorCurrentLimitEnable = true;   
-    // rightCurrentConfigs.StatorCurrentLimit = (Constants.MotorControllers.SMART_CURRENT_LIMIT);
-    // rightOutputConfigs = new MotorOutputConfigs();
-    // rightOutputConfigs.Inverted = InvertedValue.CounterClockwise_Positive;//TODO- both CCW or both CW
-    // rightConfig.apply(rightCurrentConfigs);
-    // rightConfig.apply(rightOutputConfigs);
-
     try {
       elevatorTopLimit = new DigitalInput(Constants.Elevator.DIO_ELEV_TOP);
     } catch (Exception e) {
@@ -81,7 +63,6 @@ public class Elevator extends SubsystemBase {
       isBException = true;
       SmartDashboard.putBoolean("exception thrown for elev bottom limit: ", isBException);
     }
-
   }
 
   public void stopElevator() {
@@ -150,8 +131,7 @@ public class Elevator extends SubsystemBase {
         leftElevatorMotor.set(speed);
         rightElevatorMotor.set(speed);
       }
-    }
-    
+    }  
   } 
 
   public double getElevatorLeftSpeed() {
@@ -175,7 +155,7 @@ public class Elevator extends SubsystemBase {
     SmartDashboard.putBoolean("Elevator at top limit: ", isETopLimit());
     SmartDashboard.putBoolean("Elevator at bottom limit: ", isEBotLimit());
     SmartDashboard.putBoolean("Elevator at Max height: ", isTop());
-    SmartDashboard.putNumber("Elevator left enc revs = ", getElevLeftEncoder());
-    SmartDashboard.putNumber("Elevator right enc revs = ", getElevRightEncoder());
+    //SmartDashboard.putNumber("Elevator left enc revs = ", getElevLeftEncoder());
+   // SmartDashboard.putNumber("Elevator right enc revs = ", getElevRightEncoder());
   }
 }

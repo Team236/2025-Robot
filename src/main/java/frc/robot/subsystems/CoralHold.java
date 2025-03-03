@@ -70,6 +70,17 @@ public class CoralHold extends SubsystemBase {
   }
 
   //METHODS START HERE
+  
+  public int getCoralHCount() {
+    int count;
+    if (isCounterUnplugged) {
+      count = 0;
+      SmartDashboard.putBoolean("Intake counter unplugged:", isCounterUnplugged);
+    } else {
+      count =  counter.get();
+    }
+    return count;
+  }
 
   public void resetCount() {
     // automaticaly sets counter to 0 at start 
@@ -80,23 +91,22 @@ public class CoralHold extends SubsystemBase {
     coralHoldMotor.set(speed);
   }
 
+  public void setCoralGrabSpeed(double speed) {
+  //TODO: USE THIS METHOD IN ALL CORALGRAB COMMANDS, INSTEAD OF setCoralHSpeed
+   if (getCoralHCount() >= 1){
+    coralHoldMotor.set(0);
+   }
+   else {
+    coralHoldMotor.set(speed);
+   }
+  }
+
   public void coralHStop () {
     // // TALON SRX
     // coralMotor.set(controlMode, 0);
 
     // SPARK MAX
     coralHoldMotor.set(0);
-  }
-
-  public int getCoralHCount() {
-    int count;
-    if (isCounterUnplugged) {
-      count = 0;
-      SmartDashboard.putBoolean("Intake counter unplugged:", isCounterUnplugged);
-    } else {
-      count =  counter.get();
-    }
-    return count;
   }
 
   public boolean isCoralSpinning() {
@@ -124,7 +134,7 @@ public class CoralHold extends SubsystemBase {
   public void periodic() {
   // This method will be called once per scheduler run
    SmartDashboard.putNumber("Coral count is:", getCoralHCount());
-   SmartDashboard.putBoolean("Has Coral: ", counter.get()>0);
+  // SmartDashboard.putBoolean("Has Coral: ", counter.get()>0);
   }
 
 }
