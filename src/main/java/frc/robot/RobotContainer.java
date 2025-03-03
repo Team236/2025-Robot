@@ -37,8 +37,10 @@ import frc.robot.commands.AutoCommands.Right.Legs1and2Right;
 import frc.robot.commands.AutoCommands.Right.FullRunRight;
 import frc.robot.commands.CoralHoldCommands.CoralGrabWithCounter;
 import frc.robot.commands.CoralHoldCommands.CoralSeqGrabCount;
+import frc.robot.commands.CoralHoldCommands.CoralSeqRelease;
 import frc.robot.commands.CoralHoldCommands.CoralGrab;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
+import frc.robot.commands.CoralHoldCommands.CoralSeqGrab;
 import frc.robot.commands.CoralPivotCommands.ManualCoralPivot;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
 import frc.robot.commands.ElevatorCommands.ClimbDownSequence;
@@ -173,9 +175,10 @@ public class RobotContainer {
   //CoralHold
   private final CoralGrab coralGrab = new CoralGrab(coralHold, Constants.CoralHold.HOLD_SPEED);
   private final CoralGrabWithCounter coralGrabWithCounter = new CoralGrabWithCounter(coralHold, Constants.CoralHold.HOLD_SPEED);
-  private final CoralSeqGrabCount coralHoldSeqGrabCount = new CoralSeqGrabCount(coralPivot, coralHold);
   private final CoralRelease coralRelease = new CoralRelease(coralHold, Constants.CoralHold.L2_RELEASE_SPEED);
-  //private final CoralRelease coralReleaseL4 = new CoralRelease(coralHold, Constants.CoralHold.L4_RELEASE_SPEED);
+  private final CoralSeqGrab coralSeqGrab = new CoralSeqGrab(coralPivot, coralHold);
+  private final CoralSeqGrabCount coralSeqGrabCount = new CoralSeqGrabCount(coralPivot, coralHold);
+  private final CoralSeqRelease coralSeqRelease = new CoralSeqRelease(coralPivot, coralHold);
 
   //CoralPivot
   private final ManualCoralPivot coralPivotDown = new ManualCoralPivot(coralPivot, Constants.CoralPivot.MAN_EXT_SPEED);
@@ -270,16 +273,16 @@ public class RobotContainer {
     //leftPov.whileTrue(coralRightTarget);
     //a.whileTrue(algaeTarget);
 
-
     //a.onTrue(pidCoraltoL1);
     //x.onTrue(pidCoraltoL2);
     //b.onTrue(pidCoraltoL3);
     //rightPov.onTrue(pidCoraltoL4);
 
-   // a.whileTrue(coralGrab);
-    // b.whileTrue(coralRelease);
-   // x.whileTrue(coralGrabWithCounter);
-
+   //a.whileTrue(coralSeqGrab);
+   //b.whileTrue(coralSeqRelease);
+   //x.whileTrue(coralSeqGrabCount);     
+ // rm.whileTrue(coralPivotUp);
+  //rb.whileTrue(coralPivotDown);
 
    // x.whileTrue(algaeGrab);
    // a.whileTrue(algaeRelease);
@@ -292,48 +295,33 @@ public class RobotContainer {
  // b.onTrue(pidToElevSafePosition); //if AP under elevator, move to safe position
  // upPov.onTrue(pidPrepForClimb);
   //downPov.onTrue(pidClimb);
- downPov.whileTrue(dangerElevatorDown);
- upPov.whileTrue(dangerElevatorUp);
+
+ // downPov.whileTrue(dangerElevatorDown);
+ //upPov.whileTrue(dangerElevatorUp);
   //b.onTrue(pidElevToBottom);
-
-     
- // rm.whileTrue(coralPivotUp);
-  //rb.whileTrue(coralPivotDown);
-
 
   //rightPov.onTrue(pidElevatorL1);
  // leftPov.onTrue(pidElevatorL2);
-  rb.onTrue(pidElevatorL3);
+ // rb.onTrue(pidElevatorL3);
  // rm.onTrue(pidElevatorL4);
 
  lm.onTrue(l1_Score);
  x.onTrue(l2_Score);
  a.onTrue(l3_Score);
  b.onTrue(l4_Score);
- downPov.whileTrue(dangerElevatorDown);
- upPov.whileTrue(dangerElevatorUp);
+
  leftPov.whileTrue(coralPivotUp);
  rightPov.whileTrue(coralPivotDown);
- rm.whileTrue(coralHoldSeqGrabCount);
 
 // a.onTrue(algaeGrab).onTrue(l3_Score);
 // b.onTrue(algaeGrab).onTrue(l4_Score);
 
-
-
  // a.onTrue(driveFwdCenter55);
-
   //b.onTrue(turn);
 
-  //upPov.onTrue(driveFwd113);
   //x.onTrue(fullRunRight);
   //rightPov.onTrue(fullRunLeftCtr);
   //a.onTrue(fullRunCenter);
-  //x.onTrue(fullRunCenter);
-
-  //downPov.whileTrue(algaeTarget);
-  //leftPov.whileTrue(coralLeftTarget);
-  //rightPov.whileTrue(coralRightTarget);
   }
   
   public Command getAutonomousCommand() {
