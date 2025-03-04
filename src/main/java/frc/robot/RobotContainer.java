@@ -291,31 +291,32 @@ public class RobotContainer {
  // b.onTrue(pidToElevSafePosition); //if AP under elevator, move to safe position
  // upPov.onTrue(pidPrepForClimb);
   //downPov.onTrue(pidClimb);
-//  downPov.whileTrue(dangerElevatorDown);
-//  upPov.whileTrue(dangerElevatorUp);
-   
- downPov.onTrue(dangerPidElevL1);
- leftPov.onTrue(dangerPidElevL2);
- rightPov.onTrue(dangerPidElevL3); 
- upPov.onTrue(dangerPidElevL4);
+
+//****DO NOT USE COMMANDS BELOW WHEN ALGAE PIVOT ATTACHED***
+// downPov.whileTrue(dangerElevatorDown);
+// upPov.whileTrue(dangerElevatorUp); 
+ //downPov.onTrue(dangerPidElevL1);
+ //leftPov.onTrue(dangerPidElevL2);
+ //rightPov.onTrue(dangerPidElevL3); 
+ //upPov.onTrue(dangerPidElevL4);
 
  lm.whileTrue(coralSeqGrabCount);
  rm.whileTrue(coralPivotUp);
  rb.whileTrue(coralPivotDown);
 
- a.whileTrue(targetsideDistance);
-   //a.whileTrue(targetForwardDistance);
-    //a.whileTrue(targetAngle);
-    //a.whileTrue(targetAllParallel);
+  a.whileTrue(targetsideDistance);
+  x.whileTrue(targetForwardDistance);
+  b.whileTrue(targetAngle);
+  //a.whileTrue(targetAllParallel);
 
-//  lm.onTrue(l1_Score);
-  x.onTrue(l2_Score);
-  b.onTrue(l3_Score);
- // upPov.onTrue(l4_Score);
+  downPov.onTrue(l1_Score);
+  leftPov.onTrue(l2_Score);
+  rightPov.onTrue(l3_Score);
+  upPov.onTrue(l4_Score);
   
-  //downPov.whileTrue(algaeTarget);
-  //leftPov.whileTrue(coralLeftTarget);
-  //rightPov.whileTrue(coralRightTarget);
+  a1.whileTrue(algaeTarget);
+  x1.whileTrue(coralLeftTarget);
+  b1.whileTrue(coralRightTarget);
 
 //  downPov.whileTrue(dangerElevatorDown);
 //  upPov.whileTrue(dangerElevatorUp);
