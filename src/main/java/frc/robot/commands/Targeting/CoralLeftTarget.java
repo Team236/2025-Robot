@@ -20,10 +20,10 @@ public class CoralLeftTarget extends SequentialCommandGroup {
 
   public CoralLeftTarget(Swerve s_Swerve) {
     addCommands(  
-      new TargetAllParallel(s_Swerve, 10, 0).withTimeout(5.0),
+     new TargetAllParallel(s_Swerve, 10, 0).withTimeout(3),
      new GetPoseWithLL(s_Swerve),
      new DriveFwdAndSideAndTurn(s_Swerve, false, 10, 2.23, 0).withTimeout(5),
-      new ResetPoseWithLL(s_Swerve));
+     new ResetPoseWithLL(s_Swerve));
     
   }
 

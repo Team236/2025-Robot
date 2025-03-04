@@ -18,7 +18,7 @@ public class CoralRightTarget extends SequentialCommandGroup {
 
   public CoralRightTarget(Swerve s_Swerve) {
     addCommands(
-     new TargetAllParallel(s_Swerve, 10, 0).withTimeout(2.0),
+     new TargetAllParallel(s_Swerve, 10, 0).withTimeout(3),
      new GetPoseWithLL(s_Swerve),
      new DriveFwdAndSideAndTurn(s_Swerve, false, 10, -10.78, 0).withTimeout(3),
      new ResetPoseWithLL(s_Swerve));    
