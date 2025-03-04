@@ -5,6 +5,13 @@
 package frc.robot.subsystems;
 import javax.print.attribute.standard.RequestingUserName;
 
+import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
+import com.ctre.phoenix6.configs.MotorOutputConfigs;
+import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.configs.TalonFXConfigurator;
+import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.signals.InvertedValue;
+import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
@@ -18,19 +25,36 @@ import frc.robot.Constants;
 
 public class AlgaeHold extends SubsystemBase {
   
-  private SparkMax algaeHoldMotor;
-  private SparkMaxConfig algaeHoldConfig;
+ //private SparkMax algaeHoldMotor;
+  private TalonFX algaeHoldMotor;
+
+//private SparkMaxConfig algaeHoldConfig;
+  private TalonFXConfigurator algaeHoldConfig;
+  private TalonFXConfiguration algaeHoldTalonConfig;
+
+  private CurrentLimitsConfigs algaeHoldCurrentConfigs;
+  private MotorOutputConfigs algaeHoldOutputConfigs;
+ 
+
   private DigitalInput algaeHoldLimit;
   private boolean isAHoldException;
 
   public AlgaeHold() {
-    algaeHoldMotor = new SparkMax(Constants.MotorControllers.ID_ALGAE_HOLD, MotorType.kBrushless);
-    algaeHoldConfig = new SparkMaxConfig();
-    
-    algaeHoldConfig.inverted(false);
-    algaeHoldConfig.smartCurrentLimit(Constants.MotorControllers.SMART_CURRENT_LIMIT);
-
-    algaeHoldMotor.configure(algaeHoldConfig, ResetMode.kResetSafeParameters, PersistMode.kNoPersistParameters);
+    algaeHoldMotor = new TalonFX(Constants.MotorControllers.ID_ALGAE_HOLD);//on the Rio bus, not the usb bus
+   // algaeHoldMotor = new SparkMax(Constants.MotorControllers.ID_ALGAE_HOLD, MotorType.kBrushless);
+   
+  // configure motor
+    algaeHoldTalonConfig = new TalonFXConfiguration();
+    algaeHoldTalonConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+    algaeHoldTalonConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
+    algaeHoldTalonConfig.CurrentLimits.SupplyCurrentLimit = Constants.MotorControllers.SMART_CURRENT_LIMIT;
+    algaeHoldTalonConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+    algaeHoldMotor.getConfigurator().apply(algaeHoldTalonConfig);
+   
+  // algaeHoldConfig = new SparkMaxConfig(); 
+  //algaeHoldConfig.inverted(false);
+  //algaeHoldConfig.smartCurrentLimit(Constants.MotorControllers.SMART_CURRENT_LIMIT);
+  //algaeHoldMotor.configure(algaeHoldConfig, ResetMode.kResetSafeParameters, PersistMode.kNoPersistParameters);
 
     try {
       algaeHoldLimit = new DigitalInput(Constants.AlgaeHold.DIO_AH_LIMIT);
