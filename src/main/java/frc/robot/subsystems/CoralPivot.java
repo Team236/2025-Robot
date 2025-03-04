@@ -59,7 +59,6 @@ public class CoralPivot extends SubsystemBase {
     }
  
     desiredSpeed = 0;
-    
 }
 
 // methods start here

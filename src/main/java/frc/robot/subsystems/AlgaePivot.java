@@ -14,6 +14,7 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.config.SparkMaxConfig;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -27,24 +28,23 @@ public class AlgaePivot extends SubsystemBase {
   private boolean isPivotException;
 
   private double desiredSpeed;
-  private RelativeEncoder algaePivotEncoder;
-  //private boolean hasResetPivotEncoder;
+  //switched to using external encoder, no NEO motor
+  private Encoder algaePivotEncoder;
+  //private RelativeEncoder algaePivotEncoder;
+
 
   public AlgaePivot() {
-    algaePivotMotor = new SparkMax(Constants.MotorControllers.ID_ALGAE_PIVOT, MotorType.kBrushless);
-    algaePivotEncoder = algaePivotMotor.getEncoder();
+    //****** MAKE SURE TO PROGRAM THE SPARKMAX AS BRUSHED!!! ********/
+    algaePivotMotor = new SparkMax(Constants.MotorControllers.ID_ALGAE_PIVOT, MotorType.kBrushed);
+    algaePivotEncoder = new Encoder(Constants.AlgaePivot.DIO_ENC_A, Constants.AlgaePivot.DIO_ENC_B);
+    //algaePivotEncoder = algaePivotMotor.getEncoder();
 
     algaePivotConfig = new SparkMaxConfig();
-
     algaePivotConfig.inverted(false);
     algaePivotConfig.smartCurrentLimit(Constants.MotorControllers.SMART_CURRENT_LIMIT);
 
     //Must do things like invert and set current limits BEFORE callling the motor.configure class below
     algaePivotMotor.configure(algaePivotConfig, ResetMode.kResetSafeParameters, PersistMode.kNoPersistParameters);
-  
-    //SmartDashboard.setDefaultBoolean("Algae Digital Input threw an exception", false);
-
-    //hasResetPivotEncoder = false;
 
     try {
       algaeLimit = new DigitalInput(Constants.AlgaePivot.DIO_LIMIT);
@@ -53,7 +53,9 @@ public class AlgaePivot extends SubsystemBase {
       isPivotException = true;
       SmartDashboard.putBoolean("Algae Extend Limit switch threw an exception", true);
     }
- 
+
+    desiredSpeed = 0;
+
   }
 
   //METHODS START HERE
@@ -77,13 +79,16 @@ public class AlgaePivot extends SubsystemBase {
 
   public void resetPivotEncoder()
   {
-    algaePivotEncoder.setPosition(0);
-    ///hasResetPivotEncoder = true;
+   // algaePivotEncoder.setPosition(0);
+    algaePivotEncoder.reset();
   }
 
   public double getPivotEncoder()
   {
-    return algaePivotEncoder.getPosition();
+   // return algaePivotEncoder.getPosition(); NEO with SparkMax
+   //for extenal Bourne encoder (512 counts per rev):
+   return algaePivotEncoder.getRaw(); //gets actual count unscaled by the 1, 2 or 4x scale
+  //return coralPivotEncoder.get(); //gets count adjusted for the 1, 2 or 4x scale factor
   }
 
   public double getPivotSpeed()
@@ -101,7 +106,6 @@ public class AlgaePivot extends SubsystemBase {
 
   public void setAlgaePivotSpeed(double speed){  
     desiredSpeed = speed;
-
     if (speed <= 0){ //negative speed means extending
       //Extending
       if (isFullyExtended()){
@@ -127,8 +131,8 @@ public class AlgaePivot extends SubsystemBase {
   @Override
   public void periodic() {
    // SmartDashboard.putNumber("Algae Pivot speed is: ", getPivotSpeed());
-    SmartDashboard.putBoolean("Algae Pivot is limit hit", isLimit());
+    SmartDashboard.putBoolean("Algae Pivot limit is hit", isLimit());
     SmartDashboard.putBoolean("Algae Pivot is fully extended", isFullyExtended());
-    SmartDashboard.putNumber("Algae Pivot encoder revolutions", getPivotEncoder());
+    SmartDashboard.putNumber("Algae Pivot Encoder revolutions", getPivotEncoder());
   }
 }
