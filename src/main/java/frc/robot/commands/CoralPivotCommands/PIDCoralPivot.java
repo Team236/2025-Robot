@@ -51,7 +51,7 @@ public class PIDCoralPivot extends Command {
   @Override
   public void end(boolean interrupted) {
      //Removed statement below - may cause jolting from one position to another
-    //coralPivot.stopCoralPivot();
+    coralPivot.stopCoralPivot();
   }
 
   // Returns true when the command should end.

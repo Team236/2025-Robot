@@ -74,7 +74,7 @@ public final class Constants {
 
     public static final double KP_ROTATION = 0.008; //kP value for rotation
     public static final double KP_TRANSLATION = 0.4;//kP value for forward (translation) motion
-    public static final double KP_STRAFE = 0.4;  //kP value for the sideways (strafe) motio%n
+    public static final double KP_STRAFE = 0.46;  //kP value for the sideways (strafe) motio%n
 }
 
 public static final class Swerve {
