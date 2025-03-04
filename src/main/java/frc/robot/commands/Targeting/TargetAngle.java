@@ -86,6 +86,12 @@ public class TargetAngle extends Command {
   @Override
   public void end(boolean interrupted) {
     //INSERT CODE TO STOP HERE?
+    s_Swerve.drive(
+      new Translation2d(0, 0), 
+      0 , 
+      true,  //true for robot centric
+      true //true for open loop (?)
+  );
   }
 
   // Returns true when the command should end.

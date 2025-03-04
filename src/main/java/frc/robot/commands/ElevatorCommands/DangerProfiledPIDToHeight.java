@@ -50,7 +50,8 @@ public class DangerProfiledPIDToHeight extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    //elevator.stopElevator();
+    //Removed statement below - may have been the cause of the jolting from one level to another!
+    elevator.stopElevator();
   }
 
   // Returns true when the command should end.

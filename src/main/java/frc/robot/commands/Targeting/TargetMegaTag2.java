@@ -15,6 +15,7 @@ import frc.robot.subsystems.Swerve;
 
 import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import frc.robot.Constants;
@@ -94,7 +95,14 @@ public class TargetMegaTag2 extends Command {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    s_Swerve.drive(
+      new Translation2d(0, 0), 
+      0 , 
+      true,  //true for robot centric
+      true //true for open loop (?)
+  );
+  }
 
   // Returns true when the command should end.
   @Override

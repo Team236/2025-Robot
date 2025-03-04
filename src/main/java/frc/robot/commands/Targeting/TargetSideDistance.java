@@ -97,7 +97,14 @@ public class TargetSideDistance extends Command {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    s_Swerve.drive(
+      new Translation2d(0, 0), 
+      0 , 
+      true,  //true for robot centric
+      true //true for open loop (?)
+  );
+  }
 
   // Returns true when the command should end.
   @Override
