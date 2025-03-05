@@ -128,12 +128,15 @@ public class RobotContainer {
     private final L4_Score l4_Score = new L4_Score(elevator, coralHold, coralPivot, algaePivot);
 
     //Auto
-    private final DriveFwd driveFwd = new DriveFwd(s_Swerve, false, 9);//88 + (3 for bumper) -36)
+    private final DriveFwd driveFwd = new DriveFwd(s_Swerve, false, 9);
     private final TurnOnly turnOnlyNeg90 = new TurnOnly(s_Swerve, false, -90);
     private final DriveFwdAndSideAndTurn driveFwdAndSideAndTurn = new DriveFwdAndSideAndTurn(s_Swerve, false, 9, 0, 0);
     private final DriveFwd driveFwd83 = new DriveFwd(s_Swerve, false, 83);//
     private final TurnOnly turnOnly90 = new TurnOnly(s_Swerve, false, 90);
     private final DriveReverse driveReverse120 = new DriveReverse(s_Swerve, true,-120);
+    private final DriveSideways driveSideways90 = new DriveSideways(s_Swerve, false, 90);
+    private final DriveSideways driveSidewaysNeg90 = new DriveSideways(s_Swerve, false, -90);
+
 
     private final FullRunRight fullRunRight = new FullRunRight(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
     private final Leg1Right leg1Right = new Leg1Right(s_Swerve,  elevator, algaePivot, coralPivot, coralHold);
@@ -277,8 +280,6 @@ public class RobotContainer {
     //b.onTrue(pidCoraltoL3);
     //rightPov.onTrue(pidCoraltoL4);
 
-
-
    // x.whileTrue(algaeGrab);
    // a.whileTrue(algaeRelease);
 
@@ -316,12 +317,20 @@ public class RobotContainer {
   rightPov.onTrue(l3_Score);
   upPov.onTrue(l4_Score);
 
-   // a.onTrue(driveSideways90);
- //upPov.onTrue(driveFwd83);
-  //b.onTrue(turnOnly90);
- // b.onTrue(turnOnlyNeg90);
- //b.onTrue(driveReverse120);
-  
+  a1.onTrue(driveSideways90);
+  b1.onTrue(driveSidewaysNeg90);
+  x1.onTrue(driveFwd83);
+  y1.onTrue(driveReverse120);
+  rb1.onTrue(turnOnly90);
+  lb1.onTrue(turnOnlyNeg90);
+
+ upPov1.onTrue(leg1Right);
+ downPov1.onTrue(leg2Right);
+ leftPov1.onTrue(leg3Right);
+
+  //a.onTrue(fullRunCenter);
+ 
+
   //a.whileTrue(algaeTarget);
   //x.whileTrue(coralLeftTarget);
   //b.whileTrue(coralRightTarget);
@@ -335,10 +344,7 @@ public class RobotContainer {
 
   //
 
-  //x.onTrue(fullRunRight);
-  //rightPov.onTrue(fullRunLeftCtr);
-  //a.onTrue(fullRunCenter);
-  //x.onTrue(fullRunCenter);
+ 
 
   }
   
