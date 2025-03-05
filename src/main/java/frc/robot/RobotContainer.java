@@ -101,7 +101,7 @@ public class RobotContainer {
     private final JoystickButton zeroGyro = new JoystickButton(driverController, XboxController.Button.kY.value);
     private final JoystickButton robotCentric = new JoystickButton(driverController, XboxController.Button.kLeftBumper.value);
 
-   //COMMANDS
+   //COMMANDSf
 
    //Drive
     private final OrientWithLL orientWithLL = new OrientWithLL(s_Swerve);
@@ -115,7 +115,7 @@ public class RobotContainer {
     private final TargetAllParallel targetAllParallel = new TargetAllParallel(s_Swerve, 12, 0);
     private final TargetAngle targetAngle =  new TargetAngle(s_Swerve);
     private final TargetForwardDistance targetForwardDistance = new TargetForwardDistance(s_Swerve, 9);
-    private final TargetSideDistance targetsideDistance = new TargetSideDistance(s_Swerve, 0);
+    private final TargetSideDistance targetsideDistance = new TargetSideDistance(s_Swerve, 2.23);
     private final TargetSideDistance targetSideDistanceChanged  = new TargetSideDistance(s_Swerve,0);
     private final TargetMegaTag2 target3DMegaTag2 = new TargetMegaTag2(s_Swerve);
     private final TargetAngleSide targetAngleSide = new TargetAngleSide(s_Swerve, 0);
@@ -127,7 +127,7 @@ public class RobotContainer {
     private final L4_Score l4_Score = new L4_Score(elevator, coralHold, coralPivot, algaePivot);
 
     //Auto
-    private final DriveFwd driveFwdCenter55 = new DriveFwd(s_Swerve, false, 55);//88 + (3 for bumper) -36)
+    private final DriveFwd driveFwd = new DriveFwd(s_Swerve, false, 9);//88 + (3 for bumper) -36)
     private final TurnOnly turn = new TurnOnly(s_Swerve, false, -58);
     private final DriveFwdAndSideAndTurn driveFwdAndSideAndTurn = new DriveFwdAndSideAndTurn(s_Swerve, false, 9, 0, 0);
 
@@ -251,7 +251,7 @@ public class RobotContainer {
     POVButton leftPov1 = new POVButton(auxController,Constants.XboxController.POVXbox.LEFT_ANGLE);
     POVButton rightPov1 = new POVButton(auxController,Constants.XboxController.POVXbox.RIGHT_ANGLE);
 
-    SmartDashboard.putBoolean("The robot says hi ========)", true);
+
     //Inputs
 
     //y button is already assigned to ZeroGyro
@@ -275,9 +275,9 @@ public class RobotContainer {
     //b.onTrue(pidCoraltoL3);
     //rightPov.onTrue(pidCoraltoL4);
 
-  //  a.whileTrue(coralGrab);
-    // b.whileTrue(coralRelease);
-   // x.whileTrue(coralGrabWithCounter);
+    a.whileTrue(coralGrab);
+    b.whileTrue(coralRelease);
+    //x.whileTrue(coralGrabWithCounter);
 
 
    // x.whileTrue(algaeGrab);
@@ -300,13 +300,14 @@ public class RobotContainer {
  //rightPov.onTrue(dangerPidElevL3); 
  //upPov.onTrue(dangerPidElevL4);
 
- lm.whileTrue(coralSeqGrabCount);
+ lm.onTrue(coralSeqGrabCount);
  rm.whileTrue(coralPivotUp);
  rb.whileTrue(coralPivotDown);
 
-  a.whileTrue(targetsideDistance);
-  x.whileTrue(targetForwardDistance);
-  b.whileTrue(targetAngle);
+  //a.whileTrue(targetsideDistance);
+  //x.whileTrue(targetForwardDistance);
+  //x.whileTrue(driveFwd);
+ // b.whileTrue(targetAngle);
   //a.whileTrue(targetAllParallel);
 
   downPov.onTrue(l1_Score);
@@ -314,9 +315,9 @@ public class RobotContainer {
   rightPov.onTrue(l3_Score);
   upPov.onTrue(l4_Score);
   
-  a1.whileTrue(algaeTarget);
-  x1.whileTrue(coralLeftTarget);
-  b1.whileTrue(coralRightTarget);
+  //a.whileTrue(algaeTarget);
+  //x.whileTrue(coralLeftTarget);
+  //b.whileTrue(coralRightTarget);
 
 //  downPov.whileTrue(dangerElevatorDown);
 //  upPov.whileTrue(dangerElevatorUp);

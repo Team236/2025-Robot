@@ -74,7 +74,7 @@ public final class Constants {
 
     public static final double KP_ROTATION = 0.008; //kP value for rotation
     public static final double KP_TRANSLATION = 0.4;//kP value for forward (translation) motion
-    public static final double KP_STRAFE = 0.46;  //kP value for the sideways (strafe) motio%n
+    public static final double KP_STRAFE = 0.475;  //kP value for the sideways (strafe) motio%n
 }
 
 public static final class Swerve {
@@ -194,7 +194,7 @@ public static final class Swerve {
         public static final double kMaxAngularSpeedRadiansPerSecond = 4*Math.PI;
         public static final double kMaxAngularSpeedRadiansPerSecondSquared = 4*Math.PI;
         //X = forward, Y = to the left, Theta positive CCW for swerve
-        public static final double kPXController = 12; //1 default
+        public static final double kPXController = 4; //12 //1 default
         public static final double kPYController = 12; //1
         public static final double kPThetaController = 8.1; //1 default
     
@@ -220,10 +220,9 @@ public static final class Swerve {
     public static final double ELEV_IN_TO_REV = 1/ELEV_REV_TO_IN;
 
     public static final double BOTTOM_HEIGHT = 0;
-    public static final double TELEOP_HEIGHT = 3.47;
-    public static final double L1_HEIGHT = 0;
+    public static final double TELEOP_HEIGHT = 3.47;    public static final double L1_HEIGHT = 0;
     public static final double L2_HEIGHT =3.47;
-    public static final double L3_HEIGHT = 22;
+    public static final double L3_HEIGHT = 24;
     public static final double L4_HEIGHT = 55;
     public static final double PICK_ALGAE_L2_HEIGHT = 3.47;
     public static final double PICK_ALGAE_L3_HEIGHT = 13.5;//TODO find actual
@@ -283,7 +282,7 @@ public static class CoralHold {
     public static final double MAN_EXT_SPEED = -0.6;
     public static final double MAN_RET_SPEED = 0.6;
     public static final double ENC_REVS_LOADING = 0;
-    public static final double KP = 0.06; //TODO tune better?
+    public static final double KP = 0.065; //TODO tune better?
     public static final double KI = 0;
     public static final double KD = 0;
     public static final double KFF = 0;
