@@ -282,7 +282,7 @@ public static class CoralHold {
     public static final double MAN_EXT_SPEED = -0.6;
     public static final double MAN_RET_SPEED = 0.6;
     public static final double ENC_REVS_LOADING = 0;
-    public static final double KP = 0.065; //TODO tune better?
+    public static final double KP = 0.05; //TODO tune better?
     public static final double KI = 0;
     public static final double KD = 0;
     public static final double KFF = 0;
