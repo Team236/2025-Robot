@@ -25,20 +25,19 @@ public class L3_Score extends SequentialCommandGroup {
   /** Creates a new L3_Score. */
   public L3_Score(Elevator elevator, CoralHold coralHold, CoralPivot coralPivot, AlgaePivot algaePivot) {
     addCommands(
-   // new PIDToElevSafePosition(algaePivot),
-        new DangerPIDToHeight(elevator, Constants.Elevator.L3_HEIGHT).withTimeout(.8),
-        new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL3).withTimeout(.5),
-    // new WaitCommand(5),
+   //new PIDToElevSafePosition(algaePivot),
+     new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5),
+     new DangerPIDToHeight(elevator, Constants.Elevator.L3_HEIGHT).withTimeout(.8),
+     new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL3).withTimeout(.5),
+    //new WaitCommand(5),
      new CoralRelease(coralHold, Constants.CoralHold.L3_RELEASE_SPEED).withTimeout(0.5),
      //new WaitCommand(5),
-    // new PIDToElevSafePosition(algaePivot),
-   //  new WaitCommand(5),
-   Commands.parallel(
+     //new PIDToElevSafePosition(algaePivot),
+     //new WaitCommand(5),
+     //DO NOT DO PIVOT AND PIDTOHEIGHT IN PARALLEL BELOW FOR LEVEL 3- FOR SAFETY
      new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT),
      new DangerPIDToHeight(elevator, Constants.Elevator.BOTTOM_HEIGHT)
-    ));
-
-
+    );
 
   }
 }
