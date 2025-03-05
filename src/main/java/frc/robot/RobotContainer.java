@@ -24,6 +24,7 @@ import frc.robot.commands.AlgaePivotCommands.PIDMakeAPSafeForElev;
 import frc.robot.commands.AlgaePivotCommands.PIDToElevSafePosition;
 import frc.robot.commands.AutoCommands.DriveFwd;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
+import frc.robot.commands.AutoCommands.DriveReverse;
 import frc.robot.commands.AutoCommands.DriveSideways;
 //mport frc.robot.commands.AutoCommands.DriveWithPath;
 import frc.robot.commands.AutoCommands.TurnOnly;
@@ -128,8 +129,11 @@ public class RobotContainer {
 
     //Auto
     private final DriveFwd driveFwd = new DriveFwd(s_Swerve, false, 9);//88 + (3 for bumper) -36)
-    private final TurnOnly turn = new TurnOnly(s_Swerve, false, -58);
+    private final TurnOnly turnOnlyNeg90 = new TurnOnly(s_Swerve, false, -90);
     private final DriveFwdAndSideAndTurn driveFwdAndSideAndTurn = new DriveFwdAndSideAndTurn(s_Swerve, false, 9, 0, 0);
+    private final DriveFwd driveFwd83 = new DriveFwd(s_Swerve, false, 83);//
+    private final TurnOnly turnOnly90 = new TurnOnly(s_Swerve, false, 90);
+    private final DriveReverse driveReverse120 = new DriveReverse(s_Swerve, true,-120);
 
     private final FullRunRight fullRunRight = new FullRunRight(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
     private final Leg1Right leg1Right = new Leg1Right(s_Swerve,  elevator, algaePivot, coralPivot, coralHold);
@@ -267,17 +271,12 @@ public class RobotContainer {
     //a.whileTrue(legs1and2Right);
     //b.whileTrue(driveWithPathLeg1);
     //x.whileTrue(leg2Right);
-  
-  
 
     //a.onTrue(pidCoraltoL1);
     //x.onTrue(pidCoraltoL2);
     //b.onTrue(pidCoraltoL3);
     //rightPov.onTrue(pidCoraltoL4);
 
-    a.whileTrue(coralGrab);
-    b.whileTrue(coralRelease);
-    //x.whileTrue(coralGrabWithCounter);
 
 
    // x.whileTrue(algaeGrab);
@@ -300,20 +299,28 @@ public class RobotContainer {
  //rightPov.onTrue(dangerPidElevL3); 
  //upPov.onTrue(dangerPidElevL4);
 
- lm.onTrue(coralSeqGrabCount);
- rm.whileTrue(coralPivotUp);
- rb.whileTrue(coralPivotDown);
-
   //a.whileTrue(targetsideDistance);
   //x.whileTrue(targetForwardDistance);
-  //x.whileTrue(driveFwd);
  // b.whileTrue(targetAngle);
   //a.whileTrue(targetAllParallel);
+
+  a.whileTrue(coralGrab);
+  b.whileTrue(coralRelease);
+  //x.whileTrue(coralGrabWithCounter);
+  lm.onTrue(coralSeqGrabCount);
+  rm.whileTrue(coralPivotUp);
+  rb.whileTrue(coralPivotDown);
 
   downPov.onTrue(l1_Score);
   leftPov.onTrue(l2_Score);
   rightPov.onTrue(l3_Score);
   upPov.onTrue(l4_Score);
+
+   // a.onTrue(driveSideways90);
+ //upPov.onTrue(driveFwd83);
+  //b.onTrue(turnOnly90);
+ // b.onTrue(turnOnlyNeg90);
+ //b.onTrue(driveReverse120);
   
   //a.whileTrue(algaeTarget);
   //x.whileTrue(coralLeftTarget);
@@ -325,11 +332,9 @@ public class RobotContainer {
 // a.onTrue(algaeGrab).onTrue(l3_Score);
 // b.onTrue(algaeGrab).onTrue(l4_Score);
 
- // a.onTrue(driveFwdCenter55);
 
-  //b.onTrue(turn);
+  //
 
-  //upPov.onTrue(driveFwd113);
   //x.onTrue(fullRunRight);
   //rightPov.onTrue(fullRunLeftCtr);
   //a.onTrue(fullRunCenter);

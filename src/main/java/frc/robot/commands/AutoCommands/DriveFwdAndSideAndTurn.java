@@ -22,8 +22,8 @@ import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 public class DriveFwdAndSideAndTurn extends SequentialCommandGroup {
   //Pass in forward X distance (inches, positive), sideways distance (inches), and turn angle (degrees)
   //X (fwdDist) always positive, so pass in false for "reversed" in Container when command is called
-
-
+    //***** X (fwdDist) MUST BE POSITIVE! 
+  //Pass in false for "reversed" in Container when command is called
     public DriveFwdAndSideAndTurn(Swerve s_Swerve, boolean reversed, double fwdDist, double sideD, double turnAngle) {
         
         //****WAS NOT DRIVINg ENOUGH SIDEWAYS WITHOUT THIS FACTOR!!*****

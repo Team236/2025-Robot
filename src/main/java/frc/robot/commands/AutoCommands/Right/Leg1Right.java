@@ -34,8 +34,8 @@ public class Leg1Right extends SequentialCommandGroup {
       //TODO  add the commands for scoring and receiving coral
           Commands.parallel(
           //First command to drive with odometry and end 9" from bumper to AprilTag, centered on Tag
-            new DriveFwdAndSideAndTurn(s_Swerve, false, 83, -73, -58),//.withTimeout(3),
-            new PIDToElevSafePosition(algaePivot)
+            new DriveFwdAndSideAndTurn(s_Swerve, false, 83, -73, -58)//,//.withTimeout(3),
+            //new PIDToElevSafePosition(algaePivot)
              ),
           
           //Use limelight to get exactly 12" from front frame (9" from bumper) to AprilTag
@@ -46,11 +46,10 @@ public class Leg1Right extends SequentialCommandGroup {
           //Needs to end  with Limelight camera centered 1.6" to the left of the AprilTag center
           new DriveFwdAndSideAndTurn(s_Swerve, false, 10.25, 2.23, 0),//.withTimeout(1),
 
-          new ResetPoseWithLL(s_Swerve),
+          new ResetPoseWithLL(s_Swerve)//,
 
-          //new PIDMakeAPSafeForElev(algaePivot),
-          new PIDToElevSafePosition(algaePivot),
-          new L4_Score(elevator, coralHold, coralPivot, algaePivot)
+          //new PIDToElevSafePosition(algaePivot),
+          //new L4_Score(elevator, coralHold, coralPivot, algaePivot)
           
     );
     
