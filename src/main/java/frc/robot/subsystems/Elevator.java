@@ -144,12 +144,6 @@ public class Elevator extends SubsystemBase {
 
   @Override
   public void periodic() {
-    if (isEBotLimit()) {
-      //elevator going down and is at the bottom,stop and zero encoder
-      stopElevator();
-      resetElevatorEncoders();
-    }
-
     // This method will be called once per scheduler run
     SmartDashboard.putNumber("Elevator height: ", getElevatorHeight());
     SmartDashboard.putBoolean("Elevator at top limit: ", isETopLimit());
@@ -157,5 +151,6 @@ public class Elevator extends SubsystemBase {
     SmartDashboard.putBoolean("Elevator at Max height: ", isTop());
     //SmartDashboard.putNumber("Elevator left enc revs = ", getElevLeftEncoder());
    // SmartDashboard.putNumber("Elevator right enc revs = ", getElevRightEncoder());
+
   }
 }

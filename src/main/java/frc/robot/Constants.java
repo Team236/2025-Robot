@@ -194,9 +194,9 @@ public static final class Swerve {
         public static final double kMaxAngularSpeedRadiansPerSecond = 4*Math.PI;
         public static final double kMaxAngularSpeedRadiansPerSecondSquared = 4*Math.PI;
         //X = forward, Y = to the left, Theta positive CCW for swerve
-        public static final double kPXController = 4; //12 //1 default
-        public static final double kPYController = 12; //1
-        public static final double kPThetaController = 8.1; //1 default
+        public static final double kPXController = 4; //12 
+        public static final double kPYController = 12; //TODO: RETUNE!
+        public static final double kPThetaController = 8.1; //TODO: RETUNE!
     
         /* Constraint for the motion profilied robot angle controller */
         public static final TrapezoidProfile.Constraints kThetaControllerConstraints =
