@@ -29,8 +29,8 @@ public class L1_Score extends SequentialCommandGroup {
     addCommands(
    // new PIDToElevSafePosition(algaePivot),
    // new WaitCommand(5),
+    new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5),
      Commands.parallel(
-      new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5),
        new DangerPIDToHeight(elevator, Constants.Elevator.L1_HEIGHT).withTimeout(0.5),
        new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL1).withTimeout(0.5)
        ),
@@ -39,8 +39,9 @@ public class L1_Score extends SequentialCommandGroup {
     // new WaitCommand(5),
      //new PIDToElevSafePosition(algaePivot),
    //  new WaitCommand(5),
-     new DangerPIDToHeight(elevator, Constants.Elevator.BOTTOM_HEIGHT)
-   );
-
+    Commands.parallel(
+      new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT),
+      new DangerPIDToHeight(elevator, Constants.Elevator.BOTTOM_HEIGHT)
+   ));
   }
 }
