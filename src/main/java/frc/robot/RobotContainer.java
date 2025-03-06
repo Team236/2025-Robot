@@ -128,14 +128,14 @@ public class RobotContainer {
     private final L4_Score l4_Score = new L4_Score(elevator, coralHold, coralPivot, algaePivot);
 
     //Auto
-    private final DriveFwd driveFwd = new DriveFwd(s_Swerve, false, 9);
+    private final DriveFwd driveFwd = new DriveFwd(s_Swerve, false, 10); //9
     private final TurnOnly turnOnlyNeg90 = new TurnOnly(s_Swerve, false, -90);
     private final DriveFwdAndSideAndTurn driveFwdAndSideAndTurn = new DriveFwdAndSideAndTurn(s_Swerve, false, 9, 0, 0);
-    private final DriveFwd driveFwd83 = new DriveFwd(s_Swerve, false, 83);//
+    private final DriveFwd driveFwd10 = new DriveFwd(s_Swerve, false, 10);//
     private final TurnOnly turnOnly90 = new TurnOnly(s_Swerve, false, 90);
-    private final DriveReverse driveReverse120 = new DriveReverse(s_Swerve, true,-120);
-    private final DriveSideways driveSideways90 = new DriveSideways(s_Swerve, false, 90);
-    private final DriveSideways driveSidewaysNeg90 = new DriveSideways(s_Swerve, false, -90);
+    private final DriveReverse driveReverse10 = new DriveReverse(s_Swerve, true,-10);
+    private final DriveSideways driveSideways11 = new DriveSideways(s_Swerve, false, 2.25);
+    private final DriveSideways driveSidewaysNeg11 = new DriveSideways(s_Swerve, false, -10.8);
 
 
     private final FullRunRight fullRunRight = new FullRunRight(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
@@ -317,10 +317,10 @@ public class RobotContainer {
   rightPov.onTrue(l3_Score);
   upPov.onTrue(l4_Score);
 
-  a1.onTrue(driveSideways90);
-  b1.onTrue(driveSidewaysNeg90);
-  x1.onTrue(driveFwd83);
-  y1.onTrue(driveReverse120);
+  a1.onTrue(driveSideways11);
+  b1.onTrue(driveSidewaysNeg11);
+  x1.onTrue(driveFwd10);
+  y1.onTrue(driveReverse10);
   rb1.onTrue(turnOnly90);
   lb1.onTrue(turnOnlyNeg90);
 
