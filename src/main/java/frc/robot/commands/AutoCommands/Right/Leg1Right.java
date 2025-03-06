@@ -32,17 +32,17 @@ public class Leg1Right extends SequentialCommandGroup {
   public Leg1Right(Swerve s_Swerve, Elevator elevator, AlgaePivot algaePivot, CoralPivot coralPivot, CoralHold coralHold) {
     addCommands(
           Commands.parallel(
-          //If using odometry then LL:
+          //If using odometry plus LL:
           //First command to drive with odometry and end ~7" from bumper to AprilTag, centered on Tag
           //new DriveFwdAndSideAndTurn(s_Swerve, false, 83, 0, -58.2)//,//.withTimeout(3),
 
-          //If using odometry only (drive to reef with coral scorer aligned to right branch)
+          //If using odometry only, starting 96.25" from side (drive to reef with coral scorer aligned to right branch)
             new DriveFwdAndSideAndTurn(s_Swerve, false, 78.5, 0, -58.2)//,//.withTimeout(3),
             
           //new PIDToElevSafePosition(algaePivot)
              )//,
 
-          //If using odometry then LL:
+          //If using odometry plus LL:
           //Use limelight to get exactly 7" from bumper to AprilTag
           //new TargetAllParallel(s_Swerve, 7, 0)//,//.withTimeout(1),
           // new GetPoseWithLL(s_Swerve),
