@@ -306,7 +306,7 @@ public class RobotContainer {
   //a.whileTrue(targetAllParallel);
 
   a.whileTrue(coralGrab);
-  b.whileTrue(coralRelease);
+  //b.whileTrue(coralRelease);
   //x.whileTrue(coralGrabWithCounter);
   lm.onTrue(coralSeqGrabCount);
   rm.whileTrue(coralPivotUp);
@@ -332,8 +332,8 @@ public class RobotContainer {
  
 
   //a.whileTrue(algaeTarget);
-  //x.whileTrue(coralLeftTarget);
-  //b.whileTrue(coralRightTarget);
+  x.whileTrue(coralLeftTarget);
+  b.whileTrue(coralRightTarget);
 
 //  downPov.whileTrue(dangerElevatorDown);
 //  upPov.whileTrue(dangerElevatorUp);
