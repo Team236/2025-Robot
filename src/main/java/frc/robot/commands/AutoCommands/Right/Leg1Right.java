@@ -31,21 +31,22 @@ public class Leg1Right extends SequentialCommandGroup {
   /** Creates a new Leg1Right. */
   public Leg1Right(Swerve s_Swerve, Elevator elevator, AlgaePivot algaePivot, CoralPivot coralPivot, CoralHold coralHold) {
     addCommands(
-      //TODO  add the commands for scoring and receiving coral
           Commands.parallel(
-          //First command to drive with odometry and end 9" from bumper to AprilTag, centered on Tag
+          //If using odometry then LL:
+          //First command to drive with odometry and end ~7" from bumper to AprilTag, centered on Tag
+          //new DriveFwdAndSideAndTurn(s_Swerve, false, 83, 0, -58.2)//,//.withTimeout(3),
+
+          //If using odometry only (drive to reef with coral scorer aligned to right branch)
             new DriveFwdAndSideAndTurn(s_Swerve, false, 78.5, 0, -58.2)//,//.withTimeout(3),
-            //new PIDToElevSafePosition(algaePivot)
+            
+          //new PIDToElevSafePosition(algaePivot)
              )//,
-          
-          //Use limelight to get exactly 12" from front frame (9" from bumper) to AprilTag
-           //new TargetAllParallel(s_Swerve,7, 0)//,//.withTimeout(1),
 
+          //If using odometry then LL:
+          //Use limelight to get exactly 7" from bumper to AprilTag
+          //new TargetAllParallel(s_Swerve, 7, 0)//,//.withTimeout(1),
           // new GetPoseWithLL(s_Swerve),
-        
-          // //Needs to end  with Limelight camera centered 1.6" to the left of the AprilTag center
-          // new DriveFwdAndSideAndTurn(s_Swerve, false, 10.25, 2.23, 0),//.withTimeout(1),
-
+          // new DriveFwdAndSideAndTurn(s_Swerve, false, 7, 2.23, 0),//.withTimeout(1),
           // new ResetPoseWithLL(s_Swerve)//,
 
           //new PIDToElevSafePosition(algaePivot),

@@ -22,9 +22,10 @@ public class Leg2Right extends SequentialCommandGroup {
   /** Creates a new Leg2Right. */
   public Leg2Right(Swerve s_Swerve, CoralHold coralHold, frc.robot.subsystems.CoralPivot coralPivot) {
     addCommands(
+      //TODO:  end up in position where you drive mostly X only to get to reef
           new DriveSideways(s_Swerve, false, 73), //.withTimeout(2),
-          new DriveFwdAndSideAndTurn(s_Swerve, false, -3.5, 91.5, -63)//,
-//ADD IN RECEIVING CORAL: 
+          new DriveFwdAndSideAndTurn(s_Swerve, false, -3.5+24, 91.5-13, -63)//,
+      //TODO:  ADD IN RECEIVING CORAL: 
          // new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LOADING), //adjust as needed
          // new CoralGrab(coralHold, Constants.CoralHold.HOLD_SPEED).withTimeout(2) //adjust as needed
     );

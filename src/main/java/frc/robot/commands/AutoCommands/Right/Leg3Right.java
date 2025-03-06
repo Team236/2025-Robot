@@ -32,27 +32,27 @@ public class Leg3Right extends SequentialCommandGroup {
     addCommands(
       //TODO  add the commands for scoring and receiving coral
         Commands.parallel(
-          //First command to drive with odometry and end 9" from bumper to AprilTag, centered on Tag  
+          //Drive with odometry and end 9" from bumper to AprilTag, centered on Tag  
           //******NEED TO CHANGE TO "FALSE" BELOW????
           new DriveFwdAndSideAndTurn(s_Swerve, true ,120, -16, 6)//,//.withTimeout(3.5),
-        // new PIDToElevSafePosition(algeaPivot)
+          // new PIDToElevSafePosition(algeaPivot)
         ),
           
-          //Use limelight to get exactly 12" from front frame (9" from bumper) to AprilTag
-          new TargetAllParallel(s_Swerve, 12, 0),//.withTimeout(2),
+          //Use limelight to get exactly 9" from bumper to AprilTag
+          new TargetAllParallel(s_Swerve, 9, 0),//.withTimeout(2),
 
-         //**** ADD COMMAND HERE TO RESET POSE WITH LIMELIGHT, BEFORE DRIVING WITH ODOMETRY
-         new GetPoseWithLL(s_Swerve),
+          //**** GET POSE WITH LIMELIGHT, BEFORE DRIVING WITH ODOMETRY
+          new GetPoseWithLL(s_Swerve),
 
-          //Needs to end  with Limelight camera centered 0.4" to the left of the AprilTag center
-          new DriveFwdAndSideAndTurn(s_Swerve, false, 9, 1.6, 0),
+          //Needs to end  with coral scorer aligned with right branch of Reef
+          new DriveFwdAndSideAndTurn(s_Swerve, false, 9, 2.23, 0),
 
-          //**** ADD COMMAND HERE TO RESET POSE TO VALUE FROM GetPoseWithLL
+          //**** RESET POSE TO VALUE FROM GetPoseWithLL
           new ResetPoseWithLL(s_Swerve)//,
 
           //new PIDToElevSafePosition(algeaPivot),
         
-         //new L4_Score(elevator, coralHold, coralPivot, algeaPivot)
+          //new L4_Score(elevator, coralHold, coralPivot, algeaPivot)
     );
   }
 
