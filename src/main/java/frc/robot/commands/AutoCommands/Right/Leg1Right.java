@@ -31,13 +31,14 @@ public class Leg1Right extends SequentialCommandGroup {
   /** Creates a new Leg1Right. */
   public Leg1Right(Swerve s_Swerve, Elevator elevator, AlgaePivot algaePivot, CoralPivot coralPivot, CoralHold coralHold) {
     addCommands(
+      //START ROBOT WITH BACK BUMPER FLUSH WITH BACK OF BLACK STARTING LINE
           Commands.parallel(
           //If using odometry plus LL:
           //First command to drive with odometry and end ~7" from bumper to AprilTag, centered on Tag
-          //new DriveFwdAndSideAndTurn(s_Swerve, false, 83, 0, -58.2)//,//.withTimeout(3),
+          //new DriveFwdAndSideAndTurn(s_Swerve, false, 82, 0, -58.2)//,//.withTimeout(3),
 
           //If using odometry only, starting 96.25" from side (drive to reef with coral scorer aligned to right branch)
-            new DriveFwdAndSideAndTurn(s_Swerve, false, 78.5, 0, -58.2)//,//.withTimeout(3),
+            new DriveFwdAndSideAndTurn(s_Swerve, false, 77.5, 0, -58.2)//,//.withTimeout(3),
             
           //new PIDToElevSafePosition(algaePivot)
              )//,
