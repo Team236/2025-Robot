@@ -305,35 +305,35 @@ public class RobotContainer {
  // b.whileTrue(targetAngle);
   //a.whileTrue(targetAllParallel);
 
-  a.whileTrue(coralGrab);
+  //a.whileTrue(coralGrab);
   //b.whileTrue(coralRelease);
   //x.whileTrue(coralGrabWithCounter);
   lm.onTrue(coralSeqGrabCount);
   rm.whileTrue(coralPivotUp);
   rb.whileTrue(coralPivotDown);
 
-  downPov.onTrue(l1_Score);
-  leftPov.onTrue(l2_Score);
-  rightPov.onTrue(l3_Score);
-  upPov.onTrue(l4_Score);
+  leftPov.onTrue(l1_Score);
+  a.onTrue(l2_Score);
+  x.onTrue(l3_Score);
+  b.onTrue(l4_Score);
 
-  a1.onTrue(driveSideways11);
-  b1.onTrue(driveSidewaysNeg11);
-  x1.onTrue(driveFwd10);
-  y1.onTrue(driveReverse10);
-  rb1.onTrue(turnOnly90);
-  lb1.onTrue(turnOnlyNeg90);
+ // a1.onTrue(driveSideways11);
+ // b1.onTrue(driveSidewaysNeg11);
+ // x1.onTrue(driveFwd10);
+ // y1.onTrue(driveReverse10);
+ // rb1.onTrue(turnOnly90);
+ // lb1.onTrue(turnOnlyNeg90);
 
- upPov1.onTrue(leg1Right);
- downPov1.onTrue(leg2Right);
- leftPov1.onTrue(leg3Right);
+// upPov1.onTrue(leg1Right);
+ //downPov1.onTrue(leg2Right);
+ //leftPov1.onTrue(leg3Right);
 
   //a.onTrue(fullRunCenter);
  
 
-  //a.whileTrue(algaeTarget);
-  x.whileTrue(coralLeftTarget);
-  b.whileTrue(coralRightTarget);
+  a1.whileTrue(algaeTarget);
+  x1.whileTrue(coralLeftTarget);
+  b1.whileTrue(coralRightTarget);
 
 //  downPov.whileTrue(dangerElevatorDown);
 //  upPov.whileTrue(dangerElevatorUp);
