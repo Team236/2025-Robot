@@ -22,13 +22,15 @@ public class DangerProfiledPIDToHeight extends Command {
   private final ProfiledPIDController pidController;
 
   /** Creates a new TrapezoidPID. */
+
+  //Must use meters for units in the profiledPIDController
   public DangerProfiledPIDToHeight(Elevator elevator, double desiredHeight) {
     this.elevator = elevator;
     this.desiredHeight = desiredHeight;
     addRequirements(elevator);
 
     //max velocity and acceleration in m/s 
-    constraints = new TrapezoidProfile.Constraints(25, 25);
+    constraints = new TrapezoidProfile.Constraints(1, 1);
     pidController = new ProfiledPIDController(kP, kI, kD, constraints);
    // pidController.setSetpoint(desiredHeight);
 
