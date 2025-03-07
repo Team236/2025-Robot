@@ -234,7 +234,7 @@ public static final class Swerve {
     public static final double MAX_HEIGHT = 57;
 
     //PID values
-    public static final double KP_ELEV = 0.04;
+    public static final double KP_ELEV = 0.03; //0.04;
     public static final double KI_ELEV = 0;
     public static final double KD_ELEV = 0;
   }
@@ -279,7 +279,7 @@ public static class CoralHold {
     public static final double ENC_REVS_LEVEL1 = 0;
     public static final double ENC_REVS_LEVEL2 = -6;
     public static final double ENC_REVS_LEVEL3 = -22; 
-    public static final double ENC_REVS_LEVEL4 = -110;
+    public static final double ENC_REVS_LEVEL4 = -107;
     public static final double ENC_REVS_FULL_RETRACT = 0;
     public static final double MAN_EXT_SPEED = -0.6;
     public static final double MAN_RET_SPEED = 0.6;
