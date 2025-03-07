@@ -7,6 +7,7 @@ package frc.robot.commands.ElevatorCommands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
 import frc.robot.commands.AlgaePivotCommands.PIDMakeAPSafeForElev;
+import frc.robot.commands.AlgaePivotCommands.PIDToElevSafePosition;
 import frc.robot.subsystems.AlgaePivot;
 import frc.robot.subsystems.Elevator;
 
@@ -19,7 +20,7 @@ public class PrepForClimb extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new PIDMakeAPSafeForElev(algaePivot),
+     // new PIDToElevSafePosition(algaePivot),
       new DangerPIDToHeight(elevator, Constants.Elevator.CLIMB_START_HEIGHT).withTimeout(2)
     );
   }

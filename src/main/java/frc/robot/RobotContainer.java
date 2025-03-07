@@ -49,6 +49,7 @@ import frc.robot.commands.ElevatorCommands.CoralSafePIDToHeight;
 import frc.robot.commands.ElevatorCommands.DangerManualUpDown;
 import frc.robot.commands.ElevatorCommands.DangerPIDToHeight;
 import frc.robot.commands.ElevatorCommands.DangerProfiledPIDToHeight;
+import frc.robot.commands.ElevatorCommands.PrepForClimb;
 import frc.robot.commands.Scoring.L1_Score;
 import frc.robot.commands.Scoring.L2_Score;
 import frc.robot.commands.Scoring.L3_Score;
@@ -155,7 +156,7 @@ public class RobotContainer {
   private final DangerManualUpDown dangerElevatorUp = new DangerManualUpDown(elevator, Constants.Elevator.ELEV_UP_SPEED);
   private final DangerManualUpDown dangerElevatorDown = new DangerManualUpDown(elevator, Constants.Elevator.ELEV_DOWN_SPEED);
   private final ClimbDownSequence climbDownSequence= new ClimbDownSequence(elevator, algaePivot);
-  private final DangerPIDToHeight pidPrepForClimb = new DangerPIDToHeight(elevator,  Constants.Elevator.CLIMB_START_HEIGHT);
+  private final PrepForClimb prepForClimb = new PrepForClimb(elevator,  algaePivot);
   private final DangerPIDToHeight pidElevToBottom = new DangerPIDToHeight(elevator, Constants.Elevator.BOTTOM_HEIGHT);
  private final DangerPIDToHeight dangerPidElevL1 = new DangerPIDToHeight(elevator, Constants.Elevator.L1_HEIGHT);
  private final DangerPIDToHeight dangerPidElevL2 = new DangerPIDToHeight(elevator, Constants.Elevator.L2_HEIGHT);
@@ -317,8 +318,11 @@ b.whileTrue(coralRelease);
 
 upPov.onTrue(leg1Right);
 downPov.onTrue(leg2Right);
-leftPov.onTrue(leg3Right);
-rightPov.onTrue(fullRunRight);
+//leftPov.onTrue(leg3Right);
+//rightPov.onTrue(fullRunRight);
+
+leftPov.onTrue(prepForClimb);
+rightPov.onTrue(climbDownSequence);
 
 rightPov1.onTrue(coralSafeToL2);
 downPov1.whileTrue(dangerElevatorDown);
