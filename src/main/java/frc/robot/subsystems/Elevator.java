@@ -10,6 +10,7 @@ import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
 import com.ctre.phoenix6.configs.MotorOutputConfigs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.configs.TalonFXConfigurator;
+import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
@@ -44,11 +45,13 @@ public class Elevator extends SubsystemBase {
     leftElevatorMotor.getConfigurator().apply(leftTalonConfig);
 
     rightTalonConfig = new TalonFXConfiguration();
-    rightTalonConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+    //rightTalonConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
     rightTalonConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
     rightTalonConfig.CurrentLimits.SupplyCurrentLimit = Constants.MotorControllers.SMART_CURRENT_LIMIT;
     rightTalonConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
     rightElevatorMotor.getConfigurator().apply(rightTalonConfig);
+
+    rightElevatorMotor.setControl(new Follower(Constants.MotorControllers.ID_ELEVATOR_RIGHT_TALON, false));
 
     try {
       elevatorTopLimit = new DigitalInput(Constants.Elevator.DIO_ELEV_TOP);
@@ -67,7 +70,7 @@ public class Elevator extends SubsystemBase {
 
   public void stopElevator() {
     leftElevatorMotor.set(0);
-    rightElevatorMotor.set(0);
+   // rightElevatorMotor.set(0);
   }
 
   public boolean isETopLimit() {
@@ -88,7 +91,7 @@ public class Elevator extends SubsystemBase {
   // reset/zero encoders
   public void resetElevatorEncoders(){
     leftElevatorMotor.setPosition(0);
-    rightElevatorMotor.setPosition(0);
+   // rightElevatorMotor.setPosition(0);
   }
 
   //returns encoder position in REVOLUTIONS (number of rotations)
@@ -121,7 +124,7 @@ public class Elevator extends SubsystemBase {
        }  else {
           // elevator going up but top limit is not tripped, go at commanded speed
           leftElevatorMotor.set(speed);
-          rightElevatorMotor.set(speed);
+         // rightElevatorMotor.set(speed);
         }
       } 
     else {
@@ -132,7 +135,7 @@ public class Elevator extends SubsystemBase {
       } else {
       // elevator going down but not at the bottom, go at commanded speed
         leftElevatorMotor.set(speed);
-        rightElevatorMotor.set(speed);
+       // rightElevatorMotor.set(speed);
       }
     }  
   } 
