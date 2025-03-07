@@ -11,6 +11,8 @@ import frc.robot.Constants;
 import frc.robot.commands.AlgaePivotCommands.PIDMakeAPSafeForElev;
 import frc.robot.commands.AlgaePivotCommands.PIDToElevSafePosition;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
+import frc.robot.commands.CoralHoldCommands.CoralReleaseNoCountReset;
+import frc.robot.commands.CoralHoldCommands.CoralResetCount;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
 import frc.robot.commands.ElevatorCommands.CoralSafePIDToHeight;
 import frc.robot.commands.ElevatorCommands.DangerPIDToHeight;
@@ -27,24 +29,29 @@ public class L2_Score extends SequentialCommandGroup {
   public L2_Score(Elevator elevator, CoralHold coralHold, CoralPivot coralPivot, AlgaePivot algaePivot) {
 
     addCommands(
-   // new PIDToElevSafePosition(algaePivot),
-   // new WaitCommand(5),
+
+   //new PIDToElevSafePosition(algaePivot).withTimeout(2),
+
     new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5),
+
     Commands.parallel(
        new CoralSafePIDToHeight(elevator, coralHold, Constants.Elevator.L2_HEIGHT).withTimeout(0.5),
     // new DangerPIDToHeight(elevator, Constants.Elevator.L2_HEIGHT).withTimeout(0.5),
        new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL2).withTimeout(0.5)
        ),
-   // new WaitCommand(5),
-    new CoralRelease(coralHold, Constants.CoralHold.L2_RELEASE_SPEED).withTimeout(0.5),
-    //new WaitCommand(5),
-    //new PIDToElevSafePosition(algaePivot),
-    //new WaitCommand(5),
+  
+    new CoralReleaseNoCountReset(coralHold, Constants.CoralHold.L2_RELEASE_SPEED).withTimeout(0.5),
+  
+    //new PIDToElevSafePosition(algaePivot).withTimeout(2),
+
     Commands.parallel(
-      new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT),
-      new CoralSafePIDToHeight(elevator, coralHold, Constants.Elevator.BOTTOM_HEIGHT)
-      //new DangerPIDToHeight(elevator, Constants.Elevator.BOTTOM_HEIGHT)
-     ));
+      new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(2),
+      new CoralSafePIDToHeight(elevator, coralHold, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(2)
+      //new DangerPIDToHeight(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(2)
+     ),
+
+     new CoralResetCount(coralHold)
+     );
 
   }
 }

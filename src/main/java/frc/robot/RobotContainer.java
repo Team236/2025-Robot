@@ -40,10 +40,12 @@ import frc.robot.commands.CoralHoldCommands.CoralGrabWithCounter;
 // import frc.robot.commands.CoralHoldCommands.CoralSeqGrabCount;
 import frc.robot.commands.CoralHoldCommands.CoralGrab;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
+import frc.robot.commands.CoralHoldCommands.CoralReleaseNoCountReset;
 import frc.robot.commands.CoralHoldCommands.CoralSeqGrabCount;
 import frc.robot.commands.CoralPivotCommands.ManualCoralPivot;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
 import frc.robot.commands.ElevatorCommands.ClimbDownSequence;
+import frc.robot.commands.ElevatorCommands.CoralSafePIDToHeight;
 import frc.robot.commands.ElevatorCommands.DangerManualUpDown;
 import frc.robot.commands.ElevatorCommands.DangerPIDToHeight;
 import frc.robot.commands.ElevatorCommands.DangerProfiledPIDToHeight;
@@ -149,6 +151,7 @@ public class RobotContainer {
     
       
   //Elevator
+  private final CoralSafePIDToHeight coralSafeToL2 = new CoralSafePIDToHeight(elevator, coralHold, Constants.Elevator.L2_HEIGHT);
   private final DangerManualUpDown dangerElevatorUp = new DangerManualUpDown(elevator, Constants.Elevator.ELEV_UP_SPEED);
   private final DangerManualUpDown dangerElevatorDown = new DangerManualUpDown(elevator, Constants.Elevator.ELEV_DOWN_SPEED);
   private final ClimbDownSequence climbDownSequence= new ClimbDownSequence(elevator, algaePivot);
@@ -158,11 +161,6 @@ public class RobotContainer {
  private final DangerPIDToHeight dangerPidElevL2 = new DangerPIDToHeight(elevator, Constants.Elevator.L2_HEIGHT);
  private final DangerPIDToHeight dangerPidElevL3 = new DangerPIDToHeight(elevator,  Constants.Elevator.L3_HEIGHT);
  private final DangerPIDToHeight dangerPidElevL4 = new DangerPIDToHeight(elevator,  Constants.Elevator.L4_HEIGHT);
-// private final DangerProfiledPIDToHeight pidElevToBottom = new DangerProfiledPIDToHeight(elevator, Constants.Elevator.BOTTOM_HEIGHT);
- //private final DangerProfiledPIDToHeight pidElevatorL1 = new DangerProfiledPIDToHeight(elevator, Constants.Elevator.L1_HEIGHT);
- //private final DangerProfiledPIDToHeight pidElevatorL2 = new DangerProfiledPIDToHeight(elevator, Constants.Elevator.L2_HEIGHT);
- //private final DangerProfiledPIDToHeight pidElevatorL3 = new DangerProfiledPIDToHeight(elevator,  Constants.Elevator.L3_HEIGHT);
- //private final DangerProfiledPIDToHeight pidElevatorL4 = new DangerProfiledPIDToHeight(elevator,  Constants.Elevator.L4_HEIGHT);
 
 
   //AlgaeHold
@@ -184,6 +182,7 @@ public class RobotContainer {
   private final CoralGrabWithCounter coralGrabWithCounter = new CoralGrabWithCounter(coralHold, Constants.CoralHold.HOLD_SPEED);
   private final CoralSeqGrabCount coralSeqGrabCount = new CoralSeqGrabCount(coralPivot, coralHold);
   private final CoralRelease coralRelease = new CoralRelease(coralHold, Constants.CoralHold.L2_RELEASE_SPEED);
+  private final CoralReleaseNoCountReset coralReleaseNoCountReset = new CoralReleaseNoCountReset(coralHold, Constants.CoralHold.L2_RELEASE_SPEED);
   //private final CoralRelease coralReleaseL4 = new CoralRelease(coralHold, Constants.CoralHold.L4_RELEASE_SPEED);
 
   //CoralPivot
@@ -303,19 +302,32 @@ public class RobotContainer {
  // a.whileTrue(targetsideDistance);
   //x.whileTrue(targetForwardDistance);
   //b.whileTrue(targetAngle);
-  rb.whileTrue(targetAllParallel);
+ // rb.whileTrue(targetAllParallel);
 
   // rightPov.whileTrue(coralGrab);
   //b.whileTrue(coralRelease);
   //x.whileTrue(coralGrabWithCounter);
-  // lm.onTrue(coralSeqGrabCount);
+
   // rm.whileTrue(coralPivotUp);
   // rb.whileTrue(coralPivotDown);
 
-  // leftPov.onTrue(l1_Score);
-  // a.onTrue(l2_Score);
-  // x.onTrue(l3_Score);
-  // b.onTrue(l4_Score);
+a.onTrue(coralSeqGrabCount);
+x.whileTrue(coralReleaseNoCountReset);
+b.whileTrue(coralRelease);
+
+upPov.onTrue(leg1Right);
+downPov.onTrue(leg2Right);
+leftPov.onTrue(leg3Right);
+rightPov.onTrue(fullRunRight);
+
+rightPov1.onTrue(coralSafeToL2);
+downPov1.whileTrue(dangerElevatorDown);
+upPov1.whileTrue(dangerElevatorUp);
+
+y1.onTrue(l1_Score);
+a1.onTrue(l2_Score);
+x1.onTrue(l3_Score);
+b1.onTrue(l4_Score);
 
   //x.onTrue(driveSideways65);
   //b.onTrue(driveSidewaysNeg675);
@@ -325,25 +337,18 @@ public class RobotContainer {
  // rb1.onTrue(turnOnly90);
  // lb1.onTrue(turnOnlyNeg90);
 
-// upPov1.onTrue(leg1Right);
- //downPov1.onTrue(leg2Right);
- //leftPov1.onTrue(leg3Right);
+
   //a.onTrue(fullRunCenter);
 
-  a1.whileTrue(algaeTarget);
-  x.whileTrue(coralLeftTarget);
-  b.whileTrue(coralRightTarget);
+//a1.whileTrue(algaeTarget);
+//x.whileTrue(coralLeftTarget);
+//b.whileTrue(coralRightTarget);
 
  //downPov.whileTrue(dangerElevatorDown);
  //upPov.whileTrue(dangerElevatorUp);
 
 // a.onTrue(algaeGrab).onTrue(l3_Score);
 // b.onTrue(algaeGrab).onTrue(l4_Score);
-
-
-  //
-
- 
 
   }
   

@@ -10,6 +10,7 @@ import frc.robot.Constants.CoralPivot;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
 import frc.robot.commands.AutoCommands.DriveSideways;
 import frc.robot.commands.CoralHoldCommands.CoralGrab;
+import frc.robot.commands.CoralHoldCommands.CoralGrabWithCounter;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
 import frc.robot.commands.Targeting.TargetAllParallel;
 import frc.robot.subsystems.CoralHold;
@@ -24,10 +25,10 @@ public class Leg2Right extends SequentialCommandGroup {
     addCommands(
       //TODO:  end up in position where you drive mostly X only to get to reef
           new DriveSideways(s_Swerve, false, 73), //.withTimeout(2),
-          new DriveFwdAndSideAndTurn(s_Swerve, false, -3.5+24, 91.5-13, -63)//,
+          new DriveFwdAndSideAndTurn(s_Swerve, false, 20, 80, -63)//,
       //TODO:  ADD IN RECEIVING CORAL: 
-         // new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LOADING), //adjust as needed
-         // new CoralGrab(coralHold, Constants.CoralHold.HOLD_SPEED).withTimeout(2) //adjust as needed
+        // new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LOADING).withTimeout(2), //adjust as needed
+        // new CoralGrabWithCounter(coralHold, Constants.CoralHold.HOLD_SPEED).withTimeout(2) //adjust as needed
     );
   }
 
