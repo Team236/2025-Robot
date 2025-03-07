@@ -31,7 +31,7 @@ public class CoralHold extends SubsystemBase {
   private SparkMaxConfig coralHoldConfig;
 
   // COUNTER
-  public Counter counter;
+  public static Counter counter;
   public boolean isCounterUnplugged = false;
 
  

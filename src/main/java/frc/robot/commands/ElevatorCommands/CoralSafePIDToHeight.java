@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class CoralSafePIDToHeight extends Command {
   private Elevator elevator;
-  private CoralHold coralHold;
   private double desiredHeight; //desired height in inches
   private final PIDController pidController;
   private double kP = Constants.Elevator.KP_ELEV;
@@ -21,11 +20,11 @@ public class CoralSafePIDToHeight extends Command {
   private double kD = Constants.Elevator.KD_ELEV;
 
   /** Creates a new SetElevatorHeight. */
-  public CoralSafePIDToHeight(Elevator elevator, CoralHold coralHold, double desiredHeight) {
+  public CoralSafePIDToHeight(Elevator elevator, double desiredHeight) {
 
   pidController = new PIDController(kP, kI, kD);
   this.elevator = elevator;
-  this.coralHold = coralHold;
+
   this.desiredHeight = desiredHeight;
   // Use addRequirements() here to declare subsystem dependencies.
   addRequirements(elevator);
@@ -40,9 +39,10 @@ public class CoralSafePIDToHeight extends Command {
 
   // Called every time the scheduler runs while the command is scheduled.
   public void execute() {
+    
     //Only allows the elevator to move if the count is one (Coral is properly situated in trough)
-    if (coralHold.getCoralHCount() == 1) {
-    elevator.setElevSpeed(pidController.calculate(elevator.getElevatorHeight()));
+    if (CoralHold.counter.get() == 1) {
+      elevator.setElevSpeed(pidController.calculate(elevator.getElevatorHeight()));
     }
   }
 

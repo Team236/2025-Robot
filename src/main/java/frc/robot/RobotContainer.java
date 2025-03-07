@@ -151,7 +151,7 @@ public class RobotContainer {
     
       
   //Elevator
-  private final CoralSafePIDToHeight coralSafeToL2 = new CoralSafePIDToHeight(elevator, coralHold, Constants.Elevator.L2_HEIGHT);
+  private final CoralSafePIDToHeight coralSafeToL2 = new CoralSafePIDToHeight(elevator, Constants.Elevator.L2_HEIGHT);
   private final DangerManualUpDown dangerElevatorUp = new DangerManualUpDown(elevator, Constants.Elevator.ELEV_UP_SPEED);
   private final DangerManualUpDown dangerElevatorDown = new DangerManualUpDown(elevator, Constants.Elevator.ELEV_DOWN_SPEED);
   private final ClimbDownSequence climbDownSequence= new ClimbDownSequence(elevator, algaePivot);
