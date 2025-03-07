@@ -58,8 +58,9 @@ public final class Constants {
 
   public static final class  Targeting {
     //use this with TargetPose-CameraSpace:  
-    public static final double DIST_FORWARDS_CAMERA_TO_FRAME = 5.375;//4.25;//inches  TODO- update for 2025 robot
-    public static final double BUMPER_THICKNESS = 3.25; //inches, for 2025 bot
+    public static final double DIST_FORWARDS_CAMERA_TO_FRAME = 5.5;
+    public static final double BUMPER_THICKNESS = 3.25;
+    //TODO - may need to use just cam to frame for TargetFwdDistance?
     public static final double DIST_CAMERA_TO_BUMPER_FWD = BUMPER_THICKNESS + DIST_FORWARDS_CAMERA_TO_FRAME;
     //forward distance robot center to robot bumper, inches 
     //only use DIST_TO_CENTER if we switch to TargetPose-RobotSpace
@@ -204,7 +205,7 @@ public static final class Swerve {
                 kMaxAngularSpeedRadiansPerSecond, kMaxAngularSpeedRadiansPerSecondSquared);
 
       //Center Auto path (inches)
-        public static final double CENTER_FWD_DIST = 57; //if starting 3" behind start line
+        public static final double CENTER_FWD_DIST = 56; //if starting 2" behind start line
     }
 
   public static class Elevator {
@@ -215,7 +216,7 @@ public static final class Swerve {
     public static final double ELEV_DOWN_SPEED = -0.1;
     public static final double ELEV_CLIMB_DOWN_SPEED = -0.5;
 
-    //placeholder conversion factors
+    //conversion factors
     public static final double ELEV_REV_TO_IN = 1.362;
     public static final double ELEV_IN_TO_REV = 1/ELEV_REV_TO_IN;
 
@@ -231,8 +232,8 @@ public static final class Swerve {
     public static final double CLIMB_END_HEIGHT = 0; //TODO find actual
     public static final double MAX_HEIGHT = 57;
 
-    //placeholder PID values
-    public static final double KP_ELEV = 0.043;
+    //PID values
+    public static final double KP_ELEV = 0.04;
     public static final double KI_ELEV = 0;
     public static final double KD_ELEV = 0;
   }
