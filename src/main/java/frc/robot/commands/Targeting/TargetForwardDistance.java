@@ -82,8 +82,11 @@ public class TargetForwardDistance extends Command {
   
   // poseFwd is the third element [2] in the pose array, which is the forward distance from center of robot to the AprilTag
     poseFwd = LimelightHelpers.getTargetPose_CameraSpace("limelight")[2]; 
+
     //Standsoff is from bumper to Target. Must add forward dist from bumper to LLcamera (since using TargetPose-CameraSpace)
+    //TODO - may need to add or subtract bumper thickness here to get correct standoff
     double finalStandoff = Units.inchesToMeters(standoffFwd + Constants.Targeting.DIST_CAMERA_TO_BUMPER_FWD); //to robot center in meters
+   
     errorFwd = poseFwd - finalStandoff; 
     double targetingForwardSpeed = errorFwd*kPtranslation;
      //SmartDashboard.putNumber("Forward distance from Robot frame to tag in inches: ", ((dz/0.0254)-Constants.Targeting.DIST_CAMERA_TO_BUMPER_FWD));

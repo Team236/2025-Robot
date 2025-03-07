@@ -18,7 +18,14 @@ public class AlgaeTarget extends SequentialCommandGroup {
 
   public AlgaeTarget(Swerve s_Swerve) {
     addCommands(
-      new TargetAllParallel(s_Swerve, 10, 0).withTimeout(2),
+//TODO: Try the 3 commands below vice the TargetSideDist only
+//If fast enough, this is more likely to get us properly aligned
+//Adjust timeouts to save time
+    //new TargetAngle(s_Swerve).withTimeout(0.7),
+    //new TargetSideDistance(s_Swerve, 0).withTimeout(1),
+    //new TargetForwardDistance(s_Swerve, 0.7),
+    
+      new TargetSideDistance(s_Swerve, 0).withTimeout(1),
       new GetPoseWithLL(s_Swerve),
       //TODO - get actual values for side distance algae
       new DriveFwdAndSideAndTurn(s_Swerve, false, 10, -10.2, 0).withTimeout(2),
