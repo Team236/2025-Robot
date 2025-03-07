@@ -33,7 +33,7 @@ public class L3_Score extends SequentialCommandGroup {
 
     //DO NOT DO PIVOT AND PIDTOHEIGHT IN PARALLEL FOR LEVEL 3 or Level 4 FOR SAFETY
      new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5),
-     new CoralSafePIDToHeight(elevator, coralHold,  Constants.Elevator.L3_HEIGHT).withTimeout(.8),
+     new CoralSafePIDToHeight(elevator,  Constants.Elevator.L3_HEIGHT).withTimeout(.8),
     // new DangerPIDToHeight(elevator, Constants.Elevator.L3_HEIGHT).withTimeout(.8),
      new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL3).withTimeout(.5)//,
     
