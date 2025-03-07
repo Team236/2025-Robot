@@ -308,8 +308,8 @@ public class RobotContainer {
   //b.whileTrue(coralRelease);
   //x.whileTrue(coralGrabWithCounter);
 
-  // rm.whileTrue(coralPivotUp);
-  // rb.whileTrue(coralPivotDown);
+rm.whileTrue(coralPivotUp);
+rb.whileTrue(coralPivotDown);
 
 a.onTrue(coralSeqGrabCount);
 x.whileTrue(coralReleaseNoCountReset);
