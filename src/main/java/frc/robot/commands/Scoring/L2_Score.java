@@ -12,6 +12,7 @@ import frc.robot.commands.AlgaePivotCommands.PIDMakeAPSafeForElev;
 import frc.robot.commands.AlgaePivotCommands.PIDToElevSafePosition;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
+import frc.robot.commands.ElevatorCommands.CoralSafePIDToHeight;
 import frc.robot.commands.ElevatorCommands.DangerPIDToHeight;
 import frc.robot.subsystems.AlgaePivot;
 import frc.robot.subsystems.CoralHold;
@@ -30,7 +31,8 @@ public class L2_Score extends SequentialCommandGroup {
    // new WaitCommand(5),
     new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5),
     Commands.parallel(
-       new DangerPIDToHeight(elevator, Constants.Elevator.L2_HEIGHT).withTimeout(0.5),
+       new CoralSafePIDToHeight(elevator, coralHold, Constants.Elevator.L2_HEIGHT).withTimeout(0.5),
+    // new DangerPIDToHeight(elevator, Constants.Elevator.L2_HEIGHT).withTimeout(0.5),
        new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL2).withTimeout(0.5)
        ),
    // new WaitCommand(5),
@@ -40,7 +42,8 @@ public class L2_Score extends SequentialCommandGroup {
     //new WaitCommand(5),
     Commands.parallel(
       new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT),
-      new DangerPIDToHeight(elevator, Constants.Elevator.BOTTOM_HEIGHT)
+      new CoralSafePIDToHeight(elevator, coralHold, Constants.Elevator.BOTTOM_HEIGHT)
+      //new DangerPIDToHeight(elevator, Constants.Elevator.BOTTOM_HEIGHT)
      ));
 
   }
