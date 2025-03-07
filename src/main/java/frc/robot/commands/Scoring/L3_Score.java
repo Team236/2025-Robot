@@ -35,19 +35,19 @@ public class L3_Score extends SequentialCommandGroup {
      new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5),
      new CoralSafePIDToHeight(elevator, coralHold,  Constants.Elevator.L3_HEIGHT).withTimeout(.8),
     // new DangerPIDToHeight(elevator, Constants.Elevator.L3_HEIGHT).withTimeout(.8),
-     new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL3).withTimeout(.5),
+     new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL3).withTimeout(.5)//,
     
-     
+    /* 
      new CoralReleaseNoCountReset(coralHold, Constants.CoralHold.L3_RELEASE_SPEED).withTimeout(0.5),
      
      //new PIDToElevSafePosition(algaePivot).withTimeout(2),
-    
     
      new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(.5),
      new CoralSafePIDToHeight(elevator, coralHold, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(2),
     // new DangerPIDToHeight(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(2)
    
      new CoralResetCount(coralHold)
+    */ 
 
      );
 
