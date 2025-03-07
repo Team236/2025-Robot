@@ -36,7 +36,7 @@ public class L3_Score extends SequentialCommandGroup {
      new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5),
     //  new CoralSafePIDToHeight(elevator,  Constants.Elevator.L3_HEIGHT).withTimeout(10),
    // new DangerPIDToHeight(elevator, Constants.Elevator.L3_HEIGHT).withTimeout(5),
-    new DangerProfiledPIDToHeight(elevator, Constants.Elevator.L3_HEIGHT).withTimeout(3),
+    new DangerProfiledPIDToHeight(elevator, Constants.Elevator.L3_HEIGHT).withTimeout(5),
     new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL3).withTimeout(2)//,
     
     /* 
