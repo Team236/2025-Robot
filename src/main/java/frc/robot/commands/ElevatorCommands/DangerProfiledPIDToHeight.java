@@ -28,7 +28,7 @@ public class DangerProfiledPIDToHeight extends Command {
     addRequirements(elevator);
 
     //max velocity and acceleration in m/s 
-    constraints = new TrapezoidProfile.Constraints(0.2, 0.2);
+    constraints = new TrapezoidProfile.Constraints(0.00001, 0.00001);
     pidController = new ProfiledPIDController(kP, kI, kD, constraints);
 
   }

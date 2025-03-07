@@ -214,7 +214,7 @@ public static final class Swerve {
 
     public static final double ELEV_UP_SPEED = 0.1;
     public static final double ELEV_DOWN_SPEED = -0.1;
-    public static final double ELEV_CLIMB_DOWN_SPEED = -0.5;
+    public static final double ELEV_CLIMB_DOWN_SPEED = -0.1;
 
     //conversion factors
     public static final double ELEV_REV_TO_IN = 1.362;
@@ -234,7 +234,7 @@ public static final class Swerve {
     public static final double MAX_HEIGHT = 57;
 
     //PID values
-    public static final double KP_ELEV = 0.03; //0.04;
+    public static final double KP_ELEV = 0.02; //0.04;
     public static final double KI_ELEV = 0;
     public static final double KD_ELEV = 0;
   }

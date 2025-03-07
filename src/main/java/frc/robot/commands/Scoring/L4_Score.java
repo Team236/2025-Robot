@@ -44,11 +44,10 @@ public class L4_Score extends SequentialCommandGroup {
    // new PIDToElevSafePosition(algaePivot).withTimeout(2),
 
    // new CoralSafePIDToHeight(elevator, coralHold, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(2),
-   new DangerPIDToHeight(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(2)
+    new DangerPIDToHeight(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(2)
   
     //new CoralResetCount(coralHold)
     */
-    
     );
    
   }

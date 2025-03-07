@@ -34,12 +34,10 @@ public class L2_Score extends SequentialCommandGroup {
 
     new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5),
 
-    Commands.parallel(
       //  new CoralSafePIDToHeight(elevator, Constants.Elevator.L2_HEIGHT).withTimeout(10),
-       new DangerPIDToHeight(elevator, Constants.Elevator.L2_HEIGHT).withTimeout(5),
+    new DangerPIDToHeight(elevator, Constants.Elevator.L2_HEIGHT).withTimeout(5),
 
-       new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL2).withTimeout(5)
-       )//,
+    new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL2).withTimeout(5)//,
 /* 
     // new CoralReleaseNoCountReset(coralHold, Constants.CoralHold.L2_RELEASE_SPEED).withTimeout(0.5),
     new CoralRelease(coralHold, Constants.CoralHold.L2_RELEASE_SPEED).withTimeout(0.5),
