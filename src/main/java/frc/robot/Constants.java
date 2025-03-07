@@ -74,7 +74,7 @@ public final class Constants {
 
     public static final double KP_ROTATION = 0.008; //kP value for rotation
     public static final double KP_TRANSLATION = 0.4;//kP value for forward (translation) motion
-    public static final double KP_STRAFE = 0.475;  //kP value for the sideways (strafe) motio%n
+    public static final double KP_STRAFE = 0.9;// 0.475;  //kP value for the sideways (strafe) motio%n 
 }
 
 public static final class Swerve {
@@ -222,7 +222,7 @@ public static final class Swerve {
     public static final double BOTTOM_HEIGHT = 0;
     public static final double TELEOP_HEIGHT = 3.47;    public static final double L1_HEIGHT = 0;
     public static final double L2_HEIGHT =3.47;
-    public static final double L3_HEIGHT = 24;
+    public static final double L3_HEIGHT = 23;
     public static final double L4_HEIGHT = 55;
     public static final double PICK_ALGAE_L2_HEIGHT = 3.47;
     public static final double PICK_ALGAE_L3_HEIGHT = 13.5;//TODO find actual
@@ -232,7 +232,7 @@ public static final class Swerve {
     public static final double MAX_HEIGHT = 57;
 
     //placeholder PID values
-    public static final double KP_ELEV = 0.045;
+    public static final double KP_ELEV = 0.043;
     public static final double KI_ELEV = 0;
     public static final double KD_ELEV = 0;
   }

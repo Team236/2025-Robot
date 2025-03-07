@@ -116,7 +116,7 @@ public class RobotContainer {
     private final TargetAllParallel targetAllParallel = new TargetAllParallel(s_Swerve, 12, 0);
     private final TargetAngle targetAngle =  new TargetAngle(s_Swerve);
     private final TargetForwardDistance targetForwardDistance = new TargetForwardDistance(s_Swerve, 9);
-    private final TargetSideDistance targetsideDistance = new TargetSideDistance(s_Swerve, 2.23);
+    private final TargetSideDistance targetsideDistance = new TargetSideDistance(s_Swerve, 6.5);
     private final TargetSideDistance targetSideDistanceChanged  = new TargetSideDistance(s_Swerve,0);
     private final TargetMegaTag2 target3DMegaTag2 = new TargetMegaTag2(s_Swerve);
     private final TargetAngleSide targetAngleSide = new TargetAngleSide(s_Swerve, 0);
@@ -131,11 +131,11 @@ public class RobotContainer {
     private final DriveFwd driveFwd = new DriveFwd(s_Swerve, false, 10); //9
     private final TurnOnly turnOnlyNeg90 = new TurnOnly(s_Swerve, false, -90);
     private final DriveFwdAndSideAndTurn driveFwdAndSideAndTurn = new DriveFwdAndSideAndTurn(s_Swerve, false, 9, 0, 0);
-    private final DriveFwd driveFwd10 = new DriveFwd(s_Swerve, false, 10);//
+    private final DriveFwd driveFwd9 = new DriveFwd(s_Swerve, false, 9);//
     private final TurnOnly turnOnly90 = new TurnOnly(s_Swerve, false, 90);
-    private final DriveReverse driveReverse10 = new DriveReverse(s_Swerve, true,-10);
-    private final DriveSideways driveSideways11 = new DriveSideways(s_Swerve, false, 2.25);
-    private final DriveSideways driveSidewaysNeg11 = new DriveSideways(s_Swerve, false, -10.8);
+    private final DriveReverse driveReverse9 = new DriveReverse(s_Swerve, true,-9);
+    private final DriveSideways driveSideways65 = new DriveSideways(s_Swerve, false, 6.5);
+    private final DriveSideways driveSidewaysNeg675 = new DriveSideways(s_Swerve, false, -6.75);
 
 
     private final FullRunRight fullRunRight = new FullRunRight(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
@@ -300,26 +300,27 @@ public class RobotContainer {
  //rightPov.onTrue(dangerPidElevL3); 
  //upPov.onTrue(dangerPidElevL4);
 
-  //a.whileTrue(targetsideDistance);
+ // a.whileTrue(targetsideDistance);
   //x.whileTrue(targetForwardDistance);
- // b.whileTrue(targetAngle);
-  //a.whileTrue(targetAllParallel);
+  //b.whileTrue(targetAngle);
+  rb.whileTrue(targetAllParallel);
 
-  //a.whileTrue(coralGrab);
+  // rightPov.whileTrue(coralGrab);
   //b.whileTrue(coralRelease);
   //x.whileTrue(coralGrabWithCounter);
-  lm.onTrue(coralSeqGrabCount);
-  rm.whileTrue(coralPivotUp);
-  rb.whileTrue(coralPivotDown);
+  // lm.onTrue(coralSeqGrabCount);
+  // rm.whileTrue(coralPivotUp);
+  // rb.whileTrue(coralPivotDown);
 
-  leftPov.onTrue(l1_Score);
-  a.onTrue(l2_Score);
-  x.onTrue(l3_Score);
-  b.onTrue(l4_Score);
+  // leftPov.onTrue(l1_Score);
+  // a.onTrue(l2_Score);
+  // x.onTrue(l3_Score);
+  // b.onTrue(l4_Score);
 
- // a1.onTrue(driveSideways11);
- // b1.onTrue(driveSidewaysNeg11);
- // x1.onTrue(driveFwd10);
+  //x.onTrue(driveSideways65);
+  //b.onTrue(driveSidewaysNeg675);
+  //upPov.onTrue(driveFwd9);
+  //downPov.onTrue(driveReverse9);
  // y1.onTrue(driveReverse10);
  // rb1.onTrue(turnOnly90);
  // lb1.onTrue(turnOnlyNeg90);
@@ -327,16 +328,14 @@ public class RobotContainer {
 // upPov1.onTrue(leg1Right);
  //downPov1.onTrue(leg2Right);
  //leftPov1.onTrue(leg3Right);
-
   //a.onTrue(fullRunCenter);
- 
 
   a1.whileTrue(algaeTarget);
-  x1.whileTrue(coralLeftTarget);
-  b1.whileTrue(coralRightTarget);
+  x.whileTrue(coralLeftTarget);
+  b.whileTrue(coralRightTarget);
 
-//  downPov.whileTrue(dangerElevatorDown);
-//  upPov.whileTrue(dangerElevatorUp);
+ //downPov.whileTrue(dangerElevatorDown);
+ //upPov.whileTrue(dangerElevatorUp);
 
 // a.onTrue(algaeGrab).onTrue(l3_Score);
 // b.onTrue(algaeGrab).onTrue(l4_Score);
