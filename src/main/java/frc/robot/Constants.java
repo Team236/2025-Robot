@@ -221,10 +221,11 @@ public static final class Swerve {
     public static final double ELEV_IN_TO_REV = 1/ELEV_REV_TO_IN;
 
     public static final double BOTTOM_HEIGHT = 0;
-    public static final double TELEOP_HEIGHT = 3.47;    public static final double L1_HEIGHT = 0;
-    public static final double L2_HEIGHT =3.47;
-    public static final double L3_HEIGHT = 23;
-    public static final double L4_HEIGHT = 55;
+    public static final double TELEOP_HEIGHT = 5;//3.47;
+    public static final double L1_HEIGHT = 0;
+    public static final double L2_HEIGHT = 5;//3.47;
+    public static final double L3_HEIGHT = 21;//23;
+    public static final double L4_HEIGHT = 55.25;
     public static final double PICK_ALGAE_L2_HEIGHT = 3.47;
     public static final double PICK_ALGAE_L3_HEIGHT = 13.5;//TODO find actual
     public static final double SCORE_ALGAE_NET_HEIGHT = 55; //TODO find actual

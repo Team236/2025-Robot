@@ -45,7 +45,7 @@ public class DangerPIDToHeight extends Command {
   @Override
   public void end(boolean interrupted) {
     //Removed statement below - may have been the cause of the jolting from one level to another!
-    //elevator.stopElevator();
+    elevator.stopElevator();
   }
 
 
