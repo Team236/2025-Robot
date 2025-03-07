@@ -28,8 +28,9 @@ public class DangerProfiledPIDToHeight extends Command {
     addRequirements(elevator);
 
     //max velocity and acceleration in m/s 
-    constraints = new TrapezoidProfile.Constraints(0.00001, 0.00001);
+    constraints = new TrapezoidProfile.Constraints(0.001, 0.001);
     pidController = new ProfiledPIDController(kP, kI, kD, constraints);
+   // pidController.setSetpoint(desiredHeight);
 
   }
 
@@ -37,14 +38,14 @@ public class DangerProfiledPIDToHeight extends Command {
   @Override
   public void initialize() {
 
-    pidController.reset(desiredHeight);
+    pidController.reset(desiredHeight*0.0254);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    pidController.setGoal(desiredHeight);
-    elevator.setElevSpeed(pidController.calculate(elevator.getElevatorHeight()));
+    pidController.setGoal(desiredHeight*0.0254);
+    elevator.setElevSpeed(pidController.calculate(elevator.getElevatorHeightMeters()));
   }
 
   // Called once the command ends or is interrupted.

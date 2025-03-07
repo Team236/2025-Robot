@@ -99,10 +99,13 @@ public class Elevator extends SubsystemBase {
     return rightElevatorMotor.getPosition().getValueAsDouble();
   }
 
-  //returns revolutions of encoders -- NOT CONVERTED TO INCHES
   public double getElevatorHeight(){
     return Constants.Elevator.ELEV_REV_TO_IN * ((getElevLeftEncoder() + getElevRightEncoder()) / 2);
   }
+
+    public double getElevatorHeightMeters(){
+      return Constants.Elevator.ELEV_REV_TO_IN * 0.0254 * ((getElevLeftEncoder() + getElevRightEncoder()) / 2);
+    }
 
  // check if elevator is at "top" according to user definition
   public boolean isTop() {
@@ -133,6 +136,8 @@ public class Elevator extends SubsystemBase {
       }
     }  
   } 
+
+
 
   public double getElevatorLeftSpeed() {
     return leftElevatorMotor.get();
