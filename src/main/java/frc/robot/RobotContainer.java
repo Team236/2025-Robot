@@ -318,11 +318,11 @@ b.whileTrue(coralRelease);
 
 upPov.onTrue(leg1Right);
 downPov.onTrue(leg2Right);
-//leftPov.onTrue(leg3Right);
-//rightPov.onTrue(fullRunRight);
+leftPov.onTrue(leg3Right);
+rightPov.onTrue(fullRunRight);
 
-leftPov.onTrue(prepForClimb);
-rightPov.onTrue(climbDownSequence);
+//leftPov.onTrue(prepForClimb);
+//rightPov.onTrue(climbDownSequence);
 
 rightPov1.onTrue(coralSafeToL2);
 downPov1.whileTrue(dangerElevatorDown);
@@ -332,6 +332,10 @@ y1.onTrue(l1_Score);
 a1.onTrue(l2_Score);
 x1.onTrue(l3_Score);
 b1.onTrue(l4_Score);
+
+//a1.whileTrue(algaeTarget);
+//x.whileTrue(coralLeftTarget);
+//b.whileTrue(coralRightTarget);
 
   //x.onTrue(driveSideways65);
   //b.onTrue(driveSidewaysNeg675);
@@ -344,9 +348,6 @@ b1.onTrue(l4_Score);
 
   //a.onTrue(fullRunCenter);
 
-//a1.whileTrue(algaeTarget);
-//x.whileTrue(coralLeftTarget);
-//b.whileTrue(coralRightTarget);
 
  //downPov.whileTrue(dangerElevatorDown);
  //upPov.whileTrue(dangerElevatorUp);
