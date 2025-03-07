@@ -20,7 +20,8 @@ public class AlgaeTarget extends SequentialCommandGroup {
     addCommands(
       new TargetAllParallel(s_Swerve, 10, 0).withTimeout(2),
       new GetPoseWithLL(s_Swerve),
-      new DriveFwdAndSideAndTurn(s_Swerve, false, 10, -14.625, 0).withTimeout(2),
+      //TODO - get actual values for side distance algae
+      new DriveFwdAndSideAndTurn(s_Swerve, false, 10, -10.2, 0).withTimeout(2),
       new ResetPoseWithLL(s_Swerve));
   }
 
