@@ -137,7 +137,7 @@ public class RobotContainer {
     private final DriveFwd driveFwd9 = new DriveFwd(s_Swerve, false, 9);//
     private final TurnOnly turnOnly90 = new TurnOnly(s_Swerve, false, 90);
     private final DriveReverse driveReverse9 = new DriveReverse(s_Swerve, true,-9);
-    private final DriveSideways driveSideways65 = new DriveSideways(s_Swerve, false, 6.5);
+    private final DriveSideways driveSideways675 = new DriveSideways(s_Swerve, false, 6.75);
     private final DriveSideways driveSidewaysNeg675 = new DriveSideways(s_Swerve, false, -6.75);
 
 
@@ -309,8 +309,8 @@ public class RobotContainer {
   //b.whileTrue(coralRelease);
   //x.whileTrue(coralGrabWithCounter);
 
-rm.whileTrue(coralPivotUp);
-rb.whileTrue(coralPivotDown);
+// rm.whileTrue(coralPivotUp);
+// rb.whileTrue(coralPivotDown);
 
 a.onTrue(coralSeqGrabCount);
 x.whileTrue(coralReleaseNoCountReset);
@@ -336,8 +336,8 @@ b1.onTrue(l4_Score);
 //x.whileTrue(coralLeftTarget);
 //b.whileTrue(coralRightTarget);
 
-  //x.onTrue(driveSideways65);
-  //b.onTrue(driveSidewaysNeg675);
+  rm.onTrue(driveSideways675);
+  rb.onTrue(driveSidewaysNeg675);
   //upPov.onTrue(driveFwd9);
   //downPov.onTrue(driveReverse9);
  // y1.onTrue(driveReverse10);
