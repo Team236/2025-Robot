@@ -137,8 +137,8 @@ public class RobotContainer {
     private final DriveFwd driveFwd9 = new DriveFwd(s_Swerve, false, 9);//
     private final TurnOnly turnOnly90 = new TurnOnly(s_Swerve, false, 90);
     private final DriveReverse driveReverse9 = new DriveReverse(s_Swerve, true,-9);
-    private final DriveSideways driveSideways675 = new DriveSideways(s_Swerve, false, 6.75);
-    private final DriveSideways driveSidewaysNeg675 = new DriveSideways(s_Swerve, false, -6.75);
+    private final DriveSideways driveSideways675 = new DriveSideways(s_Swerve, false, 6.5);
+    private final DriveSideways driveSidewaysNeg675 = new DriveSideways(s_Swerve, false, -6.5);
 
 
     private final FullRunRight fullRunRight = new FullRunRight(s_Swerve, elevator, algaePivot, coralPivot, coralHold);

@@ -29,13 +29,13 @@ public class Leg1Left extends SequentialCommandGroup {
       //START ROBOT WITH BACK BUMPER FLUSH WITH BACK OF BLACK STARTING LINE
           //If using odometry plus LL:
           // First command to drive with odometry and end ~7" from bumper to AprilTag, centered on Tag
-         new DriveFwdAndTurn(s_Swerve, false, 66.5,  61.5).withTimeout(5),
+         new DriveFwdAndTurn(s_Swerve, false, 66.5,  61.4).withTimeout(1.3),
         //  new TargetAngle(s_Swerve).withTimeout(1),
         //  new TargetForwardDistance(s_Swerve, 2).withTimeout(1),
-          new TargetSideDistance(s_Swerve, 0).withTimeout(2),
+          new TargetSideDistance(s_Swerve, 0).withTimeout(1),
           new GetPoseWithLL(s_Swerve),
-          new DriveSideways(s_Swerve, false, 6.5).withTimeout(2),
-          new DriveFwd(s_Swerve, false, 7.5),
+          new DriveSideways(s_Swerve, false, 7.25).withTimeout(1.5),
+          new DriveFwd(s_Swerve, false, 8.8).withTimeout(2),
           // // new DriveFwdAndSideAndTurn(s_Swerve,false, 3, -6.5, 0).withTimeout(2),
           new ResetPoseWithLL(s_Swerve)
     

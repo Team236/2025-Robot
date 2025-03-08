@@ -25,7 +25,7 @@ public class Leg2Right extends SequentialCommandGroup {
     addCommands(
       //TODO:  end up in position where you drive mostly X only to get to reef
           new DriveSideways(s_Swerve, false, 73), //.withTimeout(2),
-          new DriveFwdAndSideAndTurn(s_Swerve, false, 20, 80, -63)//,
+          new DriveFwdAndSideAndTurn(s_Swerve, false, 10, 96, -62)//,
       //TODO:  ADD IN RECEIVING CORAL: 
         // new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LOADING).withTimeout(2), //adjust as needed
         // new CoralGrabWithCounter(coralHold, Constants.CoralHold.HOLD_SPEED).withTimeout(2) //adjust as needed
