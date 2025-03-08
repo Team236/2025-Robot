@@ -51,7 +51,7 @@ public class Elevator extends SubsystemBase {
     rightTalonConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
     rightElevatorMotor.getConfigurator().apply(rightTalonConfig);
 
-    rightElevatorMotor.setControl(new Follower(Constants.MotorControllers.ID_ELEVATOR_RIGHT_TALON, false));
+    rightElevatorMotor.setControl(new Follower(Constants.MotorControllers.ID_ELEVATOR_LEFT_TALON, false));
 
     try {
       elevatorTopLimit = new DigitalInput(Constants.Elevator.DIO_ELEV_TOP);

@@ -7,6 +7,7 @@ package frc.robot.commands.AutoCommands.Left;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.AutoCommands.DriveFwd;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
+import frc.robot.commands.AutoCommands.DriveFwdAndTurn;
 import frc.robot.commands.AutoCommands.DriveSideways;
 import frc.robot.commands.Targeting.GetPoseWithLL;
 import frc.robot.commands.Targeting.ResetPoseWithLL;
@@ -27,14 +28,14 @@ public class Leg1Left extends SequentialCommandGroup {
     addCommands(
       //START ROBOT WITH BACK BUMPER FLUSH WITH BACK OF BLACK STARTING LINE
           //If using odometry plus LL:
-          //First command to drive with odometry and end ~7" from bumper to AprilTag, centered on Tag
-         new DriveFwdAndSideAndTurn(s_Swerve, false, 77.5, 0, 58.2).withTimeout(5),
+          // First command to drive with odometry and end ~7" from bumper to AprilTag, centered on Tag
+         new DriveFwdAndTurn(s_Swerve, false, 67.5,  61.5).withTimeout(5),
         //  new TargetAngle(s_Swerve).withTimeout(1),
         //  new TargetForwardDistance(s_Swerve, 2).withTimeout(1),
           new TargetSideDistance(s_Swerve, 0).withTimeout(1.2),
           new GetPoseWithLL(s_Swerve),
-          new DriveSideways(s_Swerve, false, 6.5),
-          new DriveFwd(s_Swerve, false, 5.5),
+          new DriveSideways(s_Swerve, false, 7.5).withTimeout(2),
+          new DriveFwd(s_Swerve, false, 7),
           // new DriveFwdAndSideAndTurn(s_Swerve,false, 3, -6.5, 0).withTimeout(2),
           new ResetPoseWithLL(s_Swerve)
     

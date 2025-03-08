@@ -134,7 +134,6 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     LimelightHelpers.setCropWindow("limelight", -.5, .7, -1, .9);
   }
-
   @Override
   public void testInit() {
     // Cancels all running commands at the start of test mode.

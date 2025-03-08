@@ -12,6 +12,7 @@ import frc.robot.commands.AlgaePivotCommands.PIDMakeAPSafeForElev;
 import frc.robot.commands.AlgaePivotCommands.PIDToElevSafePosition;
 import frc.robot.commands.AutoCommands.DriveFwd;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
+import frc.robot.commands.AutoCommands.DriveFwdAndTurn;
 import frc.robot.commands.AutoCommands.DriveSideways;
 import frc.robot.commands.AutoCommands.TurnOnly;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
@@ -42,7 +43,7 @@ public class Leg1Right extends SequentialCommandGroup {
       //START ROBOT WITH BACK BUMPER FLUSH WITH BACK OF BLACK STARTING LINE
           //If using odometry plus LL:
           //First command to drive with odometry and end ~7" from bumper to AprilTag, centered on Tag
-         new DriveFwdAndSideAndTurn(s_Swerve, false, 77.5, 0, -58.2).withTimeout(5),
+         new DriveFwdAndTurn(s_Swerve, false, 77.5, -58.2).withTimeout(5),
         //  new TargetAngle(s_Swerve).withTimeout(1),
         //  new TargetForwardDistance(s_Swerve, 2).withTimeout(1),
           new TargetSideDistance(s_Swerve, 0).withTimeout(1.2),
