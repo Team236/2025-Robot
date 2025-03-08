@@ -45,7 +45,6 @@ import frc.robot.commands.CoralHoldCommands.CoralSeqGrabCount;
 import frc.robot.commands.CoralPivotCommands.ManualCoralPivot;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
 import frc.robot.commands.ElevatorCommands.ClimbDownSequence;
-import frc.robot.commands.ElevatorCommands.CoralSafePIDToHeight;
 import frc.robot.commands.ElevatorCommands.DangerManualUpDown;
 import frc.robot.commands.ElevatorCommands.DangerPIDToHeight;
 import frc.robot.commands.ElevatorCommands.DangerProfiledPIDToHeight;
@@ -152,7 +151,6 @@ public class RobotContainer {
     
       
   //Elevator
-  private final CoralSafePIDToHeight coralSafeToL2 = new CoralSafePIDToHeight(elevator, Constants.Elevator.L2_HEIGHT);
   private final DangerManualUpDown dangerElevatorUp = new DangerManualUpDown(elevator, Constants.Elevator.ELEV_UP_SPEED);
   private final DangerManualUpDown dangerElevatorDown = new DangerManualUpDown(elevator, Constants.Elevator.ELEV_DOWN_SPEED);
   private final ClimbDownSequence climbDownSequence= new ClimbDownSequence(elevator, algaePivot);
@@ -319,12 +317,11 @@ b.whileTrue(coralRelease);
 upPov.onTrue(leg1Right);
 downPov.onTrue(leg2Right);
 leftPov.onTrue(leg3Right);
-rightPov.onTrue(fullRunRight);
+rightPov.onTrue(fullRunCenter);
 
 //leftPov.onTrue(prepForClimb);
 //rightPov.onTrue(climbDownSequence);
 
-rightPov1.onTrue(coralSafeToL2);
 downPov1.whileTrue(dangerElevatorDown);
 upPov1.whileTrue(dangerElevatorUp);
 

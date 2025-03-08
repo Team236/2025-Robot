@@ -205,7 +205,7 @@ public static final class Swerve {
                 kMaxAngularSpeedRadiansPerSecond, kMaxAngularSpeedRadiansPerSecondSquared);
 
       //Center Auto path (inches)
-        public static final double CENTER_FWD_DIST = 56; //if starting 2" behind start line
+        public static final double CENTER_FWD_DIST = 51.55; //if starting 2" behind start line
     }
 
   public static class Elevator {
@@ -234,7 +234,7 @@ public static final class Swerve {
     public static final double MAX_HEIGHT = 57;
 
     //PID values
-    public static final double KP_ELEV = 0.02; //0.04;
+    public static final double KP_ELEV = 0.045; //0.04;
     public static final double KI_ELEV = 0;
     public static final double KD_ELEV = 0;
   }
