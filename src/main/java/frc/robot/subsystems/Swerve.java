@@ -138,9 +138,6 @@ public void drive(ChassisSpeeds chassisSpeed , DriveFeedforwards driveFeedforwar
         }
     }    
 
-    public ChassisSpeeds drive(){
-
-    }
 
     /* Used by SwerveControllerCommand in Auto */
     public void setModuleStates(SwerveModuleState[] desiredStates) {
