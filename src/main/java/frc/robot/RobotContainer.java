@@ -50,6 +50,7 @@ import frc.robot.commands.ElevatorCommands.ClimbDownSequence;
 import frc.robot.commands.ElevatorCommands.DangerManualUpDown;
 import frc.robot.commands.ElevatorCommands.DangerPIDToHeight;
 import frc.robot.commands.ElevatorCommands.DangerProfiledPIDToHeight;
+import frc.robot.commands.ElevatorCommands.ElevMotionMagicPID;
 import frc.robot.commands.ElevatorCommands.PrepForClimb;
 import frc.robot.commands.Scoring.L1_Score;
 import frc.robot.commands.Scoring.L2_Score;
@@ -122,7 +123,7 @@ public class RobotContainer {
     private final TargetForwardDistance targetForwardDistance = new TargetForwardDistance(s_Swerve, 9);
     private final TargetSideDistance targetsideDistance = new TargetSideDistance(s_Swerve, 6.5);
     private final TargetSideDistance targetSideDistanceChanged  = new TargetSideDistance(s_Swerve,0);
-    private final TargetMegaTag2 target3DMegaTag2 = new TargetMegaTag2(s_Swerve);
+    private final TargetMegaTag2 target3DMaTag2 = new TargetMegaTag2(s_Swerve);
     private final TargetAngleSide targetAngleSide = new TargetAngleSide(s_Swerve, 0);
 
     // Scoring
@@ -130,6 +131,7 @@ public class RobotContainer {
     private final L2_Score l2_Score = new L2_Score(elevator, coralHold, coralPivot, algaePivot);
     private final L3_Score l3_Score = new L3_Score(elevator, coralHold, coralPivot, algaePivot);
     private final L4_Score l4_Score = new L4_Score(elevator, coralHold, coralPivot, algaePivot);
+    private final ElevMotionMagicPID motionMagicToL2  = new ElevMotionMagicPID(elevator, Constants.Elevator.L2_HEIGHT);
 
     //Auto
     private final DriveFwd driveFwd = new DriveFwd(s_Swerve, false, 10); //9
@@ -333,7 +335,8 @@ upPov1.whileTrue(dangerElevatorUp);
 y1.onTrue(l1_Score);
 a1.onTrue(l2_Score);
 x1.onTrue(l3_Score);
-b1.onTrue(l4_Score);
+b1.onTrue(motionMagicToL2);
+//b1.onTrue(l4_Score);
 
 //a1.whileTrue(algaeTarget);
 x.whileTrue(coralLeftTarget);
