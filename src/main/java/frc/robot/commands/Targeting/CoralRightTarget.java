@@ -22,14 +22,14 @@ public class CoralRightTarget extends SequentialCommandGroup {
    //TODO: Try the 3 commands below vice the TargetSideDist only
 //If fast enough, this is more likely to get us properly aligned
 //Adjust timeouts to save time
-    new TargetAngle(s_Swerve).withTimeout(0.7),
+    // new TargetAngle(s_Swerve).withTimeout(1.5),
     //new TargetSideDistance(s_Swerve, 0).withTimeout(1),
     //new TargetForwardDistance(s_Swerve, 0.7),
     
-     new TargetForwardAndSide(s_Swerve, 3.25, 0).withTimeout(1),
-     new GetPoseWithLL(s_Swerve),
-     new DriveSideways(s_Swerve, false, -6.5).withTimeout(1),
-     new ResetPoseWithLL(s_Swerve));    
+    new TargetSideDistance(s_Swerve, 0).withTimeout(1),
+    new GetPoseWithLL(s_Swerve),
+    new DriveSideways(s_Swerve, false, -6.5).withTimeout(2),
+    new ResetPoseWithLL(s_Swerve));    
   }
 
 }
