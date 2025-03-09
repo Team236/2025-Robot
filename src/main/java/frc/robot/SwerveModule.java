@@ -52,6 +52,8 @@ public class SwerveModule {
 
     public void setDesiredState(SwerveModuleState desiredState, boolean isOpenLoop){ //use open loop driving for now
         desiredState = SwerveModuleState.optimize(desiredState, getState().angle); 
+        //TODO fix for depricated 
+        // desiredState.optimize(getState().angle); 
         mAngleMotor.setControl(anglePosition.withPosition(desiredState.angle.getRotations()));
         setSpeed(desiredState, isOpenLoop); 
     }
