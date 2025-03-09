@@ -5,6 +5,8 @@
 package frc.robot.commands.AutoCommands.Left;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
+import frc.robot.commands.AutoCommands.DriveSideways;
 import frc.robot.subsystems.CoralHold;
 import frc.robot.subsystems.Swerve;
 
@@ -13,11 +15,13 @@ import frc.robot.subsystems.Swerve;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class Leg2Left extends SequentialCommandGroup {
   /** Creates a new Leg2Left. */
-  public Leg2Left(Swerve s_Swerve, CoralHold coralHold) {
+  public Leg2Left(Swerve s_Swerve, CoralHold coralHold, frc.robot.subsystems.CoralPivot coralPivot) {
  //!!!!! TODO MAKE ALL Y DISTANCES AND ALL ANGLES OPPOSITE TO Right !!!!
-    addCommands();
-
-    //ADD IN RECEIVING CORAL:
-   // , new CoralGrab(coralHold, Constants.CoralHold.HOLD_SPEED).withTimeout(2) //adjust as needed
+    addCommands(
+        new DriveSideways(s_Swerve, false, -73), //.withTimeout(2),
+        new DriveFwdAndSideAndTurn(s_Swerve, false, 5, -115, 68).withTimeout(3)//62
+        // new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LOADING).withTimeout(2) //adjust as needed
+        // new CoralGrabWithCounter(coralHold, Constants.CoralHold.HOLD_SPEED).withTimeout(2) //adjust as needed
+    );
   }
 }

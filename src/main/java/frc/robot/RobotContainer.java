@@ -31,6 +31,7 @@ import frc.robot.commands.AutoCommands.TurnOnly;
 import frc.robot.commands.AutoCommands.Center.CtrScore1;
 import frc.robot.commands.AutoCommands.Center.FullRunLeftCtr;
 import frc.robot.commands.AutoCommands.Left.Leg1Left;
+import frc.robot.commands.AutoCommands.Left.Leg2Left;
 import frc.robot.commands.AutoCommands.Right.FullRunRight;
 import frc.robot.commands.AutoCommands.Right.Leg1Right;
 import frc.robot.commands.AutoCommands.Right.Leg2Right;
@@ -143,6 +144,7 @@ public class RobotContainer {
 
     private final FullRunRight fullRunRight = new FullRunRight(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
     private final Leg1Left leg1Left = new Leg1Left(s_Swerve,  elevator, algaePivot, coralPivot, coralHold);
+    private final Leg2Left leg2Left = new Leg2Left(s_Swerve, coralHold, coralPivot);
     private final Leg1Right leg1Right = new Leg1Right(s_Swerve,  elevator, algaePivot, coralPivot, coralHold);
     private final Leg2Right leg2Right = new Leg2Right(s_Swerve, coralHold, coralPivot);
     private final Leg3Right leg3Right = new Leg3Right(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
@@ -312,14 +314,15 @@ public class RobotContainer {
  rm.whileTrue(coralPivotUp);
  rb.whileTrue(coralPivotDown);
 
-a.onTrue(coralSeqGrabCount);
+//a.onTrue(coralSeqGrabCount);
 // x.whileTrue(coralReleaseNoCountReset);
 // b.whileTrue(coralRelease);
 
-upPov.onTrue(leg1Right);
-downPov.onTrue(leg2Right);
+upPov.onTrue(leg1Left);
+downPov.onTrue(leg2Left);
 leftPov.onTrue(leg3Right);
 rightPov.onTrue(leg1Left);
+a.onTrue(fullRunCenter);
 
 //leftPov.onTrue(prepForClimb);
 //rightPov.onTrue(climbDownSequence);

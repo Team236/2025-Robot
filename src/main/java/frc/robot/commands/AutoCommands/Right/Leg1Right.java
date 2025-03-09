@@ -44,10 +44,10 @@ public class Leg1Right extends SequentialCommandGroup {
          new DriveFwdAndTurn(s_Swerve, false, 77.5, -58.2).withTimeout(2),
         
           new TargetSideDistance(s_Swerve, 0).withTimeout(1),
-          new GetPoseWithLL(s_Swerve),
+          new GetPoseWithLL(s_Swerve).withTimeout(0.25),
           new DriveSideways(s_Swerve, false, -6.25).withTimeout(1.5),
           new DriveFwd(s_Swerve, false, 4.5).withTimeout(2),
-          new ResetPoseWithLL(s_Swerve)
+          new ResetPoseWithLL(s_Swerve).withTimeout(0.25)
 
       //If using odometry only, starting 96.25" from side (drive to reef with coral scorer aligned to right branch)
         // new DriveFwdAndSideAndTurn(s_Swerve, false, 78.5, 0, -58.2).withTimeout(3)//,
