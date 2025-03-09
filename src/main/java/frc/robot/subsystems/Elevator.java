@@ -11,6 +11,7 @@ import com.ctre.phoenix6.configs.MotorOutputConfigs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.configs.TalonFXConfigurator;
 import com.ctre.phoenix6.controls.Follower;
+import com.ctre.phoenix6.controls.MotionMagicVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
@@ -32,9 +33,10 @@ public class Elevator extends SubsystemBase {
   private DigitalInput elevatorTopLimit, elevatorBottomLimit;
   private boolean isTException, isBException;
 
+  private MotionMagicVoltage m_request;
+
   public Elevator() {
     leftElevatorMotor = new TalonFX(Constants.MotorControllers.ID_ELEVATOR_LEFT_TALON, "usb");
-    rightElevatorMotor = new TalonFX(Constants.MotorControllers.ID_ELEVATOR_RIGHT_TALON, "usb");
 
     // configure motors
     leftTalonConfig = new TalonFXConfiguration();
@@ -42,16 +44,54 @@ public class Elevator extends SubsystemBase {
     leftTalonConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
     leftTalonConfig.CurrentLimits.SupplyCurrentLimit = Constants.MotorControllers.SMART_CURRENT_LIMIT;
     leftTalonConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+
+  // set slot 0 gains
+    var slotLConfigs = leftTalonConfig.Slot0;
+    slotLConfigs.kS = 0.25; // Add 0.25 V output to overcome static friction
+    slotLConfigs.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
+    slotLConfigs.kA = 0.01; // An acceleration of 1 rps/s requires 0.01 V output
+    slotLConfigs.kP = 4.8; // A position error of 2.5 rotations results in 12 V output
+    slotLConfigs.kI = 0; // no output for integrated error
+    slotLConfigs.kD = 0.1; // A velocity error of 1 rps results in 0.1 V output
+
+    // set Motion Magic settings
+    var motionLMagicConfigs = leftTalonConfig.MotionMagic;
+    motionLMagicConfigs.MotionMagicCruiseVelocity = 80; // Target cruise velocity of 80 rps
+    motionLMagicConfigs.MotionMagicAcceleration = 160; // Target acceleration of 160 rps/s (0.5 seconds)
+    motionLMagicConfigs.MotionMagicJerk = 1600; // Target jerk of 1600 rps/s/s (0.1 seconds)
+
     leftElevatorMotor.getConfigurator().apply(leftTalonConfig);
+
+    
+  
+    rightElevatorMotor = new TalonFX(Constants.MotorControllers.ID_ELEVATOR_RIGHT_TALON, "usb");
 
     rightTalonConfig = new TalonFXConfiguration();
     //rightTalonConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
     rightTalonConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
     rightTalonConfig.CurrentLimits.SupplyCurrentLimit = Constants.MotorControllers.SMART_CURRENT_LIMIT;
     rightTalonConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+
+     // set slot 0 gains
+    var slotRConfigs = rightTalonConfig.Slot0;
+    slotRConfigs.kS = 0.25; // Add 0.25 V output to overcome static friction
+    slotRConfigs.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
+    slotRConfigs.kA = 0.01; // An acceleration of 1 rps/s requires 0.01 V output
+    slotRConfigs.kP = 4.8; // A position error of 2.5 rotations results in 12 V output
+    slotRConfigs.kI = 0; // no output for integrated error
+    slotRConfigs.kD = 0.1; // A velocity error of 1 rps results in 0.1 V output
+
+    // set Motion Magic settings
+    var motionRMagicConfigs = rightTalonConfig.MotionMagic;
+    motionRMagicConfigs.MotionMagicCruiseVelocity = 80; // Target cruise velocity of 80 rps
+    motionRMagicConfigs.MotionMagicAcceleration = 160; // Target acceleration of 160 rps/s (0.5 seconds)
+    motionRMagicConfigs.MotionMagicJerk = 1600; // Target jerk of 1600 rps/s/s (0.1 seconds)
+
     rightElevatorMotor.getConfigurator().apply(rightTalonConfig);
 
     rightElevatorMotor.setControl(new Follower(Constants.MotorControllers.ID_ELEVATOR_LEFT_TALON, false));
+
+    m_request = new MotionMagicVoltage(0);
 
     try {
       elevatorTopLimit = new DigitalInput(Constants.Elevator.DIO_ELEV_TOP);
@@ -67,6 +107,8 @@ public class Elevator extends SubsystemBase {
       SmartDashboard.putBoolean("exception thrown for elev bottom limit: ", isBException);
     }
   }
+
+  //METHODS START HERE
 
   public void stopElevator() {
     leftElevatorMotor.set(0);
@@ -140,8 +182,6 @@ public class Elevator extends SubsystemBase {
     }  
   } 
 
-
-
   public double getElevatorLeftSpeed() {
     return leftElevatorMotor.get();
   }  
@@ -149,6 +189,10 @@ public class Elevator extends SubsystemBase {
   public double getElevatorRightSpeed() {
     return rightElevatorMotor.get();
   }  
+
+  public void doMotionMagic(double desiredRevs){
+    leftElevatorMotor.setControl(m_request.withPosition(desiredRevs));
+  }
 
   @Override
   public void periodic() {
