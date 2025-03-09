@@ -7,6 +7,7 @@ package frc.robot.commands.Targeting;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.AutoCommands.DriveFwd;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
+import frc.robot.commands.AutoCommands.DriveSideways;
 import frc.robot.subsystems.Swerve;
 
 
@@ -21,13 +22,13 @@ public class CoralRightTarget extends SequentialCommandGroup {
    //TODO: Try the 3 commands below vice the TargetSideDist only
 //If fast enough, this is more likely to get us properly aligned
 //Adjust timeouts to save time
-    //new TargetAngle(s_Swerve).withTimeout(0.7),
+    new TargetAngle(s_Swerve).withTimeout(0.7),
     //new TargetSideDistance(s_Swerve, 0).withTimeout(1),
     //new TargetForwardDistance(s_Swerve, 0.7),
     
-     new TargetSideDistance(s_Swerve, 0).withTimeout(1),
+     new TargetForwardAndSide(s_Swerve, 3.25, 0).withTimeout(1),
      new GetPoseWithLL(s_Swerve),
-     new DriveFwdAndSideAndTurn(s_Swerve, false, 0, -6.5, 0).withTimeout(1),
+     new DriveSideways(s_Swerve, false, -6.5).withTimeout(1),
      new ResetPoseWithLL(s_Swerve));    
   }
 

@@ -224,7 +224,7 @@ public static final class Swerve {
     public static final double TELEOP_HEIGHT = 5;//3.47;
     public static final double L1_HEIGHT = 0;
     public static final double L2_HEIGHT = 5;//3.47;
-    public static final double L3_HEIGHT = 21;//23;
+    public static final double L3_HEIGHT = 23;//23;
     public static final double L4_HEIGHT = 55.25;
     public static final double PICK_ALGAE_L2_HEIGHT = 3.47;
     public static final double PICK_ALGAE_L3_HEIGHT = 13.5;//TODO find actual
@@ -277,7 +277,7 @@ public static class CoralHold {
     public static final int DIO_LIMIT = 8; 
     public static final double ENC_REVS_MAX = -120;
     public static final double ENC_REVS_LEVEL1 = 0;
-    public static final double ENC_REVS_LEVEL2 = -6;
+    public static final double ENC_REVS_LEVEL2 = -22;
     public static final double ENC_REVS_LEVEL3 = -22; 
     public static final double ENC_REVS_LEVEL4 = -107;
     public static final double ENC_REVS_FULL_RETRACT = 0;

@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.AutoCommands.DriveFwd;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
+import frc.robot.commands.AutoCommands.DriveSideways;
 import frc.robot.subsystems.Swerve;
 
 
@@ -27,12 +28,14 @@ public class CoralLeftTarget extends SequentialCommandGroup {
     //new TargetSideDistance(s_Swerve, 0).withTimeout(1),
     //new TargetForwardDistance(s_Swerve, 0.7),
 
-     new TargetSideDistance(s_Swerve, 0).withTimeout(1),
-
-     new GetPoseWithLL(s_Swerve),
-     new DriveFwdAndSideAndTurn(s_Swerve, false, 0, 7, 0).withTimeout(1), 
-     new ResetPoseWithLL(s_Swerve));
+     new TargetAngle(s_Swerve).withTimeout(0.7),
+    //new TargetSideDistance(s_Swerve, 0).withTimeout(1),
+    //new TargetForwardDistance(s_Swerve, 0.7),
     
+     new TargetForwardAndSide(s_Swerve, 3.25, 0).withTimeout(1),
+     new GetPoseWithLL(s_Swerve),
+     new DriveSideways(s_Swerve, false, 6.5).withTimeout(1),
+     new ResetPoseWithLL(s_Swerve));    
   }
 
 }

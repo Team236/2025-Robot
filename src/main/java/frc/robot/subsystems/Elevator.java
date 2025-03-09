@@ -91,7 +91,7 @@ public class Elevator extends SubsystemBase {
   // reset/zero encoders
   public void resetElevatorEncoders(){
     leftElevatorMotor.setPosition(0);
-   // rightElevatorMotor.setPosition(0);
+   rightElevatorMotor.setPosition(0);
   }
 
   //returns encoder position in REVOLUTIONS (number of rotations)
