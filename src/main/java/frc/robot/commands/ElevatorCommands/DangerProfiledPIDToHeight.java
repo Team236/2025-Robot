@@ -41,7 +41,7 @@ public class DangerProfiledPIDToHeight extends Command {
   public void initialize() {
     pidController.reset(0);
 
-    //pidController.reset(desiredHeight*0.0254);
+    //pidController.reset(desiredHeight*00.0254);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
