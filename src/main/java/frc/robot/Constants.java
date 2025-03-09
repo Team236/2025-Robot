@@ -217,6 +217,7 @@ public static final class Swerve {
     public static final double ELEV_CLIMB_DOWN_SPEED = -0.1;
 
     //conversion factors
+    public static final double ELEV_REV_TO_METERS = 1.362*0.0254;
     public static final double ELEV_REV_TO_IN = 1.362;
     public static final double ELEV_IN_TO_REV = 1/ELEV_REV_TO_IN;
 

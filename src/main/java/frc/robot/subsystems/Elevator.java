@@ -107,7 +107,7 @@ public class Elevator extends SubsystemBase {
   }
 
     public double getElevatorHeightMeters(){
-      return Constants.Elevator.ELEV_REV_TO_IN * 0.0254 * ((getElevLeftEncoder() + getElevRightEncoder()) / 2);
+      return Constants.Elevator.ELEV_REV_TO_METERS* ((getElevLeftEncoder() + getElevRightEncoder()) / 2);
     }
 
  // check if elevator is at "top" according to user definition
