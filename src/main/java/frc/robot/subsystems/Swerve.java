@@ -45,6 +45,7 @@ public class Swerve extends SubsystemBase {
     public Swerve() {
         gyro = new Pigeon2(Constants.Swerve.pigeonID, "usb");
         gyro.getConfigurator().apply(new Pigeon2Configuration());
+        //TODO recommend passing in starting pose angle from leg1 trajectory
         gyro.setYaw(0);
 
         mSwerveMods = new SwerveModule[] {

@@ -32,8 +32,11 @@ public class DriveWithPath extends SequentialCommandGroup {
                 .setKinematics(Constants.Swerve.swerveKinematics).setReversed(reversed);
 
         // An example trajectory to follow.  All units in meters.
-        Trajectory exampleTrajectory =
-        TrajectoryGenerator.generateTrajectory(
+        Trajectory exampleTrajectory = TrajectoryGenerator.generateTrajectory(
+        
+        // replace this with leg?? pose and waypoints
+        //TODO where does this drive replace this with leg??  pose and waypoints 
+
             new Pose2d(7.170291487008191,0.8077008574090883, new Rotation2d(3.141592653589793)),
             // Pass through these interior waypoints
 	List.of(

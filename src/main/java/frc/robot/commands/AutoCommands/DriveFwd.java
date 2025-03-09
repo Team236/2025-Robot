@@ -31,6 +31,7 @@ public class DriveFwd extends SequentialCommandGroup {
     // An example trajectory to follow.  All units in meters.
     Trajectory exampleTrajectory =
     TrajectoryGenerator.generateTrajectory(
+        
         // Start at the origin facing the +X direction
          new Pose2d(0, 0, new Rotation2d(0)),
         // Pass through these interior waypoints

@@ -35,6 +35,8 @@ public class DriveSideways extends SequentialCommandGroup {
         // An example trajectory to follow.  All units in meters.
         Trajectory exampleTrajectory =
         TrajectoryGenerator.generateTrajectory(
+            // replace this with leg2a pose and waypoints
+
             // Start at the origin facing the +X direction
              new Pose2d(0, 0, new Rotation2d(0)),
             // Pass through these interior waypoints

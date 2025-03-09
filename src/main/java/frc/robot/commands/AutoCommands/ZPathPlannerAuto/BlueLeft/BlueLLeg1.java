@@ -32,19 +32,34 @@ public class BlueLLeg1 extends  SequentialCommandGroup  {
             .setKinematics(Constants.Swerve.swerveKinematics).setReversed(reversed);
 
     // An example trajectory to follow.  All units in meters.
-    Trajectory exampleTrajectory =
-    TrajectoryGenerator.generateTrajectory(
-       // Start here
-        new Pose2d(0, 0, new Rotation2d(0)),
-       // Pass through these interior waypoints
-       List.of(
-        new Translation2d(1,1), 
-        new Translation2d(2,2),
-        new Translation2d(3,3)
-        ),  
-        //End here
-        new Pose2d(4, 4, new Rotation2d(0)),
-        config);
+
+            
+        // replace this with leg?? pose and waypoints
+        //TODO where does this drive replace this with leg??  pose and waypoints 
+
+
+    Trajectory exampleTrajectory = TrajectoryGenerator.generateTrajectory(
+    //***** Path: leg1.txt ***** 
+        new Pose2d( 7.17, 2.83, new Rotation2d(3.141592653589793) ),
+        List.of ( 
+            new Translation2d( 6.760171794428205, 2.771238870019034),
+            new Translation2d( 6.357486066409191, 2.7219606838198507),
+            new Translation2d( 6.157303328740488, 2.6980566302568914),
+            new Translation2d( 5.758469081546904, 2.648993297562662),
+            new Translation2d( 5.559727960470591, 2.6230216173273404),
+            new Translation2d( 5.163674217701479, 2.5663090837843123) ),
+        new Pose2d( 4.958352911410241, 2.5333954076599787, new Rotation2d(2.08265216922672) ),
+        config );
+        // original path data 
+    /* Trajectory exampleTrajectory = TrajectoryGenerator.generateTrajectory(
+        new Pose2d( 0, 0, new Rotation2d(0) ),   // Start here
+       List.of(                                 // Pass through these interior waypoints
+        new Translation2d( 1, 1), 
+        new Translation2d( 2, 2),
+        new Translation2d( 3, 3) ),  
+        new Pose2d(4, 4, new Rotation2d(0) ),   //End here
+        config ); 
+    */
  
     var thetaController =
         new ProfiledPIDController(

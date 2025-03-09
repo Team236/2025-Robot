@@ -70,6 +70,7 @@ public class TargetAllParallel extends Command {  //Targeting with Limeight
     // turn on the LED,  3 = force on
     NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
     NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(pipeline);
+    //TODO replace this with the setHeading() assignment with the starting pose of the chosen auto from the trajectory
     s_Swerve.zeroHeading(); //added this to fix the targeting going the wrong way
   }
 
