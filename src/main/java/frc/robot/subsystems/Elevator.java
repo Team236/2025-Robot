@@ -202,8 +202,8 @@ public class Elevator extends SubsystemBase {
     SmartDashboard.putBoolean("Elevator at bottom limit: ", isEBotLimit());
     SmartDashboard.putBoolean("Elevator at Max height: ", isTop());
     //SmartDashboard.putNumber("Elevator speed: ", (getElevatorLeftSpeed() + getElevatorRightSpeed())/2);
-    //SmartDashboard.putNumber("Elevator left enc revs = ", getElevLeftEncoder());
-   // SmartDashboard.putNumber("Elevator right enc revs = ", getElevRightEncoder());
+    SmartDashboard.putNumber("Elevator left enc revs = ", getElevLeftEncoder());
+    SmartDashboard.putNumber("Elevator right enc revs = ", getElevRightEncoder());
 
   }
 }
