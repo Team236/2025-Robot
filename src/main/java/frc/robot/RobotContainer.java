@@ -29,8 +29,11 @@ import frc.robot.commands.AutoCommands.DriveSideways;
 //mport frc.robot.commands.AutoCommands.DriveWithPath;
 import frc.robot.commands.AutoCommands.TurnOnly;
 import frc.robot.commands.AutoCommands.Center.CtrScore1;
+import frc.robot.commands.AutoCommands.Left.FullRunLeft;
 import frc.robot.commands.AutoCommands.Left.Leg1Left;
 import frc.robot.commands.AutoCommands.Left.Leg2Left;
+import frc.robot.commands.AutoCommands.Left.Leg3Left;
+import frc.robot.commands.AutoCommands.Left.Legs1and2Left;
 import frc.robot.commands.AutoCommands.Right.FullRunRight;
 import frc.robot.commands.AutoCommands.Right.Leg1Right;
 import frc.robot.commands.AutoCommands.Right.Leg2Right;
@@ -132,23 +135,27 @@ public class RobotContainer {
     private final ElevMotionMagicPID motionMagicToL2  = new ElevMotionMagicPID(elevator, Constants.Elevator.L2_HEIGHT);
 
     //Auto
-    private final DriveFwd driveFwd = new DriveFwd(s_Swerve, false, 10); //9
-    private final TurnOnly turnOnlyNeg90 = new TurnOnly(s_Swerve, false, -90);
-    private final DriveFwdAndSideAndTurn driveFwdAndSideAndTurn = new DriveFwdAndSideAndTurn(s_Swerve, false, 9, 0, 0);
-    private final DriveFwd driveFwd9 = new DriveFwd(s_Swerve, false, 9);//
-    private final TurnOnly turnOnly90 = new TurnOnly(s_Swerve, false, 90);
-    private final DriveReverse driveReverse9 = new DriveReverse(s_Swerve, true,-9);
-    private final DriveSideways driveSideways675 = new DriveSideways(s_Swerve, false, 6.5);
-    private final DriveSideways driveSidewaysNeg675 = new DriveSideways(s_Swerve, false, -6.5);
+   // private final DriveFwd driveFwd = new DriveFwd(s_Swerve, false, 10); //9
+   // private final TurnOnly turnOnlyNeg90 = new TurnOnly(s_Swerve, false, -90);
+   // private final DriveFwdAndSideAndTurn driveFwdAndSideAndTurn = new DriveFwdAndSideAndTurn(s_Swerve, false, 9, 0, 0);
+    //private final DriveFwd driveFwd9 = new DriveFwd(s_Swerve, false, 9);//
+   // private final TurnOnly turnOnly90 = new TurnOnly(s_Swerve, false, 90);
+   // private final DriveReverse driveReverse9 = new DriveReverse(s_Swerve, true,-9);
+   // private final DriveSideways driveSideways675 = new DriveSideways(s_Swerve, false, 6.5);
+   // private final DriveSideways driveSidewaysNeg675 = new DriveSideways(s_Swerve, false, -6.5);
 
-
-    private final FullRunRight fullRunRight = new FullRunRight(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
     private final Leg1Left leg1Left = new Leg1Left(s_Swerve,  elevator, algaePivot, coralPivot, coralHold);
     private final Leg2Left leg2Left = new Leg2Left(s_Swerve, coralHold, coralPivot);
+    private final Leg3Left leg3Left = new Leg3Left(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
+    private final FullRunLeft fullRunLeft = new FullRunLeft(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
+    private final Legs1and2Left legs1and2Left = new Legs1and2Left(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
+
     private final Leg1Right leg1Right = new Leg1Right(s_Swerve,  elevator, algaePivot, coralPivot, coralHold);
     private final Leg2Right leg2Right = new Leg2Right(s_Swerve, coralHold, coralPivot);
     private final Leg3Right leg3Right = new Leg3Right(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
+    private final FullRunRight fullRunRight = new FullRunRight(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
     private final Legs1and2Right legs1and2Right = new Legs1and2Right(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
+
     private final CtrScore1 fullRunCenter = new CtrScore1(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
    // private final DriveWithPath driveWithPathLeg1 = new DriveWithPath(s_Swerve, false);
     
@@ -358,25 +365,30 @@ b.whileTrue(coralRightTarget);
 // b.onTrue(algaeGrab).onTrue(l4_Score);
 
   }
-  
   public Command getAutonomousCommand() {
     // SmartDashboard.putString("autokey", "Entering getAutoCommand now");
     Command command = null;
     AutoSwitchHelpers autoSwitchHelpers = new AutoSwitchHelpers();
+    // Switch 1 is in the "ON" spot on the old auto box
 
-    //NEW WAY TO DO IT (good job emmet you are awesome saucem)
-
-    //if (autoSwitchHelpers.switchesAre(true, true, true, true))
-    //{
-    //  command = wooferLeft;
-    //}
-
-  
-    //Switch 1 is in the "ON" spot on the box
-  
+    if (autoSwitchHelpers.switchesAre(true, true, true, true)){
+      command = fullRunRight;
+    } else if (autoSwitchHelpers.switchesAre(true, true, false, false)){
+      command = leg1Right;
+    } else if (autoSwitchHelpers.switchesAre(true, true, true, false)){
+      command = legs1and2Right;
+    }  else if (autoSwitchHelpers.switchesAre(false, true, true, true)){
+        command = fullRunLeft;
+    }  else if (autoSwitchHelpers.switchesAre(false, true, false, false)){
+        command = leg1Left;
+    }  else if (autoSwitchHelpers.switchesAre(false, true, true, false)){
+        command = legs1and2Left;
+    }  else if (autoSwitchHelpers.switchesAre(false, false, false, false)){
+        command = fullRunCenter;
+    }
    return command;
   }
 
-  }
+}
 
 
