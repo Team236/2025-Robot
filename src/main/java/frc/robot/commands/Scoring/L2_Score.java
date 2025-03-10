@@ -11,7 +11,6 @@ import frc.robot.Constants;
 import frc.robot.commands.AlgaePivotCommands.PIDMakeAPSafeForElev;
 import frc.robot.commands.AlgaePivotCommands.PIDToElevSafePosition;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
-import frc.robot.commands.CoralHoldCommands.CoralReleaseNoCountReset;
 import frc.robot.commands.CoralHoldCommands.CoralResetCount;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
 

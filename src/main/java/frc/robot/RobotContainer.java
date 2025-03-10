@@ -29,7 +29,6 @@ import frc.robot.commands.AutoCommands.DriveSideways;
 //mport frc.robot.commands.AutoCommands.DriveWithPath;
 import frc.robot.commands.AutoCommands.TurnOnly;
 import frc.robot.commands.AutoCommands.Center.CtrScore1;
-import frc.robot.commands.AutoCommands.Center.FullRunLeftCtr;
 import frc.robot.commands.AutoCommands.Left.Leg1Left;
 import frc.robot.commands.AutoCommands.Left.Leg2Left;
 import frc.robot.commands.AutoCommands.Right.FullRunRight;
@@ -42,7 +41,6 @@ import frc.robot.commands.CoralHoldCommands.CoralGrabWithCounter;
 // import frc.robot.commands.CoralHoldCommands.CoralSeqGrabCount;
 import frc.robot.commands.CoralHoldCommands.CoralGrab;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
-import frc.robot.commands.CoralHoldCommands.CoralReleaseNoCountReset;
 import frc.robot.commands.CoralHoldCommands.CoralSeqGrabCount;
 import frc.robot.commands.CoralPivotCommands.ManualCoralPivot;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
@@ -152,7 +150,6 @@ public class RobotContainer {
     private final Leg3Right leg3Right = new Leg3Right(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
     private final Legs1and2Right legs1and2Right = new Legs1and2Right(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
     private final CtrScore1 fullRunCenter = new CtrScore1(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
-    private final FullRunLeftCtr fullRunLeftCtr = new FullRunLeftCtr(s_Swerve);
    // private final DriveWithPath driveWithPathLeg1 = new DriveWithPath(s_Swerve, false);
     
       
@@ -187,7 +184,6 @@ public class RobotContainer {
   private final CoralGrabWithCounter coralGrabWithCounter = new CoralGrabWithCounter(coralHold, Constants.CoralHold.HOLD_SPEED);
   private final CoralSeqGrabCount coralSeqGrabCount = new CoralSeqGrabCount(coralPivot, coralHold);
   private final CoralRelease coralRelease = new CoralRelease(coralHold, Constants.CoralHold.L2_RELEASE_SPEED);
-  private final CoralReleaseNoCountReset coralReleaseNoCountReset = new CoralReleaseNoCountReset(coralHold, Constants.CoralHold.L2_RELEASE_SPEED);
   //private final CoralRelease coralReleaseL4 = new CoralRelease(coralHold, Constants.CoralHold.L4_RELEASE_SPEED);
 
   //CoralPivot

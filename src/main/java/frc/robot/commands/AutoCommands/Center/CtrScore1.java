@@ -14,7 +14,6 @@ import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
 import frc.robot.commands.AutoCommands.DriveReverse;
 import frc.robot.commands.AutoCommands.DriveSideways;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
-import frc.robot.commands.CoralHoldCommands.CoralReleaseNoCountReset;
 import frc.robot.commands.CoralHoldCommands.CoralResetCount;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
 import frc.robot.commands.ElevatorCommands.DangerPIDToHeight;
