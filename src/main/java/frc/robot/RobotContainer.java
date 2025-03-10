@@ -328,8 +328,8 @@ x.whileTrue(coralLeftTarget);
 ////rightPov.onTrue(leg1Left);
 //a.onTrue(fullRunCenter);
 
-//leftPov.onTrue(prepForClimb);
-//rightPov.onTrue(climbDownSequence);
+leftPov.onTrue(prepForClimb);
+rightPov.onTrue(climbDownSequence);
 
 downPov1.whileTrue(dangerElevatorDown);
 upPov1.whileTrue(dangerElevatorUp);
