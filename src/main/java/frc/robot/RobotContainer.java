@@ -363,8 +363,8 @@ b.whileTrue(coralRightTarget);
 
 // a.onTrue(algaeGrab).onTrue(l3_Score);
 // b.onTrue(algaeGrab).onTrue(l4_Score);
-
   }
+
   public Command getAutonomousCommand() {
     // SmartDashboard.putString("autokey", "Entering getAutoCommand now");
     Command command = null;

@@ -77,7 +77,7 @@ public class Elevator extends SubsystemBase {
     slotRConfigs.kS = 0.25; // Add 0.25 V output to overcome static friction
     slotRConfigs.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
     slotRConfigs.kA = 0.01; // An acceleration of 1 rps/s requires 0.01 V output
-    slotRConfigs.kP = 4.8; // A position error of 2.5 rotations results in 12 V output
+    slotRConfigs.kP = 4.8; //START LOWER??// A position error of 2.5 rotations results in 12 V output
     slotRConfigs.kI = 0; // no output for integrated error
     slotRConfigs.kD = 0.1; // A velocity error of 1 rps results in 0.1 V output
 
