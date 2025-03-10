@@ -133,7 +133,7 @@ public class RobotContainer {
     private final L2_Score l2_Score = new L2_Score(elevator, coralHold, coralPivot, algaePivot);
     private final L3_Score l3_Score = new L3_Score(elevator, coralHold, coralPivot, algaePivot);
     private final L4_Score l4_Score = new L4_Score(elevator, coralHold, coralPivot, algaePivot);
-    private final ElevMotionMagicPID motionMagicToL2  = new ElevMotionMagicPID(elevator, Constants.Elevator.L2_HEIGHT);
+
 
     //Auto
    // private final DriveFwd driveFwd = new DriveFwd(s_Swerve, false, 10); //9
@@ -172,6 +172,9 @@ public class RobotContainer {
  private final DangerPIDToHeight dangerPidElevL3 = new DangerPIDToHeight(elevator,  Constants.Elevator.L3_HEIGHT);
  private final DangerPIDToHeight dangerPidElevL4 = new DangerPIDToHeight(elevator,  Constants.Elevator.L4_HEIGHT);
  private final SequencedPIDToL3 sequencedPIDToL3 = new SequencedPIDToL3(elevator, algaePivot);
+ private final ElevMotionMagicPID motionMagicToTestLevel  = new ElevMotionMagicPID(elevator, 40);
+ private final ElevMotionMagicPID motionMagicToBottom  = new ElevMotionMagicPID(elevator, 0);
+
 
 
   //AlgaeHold
@@ -337,11 +340,12 @@ a.onTrue(fullRunCenter);
 downPov1.whileTrue(dangerElevatorDown);
 upPov1.whileTrue(dangerElevatorUp);
 
-y1.onTrue(l1_Score);
+//y1.onTrue(l1_Score);
 a1.onTrue(l2_Score);
 x1.onTrue(sequencedPIDToL3); //12" for now
 //x1.onTrue(l3_Score);
-b1.onTrue(motionMagicToL2);
+b1.onTrue(motionMagicToTestLevel);
+y1.onTrue(motionMagicToBottom);
 //b1.onTrue(l4_Score);
 
 //a1.whileTrue(algaeTarget);

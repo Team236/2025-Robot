@@ -50,15 +50,15 @@ public class Elevator extends SubsystemBase {
     slotLConfigs.kS = 0.25; // Add 0.25 V output to overcome static friction
     slotLConfigs.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
     slotLConfigs.kA = 0.01; // An acceleration of 1 rps/s requires 0.01 V output
-    slotLConfigs.kP = 4.8; // A position error of 2.5 rotations results in 12 V output
+    slotLConfigs.kP = 2;//4.8; // A position error of 2.5 rotations results in 12 V output
     slotLConfigs.kI = 0; // no output for integrated error
     slotLConfigs.kD = 0.1; // A velocity error of 1 rps results in 0.1 V output
 
     // set Motion Magic settings
     var motionLMagicConfigs = leftTalonConfig.MotionMagic;
-    motionLMagicConfigs.MotionMagicCruiseVelocity = 80; // Target cruise velocity of 80 rps
-    motionLMagicConfigs.MotionMagicAcceleration = 160; // Target acceleration of 160 rps/s (0.5 seconds)
-    motionLMagicConfigs.MotionMagicJerk = 1600; // Target jerk of 1600 rps/s/s (0.1 seconds)
+    motionLMagicConfigs.MotionMagicCruiseVelocity = 80;//80; // Target cruise velocity of 80 rps
+    motionLMagicConfigs.MotionMagicAcceleration = 120;//160; // Target acceleration of 160 rps/s (0.5 seconds)
+    motionLMagicConfigs.MotionMagicJerk = 1200;//1600; // Target jerk of 1600 rps/s/s (0.1 seconds)
 
     leftElevatorMotor.getConfigurator().apply(leftTalonConfig);
 
@@ -77,15 +77,15 @@ public class Elevator extends SubsystemBase {
     slotRConfigs.kS = 0.25; // Add 0.25 V output to overcome static friction
     slotRConfigs.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
     slotRConfigs.kA = 0.01; // An acceleration of 1 rps/s requires 0.01 V output
-    slotRConfigs.kP = 4.8; //START LOWER??// A position error of 2.5 rotations results in 12 V output
+    slotRConfigs.kP = 2;//4.8; //START LOWER??// A position error of 2.5 rotations results in 12 V output
     slotRConfigs.kI = 0; // no output for integrated error
     slotRConfigs.kD = 0.1; // A velocity error of 1 rps results in 0.1 V output
 
     // set Motion Magic settings
     var motionRMagicConfigs = rightTalonConfig.MotionMagic;
-    motionRMagicConfigs.MotionMagicCruiseVelocity = 80; // Target cruise velocity of 80 rps
-    motionRMagicConfigs.MotionMagicAcceleration = 160; // Target acceleration of 160 rps/s (0.5 seconds)
-    motionRMagicConfigs.MotionMagicJerk = 1600; // Target jerk of 1600 rps/s/s (0.1 seconds)
+    motionRMagicConfigs.MotionMagicCruiseVelocity = 80;//80; // Target cruise velocity of 80 rps
+    motionRMagicConfigs.MotionMagicAcceleration = 120;//160; // Target acceleration of 160 rps/s (0.5 seconds)
+    motionRMagicConfigs.MotionMagicJerk = 1200;//1600; // Target jerk of 1600 rps/s/s (0.1 seconds)
 
     rightElevatorMotor.getConfigurator().apply(rightTalonConfig);
 
