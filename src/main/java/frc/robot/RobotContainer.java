@@ -53,6 +53,7 @@ import frc.robot.commands.ElevatorCommands.DangerPIDToHeight;
 import frc.robot.commands.ElevatorCommands.DangerProfiledPIDToHeight;
 import frc.robot.commands.ElevatorCommands.ElevMotionMagicPID;
 import frc.robot.commands.ElevatorCommands.PrepForClimb;
+import frc.robot.commands.ElevatorCommands.SequencedPIDToL3;
 import frc.robot.commands.Scoring.L1_Score;
 import frc.robot.commands.Scoring.L2_Score;
 import frc.robot.commands.Scoring.L3_Score;
@@ -170,6 +171,7 @@ public class RobotContainer {
  private final DangerPIDToHeight dangerPidElevL2 = new DangerPIDToHeight(elevator, Constants.Elevator.L2_HEIGHT);
  private final DangerPIDToHeight dangerPidElevL3 = new DangerPIDToHeight(elevator,  Constants.Elevator.L3_HEIGHT);
  private final DangerPIDToHeight dangerPidElevL4 = new DangerPIDToHeight(elevator,  Constants.Elevator.L4_HEIGHT);
+ private final SequencedPIDToL3 sequencedPIDToL3 = new SequencedPIDToL3(elevator, algaePivot);
 
 
   //AlgaeHold
@@ -337,7 +339,8 @@ upPov1.whileTrue(dangerElevatorUp);
 
 y1.onTrue(l1_Score);
 a1.onTrue(l2_Score);
-x1.onTrue(l3_Score);
+x1.onTrue(sequencedPIDToL3); //12" for now
+//x1.onTrue(l3_Score);
 b1.onTrue(motionMagicToL2);
 //b1.onTrue(l4_Score);
 

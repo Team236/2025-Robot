@@ -19,9 +19,9 @@ public class SequencedPIDToL3 extends SequentialCommandGroup {
     addCommands(
       //new PIDToElevSafePosition(algaePivot),
       new DangerPIDToHeight(elevator, 6).withTimeout(2),
-      new DangerPIDToHeight(elevator, 12).withTimeout(2),
-      new DangerPIDToHeight(elevator, 18).withTimeout(2),
-      new DangerPIDToHeight(elevator, 23).withTimeout(2)
+      new DangerPIDToHeight(elevator, 12).withTimeout(2)//,
+     // new DangerPIDToHeight(elevator, 18).withTimeout(2),
+      //new DangerPIDToHeight(elevator, 23).withTimeout(2)
     );
   }
 }
