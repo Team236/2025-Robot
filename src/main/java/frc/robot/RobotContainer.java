@@ -324,9 +324,8 @@ public class RobotContainer {
  rm.whileTrue(coralPivotUp);
  rb.whileTrue(coralPivotDown);
 
-//a.onTrue(coralSeqGrabCount);
-// x.whileTrue(coralReleaseNoCountReset);
-// b.whileTrue(coralRelease);
+a.onTrue(coralSeqGrabCount);
+ b.whileTrue(coralRelease);
 
 upPov.onTrue(leg1Left);
 downPov.onTrue(leg2Left);
@@ -350,7 +349,7 @@ y1.onTrue(motionMagicToBottom);
 
 //a1.whileTrue(algaeTarget);
 x.whileTrue(coralLeftTarget);
-b.whileTrue(coralRightTarget);
+//b.whileTrue(coralRightTarget);
 
   //
 //  rm.onTrue(driveSideways675);
