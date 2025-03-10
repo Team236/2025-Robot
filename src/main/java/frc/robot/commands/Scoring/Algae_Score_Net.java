@@ -10,7 +10,7 @@ import frc.robot.Constants;
 import frc.robot.commands.AlgaeHoldCommands.AlgaeRelease;
 import frc.robot.commands.AlgaePivotCommands.PIDAlgaePivot;
 import frc.robot.commands.AlgaePivotCommands.PIDMakeAPSafeForElev;
-import frc.robot.commands.ElevatorCommands.DangerPIDToHeight;
+import frc.robot.commands.ElevatorCommands.ElevMotionMagicPID;
 import frc.robot.subsystems.AlgaeHold;
 import frc.robot.subsystems.AlgaePivot;
 import frc.robot.subsystems.Elevator;
@@ -23,11 +23,11 @@ public class Algae_Score_Net extends SequentialCommandGroup {
   public Algae_Score_Net(Elevator elevator, AlgaeHold algaeHold, AlgaePivot algaePivot) {
   addCommands(
     new PIDMakeAPSafeForElev(algaePivot).withTimeout(3),
-    new DangerPIDToHeight(elevator, Constants.Elevator.SCORE_ALGAE_NET_HEIGHT).withTimeout(5),
+    new ElevMotionMagicPID(elevator, Constants.Elevator.SCORE_ALGAE_NET_HEIGHT).withTimeout(5),
     new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_SCORE_NET).withTimeout(3),
     new AlgaeRelease(algaeHold, Constants.AlgaeHold.RELEASE_SPEED).withTimeout(2),
     new PIDMakeAPSafeForElev(algaePivot).withTimeout(3),
-    new DangerPIDToHeight(elevator, Constants.Elevator.BOTTOM_HEIGHT)
+    new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT)
     );
   }
 }

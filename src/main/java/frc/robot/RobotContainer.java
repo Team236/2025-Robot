@@ -49,11 +49,8 @@ import frc.robot.commands.CoralPivotCommands.ManualCoralPivot;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
 import frc.robot.commands.ElevatorCommands.ClimbDownSequence;
 import frc.robot.commands.ElevatorCommands.DangerManualUpDown;
-import frc.robot.commands.ElevatorCommands.DangerPIDToHeight;
-import frc.robot.commands.ElevatorCommands.DangerProfiledPIDToHeight;
 import frc.robot.commands.ElevatorCommands.ElevMotionMagicPID;
 import frc.robot.commands.ElevatorCommands.PrepForClimb;
-import frc.robot.commands.ElevatorCommands.SequencedPIDToL3;
 import frc.robot.commands.Scoring.L1_Score;
 import frc.robot.commands.Scoring.L2_Score;
 import frc.robot.commands.Scoring.L3_Score;
@@ -166,12 +163,6 @@ public class RobotContainer {
   private final DangerManualUpDown dangerElevatorDown = new DangerManualUpDown(elevator, Constants.Elevator.ELEV_DOWN_SPEED);
   private final ClimbDownSequence climbDownSequence= new ClimbDownSequence(elevator, algaePivot);
   private final PrepForClimb prepForClimb = new PrepForClimb(elevator,  algaePivot);
-  private final DangerPIDToHeight pidElevToBottom = new DangerPIDToHeight(elevator, Constants.Elevator.BOTTOM_HEIGHT);
- private final DangerPIDToHeight dangerPidElevL1 = new DangerPIDToHeight(elevator, Constants.Elevator.L1_HEIGHT);
- private final DangerPIDToHeight dangerPidElevL2 = new DangerPIDToHeight(elevator, Constants.Elevator.L2_HEIGHT);
- private final DangerPIDToHeight dangerPidElevL3 = new DangerPIDToHeight(elevator,  Constants.Elevator.L3_HEIGHT);
- private final DangerPIDToHeight dangerPidElevL4 = new DangerPIDToHeight(elevator,  Constants.Elevator.L4_HEIGHT);
- private final SequencedPIDToL3 sequencedPIDToL3 = new SequencedPIDToL3(elevator, algaePivot);
  private final ElevMotionMagicPID motionMagicToTestLevel  = new ElevMotionMagicPID(elevator, 40);
  private final ElevMotionMagicPID motionMagicToBottom  = new ElevMotionMagicPID(elevator, 0);
 
@@ -326,12 +317,16 @@ public class RobotContainer {
 
 a.onTrue(coralSeqGrabCount);
  b.whileTrue(coralRelease);
+ 
+//a1.whileTrue(algaeTarget);
+x.whileTrue(coralLeftTarget);
+//b.whileTrue(coralRightTarget);
 
-upPov.onTrue(leg1Left);
-downPov.onTrue(leg2Left);
-leftPov.onTrue(leg3Right);
-rightPov.onTrue(leg1Left);
-a.onTrue(fullRunCenter);
+//upPov.onTrue(leg1Left);
+//downPov.onTrue(leg2Left);
+//leftPov.onTrue(leg3Right);
+////rightPov.onTrue(leg1Left);
+//a.onTrue(fullRunCenter);
 
 //leftPov.onTrue(prepForClimb);
 //rightPov.onTrue(climbDownSequence);
@@ -341,15 +336,10 @@ upPov1.whileTrue(dangerElevatorUp);
 
 //y1.onTrue(l1_Score);
 a1.onTrue(l2_Score);
-x1.onTrue(sequencedPIDToL3); //12" for now
 //x1.onTrue(l3_Score);
 b1.onTrue(motionMagicToTestLevel);
 y1.onTrue(motionMagicToBottom);
 //b1.onTrue(l4_Score);
-
-//a1.whileTrue(algaeTarget);
-x.whileTrue(coralLeftTarget);
-//b.whileTrue(coralRightTarget);
 
   //
 //  rm.onTrue(driveSideways675);

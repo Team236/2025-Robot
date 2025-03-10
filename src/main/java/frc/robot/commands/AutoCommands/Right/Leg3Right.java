@@ -13,7 +13,7 @@ import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
 import frc.robot.commands.CoralHoldCommands.CoralResetCount;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
-import frc.robot.commands.ElevatorCommands.DangerPIDToHeight;
+import frc.robot.commands.Scoring.L2_Score;
 import frc.robot.commands.Scoring.L4_Score;
 import frc.robot.commands.Targeting.GetPoseWithLL;
 import frc.robot.commands.Targeting.ResetPoseWithLL;
@@ -48,9 +48,9 @@ public class Leg3Right extends SequentialCommandGroup {
           //Needs to end  with coral scorer aligned with right branch of Reef
           new DriveFwdAndSideAndTurn(s_Swerve, false, 7, 6.5, 0),
           //**** RESET POSE TO VALUE FROM GetPoseWithLL
-          new ResetPoseWithLL(s_Swerve).withTimeout(0.25)
+          new ResetPoseWithLL(s_Swerve).withTimeout(0.25),
 
-         // , new L4_Score(elevator, coralHold, coralPivot, algeaPivot);
+          new L2_Score(elevator, coralHold, coralPivot, algeaPivot)
     );         
     
   }

@@ -9,6 +9,7 @@ import frc.robot.commands.AutoCommands.DriveFwd;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
 import frc.robot.commands.AutoCommands.DriveFwdAndTurn;
 import frc.robot.commands.AutoCommands.DriveSideways;
+import frc.robot.commands.Scoring.L2_Score;
 import frc.robot.commands.Scoring.L4_Score;
 import frc.robot.commands.Targeting.GetPoseWithLL;
 import frc.robot.commands.Targeting.ResetPoseWithLL;
@@ -38,7 +39,7 @@ public class Leg1Left extends SequentialCommandGroup {
       //If using odometry only, starting 96.25" from side (drive to reef with coral scorer aligned to right branch)
         // new DriveFwdAndSideAndTurn(s_Swerve, false, 78.5, 0, -58.2).withTimeout(3)//,
    
-     //, new L4_Score(elevator, coralHold, coralPivot, algaePivot)
+     , new L2_Score(elevator, coralHold, coralPivot, algaePivot)
      );               
 
   }

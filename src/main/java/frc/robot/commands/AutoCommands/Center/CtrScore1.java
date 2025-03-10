@@ -16,7 +16,7 @@ import frc.robot.commands.AutoCommands.DriveSideways;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
 import frc.robot.commands.CoralHoldCommands.CoralResetCount;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
-import frc.robot.commands.ElevatorCommands.DangerPIDToHeight;
+import frc.robot.commands.Scoring.L2_Score;
 import frc.robot.commands.Targeting.GetPoseWithLL;
 import frc.robot.commands.Targeting.ResetPoseWithLL;
 import frc.robot.commands.Targeting.TargetSideDistance;
@@ -43,25 +43,9 @@ public class CtrScore1 extends SequentialCommandGroup {
         new ResetPoseWithLL(s_Swerve).withTimeout(0.25)
 
         //,new PIDToElevSafePosition(algeaPivot).withTimeout(2)
-      // )
-      //add score level 4
 
-  //  //SCORE:
-  //     new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(2),
-  //     //new CoralSafePIDToHeight(elevator, coralHold, Constants.Elevator.L4_HEIGHT).withTimeout(2),
-  //     new DangerPIDToHeight(elevator, Constants.Elevator.L4_HEIGHT).withTimeout(2),
-  //     new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL4).withTimeout(2),
-     
-  //     new CoralReleaseNoCountReset(coralHold, Constants.CoralHold.L4_RELEASE_SPEED).withTimeout(0.5),
-    
-  //     new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(2),
-       
-  //     //new PIDToElevSafePosition(algeaPivot).withTimeout(2),
-    
-  //     //new CoralSafePIDToHeight(elevator, coralHold, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(2),
-  //     new DangerPIDToHeight(elevator, Constants.Elevator.BOTTOM_HEIGHT)//,
-      
-  //     //new CoralResetCount(coralHold)
+        , new L2_Score(elevator, coralHold, coralPivot, algeaPivot)
+ 
     );
 
   }

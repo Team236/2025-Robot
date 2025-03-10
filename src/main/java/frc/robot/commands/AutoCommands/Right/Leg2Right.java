@@ -27,6 +27,7 @@ public class Leg2Right extends SequentialCommandGroup {
         new DriveFwdAndSideAndTurn(s_Swerve, false, 10, 96, -68).withTimeout(3)//62
         // new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LOADING).withTimeout(2) //adjust as needed
         // new CoralGrabWithCounter(coralHold, Constants.CoralHold.HOLD_SPEED).withTimeout(2) //adjust as needed
+        
     );
   }
 
