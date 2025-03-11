@@ -7,7 +7,6 @@ package frc.robot.commands.AutoCommands.Center;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
-import frc.robot.commands.AlgaePivotCommands.PIDMakeAPSafeForElev;
 import frc.robot.commands.AlgaePivotCommands.PIDToElevSafePosition;
 import frc.robot.commands.AutoCommands.DriveFwd;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;

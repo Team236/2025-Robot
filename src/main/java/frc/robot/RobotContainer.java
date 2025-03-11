@@ -20,7 +20,6 @@ import frc.robot.commands.AlgaeHoldCommands.AlgaeL2Pickup;
 import frc.robot.commands.AlgaeHoldCommands.AlgaeRelease;
 import frc.robot.commands.AlgaePivotCommands.ManualAlgaePivot;
 import frc.robot.commands.AlgaePivotCommands.PIDAlgaePivot;
-import frc.robot.commands.AlgaePivotCommands.PIDMakeAPSafeForElev;
 import frc.robot.commands.AlgaePivotCommands.PIDToElevSafePosition;
 import frc.robot.commands.AutoCommands.DriveFwd;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
@@ -145,13 +144,13 @@ public class RobotContainer {
    // private final DriveSideways driveSidewaysNeg675 = new DriveSideways(s_Swerve, false, -6.5);
 
     private final Leg1Left leg1Left = new Leg1Left(s_Swerve,  elevator, algaePivot, coralPivot, coralHold);
-    private final Leg2Left leg2Left = new Leg2Left(s_Swerve, coralHold, coralPivot);
+    private final Leg2Left leg2Left = new Leg2Left(s_Swerve, coralHold, coralPivot, elevator);
     private final Leg3Left leg3Left = new Leg3Left(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
     private final FullRunLeft fullRunLeft = new FullRunLeft(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
     private final Legs1and2Left legs1and2Left = new Legs1and2Left(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
 
     private final Leg1Right leg1Right = new Leg1Right(s_Swerve,  elevator, algaePivot, coralPivot, coralHold);
-    private final Leg2Right leg2Right = new Leg2Right(s_Swerve, coralHold, coralPivot);
+    private final Leg2Right leg2Right = new Leg2Right(s_Swerve, coralHold, coralPivot, elevator);
     private final Leg3Right leg3Right = new Leg3Right(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
     private final FullRunRight fullRunRight = new FullRunRight(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
     private final Legs1and2Right legs1and2Right = new Legs1and2Right(s_Swerve, elevator, algaePivot, coralPivot, coralHold);

@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
-import frc.robot.commands.AlgaePivotCommands.PIDMakeAPSafeForElev;
 import frc.robot.commands.AlgaePivotCommands.PIDToElevSafePosition;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;

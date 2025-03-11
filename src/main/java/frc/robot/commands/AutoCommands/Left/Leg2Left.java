@@ -10,8 +10,11 @@ import frc.robot.Constants;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
 import frc.robot.commands.AutoCommands.DriveSideways;
 import frc.robot.commands.CoralHoldCommands.CoralGrabWithCounter;
+import frc.robot.commands.CoralHoldCommands.CoralResetCount;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
+import frc.robot.commands.ElevatorCommands.ElevMotionMagicPID;
 import frc.robot.subsystems.CoralHold;
+import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Swerve;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -19,16 +22,24 @@ import frc.robot.subsystems.Swerve;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class Leg2Left extends SequentialCommandGroup {
   /** Creates a new Leg2Left. */
-  public Leg2Left(Swerve s_Swerve, CoralHold coralHold, frc.robot.subsystems.CoralPivot coralPivot) {
- //!!!!! TODO MAKE ALL Y DISTANCES AND ALL ANGLES OPPOSITE TO Right !!!!
-    addCommands(
-        new DriveSideways(s_Swerve, false, -73), //.withTimeout(2),
-        new DriveFwdAndSideAndTurn(s_Swerve, false, 5, -115, 68).withTimeout(3),//62
+  public Leg2Left(Swerve s_Swerve, CoralHold coralHold, frc.robot.subsystems.CoralPivot coralPivot, Elevator elevator) {
+ //MAKE ALL Y DISTANCES AND ALL ANGLES OPPOSITE TO Right
+ addCommands(
+  Commands.parallel(
+    //Bring elevator down while driving sideways
+    new CoralResetCount(coralHold),
+    new DriveSideways(s_Swerve, false, -73),//.withTimeout(2),//timeout needed?  causes delay?
+    new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT)
+    ), 
 
-        Commands.parallel(
-        new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LOADING).withTimeout(2), //adjust as needed
-        new CoralGrabWithCounter(coralHold, Constants.CoralHold.HOLD_SPEED).withTimeout(2) 
-        )
-    );
+  Commands.parallel(
+    new DriveFwdAndSideAndTurn(s_Swerve, false, 5, -115, 68).withTimeout(3),//62
+    new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LOADING).withTimeout(5), //adjust as needed
+    new CoralGrabWithCounter(coralHold, Constants.CoralHold.HOLD_SPEED).withTimeout(5),
+    new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT)
+    )  
+);
   }
 }
+
+
