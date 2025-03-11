@@ -20,7 +20,6 @@ import frc.robot.commands.AlgaeHoldCommands.AlgaeL2Pickup;
 import frc.robot.commands.AlgaeHoldCommands.AlgaeRelease;
 import frc.robot.commands.AlgaePivotCommands.ManualAlgaePivot;
 import frc.robot.commands.AlgaePivotCommands.PIDAlgaePivot;
-import frc.robot.commands.AlgaePivotCommands.PIDMakeAPSafeForElev;
 import frc.robot.commands.AlgaePivotCommands.PIDToElevSafePosition;
 import frc.robot.commands.AutoCommands.DriveFwd;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
@@ -145,18 +144,18 @@ public class RobotContainer {
    // private final DriveSideways driveSidewaysNeg675 = new DriveSideways(s_Swerve, false, -6.5);
 
     private final Leg1Left leg1Left = new Leg1Left(s_Swerve,  elevator, algaePivot, coralPivot, coralHold);
-    private final Leg2Left leg2Left = new Leg2Left(s_Swerve, coralHold, coralPivot);
+    private final Leg2Left leg2Left = new Leg2Left(s_Swerve, coralHold, coralPivot, elevator);
     private final Leg3Left leg3Left = new Leg3Left(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
     private final FullRunLeft fullRunLeft = new FullRunLeft(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
     private final Legs1and2Left legs1and2Left = new Legs1and2Left(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
 
     private final Leg1Right leg1Right = new Leg1Right(s_Swerve,  elevator, algaePivot, coralPivot, coralHold);
-    private final Leg2Right leg2Right = new Leg2Right(s_Swerve, coralHold, coralPivot);
+    private final Leg2Right leg2Right = new Leg2Right(s_Swerve, coralHold, coralPivot, elevator);
     private final Leg3Right leg3Right = new Leg3Right(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
     private final FullRunRight fullRunRight = new FullRunRight(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
     private final Legs1and2Right legs1and2Right = new Legs1and2Right(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
 
-    private final CtrScore1 fullRunCenter = new CtrScore1(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
+    private final CtrScore1 ctrScore1 = new CtrScore1(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
    // private final DriveWithPath driveWithPathLeg1 = new DriveWithPath(s_Swerve, false);
     
       
@@ -328,7 +327,7 @@ upPov.onTrue(leg1Right);
 downPov.onTrue(leg2Right);
 //leftPov.onTrue(leg3Right);
 //rightPov.onTrue(leg1Left);
-//a.onTrue(fullRunCenter);
+//a.onTrue(ctrScore1);
 
 leftPov.onTrue(prepForClimb);
 rightPov.onTrue(climbDownSequence);
@@ -353,7 +352,7 @@ y1.onTrue(l4_Score);
 // lb1.onTrue(turnOnlyNeg90);
 
 
- //a.onTrue(fullRunCenter);
+  //a.onTrue(ctrScore1);
 
 
 //downPov.whileTrue(dangerElevatorDown);
@@ -364,6 +363,30 @@ y1.onTrue(l4_Score);
   }
 
   public Command getAutonomousCommand() {
+
+  // SmartDashboard.putString("autokey", "Entering getAutoCommand now");
+  Command command = null;
+
+  if (autoSwitch1.get() && autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {
+    command = fullRunRight;
+  } else if (autoSwitch1.get() && autoSwitch2.get() && autoSwitch3.get() && !autoSwitch4.get()) {
+    command = legs1and2Right;
+  } else if (autoSwitch1.get() && autoSwitch2.get() && !autoSwitch3.get() && !autoSwitch4.get()) {
+    command = leg1Right;
+  } else if (!autoSwitch1.get() && autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {
+    command =  fullRunLeft;
+  } else if (!autoSwitch1.get() && autoSwitch2.get() && autoSwitch3.get() && !autoSwitch4.get()) {
+    command =  legs1and2Left;
+  } else if (!autoSwitch1.get() && autoSwitch2.get() && !autoSwitch3.get() && !autoSwitch4.get()) {
+    command = leg1Left;
+  } else if (!autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && !autoSwitch4.get()) {
+    command = ctrScore1;
+  } 
+ return command;
+}
+
+}
+    /* 
     // SmartDashboard.putString("autokey", "Entering getAutoCommand now");
     Command command = null;
     AutoSwitchHelpers autoSwitchHelpers = new AutoSwitchHelpers();
@@ -385,8 +408,7 @@ y1.onTrue(l4_Score);
         command = fullRunCenter;
     }
    return command;
-  }
-
-}
+   */
+ 
 
 

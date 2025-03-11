@@ -25,11 +25,11 @@ public class FullRunLeft extends SequentialCommandGroup {
   /** Creates a new FullRunParallel. */
   public FullRunLeft(Swerve s_Swerve, Elevator elevator, AlgaePivot algaePivot, CoralPivot coralPivot, CoralHold coralHold) {
     addCommands(
-    //!!!!! TODO MAKE ALL Y DISTANCES AND ALL ANGLES OPPOSITE TO FullRunRight !!!!
+    // MAKE ALL Y DISTANCES AND ALL ANGLES OPPOSITE TO FullRunRight 
 
-    // new Leg1Left(s_Swerve, elevator, algaePivot, coralPivot, coralHold),
-    // new Leg2Left(s_Swerve, coralHold),
-    // new Leg3Left(s_Swerve, elevator, algaePivot, coralPivot, coralHold) 
+    new Leg1Left(s_Swerve, elevator, algaePivot, coralPivot, coralHold),
+    new Leg2Left(s_Swerve, coralHold, coralPivot, elevator),
+    new Leg3Left(s_Swerve, elevator, algaePivot, coralPivot, coralHold) 
   
     );
   

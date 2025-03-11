@@ -19,8 +19,8 @@ public class Legs1and2Left extends SequentialCommandGroup {
   public Legs1and2Left(Swerve s_Swerve, Elevator elevator, AlgaePivot algaePivot, CoralPivot coralPivot, CoralHold coralHold) {
 
     addCommands(
-    // new Leg1Left(Swerve s_Swerve, Elevator elevator, AlgaePivot algaePivot, CoralPivot coralPivot, CoralHold coralHold),
-    // new Leg2Left(s_Swerve, coralHold)
+    new Leg1Left(s_Swerve, elevator, algaePivot, coralPivot, coralHold),
+    new Leg2Left(s_Swerve, coralHold, coralPivot, elevator)
     );
   }
 }
