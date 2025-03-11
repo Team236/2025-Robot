@@ -155,7 +155,7 @@ public class RobotContainer {
     private final FullRunRight fullRunRight = new FullRunRight(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
     private final Legs1and2Right legs1and2Right = new Legs1and2Right(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
 
-    private final CtrScore1 fullRunCenter = new CtrScore1(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
+    private final CtrScore1 ctrScore1 = new CtrScore1(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
    // private final DriveWithPath driveWithPathLeg1 = new DriveWithPath(s_Swerve, false);
     
       
@@ -327,7 +327,7 @@ upPov.onTrue(leg1Right);
 downPov.onTrue(leg2Right);
 //leftPov.onTrue(leg3Right);
 //rightPov.onTrue(leg1Left);
-//a.onTrue(fullRunCenter);
+//a.onTrue(ctrScore1);
 
 leftPov.onTrue(prepForClimb);
 rightPov.onTrue(climbDownSequence);
@@ -351,9 +351,7 @@ y1.onTrue(l4_Score);
  // rb1.onTrue(turnOnly90);
  // lb1.onTrue(turnOnlyNeg90);
 
-
-  //a.onTrue(fullRunCenter);
-
+  //a.onTrue(ctrScore1);
 
  //downPov.whileTrue(dangerElevatorDown);
  //upPov.whileTrue(dangerElevatorUp);
@@ -363,6 +361,30 @@ y1.onTrue(l4_Score);
   }
 
   public Command getAutonomousCommand() {
+
+  // SmartDashboard.putString("autokey", "Entering getAutoCommand now");
+  Command command = null;
+
+  if (autoSwitch1.get() && autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {
+    command = fullRunRight;
+  } else if (autoSwitch1.get() && autoSwitch2.get() && autoSwitch3.get() && !autoSwitch4.get()) {
+    command = legs1and2Right;
+  } else if (autoSwitch1.get() && autoSwitch2.get() && !autoSwitch3.get() && !autoSwitch4.get()) {
+    command = leg1Right;
+  } else if (!autoSwitch1.get() && autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {
+    command =  fullRunLeft;
+  } else if (!autoSwitch1.get() && autoSwitch2.get() && autoSwitch3.get() && !autoSwitch4.get()) {
+    command =  legs1and2Left;
+  } else if (!autoSwitch1.get() && autoSwitch2.get() && !autoSwitch3.get() && !autoSwitch4.get()) {
+    command = leg1Left;
+  } else if (!autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && !autoSwitch4.get()) {
+    command = ctrScore1;
+  } 
+ return command;
+}
+
+}
+    /* 
     // SmartDashboard.putString("autokey", "Entering getAutoCommand now");
     Command command = null;
     AutoSwitchHelpers autoSwitchHelpers = new AutoSwitchHelpers();
@@ -384,8 +406,7 @@ y1.onTrue(l4_Score);
         command = fullRunCenter;
     }
    return command;
-  }
-
-}
+   */
+ 
 
 
