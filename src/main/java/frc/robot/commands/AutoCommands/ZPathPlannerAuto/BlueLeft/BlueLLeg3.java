@@ -14,6 +14,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
@@ -31,7 +32,26 @@ public class BlueLLeg3 extends  SequentialCommandGroup  {
                 Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared)
             .setKinematics(Constants.Swerve.swerveKinematics).setReversed(reversed);
 
-    // An example trajectory to follow.  All units in meters.
+    // Assign trajectory to follow based on allience color.  All units in meters.
+    
+    if(DriverStation.getAlliance().toString()=="Blue") {  
+        Trajectory exampleTrajectory = TrajectoryGenerator.generateTrajectory(
+        new Pose2d( 1.65695, 0.6915, new Rotation2d(-2.199) ),
+        // new Pose2d( 1.6080, 0.69749, new Rotation2d(0.942479) ),
+        List.of(
+          new Translation2d( 1.830512349159914, 0.9686595273011757),
+          new Translation2d( 2.0881461888415886, 1.2733499805445234),
+          new Translation2d( 2.2184400639948594, 1.4244764650051616),
+          new Translation2d( 2.481053892292155, 1.7251236385699658),
+          new Translation2d( 2.612936805506801, 1.8750475887082994),
+          new Translation2d( 2.8766188306958678, 2.1752414962458073),
+          new Translation2d( 3.0078793953224903, 2.3260018496185744),
+          new Translation2d( 3.2678355636388834, 2.6300716276811347) ),
+        new Pose2d( 3.4023, 2.7915, new Rotation2d(1.047) ),        // reef C also camera centered
+        config );
+
+    } else {
+    
     // should be drive leg3 to C or D from from end of leg2 
     Trajectory exampleTrajectory = TrajectoryGenerator.generateTrajectory(
         new Pose2d( 1.65695, 0.6915, new Rotation2d(-2.199) ),
@@ -47,7 +67,7 @@ public class BlueLLeg3 extends  SequentialCommandGroup  {
           new Translation2d( 3.2678355636388834, 2.6300716276811347) ),
         new Pose2d( 3.4023, 2.7915, new Rotation2d(1.047) ),        // reef C also camera centered
         config );
-    
+    }
 
     // original trajectory generated manually 
 
@@ -64,9 +84,11 @@ public class BlueLLeg3 extends  SequentialCommandGroup  {
         new Pose2d(4, 4, new Rotation2d(0)),
         config); */
  
-    var thetaController =
-        new ProfiledPIDController(
-            Constants.AutoConstants.kPThetaController, 0, 0, Constants.AutoConstants.kThetaControllerConstraints);
+    var thetaController = new ProfiledPIDController(
+            Constants.AutoConstants.kPThetaController, 
+            0, 
+            0, 
+            Constants.AutoConstants.kThetaControllerConstraints );
     thetaController.enableContinuousInput(-Math.PI, Math.PI);
 
     SwerveControllerCommand swerveControllerCommand =

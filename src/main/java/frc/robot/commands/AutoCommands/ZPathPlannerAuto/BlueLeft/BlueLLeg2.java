@@ -30,7 +30,9 @@ public class BlueLLeg2 extends  SequentialCommandGroup  {
         Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared)
     .setKinematics(Constants.Swerve.swerveKinematics).setReversed(reversed);
 
+    if(DriverStation.getAlliance().toString()=="Blue") {  
     // ***** Path: leg2***** 
+    
     Trajectory exampleTrajectory =  TrajectoryGenerator.generateTrajectory(
         new Pose2d( 5.159896066581073, 2.889722580682677, new Rotation2d(2.0943951023931953) ),
         List.of( 
@@ -47,7 +49,8 @@ public class BlueLLeg2 extends  SequentialCommandGroup  {
             new Translation2d( 2.1802790551337163, 0.9901391018147371),
             new Translation2d( 1.82988962295267, 0.7875334080038218) ),
         new Pose2d( 1.65695, 0.6915, new Rotation2d(-2.199) ),
-        config );
+        config ); 
+    } else {
 
     // An example trajectory to follow.  All units in meters.
     // original path data 
@@ -60,6 +63,7 @@ public class BlueLLeg2 extends  SequentialCommandGroup  {
         new Pose2d(4, 4, new Rotation2d(0) ),    //End here
         config );
     */
+    }
  
     var thetaController =
         new ProfiledPIDController(

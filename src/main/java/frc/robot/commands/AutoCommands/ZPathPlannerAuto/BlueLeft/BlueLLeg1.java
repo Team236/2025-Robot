@@ -37,7 +37,7 @@ public class BlueLLeg1 extends  SequentialCommandGroup  {
         // replace this with leg?? pose and waypoints
         //TODO where does this drive replace this with leg??  pose and waypoints 
 
-
+        if(DriverStation.getAlliance().toString()=="Blue") {  
     Trajectory exampleTrajectory = TrajectoryGenerator.generateTrajectory(
     //***** Path: leg1.txt ***** 
         new Pose2d( 7.17, 2.83, new Rotation2d(3.141592653589793) ),
@@ -50,8 +50,11 @@ public class BlueLLeg1 extends  SequentialCommandGroup  {
             new Translation2d( 5.163674217701479, 2.5663090837843123) ),
         new Pose2d( 4.958352911410241, 2.5333954076599787, new Rotation2d(2.08265216922672) ),
         config );
+
+        } else {   // driver station is Red flip the path
+            
         // original path data 
-    /* Trajectory exampleTrajectory = TrajectoryGenerator.generateTrajectory(
+        /* Trajectory exampleTrajectory = TrajectoryGenerator.generateTrajectory(
         new Pose2d( 0, 0, new Rotation2d(0) ),   // Start here
        List.of(                                 // Pass through these interior waypoints
         new Translation2d( 1, 1), 
@@ -60,6 +63,7 @@ public class BlueLLeg1 extends  SequentialCommandGroup  {
         new Pose2d(4, 4, new Rotation2d(0) ),   //End here
         config ); 
     */
+        }
  
     var thetaController =
         new ProfiledPIDController(
