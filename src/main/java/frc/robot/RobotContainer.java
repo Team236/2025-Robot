@@ -266,56 +266,56 @@ public class RobotContainer {
 
     //Inputs
 
-    //y button is already assigned to ZeroGyro
-    //leftBumper lb button is already assigned to RobotCentric
+  //y button is already assigned to ZeroGyro
+  //leftBumper lb button is already assigned to RobotCentric
 
-    //leftPov.whileTrue(driveFwdAndSideAndTurn);
+//leftPov.whileTrue(driveFwdAndSideAndTurn);
 
-    // rb.whileTrue(targetAllParallel);
-    // upPov.whileTrue(targetForwardDistance);
-    // downPov.whileTrue(targetsideDistance);
+//rb.whileTrue(targetAllParallel);
+//upPov.whileTrue(targetForwardDistance);
+//downPov.whileTrue(targetsideDistance);
 
-    //upPov.whileTrue(leg1Right);
-    //a.whileTrue(legs1and2Right);
-    //b.whileTrue(driveWithPathLeg1);
-    //x.whileTrue(leg2Right);
+//upPov.whileTrue(leg1Right);
+//a.whileTrue(legs1and2Right);
+//b.whileTrue(driveWithPathLeg1);
+//x.whileTrue(leg2Right);
 
-    //a.onTrue(pidCoraltoL1);
-    //x.onTrue(pidCoraltoL2);
-    //b.onTrue(pidCoraltoL3);
-    //rightPov.onTrue(pidCoraltoL4);
+//a.onTrue(pidCoraltoL1);
+//x.onTrue(pidCoraltoL2);
+//b.onTrue(pidCoraltoL3);
+//rightPov.onTrue(pidCoraltoL4);
 
-   // x.whileTrue(algaeGrab);
-   // a.whileTrue(algaeRelease);
+lm1.whileTrue(algaeGrab);
+rm1.whileTrue(algaeRelease);
 
-  // rm.whileTrue(algaePivotUp);
-  // rb.whileTrue(algaePivotDown);
+upPov1.whileTrue(algaePivotUp);
+downPov1.whileTrue(algaePivotDown);
 
-  // rightPov.onTrue(pidReefPickup); //pivot Algae to position for Reef pickup
-  // b.onTrue(pidAlgaeScoreNet); //pivot Algae to score in Net position
- // b.onTrue(pidToElevSafePosition); //if AP under elevator, move to safe position
- // upPov.onTrue(pidPrepForClimb);
-  //downPov.onTrue(pidClimb);
+//rightPov.onTrue(pidReefPickup); //pivot Algae to position for Reef pickup
+//b.onTrue(pidAlgaeScoreNet); //pivot Algae to score in Net position
+//b.onTrue(pidToElevSafePosition); //if AP under elevator, move to safe position
+//upPov.onTrue(pidPrepForClimb);
+//downPov.onTrue(pidClimb);
 
 //****DO NOT USE COMMANDS BELOW WHEN ALGAE PIVOT ATTACHED***
 // downPov.whileTrue(dangerElevatorDown);
 // upPov.whileTrue(dangerElevatorUp); 
- //downPov.onTrue(dangerPidElevL1);
- //leftPov.onTrue(dangerPidElevL2);
- //rightPov.onTrue(dangerPidElevL3); 
- //upPov.onTrue(dangerPidElevL4);
+//downPov.onTrue(dangerPidElevL1);
+//leftPov.onTrue(dangerPidElevL2);
+//rightPov.onTrue(dangerPidElevL3); 
+//upPov.onTrue(dangerPidElevL4);
 
- // a.whileTrue(targetsideDistance);
-  //x.whileTrue(targetForwardDistance);
-  //b.whileTrue(targetAngle);
- // rb.whileTrue(targetAllParallel);
+//a.whileTrue(targetsideDistance);
+//x.whileTrue(targetForwardDistance);
+//b.whileTrue(targetAngle);
+//rb.whileTrue(targetAllParallel);
 
-  // rightPov.whileTrue(coralGrab);
-  //b.whileTrue(coralRelease);
-  //x.whileTrue(coralGrabWithCounter);
+//rightPov.whileTrue(coralGrab);
+//b.whileTrue(coralRelease);
+//x.whileTrue(coralGrabWithCounter);
 
- rm.whileTrue(coralPivotUp);
- rb.whileTrue(coralPivotDown);
+rm.whileTrue(coralPivotUp);
+rb.whileTrue(coralPivotDown);
 
 a.onTrue(coralSeqGrabCount);
 lm.whileTrue(coralRelease);
@@ -333,8 +333,8 @@ downPov.onTrue(leg2Right);
 leftPov.onTrue(prepForClimb);
 rightPov.onTrue(climbDownSequence);
 
-downPov1.whileTrue(dangerElevatorDown);
-upPov1.whileTrue(dangerElevatorUp);
+//downPov1.whileTrue(dangerElevatorDown);
+//upPov1.whileTrue(dangerElevatorUp);
 
 //y1.onTrue(l1_Score);
 a1.onTrue(l2_Score);
@@ -343,21 +343,21 @@ x1.onTrue(l3_Score);
 b1.onTrue(motionMagicToBottom);
 y1.onTrue(l4_Score);
 
-  //
+
 //  rm.onTrue(driveSideways675);
- // rb.onTrue(driveSidewaysNeg675);
-  //upPov.onTrue(driveFwd9);
-  //downPov.onTrue(driveReverse9);
- // y1.onTrue(driveReverse10);
- // rb1.onTrue(turnOnly90);
- // lb1.onTrue(turnOnlyNeg90);
+// rb.onTrue(driveSidewaysNeg675);
+//upPov.onTrue(driveFwd9);
+//downPov.onTrue(driveReverse9);
+// y1.onTrue(driveReverse10);
+// rb1.onTrue(turnOnly90);
+// lb1.onTrue(turnOnlyNeg90);
 
 
-  //a.onTrue(fullRunCenter);
+ //a.onTrue(fullRunCenter);
 
 
- //downPov.whileTrue(dangerElevatorDown);
- //upPov.whileTrue(dangerElevatorUp);
+//downPov.whileTrue(dangerElevatorDown);
+//upPov.whileTrue(dangerElevatorUp);
 
 // a.onTrue(algaeGrab).onTrue(l3_Score);
 // b.onTrue(algaeGrab).onTrue(l4_Score);

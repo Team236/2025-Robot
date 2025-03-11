@@ -261,13 +261,13 @@ public static class CoralHold {
     public static final int DIO_LIMIT = 6;
     public static final int DIO_ENC_A = 7;
     public static final int DIO_ENC_B = 13;
-    public static final double ENC_REVS_MAX = -23.7;
+    public static final double ENC_REVS_MAX = -700; //TODO determine max revs
     public static final double ENC_REVS_REEF_PICKUP = -18;
     public static final double ENC_REVS_FLOOR_PICKUP = -23.7;
     public static final double ENC_REVS_SCORE_NET = 0; //TODO find actual - should be 0?
     public static final double ENC_REVS_ELEVATOR_SAFE_POSITION = -15;//TODO find actual - unsafe if higher
-    public static final double MAN_EXT_SPEED = -0.1;
-    public static final double MAN_RET_SPEED = 0.1;
+    public static final double MAN_EXT_SPEED = 0.4;
+    public static final double MAN_RET_SPEED = -0.4;
     public static final double KP = 0.05;  //TODO find actual
     public static final double KI = 0;
     public static final double KD = 0;

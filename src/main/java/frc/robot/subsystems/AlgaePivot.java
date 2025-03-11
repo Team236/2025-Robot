@@ -106,7 +106,7 @@ public class AlgaePivot extends SubsystemBase {
 
   public void setAlgaePivotSpeed(double speed){  
     desiredSpeed = speed;
-    if (speed <= 0){ //negative speed means extending
+    if (speed >= 0){ //positive speed means extending
       //Extending
       if (isFullyExtended()){
         stopAlgaePivot();
