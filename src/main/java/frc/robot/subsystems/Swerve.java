@@ -175,8 +175,10 @@ The numbers used below are robot specific, and should be tuned. */
     }
 
     public void resetLLPose() {
+        if (poseLL != null) {
         setPose(poseLL);
     }
+}
 
     @Override
     public void periodic(){
