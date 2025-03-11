@@ -166,7 +166,7 @@ public class Elevator extends SubsystemBase {
        }  else {
           // elevator going up but top limit is not tripped, go at commanded speed
           leftElevatorMotor.set(speed);
-         // rightElevatorMotor.set(speed);
+         // rightElevatorMotor.set(speed); //remove vbecause right follows top
         }
       } 
     else {
