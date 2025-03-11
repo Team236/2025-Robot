@@ -4,6 +4,7 @@
 
 package frc.robot.commands.AutoCommands.Right;
 
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
 import frc.robot.Constants.CoralPivot;
@@ -11,6 +12,7 @@ import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
 import frc.robot.commands.AutoCommands.DriveSideways;
 import frc.robot.commands.CoralHoldCommands.CoralGrab;
 import frc.robot.commands.CoralHoldCommands.CoralGrabWithCounter;
+import frc.robot.commands.CoralHoldCommands.CoralResetCount;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
 import frc.robot.commands.Targeting.TargetAllParallel;
 import frc.robot.subsystems.CoralHold;
@@ -23,10 +25,13 @@ public class Leg2Right extends SequentialCommandGroup {
   /** Creates a new Leg2Right. */
   public Leg2Right(Swerve s_Swerve, CoralHold coralHold, frc.robot.subsystems.CoralPivot coralPivot) {
     addCommands(
-        new DriveSideways(s_Swerve, false, 73), //.withTimeout(2),
-        new DriveFwdAndSideAndTurn(s_Swerve, false, 10, 96, -68).withTimeout(3)//62
-        // new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LOADING).withTimeout(2) //adjust as needed
-        // new CoralGrabWithCounter(coralHold, Constants.CoralHold.HOLD_SPEED).withTimeout(2) //adjust as needed
+      Commands.parallel(
+        new CoralResetCount(coralHold),
+        new DriveSideways(s_Swerve, false, 73)
+        ), //.withTimeout(2),
+        new DriveFwdAndSideAndTurn(s_Swerve, false, 10, 96, -68).withTimeout(3),//62
+        new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LOADING).withTimeout(2), //adjust as needed
+        new CoralGrabWithCounter(coralHold, Constants.CoralHold.HOLD_SPEED).withTimeout(2) //adjust as needed
         
     );
   }

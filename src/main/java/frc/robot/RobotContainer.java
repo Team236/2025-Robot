@@ -76,6 +76,8 @@ import frc.robot.subsystems.CoralPivot;
  * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
  * subsystems, commands, and trigger mappings) should be declared here.
  */
+
+ //GUILLOTINE
 public class RobotContainer {
 
   //Controllers
@@ -316,16 +318,16 @@ public class RobotContainer {
  rb.whileTrue(coralPivotDown);
 
 a.onTrue(coralSeqGrabCount);
- b.whileTrue(coralRelease);
+lm.whileTrue(coralRelease);
  
 //a1.whileTrue(algaeTarget);
 x.whileTrue(coralLeftTarget);
-//b.whileTrue(coralRightTarget);
+b.whileTrue(coralRightTarget);
 
-//upPov.onTrue(leg1Left);
-//downPov.onTrue(leg2Left);
+upPov.onTrue(leg1Right);
+downPov.onTrue(leg2Right);
 //leftPov.onTrue(leg3Right);
-////rightPov.onTrue(leg1Left);
+//rightPov.onTrue(leg1Left);
 //a.onTrue(fullRunCenter);
 
 leftPov.onTrue(prepForClimb);
@@ -336,10 +338,10 @@ upPov1.whileTrue(dangerElevatorUp);
 
 //y1.onTrue(l1_Score);
 a1.onTrue(l2_Score);
-//x1.onTrue(l3_Score);
-b1.onTrue(motionMagicToTestLevel);
-y1.onTrue(motionMagicToBottom);
-//b1.onTrue(l4_Score);
+x1.onTrue(l3_Score);
+//b1.onTrue(motionMagicToTestLevel);
+b1.onTrue(motionMagicToBottom);
+y1.onTrue(l4_Score);
 
   //
 //  rm.onTrue(driveSideways675);

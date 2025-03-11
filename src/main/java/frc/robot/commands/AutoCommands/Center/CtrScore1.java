@@ -44,7 +44,7 @@ public class CtrScore1 extends SequentialCommandGroup {
 
         //,new PIDToElevSafePosition(algeaPivot).withTimeout(2)
 
-        , new L2_Score(elevator, coralHold, coralPivot, algeaPivot)
+        //, new L2_Score(elevator, coralHold, coralPivot, algeaPivot)
  
     );
 

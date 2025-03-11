@@ -10,6 +10,8 @@ import frc.robot.Constants;
 import frc.robot.commands.AlgaePivotCommands.PIDMakeAPSafeForElev;
 import frc.robot.commands.AlgaePivotCommands.PIDToElevSafePosition;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
+import frc.robot.commands.AutoCommands.DriveFwdAndTurn;
+import frc.robot.commands.AutoCommands.DriveSideways;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
 import frc.robot.commands.CoralHoldCommands.CoralResetCount;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
@@ -41,16 +43,19 @@ public class Leg3Right extends SequentialCommandGroup {
         ),   
           //Use limelight to get exactly 10" from bumper to AprilTag
           new TargetAngle(s_Swerve).withTimeout(1),
-          new TargetForwardDistance(s_Swerve, 10).withTimeout(1),
+          // new TargetForwardDistance(s_Swerve, 10).withTimeout(1),
           new TargetSideDistance(s_Swerve, 0).withTimeout(1),
+          new TargetForwardDistance(s_Swerve, 0).withTimeout(1),
+
           //**** GET POSE WITH LIMELIGHT, BEFORE DRIVING WITH ODOMETRY
           new GetPoseWithLL(s_Swerve).withTimeout(0.25),
           //Needs to end  with coral scorer aligned with right branch of Reef
-          new DriveFwdAndSideAndTurn(s_Swerve, false, 7, 6.5, 0),
+          new DriveSideways(s_Swerve, false, 6.5).withTimeout(1.5),
+          
           //**** RESET POSE TO VALUE FROM GetPoseWithLL
-          new ResetPoseWithLL(s_Swerve).withTimeout(0.25),
+          new ResetPoseWithLL(s_Swerve).withTimeout(0.25)//,
 
-          new L2_Score(elevator, coralHold, coralPivot, algeaPivot)
+          //new L2_Score(elevator, coralHold, coralPivot, algeaPivot)
     );         
     
   }

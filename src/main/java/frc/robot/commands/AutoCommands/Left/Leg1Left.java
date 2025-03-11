@@ -13,6 +13,7 @@ import frc.robot.commands.Scoring.L2_Score;
 import frc.robot.commands.Scoring.L4_Score;
 import frc.robot.commands.Targeting.GetPoseWithLL;
 import frc.robot.commands.Targeting.ResetPoseWithLL;
+import frc.robot.commands.Targeting.TargetForwardDistance;
 import frc.robot.commands.Targeting.TargetSideDistance;
 import frc.robot.subsystems.AlgaePivot;
 import frc.robot.subsystems.CoralHold;
@@ -30,16 +31,16 @@ public class Leg1Left extends SequentialCommandGroup {
      //START ROBOT WITH BACK BUMPER FLUSH WITH BACK OF BLACK STARTING LINE, 91" from sideline
           new DriveFwdAndTurn(s_Swerve, false, 77.5,  61).withTimeout(1.3), //fwd 66.5
           new TargetSideDistance(s_Swerve, 0).withTimeout(1),
+          new TargetForwardDistance(s_Swerve, 0).withTimeout(1),
           new GetPoseWithLL(s_Swerve).withTimeout(0.25),
           new DriveSideways(s_Swerve, false, 7.75).withTimeout(1.9),
-          new DriveFwd(s_Swerve, false, 11).withTimeout(2),//8.8
           new ResetPoseWithLL(s_Swerve).withTimeout(0.25)
 
     
       //If using odometry only, starting 96.25" from side (drive to reef with coral scorer aligned to right branch)
         // new DriveFwdAndSideAndTurn(s_Swerve, false, 78.5, 0, -58.2).withTimeout(3)//,
    
-     , new L2_Score(elevator, coralHold, coralPivot, algaePivot)
+     //, new L2_Score(elevator, coralHold, coralPivot, algaePivot)
      );               
 
   }
