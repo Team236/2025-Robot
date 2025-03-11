@@ -19,11 +19,8 @@ import frc.robot.subsystems.CoralHold;
 import frc.robot.subsystems.CoralPivot;
 import frc.robot.subsystems.Elevator;
 
-// NOTE:  Consider using this command inline, rather than writing a subclass.  For more
-// information, see:
-// https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class L4_Score_AutoLeg1 extends SequentialCommandGroup {
-  /** Creates a new L2_Score. */
+ //DOES NOT BRING ELEVATOR DOWN AT END -THAT HAPPENS AT START OF LEG2
   public L4_Score_AutoLeg1(Elevator elevator, CoralHold coralHold, CoralPivot coralPivot, AlgaePivot algaePivot) {
 
     addCommands(

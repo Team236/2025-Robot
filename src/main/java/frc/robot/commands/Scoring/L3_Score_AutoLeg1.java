@@ -23,7 +23,7 @@ import frc.robot.subsystems.Elevator;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class L3_Score_AutoLeg1 extends SequentialCommandGroup {
-  /** Creates a new L2_Score. */
+//DOES NOT BRING ELEVATOR DOWN AT END -THAT HAPPENS AT START OF LEG2
   public L3_Score_AutoLeg1(Elevator elevator, CoralHold coralHold, CoralPivot coralPivot, AlgaePivot algaePivot) {
 
     addCommands(

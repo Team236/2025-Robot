@@ -25,7 +25,7 @@ import frc.robot.subsystems.Elevator;
 public class L2_Score_AutoLeg1 extends SequentialCommandGroup {
   /** Creates a new L2_Score. */
   public L2_Score_AutoLeg1(Elevator elevator, CoralHold coralHold, CoralPivot coralPivot, AlgaePivot algaePivot) {
-
+//DOES NOT BRING ELEVATOR DOWN AT END -THAT HAPPENS AT START OF LEG2
     addCommands(
     Commands.parallel(
      //new PIDToElevSafePosition(algaePivot).withTimeout(0.5),

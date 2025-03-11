@@ -32,7 +32,7 @@ public class Leg1Left extends SequentialCommandGroup {
           new DriveFwdAndTurn(s_Swerve, false, 77.5,  61).withTimeout(1.3), //fwd 66.5
           new TargetSideDistance(s_Swerve, 0).withTimeout(1),
           new TargetForwardDistance(s_Swerve, 0).withTimeout(1),
-          new GetPoseWithLL(s_Swerve).withTimeout(0.25),
+          new GetPoseWithLL(s_Swerve).withTimeout(0.3),
           new DriveSideways(s_Swerve, false, 7.75).withTimeout(1.9),
           new ResetPoseWithLL(s_Swerve).withTimeout(0.25)
 

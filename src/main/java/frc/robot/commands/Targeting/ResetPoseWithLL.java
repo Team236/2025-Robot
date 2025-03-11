@@ -19,7 +19,7 @@ public class ResetPoseWithLL extends Command {
   /** Creates a new ResetPoseWithLL. */
   //public Pose2d poseLL; //want to use this pose after this command, after moving with odometry  
    private Swerve s_Swerve;    
-   public Pose2d poseLL;  //from GetPoseWithLL??
+   public Pose2d poseLL;  //from GetPoseWithLL
 
   public ResetPoseWithLL(Swerve s_Swerve)  {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -29,7 +29,9 @@ public class ResetPoseWithLL extends Command {
 
   // Called when the command is initially scheduled.
   public void initialize() {
+    if (poseLL != null)  {
    s_Swerve.resetLLPose();
+    };
   } 
 
   // Called every time the scheduler runs while the command is scheduled.
