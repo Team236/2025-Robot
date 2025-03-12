@@ -318,7 +318,7 @@ lm.whileTrue(coralRelease);
 x.whileTrue(coralLeftTarget);
 b.whileTrue(coralRightTarget);
 
-upPov.onTrue(legs1and2Left);
+upPov.onTrue(ctrScore1);
 downPov.onTrue(legs1and2Right);
 //a.onTrue(ctrScore1);
 

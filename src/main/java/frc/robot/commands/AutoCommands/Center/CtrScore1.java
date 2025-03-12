@@ -16,6 +16,7 @@ import frc.robot.commands.CoralHoldCommands.CoralRelease;
 import frc.robot.commands.CoralHoldCommands.CoralResetCount;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
 import frc.robot.commands.Scoring.L2_Score;
+import frc.robot.commands.Scoring.L4_Score;
 import frc.robot.commands.Targeting.GetPoseWithLL;
 import frc.robot.commands.Targeting.ResetPoseWithLL;
 import frc.robot.commands.Targeting.TargetSideDistance;
@@ -43,7 +44,7 @@ public class CtrScore1 extends SequentialCommandGroup {
 
         //,new PIDToElevSafePosition(algeaPivot).withTimeout(2)
 
-        //, new L2_Score(elevator, coralHold, coralPivot, algeaPivot)
+        , new L4_Score(elevator, coralHold, coralPivot, algeaPivot)
  
     );
 

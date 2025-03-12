@@ -280,7 +280,7 @@ public static class CoralHold {
     public static final double ENC_REVS_LEVEL1 = 0;
     public static final double ENC_REVS_LEVEL2 = -22;
     public static final double ENC_REVS_LEVEL3 = -22; 
-    public static final double ENC_REVS_LEVEL4 = -107;
+    public static final double ENC_REVS_LEVEL4 = -110;//107
     public static final double ENC_REVS_FULL_RETRACT = 0;
     public static final double MAN_EXT_SPEED = -0.6;
     public static final double MAN_RET_SPEED = 0.6;
