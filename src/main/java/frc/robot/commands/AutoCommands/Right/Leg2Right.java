@@ -9,7 +9,9 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
 import frc.robot.Constants.CoralPivot;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
+import frc.robot.commands.AutoCommands.DriveRevAndSideAndTurn;
 import frc.robot.commands.AutoCommands.DriveSideways;
+import frc.robot.commands.AutoCommands.EndDriveTrajectoryPID;
 import frc.robot.commands.CoralHoldCommands.CoralGrab;
 import frc.robot.commands.CoralHoldCommands.CoralGrabWithCounter;
 import frc.robot.commands.CoralHoldCommands.CoralResetCount;
@@ -29,16 +31,23 @@ public class Leg2Right extends SequentialCommandGroup {
     addCommands(
       Commands.parallel( 
         new CoralResetCount(coralHold).withTimeout(0.5),
-        new DriveSideways(s_Swerve, false, 73).withTimeout(2.5)
+        new DriveFwdAndSideAndTurn(s_Swerve, true, -6, 157, 0).withTimeout(2.5),
+        //new DriveSideways(s_Swerve, false, 73).withTimeout(2.5)
+        //new DriveSideways(s_Swerve, false, 150).withTimeout(2.5)
         //Bring elevator down while driving sideways
-        ,new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.5)
+        new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.5)
         ), 
 
       Commands.parallel(
-        new DriveFwdAndSideAndTurn(s_Swerve, false, 10, 96, -68).withTimeout(3),//62
+        Commands.sequence(
+        //new DriveFwdAndSideAndTurn(s_Swerve, false, 10, 92, -68).withTimeout(3.5),//96new
+        new DriveFwdAndSideAndTurn(s_Swerve, false, 19, 20, -68).withTimeout(4),//96new
+        new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5)
+        ),
         new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LOADING).withTimeout(4), //adjust as needed
         new CoralGrabWithCounter(coralHold, Constants.CoralHold.HOLD_SPEED).withTimeout(4)
         )  
+         
     );
     
   }

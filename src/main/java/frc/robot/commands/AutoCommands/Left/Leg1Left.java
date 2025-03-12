@@ -42,7 +42,7 @@ public class Leg1Left extends SequentialCommandGroup {
 
           // Could use AutoLeg2 score, which does not bring elevator down - if bring it down at start of leg2
           new L4_Score_AutoLeg1(elevator, coralHold, coralPivot, algaePivot)
-     );               
+     );           
 
   }
 }

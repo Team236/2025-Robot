@@ -5,6 +5,7 @@
 package frc.robot.commands.AutoCommands.Right;
 
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
 import frc.robot.commands.AlgaePivotCommands.PIDToElevSafePosition;
@@ -12,6 +13,7 @@ import frc.robot.commands.AutoCommands.DriveFwd;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
 import frc.robot.commands.AutoCommands.DriveFwdAndTurn;
 import frc.robot.commands.AutoCommands.DriveSideways;
+import frc.robot.commands.CoralHoldCommands.CoralGrabWithCounter;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
 import frc.robot.commands.CoralHoldCommands.CoralResetCount;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
@@ -38,19 +40,17 @@ public class Leg3Right extends SequentialCommandGroup {
   /** Creates a new Leg3Right. */
   public Leg3Right(Swerve s_Swerve, Elevator elevator, AlgaePivot algeaPivot, CoralPivot coralPivot, CoralHold coralHold) {
     addCommands(
-        //******NEED TO CHANGE TO "FALSE" BELOW????
-        
-        new DriveFwdAndSideAndTurn(s_Swerve, true ,125.5, -19, 6).withTimeout(3.5), //x 106?
-       // new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.2),
-       // new TargetSideDistance(s_Swerve, 0).withTimeout(1),
-        //new TargetForwardDistance(s_Swerve, 0).withTimeout(1),
-        //**** GET POSE WITH LIMELIGHT, BEFORE DRIVING WITH ODOMETRY
-        new GetPoseWithLL(s_Swerve).withTimeout(0.3),
-        //Needs to end  with coral scorer aligned with right branch of Reef
-        //new DriveSideways(s_Swerve, false, 6.5).withTimeout(1.5), 
-        //**** RESET POSE TO VALUE FROM GetPoseWithLL
-        new ResetPoseWithLL(s_Swerve).withTimeout(0.25)//,
-
+        //******NEED TO CHANGE TO "FALSE" BELOW????   
+         new DriveFwdAndSideAndTurn(s_Swerve, false ,123, -19.5, 6).withTimeout(3.5), //x 106? //TRUE?
+         // new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.2),
+         // new TargetSideDistance(s_Swerve, 0).withTimeout(1),
+         //new TargetForwardDistance(s_Swerve, 0).withTimeout(1),
+         //**** GET POSE WITH LIMELIGHT, BEFORE DRIVING WITH ODOMETRY
+         new GetPoseWithLL(s_Swerve).withTimeout(0.5),
+         //Needs to end  with coral scorer aligned with right branch of Reef
+         //new DriveSideways(s_Swerve, false, 6.5).withTimeout(1.5), 
+         //**** RESET POSE TO VALUE FROM GetPoseWithLL
+         new ResetPoseWithLL(s_Swerve).withTimeout(0.5)//,
       // ,new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5),
       //  new L4_Score(elevator, coralHold, coralPivot, algeaPivot)
     );         
