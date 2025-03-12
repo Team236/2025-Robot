@@ -42,9 +42,9 @@ public class Leg3Left extends SequentialCommandGroup {
         //Needs to end  with coral scorer aligned with right branch of Reef
         new DriveSideways(s_Swerve, false, -6.5).withTimeout(1.5), 
         //**** RESET POSE TO VALUE FROM GetPoseWithLL
-        new ResetPoseWithLL(s_Swerve).withTimeout(0.25),
+        new ResetPoseWithLL(s_Swerve).withTimeout(0.25)//,
 
-        new L4_Score(elevator, coralHold, coralPivot, algaePivot)
+        //new L4_Score(elevator, coralHold, coralPivot, algaePivot)
     );   
   }
 }

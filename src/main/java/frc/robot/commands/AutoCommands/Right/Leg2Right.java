@@ -29,16 +29,16 @@ public class Leg2Right extends SequentialCommandGroup {
     addCommands(
       Commands.parallel(
         //Bring elevator down while driving sideways
-        new CoralResetCount(coralHold),
-        new DriveSideways(s_Swerve, false, 73).withTimeout(1),//timeout needed?  causes delay?
-        new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT)
+        new CoralResetCount(coralHold).withTimeout(0.5),
+        new DriveSideways(s_Swerve, false, 73).withTimeout(2.5)//timeout needed?  causes delay?
+        // new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.3)
         ), 
 
       Commands.parallel(
         new DriveFwdAndSideAndTurn(s_Swerve, false, 10, 96, -68).withTimeout(3),//62
         new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LOADING).withTimeout(5), //adjust as needed
-        new CoralGrabWithCounter(coralHold, Constants.CoralHold.HOLD_SPEED).withTimeout(5),
-        new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT)
+        new CoralGrabWithCounter(coralHold, Constants.CoralHold.HOLD_SPEED).withTimeout(5)
+        // new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(2)
         )  
     );
     

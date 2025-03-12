@@ -20,7 +20,7 @@ public class PrepForClimb extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
      // new PIDToElevSafePosition(algaePivot),
-      new ElevMotionMagicPID(elevator, Constants.Elevator.CLIMB_START_HEIGHT).withTimeout(2)
+      new ElevMotionMagicPID(elevator, Constants.Elevator.CLIMB_START_HEIGHT)
     );
   }
 }

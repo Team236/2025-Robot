@@ -318,8 +318,8 @@ lm.whileTrue(coralRelease);
 x.whileTrue(coralLeftTarget);
 b.whileTrue(coralRightTarget);
 
-upPov.onTrue(leg1Right);
-downPov.onTrue(leg1Left);
+upPov.onTrue(legs1and2Left);
+downPov.onTrue(legs1and2Right);
 //a.onTrue(ctrScore1);
 
 leftPov.onTrue(prepForClimb);
@@ -357,21 +357,22 @@ upPov1.whileTrue(dangerElevatorUp);
   public Command getAutonomousCommand() {
 
   // SmartDashboard.putString("autokey", "Entering getAutoCommand now");
+  SmartDashboard.putString("Asking for auto sequence", "" + !autoSwitch1.get() + !autoSwitch2.get() + !autoSwitch3.get() + !autoSwitch4.get());
   Command command = null;
 
   if (autoSwitch1.get() && autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {
     command = fullRunRight;
-  } else if (autoSwitch1.get() && autoSwitch2.get() && autoSwitch3.get() && !autoSwitch4.get()) {
+  } else if (!autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && autoSwitch4.get()) {
     command = legs1and2Right;
-  } else if (autoSwitch1.get() && autoSwitch2.get() && !autoSwitch3.get() && !autoSwitch4.get()) {
+  } else if (!autoSwitch1.get() && !autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {
     command = leg1Right;
-  } else if (!autoSwitch1.get() && autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {
+  } else if (autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && !autoSwitch4.get()) {
     command =  fullRunLeft;
-  } else if (!autoSwitch1.get() && autoSwitch2.get() && autoSwitch3.get() && !autoSwitch4.get()) {
+  } else if (autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && autoSwitch4.get()) {
     command =  legs1and2Left;
-  } else if (!autoSwitch1.get() && autoSwitch2.get() && !autoSwitch3.get() && !autoSwitch4.get()) {
+  } else if (autoSwitch1.get() && !autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {
     command = leg1Left;
-  } else if (!autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && !autoSwitch4.get()) {
+  } else if (autoSwitch1.get() && autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {
     command = ctrScore1;
   } 
  return command;

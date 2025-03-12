@@ -39,10 +39,9 @@ public class Leg3Right extends SequentialCommandGroup {
   public Leg3Right(Swerve s_Swerve, Elevator elevator, AlgaePivot algeaPivot, CoralPivot coralPivot, CoralHold coralHold) {
     addCommands(
         //******NEED TO CHANGE TO "FALSE" BELOW????
-        Commands.parallel(
+        
         new DriveFwdAndSideAndTurn(s_Swerve, true ,125.5, -19, 6).withTimeout(3.5), //x 106?
-        new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT)
-        ),
+        new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.2),
         new TargetSideDistance(s_Swerve, 0).withTimeout(1),
         new TargetForwardDistance(s_Swerve, 0).withTimeout(1),
         //**** GET POSE WITH LIMELIGHT, BEFORE DRIVING WITH ODOMETRY
@@ -50,9 +49,9 @@ public class Leg3Right extends SequentialCommandGroup {
         //Needs to end  with coral scorer aligned with right branch of Reef
         new DriveSideways(s_Swerve, false, 6.5).withTimeout(1.5), 
         //**** RESET POSE TO VALUE FROM GetPoseWithLL
-        new ResetPoseWithLL(s_Swerve).withTimeout(0.25),
+        new ResetPoseWithLL(s_Swerve).withTimeout(0.25)//,
 
-        new L4_Score(elevator, coralHold, coralPivot, algeaPivot)
+      //  new L4_Score(elevator, coralHold, coralPivot, algeaPivot)
     );         
     
   }

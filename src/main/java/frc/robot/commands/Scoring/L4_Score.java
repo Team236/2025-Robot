@@ -32,10 +32,10 @@ public class L4_Score extends SequentialCommandGroup {
       new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5)
       ),
     Commands.parallel( //do in parallel so elevator stays up the whole time
-      new ElevMotionMagicPID(elevator, Constants.Elevator.L4_HEIGHT).withTimeout(3),
+      new ElevMotionMagicPID(elevator, Constants.Elevator.L4_HEIGHT).withTimeout(3.5),
       Commands.sequence(
          //wait for elevator to go up
-         new PIDCoralPivotWithWait(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL4, 1).withTimeout(2),
+         new PIDCoralPivotWithWait(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL4, 1.2).withTimeout(2.5),
          new CoralRelease(coralHold, Constants.CoralHold.L4_RELEASE_SPEED).withTimeout(0.5),
          new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5)
         )

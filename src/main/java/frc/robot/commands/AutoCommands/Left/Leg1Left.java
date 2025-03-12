@@ -29,18 +29,15 @@ public class Leg1Left extends SequentialCommandGroup {
   public Leg1Left(Swerve s_Swerve, Elevator elevator, AlgaePivot algaePivot, CoralPivot coralPivot, CoralHold coralHold) {
      addCommands(
      //START ROBOT WITH BACK BUMPER FLUSH WITH BACK OF BLACK STARTING LINE, 91" from sideline
-          new DriveFwdAndTurn(s_Swerve, false, 77.5,  61).withTimeout(1.3), //fwd 66.5
+          new DriveFwdAndTurn(s_Swerve, false, 77.5,  61).withTimeout(1.5), //fwd 66.5
           new TargetSideDistance(s_Swerve, 0).withTimeout(1),
           new TargetForwardDistance(s_Swerve, 0).withTimeout(1),
           new GetPoseWithLL(s_Swerve).withTimeout(0.3),
-          new DriveSideways(s_Swerve, false, 7.75).withTimeout(1.9),
-          new ResetPoseWithLL(s_Swerve).withTimeout(0.25)
+          new DriveSideways(s_Swerve, false, 7.75).withTimeout(1.5),
+          new ResetPoseWithLL(s_Swerve).withTimeout(0.25),
+          new L4_Score(elevator, coralHold, coralPivot, algaePivot)
 
-    
-      //If using odometry only, starting 96.25" from side (drive to reef with coral scorer aligned to right branch)
-        // new DriveFwdAndSideAndTurn(s_Swerve, false, 78.5, 0, -58.2).withTimeout(3)//,
-   
-     //, new L2_Score(elevator, coralHold, coralPivot, algaePivot)
+          //  new L4_Score_AutoLeg1(elevator, coralHold, coralPivot, algaePivot)
      );               
 
   }

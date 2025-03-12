@@ -40,7 +40,7 @@ public class Leg1Right extends SequentialCommandGroup {
   public Leg1Right(Swerve s_Swerve, Elevator elevator, AlgaePivot algaePivot, CoralPivot coralPivot, CoralHold coralHold) {
     addCommands(
       //START ROBOT WITH BACK BUMPER FLUSH WITH BACK OF BLACK STARTING LINE, 91" from sideline
-         new DriveFwdAndTurn(s_Swerve, false, 77.5, -58.2).withTimeout(2),
+         new DriveFwdAndTurn(s_Swerve, false, 77.5, -58.2).withTimeout(1.5),
         
           new TargetSideDistance(s_Swerve, 0).withTimeout(1),
           new TargetForwardDistance(s_Swerve, 0).withTimeout(1),
@@ -49,7 +49,9 @@ public class Leg1Right extends SequentialCommandGroup {
          // new DriveFwd(s_Swerve, false, 4.5).withTimeout(2),
           new ResetPoseWithLL(s_Swerve).withTimeout(0.25),
         // Use AutoLeg2 score, which does not bring elevator down - bring it down at start of leg2
-         new L4_Score_AutoLeg1(elevator, coralHold, coralPivot, algaePivot)
+        new L4_Score(elevator, coralHold, coralPivot, algaePivot)
+
+        //  new L4_Score_AutoLeg1(elevator, coralHold, coralPivot, algaePivot)
     );         
     
   }
