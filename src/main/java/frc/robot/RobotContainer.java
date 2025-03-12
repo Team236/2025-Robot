@@ -340,6 +340,42 @@ rightPov1.whileTrue(algaePivotDown);
 downPov1.whileTrue(dangerElevatorDown);
 upPov1.whileTrue(dangerElevatorUp);
 
+
+    //DRIVER CONTROLLER
+
+//targeting
+leftPov.onTrue(coralLeftTarget);
+downPov.onTrue(algaeTarget);
+rightPov.onTrue(coralRightTarget);
+
+//driving & gyro
+//rb robot cantric already binded
+//y reset gyro already binded
+rb.onTrue(orientWithLL);
+
+//climbing
+view.onTrue(prepForClimb);
+menu.onTrue(climbDownSequence);
+
+
+    //AUX CONTROLLER
+
+a1.onTrue(l1_Score);
+x1.onTrue(l2_Score);
+b1.onTrue(l3_Score);
+y1.onTrue(l4_Score);
+
+rb1.onTrue(coralSeqGrabCount);
+rm1.onTrue(coralRelease);
+
+view1.whileTrue(coralPivotUp);
+menu1.whileTrue(coralPivotDown);
+
+upPov1.whileTrue(algaePivotUp);
+downPov1.wileTrue(algaePivotDown);
+leftPov1.whileTrue(algaeGrab);
+rightPov1.whileTrue(algaeRelease);
+
 //  rm.onTrue(driveSideways675);
 // rb.onTrue(driveSidewaysNeg675);
 //upPov.onTrue(driveFwd9);
