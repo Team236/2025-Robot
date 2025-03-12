@@ -13,6 +13,7 @@ import frc.robot.commands.AutoCommands.DriveFwd;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
 import frc.robot.commands.AutoCommands.DriveFwdAndTurn;
 import frc.robot.commands.AutoCommands.DriveSideways;
+import frc.robot.commands.AutoCommands.EndDriveTrajectoryPID;
 import frc.robot.commands.AutoCommands.TurnOnly;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
 import frc.robot.commands.CoralHoldCommands.CoralResetCount;
@@ -46,6 +47,7 @@ public class Leg1Right extends SequentialCommandGroup {
        // new GetPoseWithLL(s_Swerve).withTimeout(0.3),
         new DriveSideways(s_Swerve, false, -6.25).withTimeout(1.5),
         //new ResetPoseWithLL(s_Swerve).withTimeout(0.25),
+        new EndDriveTrajectoryPID(s_Swerve),
         new L4_Score(elevator, coralHold, coralPivot, algaePivot)
 
       // Could use AutoLeg2 score, which does not bring elevator down - if bring it down at start of leg2
