@@ -12,7 +12,6 @@ import frc.robot.commands.AlgaePivotCommands.PIDToElevSafePosition;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
 import frc.robot.commands.CoralHoldCommands.CoralResetCount;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
-import frc.robot.commands.CoralPivotCommands.PIDCoralPivotWithWait;
 import frc.robot.commands.ElevatorCommands.ElevMotionMagicPID;
 import frc.robot.subsystems.AlgaePivot;
 import frc.robot.subsystems.CoralHold;
@@ -27,17 +26,17 @@ public class L4_Score extends SequentialCommandGroup {
   public L4_Score(Elevator elevator, CoralHold coralHold, CoralPivot coralPivot, AlgaePivot algaePivot) {
 
       addCommands(
-    Commands.parallel(
+    //Commands.parallel(
      //new PIDToElevSafePosition(algaePivot).withTimeout(0.5),
-      new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5)
-      ),
+     // new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5)
+     // ),
     Commands.parallel( //do in parallel so elevator stays up the whole time
       new ElevMotionMagicPID(elevator, Constants.Elevator.L4_HEIGHT).withTimeout(3.5),
       Commands.sequence(
-         //wait for elevator to go up
-         new PIDCoralPivotWithWait(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL4, 1.2).withTimeout(2.5),
+         new WaitCommand(1.2), //wait for elevator to go up
+         new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL4).withTimeout(0.9),
          new CoralRelease(coralHold, Constants.CoralHold.L4_RELEASE_SPEED).withTimeout(0.5),
-         new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5)
+         new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.9)
         )
       ),
       new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.2)

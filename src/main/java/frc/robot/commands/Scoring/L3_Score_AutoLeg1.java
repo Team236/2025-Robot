@@ -12,7 +12,6 @@ import frc.robot.commands.AlgaePivotCommands.PIDToElevSafePosition;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
 import frc.robot.commands.CoralHoldCommands.CoralResetCount;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
-import frc.robot.commands.CoralPivotCommands.PIDCoralPivotWithWait;
 import frc.robot.commands.ElevatorCommands.ElevMotionMagicPID;
 import frc.robot.subsystems.AlgaePivot;
 import frc.robot.subsystems.CoralHold;
@@ -35,13 +34,14 @@ public class L3_Score_AutoLeg1 extends SequentialCommandGroup {
         new ElevMotionMagicPID(elevator, Constants.Elevator.L3_HEIGHT).withTimeout(2.4),
         Commands.sequence(
            //wait for elevator to go up
-           new PIDCoralPivotWithWait(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL3, 0.7).withTimeout(1.2),
+           new WaitCommand(0.7),
+           new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL3).withTimeout(0.5),
            new CoralRelease(coralHold, Constants.CoralHold.L3_RELEASE_SPEED).withTimeout(0.5),
            new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5)
           )
-        )
         //NO ELEVATOR DOWN - WILL GET DONE AT START OF LEG2 FOR AUTO
-       //new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT)
+        //new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1)
+       )
       );
 
   }
