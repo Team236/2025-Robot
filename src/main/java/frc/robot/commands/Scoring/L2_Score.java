@@ -14,7 +14,6 @@ import frc.robot.commands.AlgaePivotCommands.PIDToElevSafePosition;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
 import frc.robot.commands.CoralHoldCommands.CoralResetCount;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
-import frc.robot.commands.CoralPivotCommands.PIDCoralPivotWithWait;
 import frc.robot.commands.ElevatorCommands.ElevMotionMagicPID;
 import frc.robot.subsystems.AlgaePivot;
 import frc.robot.subsystems.CoralHold;
@@ -29,17 +28,18 @@ public class L2_Score extends SequentialCommandGroup {
   public L2_Score(Elevator elevator, CoralHold coralHold, CoralPivot coralPivot, AlgaePivot algaePivot) {
 
   addCommands(
-    Commands.parallel(
+    //Commands.parallel(
      //new PIDToElevSafePosition(algaePivot).withTimeout(0.5),
-      new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5)
-      ),
+     // new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5)
+     // ),
     Commands.parallel( //do in parallel so elevator stays up the whole time
-      new ElevMotionMagicPID(elevator, Constants.Elevator.L2_HEIGHT).withTimeout(2.2),
+      new ElevMotionMagicPID(elevator, Constants.Elevator.L2_HEIGHT).withTimeout(1.2),
       Commands.sequence(
-         //wait for elevator to go up
-        new PIDCoralPivotWithWait(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL2, 0.5).withTimeout(1),
-         new CoralRelease(coralHold, Constants.CoralHold.L2_RELEASE_SPEED).withTimeout(0.5),
-         new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5)
+        //wait for elevator to go up
+        new WaitCommand(0.5),
+        new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL2).withTimeout(0.5),
+        new CoralRelease(coralHold, Constants.CoralHold.L2_RELEASE_SPEED).withTimeout(0.5),
+        new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5)
         )
       ),
       new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1)
