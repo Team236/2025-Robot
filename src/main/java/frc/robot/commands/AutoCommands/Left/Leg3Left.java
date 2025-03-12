@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
 import frc.robot.commands.AutoCommands.DriveSideways;
+import frc.robot.commands.AutoCommands.EndDriveTrajectoryPID;
 import frc.robot.commands.ElevatorCommands.ElevMotionMagicPID;
 import frc.robot.commands.Scoring.L4_Score;
 import frc.robot.commands.Targeting.GetPoseWithLL;
@@ -43,7 +44,7 @@ public class Leg3Left extends SequentialCommandGroup {
         new DriveSideways(s_Swerve, false, -6.5).withTimeout(1.5), 
         //**** RESET POSE TO VALUE FROM GetPoseWithLL
         new ResetPoseWithLL(s_Swerve).withTimeout(0.25)//,
-
+        // ,new EndDriveTrajectoryPID(s_Swerve),
         //new L4_Score(elevator, coralHold, coralPivot, algaePivot)
     );   
   }

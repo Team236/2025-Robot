@@ -51,6 +51,7 @@ public class Leg3Right extends SequentialCommandGroup {
         //**** RESET POSE TO VALUE FROM GetPoseWithLL
         new ResetPoseWithLL(s_Swerve).withTimeout(0.25)//,
 
+      // ,new EndDriveTrajectoryPID(s_Swerve),
       //  new L4_Score(elevator, coralHold, coralPivot, algeaPivot)
     );         
     
