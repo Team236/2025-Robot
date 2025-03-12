@@ -44,7 +44,7 @@ public class Leg3Left extends SequentialCommandGroup {
         new DriveSideways(s_Swerve, false, -6.5).withTimeout(1.5), 
         //**** RESET POSE TO VALUE FROM GetPoseWithLL
         new ResetPoseWithLL(s_Swerve).withTimeout(0.25)//,
-        // ,new EndDriveTrajectoryPID(s_Swerve),
+        // ,new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5),
         //new L4_Score(elevator, coralHold, coralPivot, algaePivot)
     );   
   }
