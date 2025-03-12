@@ -53,12 +53,14 @@ public class Robot extends TimedRobot {
 
    // myPDH.setSwitchableChannel(true);
 
-  //USB camera
-	//try {
-  //  usbCamera0 = CameraServer.startAutomaticCapture(0);
-  //  } catch (Exception e)  {
-  // SmartDashboard.putString("camera capture failed", "failed");
-  //  }
+  UsbCamera usbCamera0;
+	try {
+   usbCamera0 = CameraServer.startAutomaticCapture(0);
+    } catch (Exception e)  {
+   SmartDashboard.putString("camera capture failed", "failed");
+   }
+
+
 
    TrajectoryConfig config =
            new TrajectoryConfig(
