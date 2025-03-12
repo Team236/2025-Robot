@@ -318,8 +318,8 @@ lm.whileTrue(coralRelease);
 x.whileTrue(coralLeftTarget);
 b.whileTrue(coralRightTarget);
 
-upPov.onTrue(ctrScore1);
-downPov.onTrue(legs1and2Right);
+upPov.onTrue(leg1Right);
+downPov.onTrue(leg1Left);
 //a.onTrue(ctrScore1);
 
 leftPov.onTrue(prepForClimb);
