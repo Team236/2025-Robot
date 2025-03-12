@@ -27,18 +27,18 @@ public class Leg2Right extends SequentialCommandGroup {
   /** Creates a new Leg2Right. */
   public Leg2Right(Swerve s_Swerve, CoralHold coralHold, frc.robot.subsystems.CoralPivot coralPivot, Elevator elevator) {
     addCommands(
-      Commands.parallel(
-        //Bring elevator down while driving sideways
+      Commands.parallel( 
         new CoralResetCount(coralHold).withTimeout(0.5),
         new DriveSideways(s_Swerve, false, 73).withTimeout(2.5)//timeout needed?  causes delay?
-        // new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.3)
+        //Bring elevator down while driving sideways
+        //new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.5)
         ), 
 
       Commands.parallel(
         new DriveFwdAndSideAndTurn(s_Swerve, false, 10, 96, -68).withTimeout(3),//62
         new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LOADING).withTimeout(5), //adjust as needed
         new CoralGrabWithCounter(coralHold, Constants.CoralHold.HOLD_SPEED).withTimeout(5)
-        // new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(2)
+
         )  
     );
     

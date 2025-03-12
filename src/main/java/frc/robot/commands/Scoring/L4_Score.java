@@ -25,11 +25,14 @@ public class L4_Score extends SequentialCommandGroup {
   /** Creates a new L4_Score. */
   public L4_Score(Elevator elevator, CoralHold coralHold, CoralPivot coralPivot, AlgaePivot algaePivot) {
 
-      addCommands(
+  addCommands(
+    //USE THIS PARALLEL SET RATHER THAN THE SEQUENTIAL PIDCoralPivot, after Algae Device working
     //Commands.parallel(
      //new PIDToElevSafePosition(algaePivot).withTimeout(0.5),
-     // new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5)
+     //new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5)
      // ),
+     new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5),
+
     Commands.parallel( //do in parallel so elevator stays up the whole time
       new ElevMotionMagicPID(elevator, Constants.Elevator.L4_HEIGHT).withTimeout(3.5),
       Commands.sequence(
@@ -39,7 +42,9 @@ public class L4_Score extends SequentialCommandGroup {
          new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.9)
         )
       ),
+
       new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.2)
+
     );
 
    

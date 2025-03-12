@@ -25,10 +25,15 @@ public class L1_Score extends SequentialCommandGroup {
   /** Creates a new L1_Score. */
   public L1_Score(Elevator elevator, CoralHold coralHold, CoralPivot coralPivot, AlgaePivot algaePivot) {
     addCommands(
-   // new PIDToElevSafePosition(algaePivot),
+ //USE THIS PARALLEL SET RATHER THAN THE SEQUENTIAL PIDCoralPivot, after Algae Device working
+     //Commands.parallel( 
+      //new PIDToElevSafePosition(algaePivot).withTimeout(0.5),
+     // new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5)
+     // ),
+    new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5),
+
     new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL1).withTimeout(0.5),
     new CoralRelease(coralHold, Constants.CoralHold.L1_RELEASE_SPEED).withTimeout(1)
- 
    );
   }
 }

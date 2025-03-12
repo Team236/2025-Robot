@@ -26,10 +26,13 @@ public class L2_Score_AutoLeg1 extends SequentialCommandGroup {
   public L2_Score_AutoLeg1(Elevator elevator, CoralHold coralHold, CoralPivot coralPivot, AlgaePivot algaePivot) {
 //DOES NOT BRING ELEVATOR DOWN AT END -THAT HAPPENS AT START OF LEG2
     addCommands(
+    //USE THIS PARALLEL SET RATHER THAN THE SEQUENTIAL PIDCoralPivot, after Algae Device working
     //Commands.parallel(
-     //new PIDToElevSafePosition(algaePivot).withTimeout(0.5),
-      //new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5)
-      //),
+    // new PIDToElevSafePosition(algaePivot).withTimeout(0.5),
+    // new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5)
+    //  ),
+      new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5),
+
     Commands.parallel( //do in parallel so elevator stays up the whole time
       new ElevMotionMagicPID(elevator, Constants.Elevator.L2_HEIGHT).withTimeout(2.2),
       Commands.sequence(
@@ -39,6 +42,7 @@ public class L2_Score_AutoLeg1 extends SequentialCommandGroup {
          new CoralRelease(coralHold, Constants.CoralHold.L2_RELEASE_SPEED).withTimeout(0.5),
          new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5)
         )
+
        //NO ELEVATOR DOWN - WILL GET DONE AT START OF LEG2 FOR AUTO
        //new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1)
      )

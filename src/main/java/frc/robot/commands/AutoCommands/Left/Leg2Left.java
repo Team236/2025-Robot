@@ -26,17 +26,16 @@ public class Leg2Left extends SequentialCommandGroup {
  //MAKE ALL Y DISTANCES AND ALL ANGLES OPPOSITE TO Right
  addCommands(
   Commands.parallel(
+    new CoralResetCount(coralHold).withTimeout(0.5),
+    new DriveSideways(s_Swerve, false, -73).withTimeout(2.5)
     //Bring elevator down while driving sideways
-    new CoralResetCount(coralHold),
-    new DriveSideways(s_Swerve, false, -73).withTimeout(2.5)//.withTimeout(2),//timeout needed?  causes delay?
-    // new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.3)
+    //new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.5)
     ), 
 
   Commands.parallel(
     new DriveFwdAndSideAndTurn(s_Swerve, false, 5, -115, 68).withTimeout(3),//62
     new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LOADING).withTimeout(5), //adjust as needed
     new CoralGrabWithCounter(coralHold, Constants.CoralHold.HOLD_SPEED).withTimeout(5)
-    // new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(2)
     )  
 );
   }
