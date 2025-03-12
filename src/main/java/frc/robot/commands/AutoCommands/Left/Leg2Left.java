@@ -29,7 +29,7 @@ public class Leg2Left extends SequentialCommandGroup {
     new CoralResetCount(coralHold).withTimeout(0.5),
     new DriveSideways(s_Swerve, false, -73).withTimeout(2.5)
     //Bring elevator down while driving sideways
-    //new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.5)
+    ,new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.5)
     ), 
 
   Commands.parallel(

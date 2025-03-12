@@ -41,13 +41,13 @@ public class Leg3Right extends SequentialCommandGroup {
         //******NEED TO CHANGE TO "FALSE" BELOW????
         
         new DriveFwdAndSideAndTurn(s_Swerve, true ,125.5, -19, 6).withTimeout(3.5), //x 106?
-        new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.2),
-        new TargetSideDistance(s_Swerve, 0).withTimeout(1),
-        new TargetForwardDistance(s_Swerve, 0).withTimeout(1),
+       // new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.2),
+       // new TargetSideDistance(s_Swerve, 0).withTimeout(1),
+        //new TargetForwardDistance(s_Swerve, 0).withTimeout(1),
         //**** GET POSE WITH LIMELIGHT, BEFORE DRIVING WITH ODOMETRY
         new GetPoseWithLL(s_Swerve).withTimeout(0.3),
         //Needs to end  with coral scorer aligned with right branch of Reef
-        new DriveSideways(s_Swerve, false, 6.5).withTimeout(1.5), 
+        //new DriveSideways(s_Swerve, false, 6.5).withTimeout(1.5), 
         //**** RESET POSE TO VALUE FROM GetPoseWithLL
         new ResetPoseWithLL(s_Swerve).withTimeout(0.25)//,
 

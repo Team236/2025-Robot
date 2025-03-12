@@ -30,18 +30,19 @@ public class Leg3Left extends SequentialCommandGroup {
   public Leg3Left(Swerve s_Swerve, Elevator elevator, AlgaePivot algaePivot, CoralPivot coralPivot, CoralHold coralHold) {
  //MAKE ALL Y DISTANCES AND ALL ANGLES OPPOSITE TO Right
     addCommands(
-        //******NEED TO CHANGE TO "FALSE" BELOW????
-        Commands.parallel(
-        new DriveFwdAndSideAndTurn(s_Swerve, true ,125.5, 19, -6).withTimeout(3.5), //x 106?
-        new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT)
-        ),
+        //******NEED TO CHANGE TO "FALSE" BELOW????\
+        new DriveFwdAndSideAndTurn(s_Swerve, true ,125.5, 19, -6).withTimeout(3.5), //x 10
+        //Commands.parallel(
+        //new DriveFwdAndSideAndTurn(s_Swerve, true ,125.5, 19, -6).withTimeout(3.5), //x 106?
+        //new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT)
+        //),
 
-        new TargetSideDistance(s_Swerve, 0).withTimeout(1),
-        new TargetForwardDistance(s_Swerve, 0).withTimeout(1),
+        //new TargetSideDistance(s_Swerve, 0).withTimeout(1),
+        //new TargetForwardDistance(s_Swerve, 0).withTimeout(1),
         //**** GET POSE WITH LIMELIGHT, BEFORE DRIVING WITH ODOMETRY
         new GetPoseWithLL(s_Swerve).withTimeout(0.3),
         //Needs to end  with coral scorer aligned with right branch of Reef
-        new DriveSideways(s_Swerve, false, -6.5).withTimeout(1.5), 
+        //new DriveSideways(s_Swerve, false, -6.5).withTimeout(1.5), 
         //**** RESET POSE TO VALUE FROM GetPoseWithLL
         new ResetPoseWithLL(s_Swerve).withTimeout(0.25)//,
         // ,new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5),

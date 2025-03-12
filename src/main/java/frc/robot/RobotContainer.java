@@ -326,7 +326,7 @@ leftPov.onTrue(prepForClimb);
 rightPov.onTrue(climbDownSequence);
 
 //y1.onTrue(l1_Score);
-a1.onTrue(l1_Score);
+a1.onTrue(l2_Score);
 x1.onTrue(l3_Score);
 y1.onTrue(l4_Score);
 b1.onTrue(motionMagicToBottom);

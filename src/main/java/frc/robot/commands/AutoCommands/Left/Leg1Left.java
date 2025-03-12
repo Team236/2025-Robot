@@ -12,6 +12,7 @@ import frc.robot.commands.AutoCommands.DriveSideways;
 import frc.robot.commands.AutoCommands.EndDriveTrajectoryPID;
 import frc.robot.commands.Scoring.L2_Score;
 import frc.robot.commands.Scoring.L4_Score;
+import frc.robot.commands.Scoring.L4_Score_AutoLeg1;
 import frc.robot.commands.Targeting.GetPoseWithLL;
 import frc.robot.commands.Targeting.ResetPoseWithLL;
 import frc.robot.commands.Targeting.TargetForwardDistance;
@@ -37,10 +38,10 @@ public class Leg1Left extends SequentialCommandGroup {
           new DriveSideways(s_Swerve, false, 7.75).withTimeout(1.5),
           // new ResetPoseWithLL(s_Swerve).withTimeout(0.25),
           new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5),
-          new L4_Score(elevator, coralHold, coralPivot, algaePivot)
+          //new L4_Score(elevator, coralHold, coralPivot, algaePivot)
 
           // Could use AutoLeg2 score, which does not bring elevator down - if bring it down at start of leg2
-          // new L4_Score_AutoLeg1(elevator, coralHold, coralPivot, algaePivot)
+          new L4_Score_AutoLeg1(elevator, coralHold, coralPivot, algaePivot)
      );               
 
   }

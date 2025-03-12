@@ -36,7 +36,7 @@ public class L2_Score extends SequentialCommandGroup {
     new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5),
 
     Commands.parallel( //do in parallel so elevator stays up the whole time
-      new ElevMotionMagicPID(elevator, Constants.Elevator.L2_HEIGHT).withTimeout(1.2),
+      new ElevMotionMagicPID(elevator, Constants.Elevator.L2_HEIGHT).withTimeout(2.2),
       Commands.sequence(
         //wait for elevator to go up
         new WaitCommand(0.5),
