@@ -22,7 +22,7 @@ public class Algae_Score_Net extends SequentialCommandGroup {
   /** Creates a new Algae_Score. */
   public Algae_Score_Net(Elevator elevator, AlgaeHold algaeHold, AlgaePivot algaePivot) {
   addCommands(
-    new PIDToElevSafePosition(algaePivot).withTimeout(3),
+    new PIDToElevSafePosition(algaePivot).withTimeout(1),
     new ElevMotionMagicPID(elevator, Constants.Elevator.SCORE_ALGAE_NET_HEIGHT).withTimeout(5),
     new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_SCORE_NET).withTimeout(3),
     new AlgaeRelease(algaeHold, Constants.AlgaeHold.RELEASE_SPEED).withTimeout(2),

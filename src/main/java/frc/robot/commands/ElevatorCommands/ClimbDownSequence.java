@@ -19,7 +19,6 @@ public class ClimbDownSequence extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      //new PIDToElevSafePosition(algaePivot),
       new ElevMotionMagicPID(elevator, 6).withTimeout(1),
       new DangerManualUpDown(elevator, Constants.Elevator.ELEV_CLIMB_DOWN_SPEED).withTimeout(2)
     );
