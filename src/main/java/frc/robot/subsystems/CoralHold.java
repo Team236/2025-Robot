@@ -14,6 +14,7 @@ import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.SparkMaxConfig;
 
 import edu.wpi.first.wpilibj.Counter;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -33,6 +34,8 @@ public class CoralHold extends SubsystemBase {
   // COUNTER
   public static Counter counter;
   public boolean isCounterUnplugged = false;
+  public boolean isSensorUnplugged = false;
+  public DigitalInput lightSensorState;
 
  
   public CoralHold() {
@@ -55,22 +58,31 @@ public class CoralHold extends SubsystemBase {
 
     coralHoldMotor.configure(coralHoldConfig, ResetMode.kResetSafeParameters, PersistMode.kNoPersistParameters);
 
+
+    try {
+      lightSensorState = new DigitalInput(Constants.CoralHold.DIO_COUNTER);
+    } catch (Exception e)
+    {
+      isSensorUnplugged = true;
+      SmartDashboard.putBoolean("is lightSensor unplugged:", isSensorUnplugged);
+    }
+
+
     try {
       counter = new Counter();
       counter.setUpSource(Constants.CoralHold.DIO_COUNTER);
       counter.reset();
     }
-
     catch (Exception e) {
       isCounterUnplugged = true;
     }
 
     SmartDashboard.putBoolean("is counter unplugged:", isCounterUnplugged);
+    SmartDashboard.putBoolean("is sensor unplugged:", isSensorUnplugged);
     counter.reset(); //sets counter to zero
   }
 
   //METHODS START HERE
-  
   public int getCoralHCount() {
     int count;
     if (isCounterUnplugged) {
@@ -81,6 +93,20 @@ public class CoralHold extends SubsystemBase {
     }
     return count;
   }
+
+
+ public boolean getLightSensorState() {
+  boolean sensorState;
+    if (isSensorUnplugged) {
+      sensorState = false;
+      SmartDashboard.putBoolean("LightSensor is unplugged", isCounterUnplugged);
+    } else {
+      sensorState =  lightSensorState.get();
+    }
+    return sensorState;
+  }
+
+
 
   public void resetCount() {
     // automaticaly sets counter to 0 at start 
