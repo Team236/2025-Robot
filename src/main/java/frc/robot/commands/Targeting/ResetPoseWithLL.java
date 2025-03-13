@@ -32,6 +32,7 @@ public class ResetPoseWithLL extends Command {
   public void initialize() {
     if (poseLL != null)  {
       SmartDashboard.putBoolean("pose not null", true);
+      SmartDashboard.putBoolean("about to reset the LLPose in ResetPoseWithLL: ", true);
    s_Swerve.resetLLPose();
     };
   } 
@@ -49,6 +50,7 @@ public class ResetPoseWithLL extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    SmartDashboard.putBoolean("isFinished in ResetPoseWithLL: ", true);
     return true;
   }
 

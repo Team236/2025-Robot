@@ -10,6 +10,7 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.LimelightHelpers;
 import frc.robot.subsystems.Swerve;
@@ -34,6 +35,7 @@ public class GetPoseWithLL extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    SmartDashboard.putBoolean("about to get LLPose in GetPoseWithLL: ", true);
     s_Swerve.getLLPose();
   }
   // Called every time the scheduler runs while the command is scheduled.
@@ -49,6 +51,7 @@ public class GetPoseWithLL extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    SmartDashboard.putBoolean("isFinished in GetPoseWithLL: ", true);
     return true;
   }
 }
