@@ -28,7 +28,7 @@ public class Leg2Left extends SequentialCommandGroup {
  addCommands(
   Commands.parallel(
     new CoralResetCount(coralHold).withTimeout(0.5),
-    new DriveFwdAndSideAndTurn(s_Swerve, true, -6, -157, 0)
+    new DriveFwdAndSideAndTurn(s_Swerve, true, -6, -166, 0)
     //new DriveSideways(s_Swerve, false, -73).withTimeout(2.5)
     //Bring elevator down while driving sideways
     ,new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.5)
@@ -37,7 +37,7 @@ public class Leg2Left extends SequentialCommandGroup {
   Commands.parallel(
 
   Commands.sequence(
-  new DriveFwdAndSideAndTurn(s_Swerve, false, 19, -20, 68).withTimeout(4),  
+  new DriveFwdAndSideAndTurn(s_Swerve, false, -6, -20, 68).withTimeout(4),  
   //new DriveFwdAndSideAndTurn(s_Swerve, false, 5, -115, 68).withTimeout(4),//62
     new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5)
     ),
