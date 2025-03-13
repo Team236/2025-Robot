@@ -22,8 +22,16 @@ import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import frc.robot.Constants;
 import frc.robot.subsystems.Swerve;
 
-/* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class RedRLeg2 extends SequentialCommandGroup {
+/* You should consider using the more terse Command factories API instead 
+   https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
+
+   /* 
+    *  alignment for this leg is RIGHT from RED driverstation point of view 
+    * 
+    *  this start position assumes last leg drove away from 
+    *  RED REEF E position as defined in PathPlanner application
+    */
+    public class RedRLeg2 extends SequentialCommandGroup {
   /** Creates a new RRightLeg2. */
   public RedRLeg2(Swerve s_Swerve, boolean reversed) {
 
@@ -34,19 +42,16 @@ public class RedRLeg2 extends SequentialCommandGroup {
             .setKinematics(Constants.Swerve.swerveKinematics).setReversed(reversed);
 
     // An example trajectory to follow.  All units in meters.
-    Trajectory exampleTrajectory =
-    TrajectoryGenerator.generateTrajectory(
-           // Start here
-           new Pose2d(0, 0, new Rotation2d(0)),
-           // Pass through these interior waypoints
-           List.of(
-            new Translation2d(1,1), 
-            new Translation2d(2,2),
-            new Translation2d(3,3)
-            ),  
-            //End here
-            new Pose2d(4, 4, new Rotation2d(0)),
-            config);
+    Trajectory legTrajectory = TrajectoryGenerator.generateTrajectory(
+        // Red alliance should use leg2a-FLIP-MIRROR
+        new Pose2d( 12.569532427912042, 2.500650172546843, new Rotation2d(1.0471975511965979) ),
+        List.of ( 
+          new Translation2d( 12.899049906877593, 2.3333938129699003),
+          new Translation2d( 13.26584229258691, 2.2767240699006717),
+          new Translation2d( 13.469874054980925, 2.2100416080555316)),
+        new Pose2d( 13.476888348084657, 2.2060528849958176, new Rotation2d(1.0471975511965979) ),
+        config );
+
         
     var thetaController =
         new ProfiledPIDController(
@@ -55,7 +60,7 @@ public class RedRLeg2 extends SequentialCommandGroup {
 
     SwerveControllerCommand swerveControllerCommand =
         new SwerveControllerCommand(
-            exampleTrajectory,
+            legTrajectory,
             s_Swerve::getPose,
             Constants.Swerve.swerveKinematics,
             new PIDController(Constants.AutoConstants.kPXController, 0, 0),
@@ -65,7 +70,7 @@ public class RedRLeg2 extends SequentialCommandGroup {
             s_Swerve);
 
     addCommands(
-        new InstantCommand(() -> s_Swerve.setPose(exampleTrajectory.getInitialPose())),
+        new InstantCommand(() -> s_Swerve.setPose(legTrajectory.getInitialPose())),
         swerveControllerCommand
     );
 }

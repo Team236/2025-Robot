@@ -14,14 +14,23 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import frc.robot.Constants;
 import frc.robot.subsystems.Swerve;
 
-/* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class BlueLLeg2 extends  SequentialCommandGroup  {
+/* You should consider using the more terse Command factories API instead 
+   https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
+
+   /* 
+    *  alignment for this leg is LEFT from BLUE driverstation point of view 
+    *  this start position assumes Reef J position as defined in PathPlanner application
+   */
+
+  public class BlueLLeg2 extends  SequentialCommandGroup  {
   /** Creates a new RedRLeg1. */
   public BlueLLeg2(Swerve s_Swerve, boolean reversed) {
 
@@ -30,22 +39,20 @@ public class BlueLLeg2 extends  SequentialCommandGroup  {
                 Constants.AutoConstants.kMaxSpeedMetersPerSecond,
                 Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared)
             .setKinematics(Constants.Swerve.swerveKinematics).setReversed(reversed);
+    
+    // values taken from Leg2a-FLIPPED.txt positions  All units in meters.
+    Trajectory legTrajectory = TrajectoryGenerator.generateTrajectory(
+       // starting leg is Corral J
+       new Pose2d( 4.978717972087955, 2.5006501725468424, new Rotation2d(2.0943951023931953) ),
+       List.of ( 
+         new Translation2d( 4.649200493122405, 2.333393812969901),
+         new Translation2d( 4.282408107413086, 2.276724069900671),
+         new Translation2d( 4.0783763450190715, 2.210041608055532)),
+       new Pose2d( 4.071362051915341, 2.2060528849958176, new Rotation2d(2.0943951023931953) ),
+       config );
+        // if Red alliance should use leg2a-mirror
 
-    // An example trajectory to follow.  All units in meters.
-    Trajectory exampleTrajectory =
-    TrajectoryGenerator.generateTrajectory(
-       // Start here
-        new Pose2d(0, 0, new Rotation2d(0)),
-       // Pass through these interior waypoints
-       List.of(
-        new Translation2d(1,1), 
-        new Translation2d(2,2),
-        new Translation2d(3,3)
-        ),  
-        //End here
-        new Pose2d(4, 4, new Rotation2d(0)),
-        config);
- 
+
     var thetaController =
         new ProfiledPIDController(
             Constants.AutoConstants.kPThetaController, 0, 0, Constants.AutoConstants.kThetaControllerConstraints);
@@ -53,7 +60,7 @@ public class BlueLLeg2 extends  SequentialCommandGroup  {
 
     SwerveControllerCommand swerveControllerCommand =
         new SwerveControllerCommand(
-            exampleTrajectory,
+            legTrajectory,
             s_Swerve::getPose,
             Constants.Swerve.swerveKinematics,
             new PIDController(Constants.AutoConstants.kPXController, 0, 0),
@@ -63,7 +70,7 @@ public class BlueLLeg2 extends  SequentialCommandGroup  {
             s_Swerve);
 
     addCommands(
-        new InstantCommand(() -> s_Swerve.setPose(exampleTrajectory.getInitialPose())),
+        new InstantCommand(() -> s_Swerve.setPose(legTrajectory.getInitialPose())),
         swerveControllerCommand
     );
 }
