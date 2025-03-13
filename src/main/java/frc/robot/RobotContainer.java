@@ -245,6 +245,9 @@ public class RobotContainer {
     POVButton downPov = new POVButton(driverController,Constants.XboxController.POVXbox.DOWN_ANGLE); 
     POVButton leftPov = new POVButton(driverController,Constants.XboxController.POVXbox.LEFT_ANGLE);
     POVButton rightPov = new POVButton(driverController,Constants.XboxController.POVXbox.RIGHT_ANGLE);
+    Trigger lt = new Trigger(() -> driverController.getRawAxis(Constants.XboxController.AxesXbox.LTrig) > 0.5);
+    Trigger rt = new Trigger(() -> driverController.getRawAxis(Constants.XboxController.AxesXbox.RTrig) > 0.5);
+
     
     //Secondary Xbox Controller
     JoystickButton x1 = new JoystickButton(auxController, Constants.XboxController.X);
@@ -261,6 +264,8 @@ public class RobotContainer {
     POVButton downPov1 = new POVButton(auxController,Constants.XboxController.POVXbox.DOWN_ANGLE);
     POVButton leftPov1 = new POVButton(auxController,Constants.XboxController.POVXbox.LEFT_ANGLE);
     POVButton rightPov1 = new POVButton(auxController,Constants.XboxController.POVXbox.RIGHT_ANGLE);
+    Trigger lt1 = new Trigger(() -> auxController.getRawAxis(Constants.XboxController.AxesXbox.LTrig) > 0.5);
+    Trigger rt1 = new Trigger(() -> auxController.getRawAxis(Constants.XboxController.AxesXbox.RTrig) > 0.5);
 
 
     //Inputs
@@ -310,14 +315,12 @@ menu1.whileTrue(coralPivotDown);
 upPov1.whileTrue(algaePivotUp);
 downPov1.whileTrue(algaePivotDown);
 leftPov1.whileTrue(algaeRelease);
-//rightPov1.whileTrue();
+rightPov1.whileTrue(algaeGrab);//manual grab
 
 //algae scoring
-lb1.onTrue(algaeGrab);
+lb1.onTrue(algaeGrab);//grab and hold
 lm1.onTrue(algaeLowPickup);
-//left trigger1 algaeHighPickup
-
-
+lt1.onTrue(algaeHighPickup);
 
 
 
