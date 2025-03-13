@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands.AutoCommands.ZPathPlannerAuto.RedRight;
+package frc.robot.commands.AutoCommands.ZPathPlannerAuto.BlueLeft;
 
 import java.util.List;
 
@@ -21,16 +21,11 @@ import frc.robot.Constants;
 import frc.robot.subsystems.Swerve;
 
 /* You should consider using the more terse Command factories API instead 
-   https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-
-    /* 
-    *  alignment for this leg is LEFT from RED driverstation point of view 
-    *  this position is aligned with REEF E position as defined in path planner 
-   */ 
-
-    public class RedRLeg3 extends SequentialCommandGroup {
-  /** Creates a new RRightLeg3. */
-  public RedRLeg3(Swerve s_Swerve, boolean reversed) {
+// https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands 
+*/
+public class BlueLLeg2and3concatenated extends  SequentialCommandGroup  {
+  /** Creates a new RedRLeg1. */
+  public BlueLLeg2and3concatenated(Swerve s_Swerve, boolean reversed) {
 
     TrajectoryConfig config =
         new TrajectoryConfig(
@@ -38,24 +33,40 @@ import frc.robot.subsystems.Swerve;
                 Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared)
             .setKinematics(Constants.Swerve.swerveKinematics).setReversed(reversed);
 
-    // taken from leg2b-FLIP-MIRROR.txt to follow.  All units in meters.
-    Trajectory legTrajectory = TrajectoryGenerator.generateTrajectory(
-    // Start here
-    new Pose2d( 13.476888348084657, 2.2060528849958176, new Rotation2d(1.0471975511965979) ),
-        List.of ( 
-            new Translation2d( 13.743881932958502, 2.0389853226937475),
-           // new Translation2d( 14.055697097808213, 1.8813958243798279),
-            new Translation2d( 14.23837537743004, 1.8016699997153411),
-           // new Translation2d( 14.608206988775365, 1.6516821406305162),
-            new Translation2d( 14.792584726951727, 1.5746143032239832),
-           // new Translation2d( 15.152098351657774, 1.3983165178017831),
-            new Translation2d( 15.323176644698574, 1.2931368499927993),
-           // new Translation2d( 15.599780254630128, 1.0771169322416325),
-            new Translation2d( 15.71213834414275, 0.9681491614395323)),
-        new Pose2d( 15.94018203751987, 0.6974960254372018, new Rotation2d(2.199114857512855) ),
-        config );
-    
+    // leg2 trajectory to follow.  All units in meters.
+    Trajectory leg2Trajectory =
+    TrajectoryGenerator.generateTrajectory(
+       // Start here
+        new Pose2d(0, 0, new Rotation2d(0)),
+       // Pass through these interior waypoints
+       List.of(
+        new Translation2d(1,1), 
+        new Translation2d(2,2),
+        new Translation2d(3,3)
+        ),  
+        //End here
+        new Pose2d(4, 4, new Rotation2d(0)),
+        config);
 
+    // leg3 trajectory to add.  All units in meters.
+        Trajectory leg3Trajectory =
+    TrajectoryGenerator.generateTrajectory(
+       // Start here
+        new Pose2d(0, 0, new Rotation2d(0)),
+       // Pass through these interior waypoints
+       List.of(
+        new Translation2d(1,1), 
+        new Translation2d(2,2),
+        new Translation2d(3,3)
+        ),  
+        //End here
+        new Pose2d(4, 4, new Rotation2d(0)),
+        config);
+
+    // single trajectory to run as one command 
+    // this is assuming that the pose2d between the trajectories is still maintained
+    Trajectory combinedTrajectory = leg2Trajectory.concatenate(leg3Trajectory);
+ 
     var thetaController =
         new ProfiledPIDController(
             Constants.AutoConstants.kPThetaController, 0, 0, Constants.AutoConstants.kThetaControllerConstraints);
@@ -63,7 +74,7 @@ import frc.robot.subsystems.Swerve;
 
     SwerveControllerCommand swerveControllerCommand =
         new SwerveControllerCommand(
-            legTrajectory,
+            combinedTrajectory,
             s_Swerve::getPose,
             Constants.Swerve.swerveKinematics,
             new PIDController(Constants.AutoConstants.kPXController, 0, 0),
@@ -73,7 +84,7 @@ import frc.robot.subsystems.Swerve;
             s_Swerve);
 
     addCommands(
-        new InstantCommand(() -> s_Swerve.setPose(legTrajectory.getInitialPose())),
+        new InstantCommand(() -> s_Swerve.setPose(combinedTrajectory.getInitialPose())),
         swerveControllerCommand
     );
 }
