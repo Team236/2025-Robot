@@ -27,9 +27,9 @@ public class CoralRightTarget extends SequentialCommandGroup {
     //new TargetForwardDistance(s_Swerve, 0.7),
     
     new TargetSideDistance(s_Swerve, 0).withTimeout(1),
-    new GetPoseWithLL(s_Swerve),
+    new GetPoseWithLL(s_Swerve).withTimeout(0.25),
     new DriveSideways(s_Swerve, false, -6.5).withTimeout(2),
-    new ResetPoseWithLL(s_Swerve));    
+    new ResetPoseWithLL(s_Swerve).withTimeout(0.5));    
   }
 
 }

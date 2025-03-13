@@ -268,6 +268,71 @@ public class RobotContainer {
   //y button is already assigned to ZeroGyro
   //leftBumper lb button is already assigned to RobotCentric
 
+
+    //DRIVER CONTROLLER
+
+//targeting
+x.onTrue(coralLeftTarget);
+a.onTrue(algaeTarget);
+b.onTrue(coralRightTarget);
+
+//driving & gyro
+//rb robot cantric already binded
+//y reset gyro already binded
+rb.onTrue(orientWithLL);
+
+//elevator
+upPov.whileTrue(dangerElevatorUp);
+downPov.whileTrue(dangerElevatorDown);
+
+//climbing
+view.onTrue(prepForClimb);
+menu.onTrue(climbDownSequence);
+
+
+    //AUX CONTROLLER
+
+//scoring
+x1.onTrue(l1_Score);
+a1.onTrue(l2_Score);
+b1.onTrue(l3_Score);
+y1.onTrue(l4_Score);
+
+//coral intake
+rb1.onTrue(coralSeqGrabCount);
+rm1.whileTrue(coralRelease);
+
+//coral pivot
+view1.whileTrue(coralPivotUp);
+menu1.whileTrue(coralPivotDown);
+
+//algae pivot & hold
+upPov1.whileTrue(algaePivotUp);
+downPov1.whileTrue(algaePivotDown);
+leftPov1.whileTrue(algaeRelease);
+//rightPov1.whileTrue();
+
+//algae scoring
+lb1.onTrue(algaeGrab);
+lm1.onTrue(algaeLowPickup);
+//left trigger1 algaeHighPickup
+
+
+
+
+
+
+
+
+
+//  rm.onTrue(driveSideways675);
+// rb.onTrue(driveSidewaysNeg675);
+//upPov.onTrue(driveFwd9);
+//downPov.onTrue(driveReverse9);
+// y1.onTrue(driveReverse10);
+// rb1.onTrue(turnOnly90);
+// lb1.onTrue(turnOnlyNeg90);
+
 //leftPov.whileTrue(driveFwdAndSideAndTurn);
 
 //rb.whileTrue(targetAllParallel);
@@ -308,81 +373,37 @@ public class RobotContainer {
 //b.whileTrue(coralRelease);
 //x.whileTrue(coralGrabWithCounter);
 
-rm.whileTrue(coralPivotUp);
-rb.whileTrue(coralPivotDown);
+//rm.whileTrue(coralPivotUp);
+//rb.whileTrue(coralPivotDown);
 
-a.onTrue(coralSeqGrabCount);
-lm.whileTrue(coralRelease);
+//a.onTrue(coralSeqGrabCount);
+//lm.whileTrue(coralRelease);
  
 //a1.whileTrue(algaeTarget);
-x.whileTrue(coralLeftTarget);
-b.whileTrue(coralRightTarget);
+//x.whileTrue(coralLeftTarget);
+//b.whileTrue(coralRightTarget);
 
-upPov.onTrue(leg1Right);
-downPov.onTrue(leg1Left);
+//upPov.onTrue(leg1Right);
+//downPov.onTrue(leg1Left);
 //a.onTrue(ctrScore1);
 
-leftPov.onTrue(prepForClimb);
-rightPov.onTrue(climbDownSequence);
+//leftPov.onTrue(prepForClimb);
+//rightPov.onTrue(climbDownSequence);
 
 //y1.onTrue(l1_Score);
-a1.onTrue(l2_Score);
-x1.onTrue(l3_Score);
-y1.onTrue(l4_Score);
-b1.onTrue(motionMagicToBottom);
+//a1.onTrue(l2_Score);
+//x1.onTrue(l3_Score);
+//y1.onTrue(l4_Score);
+//b1.onTrue(motionMagicToBottom);
 
-lm1.whileTrue(algaeGrab);
-rm1.whileTrue(algaeRelease);
+//lm1.whileTrue(algaeGrab);
+//rm1.whileTrue(algaeRelease);
 
-leftPov1.whileTrue(algaePivotUp);
-rightPov1.whileTrue(algaePivotDown);
+//leftPov1.whileTrue(algaePivotUp);
+//rightPov1.whileTrue(algaePivotDown);
 
-downPov1.whileTrue(dangerElevatorDown);
-upPov1.whileTrue(dangerElevatorUp);
-
-
-    //DRIVER CONTROLLER
-
-//targeting
-leftPov.onTrue(coralLeftTarget);
-downPov.onTrue(algaeTarget);
-rightPov.onTrue(coralRightTarget);
-
-//driving & gyro
-//rb robot cantric already binded
-//y reset gyro already binded
-rb.onTrue(orientWithLL);
-
-//climbing
-view.onTrue(prepForClimb);
-menu.onTrue(climbDownSequence);
-
-
-    //AUX CONTROLLER
-
-a1.onTrue(l1_Score);
-x1.onTrue(l2_Score);
-b1.onTrue(l3_Score);
-y1.onTrue(l4_Score);
-
-rb1.onTrue(coralSeqGrabCount);
-rm1.onTrue(coralRelease);
-
-view1.whileTrue(coralPivotUp);
-menu1.whileTrue(coralPivotDown);
-
-upPov1.whileTrue(algaePivotUp);
-downPov1.wileTrue(algaePivotDown);
-leftPov1.whileTrue(algaeGrab);
-rightPov1.whileTrue(algaeRelease);
-
-//  rm.onTrue(driveSideways675);
-// rb.onTrue(driveSidewaysNeg675);
-//upPov.onTrue(driveFwd9);
-//downPov.onTrue(driveReverse9);
-// y1.onTrue(driveReverse10);
-// rb1.onTrue(turnOnly90);
-// lb1.onTrue(turnOnlyNeg90);
+//downPov1.whileTrue(dangerElevatorDown);
+//upPov1.whileTrue(dangerElevatorUp);
 
 
 

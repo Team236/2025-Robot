@@ -34,11 +34,12 @@ public class GetPoseWithLL extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    s_Swerve.getLLPose();
+  
   }
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    s_Swerve.getLLPose();
     //Do everything just once, so do in init then return "true" in isFinished below
   }
 
@@ -49,6 +50,6 @@ public class GetPoseWithLL extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 }
