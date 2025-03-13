@@ -107,7 +107,6 @@ public class CoralHold extends SubsystemBase {
   }
 
 
-
   public void resetCount() {
     // automaticaly sets counter to 0 at start 
     counter.reset();

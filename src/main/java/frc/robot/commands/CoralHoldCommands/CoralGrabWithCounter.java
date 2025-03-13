@@ -24,7 +24,7 @@ public class CoralGrabWithCounter extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    coralHold.resetCount();
+    coralHold.resetCount(); //DELETE THIS IF USING THE LIGHT SENSOR AS TRUE/FALSE, NOT COUNTING
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -42,6 +42,7 @@ public class CoralGrabWithCounter extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    //return coralHold.getLightSensorState();  // TRUE WHEN CORAL IS IN?  OR FALSE?
     return coralHold.getCoralHCount() > 0;
   }
 }
