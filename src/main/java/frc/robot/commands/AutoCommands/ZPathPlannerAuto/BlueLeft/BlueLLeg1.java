@@ -59,7 +59,7 @@ public class BlueLLeg1 extends  SequentialCommandGroup  {
               new Translation2d( 15.718360777047327, 7.264368191996179) ),
             new Pose2d( 15.891295092732786, 7.360421153067785, new Rotation2d(0.9424777960769383) ),
             config );
-            // if Red alliance should use BlueLL-leg1E-18-FLIP-MIRROR.txt
+    
 
  
     var thetaController =
