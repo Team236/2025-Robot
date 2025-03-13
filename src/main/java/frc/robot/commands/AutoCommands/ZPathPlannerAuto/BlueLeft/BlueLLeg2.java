@@ -50,7 +50,7 @@ import frc.robot.subsystems.Swerve;
          new Translation2d( 4.0783763450190715, 2.210041608055532)),
        new Pose2d( 4.071362051915341, 2.2060528849958176, new Rotation2d(2.0943951023931953) ),
        config );
-
+        // if Red alliance should use leg2a-mirror
 
 
     var thetaController =

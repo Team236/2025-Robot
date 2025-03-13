@@ -5,6 +5,9 @@
 package frc.robot.commands.AutoCommands.ZPathPlannerAuto.BlueRight;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.commands.AutoCommands.Right.Leg1Right;
+import frc.robot.commands.AutoCommands.Right.Leg2Right;
+import frc.robot.commands.AutoCommands.Right.Leg3Right;
 import frc.robot.subsystems.Swerve;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -14,8 +17,8 @@ public class BlueR_Leg1and2 extends SequentialCommandGroup {
   /** Creates a new RRight_FullRun. */
   public BlueR_Leg1and2(Swerve s_Swerve) {
     addCommands(
-      new BlueRLeg1(s_Swerve, false), //TODO - verify false is correct
-      new BlueRLeg2(s_Swerve, false)  //TODO - verify false is correct
+      new BlueRLeg1(s_Swerve, false),//TODO - make true if going negative in X direction
+      new BlueRLeg2(s_Swerve, false)//TODO - make true if going negative in X direction
     );
   }
 }
