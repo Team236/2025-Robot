@@ -212,9 +212,9 @@ public static final class Swerve {
     public static final int DIO_ELEV_TOP = 4;
     public static final int DIO_ELEV_BOTTOM = 5;
 
-    public static final double ELEV_UP_SPEED = 0.1;
-    public static final double ELEV_DOWN_SPEED = -0.1;
-    public static final double ELEV_CLIMB_DOWN_SPEED = -0.1;
+    public static final double ELEV_UP_SPEED = 0.4;
+    public static final double ELEV_DOWN_SPEED = -0.4;
+    public static final double ELEV_CLIMB_DOWN_SPEED = -0.4;
 
     //conversion factors
     public static final double ELEV_REV_TO_METERS = 1.362*0.0254;

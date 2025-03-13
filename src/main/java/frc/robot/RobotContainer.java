@@ -162,7 +162,7 @@ public class RobotContainer {
   //Elevator
   private final DangerManualUpDown dangerElevatorUp = new DangerManualUpDown(elevator, Constants.Elevator.ELEV_UP_SPEED);
   private final DangerManualUpDown dangerElevatorDown = new DangerManualUpDown(elevator, Constants.Elevator.ELEV_DOWN_SPEED);
-  private final ClimbDownSequence climbDownSequence= new ClimbDownSequence(elevator, algaePivot);
+  private final ClimbDownSequence climbDownSequence= new ClimbDownSequence(elevator, algaePivot, Constants.Elevator.ELEV_CLIMB_DOWN_SPEED);
   private final PrepForClimb prepForClimb = new PrepForClimb(elevator,  algaePivot);
  private final ElevMotionMagicPID motionMagicToTestLevel  = new ElevMotionMagicPID(elevator, 40);
  private final ElevMotionMagicPID motionMagicToBottom  = new ElevMotionMagicPID(elevator, 0);

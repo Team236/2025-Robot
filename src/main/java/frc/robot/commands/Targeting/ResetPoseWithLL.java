@@ -10,6 +10,7 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.LimelightHelpers;
 import frc.robot.subsystems.Swerve;
@@ -30,6 +31,7 @@ public class ResetPoseWithLL extends Command {
   // Called when the command is initially scheduled.
   public void initialize() {
     if (poseLL != null)  {
+      SmartDashboard.putBoolean("pose not null", true);
    s_Swerve.resetLLPose();
     };
   } 

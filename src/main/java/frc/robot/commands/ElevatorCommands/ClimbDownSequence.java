@@ -5,6 +5,7 @@
 package frc.robot.commands.ElevatorCommands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.Constants;
 import frc.robot.commands.AlgaePivotCommands.PIDToElevSafePosition;
 import frc.robot.subsystems.AlgaePivot;
 import frc.robot.subsystems.Elevator;
@@ -14,13 +15,13 @@ import frc.robot.subsystems.Elevator;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class ClimbDownSequence extends SequentialCommandGroup {
   /** Creates a new ClimbDownSequence. */
-  public ClimbDownSequence(Elevator elevator, AlgaePivot algaePivot) {
+  public ClimbDownSequence(Elevator elevator, AlgaePivot algaePivot, double speed) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
       //new PIDToElevSafePosition(algaePivot),
       new ElevMotionMagicPID(elevator, 6).withTimeout(1),
-      new DangerManualUpDown(elevator, -0.15).withTimeout(1)
+      new DangerManualUpDown(elevator, Constants.Elevator.ELEV_CLIMB_DOWN_SPEED).withTimeout(2)
     );
   }
 }
