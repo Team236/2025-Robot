@@ -14,8 +14,8 @@ public class RedL_Leg1and2 extends SequentialCommandGroup {
   /** Creates a new RRight_FullRun. */
   public RedL_Leg1and2(Swerve s_Swerve) {
     addCommands(
-      new RedLLeg1(s_Swerve, false),//TODO - make true if going negative in X direction
-      new RedLLeg2(s_Swerve, false)//TODO - make true if going negative in X direction
+      new RedLLeg1(s_Swerve, false),  //TODO - verify false is correct
+      new RedLLeg2(s_Swerve, false)   //TODO - verify false is correct
     );
   }
 }
