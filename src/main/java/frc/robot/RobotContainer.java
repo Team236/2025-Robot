@@ -315,11 +315,12 @@ menu1.whileTrue(coralPivotDown);
 upPov1.whileTrue(algaePivotUp);
 downPov1.whileTrue(algaePivotDown);
 leftPov1.whileTrue(algaeRelease);
-rightPov1.whileTrue(algaeGrab);//manual grab
+rightPov1.whileTrue(dangerElevatorDown);//manual elevator down
 
 //algae scoring
 lb1.onTrue(algaeGrab);//grab and hold
-lm1.onTrue(algaeLowPickup);
+lm1.onTrue(pidReefPickup);
+//lm1.onTrue(algaeLowPickup);
 lt1.onTrue(algaeHighPickup);
 
 

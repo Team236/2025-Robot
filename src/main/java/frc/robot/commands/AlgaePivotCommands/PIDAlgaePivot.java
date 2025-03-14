@@ -18,12 +18,12 @@ public class PIDAlgaePivot extends Command {
   private double kP = Constants.AlgaePivot.KP;
   private double kI = Constants.AlgaePivot.KI;
   private double kD = Constants.AlgaePivot.KD;
-  private double revs;
+  //private double revs;
 
   public PIDAlgaePivot(AlgaePivot algaePivot, double revs) {
     pidController = new PIDController(kP, kI, kD);
     this.algaePivot = algaePivot;
-    this.revs = revs;
+    //this.revs = revs;
 
     addRequirements(this.algaePivot);
 

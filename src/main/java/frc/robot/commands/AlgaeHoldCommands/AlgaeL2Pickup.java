@@ -5,10 +5,15 @@
 package frc.robot.commands.AlgaeHoldCommands;
 
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
 import frc.robot.commands.AlgaePivotCommands.PIDAlgaePivot;
 import frc.robot.commands.AlgaePivotCommands.PIDToElevSafePosition;
+import frc.robot.commands.AutoCommands.DriveFwd;
+import frc.robot.commands.CoralHoldCommands.CoralRelease;
+import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
 import frc.robot.commands.ElevatorCommands.ElevMotionMagicPID;
 import frc.robot.subsystems.AlgaeHold;
 import frc.robot.subsystems.AlgaePivot;
@@ -18,13 +23,32 @@ public class AlgaeL2Pickup extends SequentialCommandGroup {
   /** Creates a new Algae_Score. */
   public AlgaeL2Pickup(Elevator elevator, AlgaeHold algaeHold, AlgaePivot algaePivot) {
   addCommands(
-    new PIDToElevSafePosition(algaePivot),
-    new ElevMotionMagicPID(elevator, Constants.Elevator.PICK_ALGAE_L2_HEIGHT),
-    new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_REEF_PICKUP),
-    new AlgaeGrab(algaeHold, Constants.AlgaeHold.HOLD_SPEED1, Constants.AlgaeHold.HOLD_SPEED2),
-    new PIDToElevSafePosition(algaePivot),
-    new ElevMotionMagicPID(elevator, Constants.Elevator.TELEOP_HEIGHT)
-);
+
+   // new PIDToElevSafePosition(algaePivot).withTimeout(0.5),
+    Commands.parallel( //do in parallel so elevator stays up the whole time
+      //new ElevMotionMagicPID(elevator, Constants.Elevator.PICK_ALGAE_L2_HEIGHT).withTimeout(3), //timeout must add up to the whole sequential command group + 0.5
+      new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_REEF_PICKUP).withTimeout(1)
+
+      // Commands.sequence(    
+        //wait for elevator to go up    
+        // new WaitCommand(0.7),
+        // new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_REEF_PICKUP).withTimeout(1)
+
+        // Commands.parallel(
+          // new AlgaeGrab(algaeHold, Constants.AlgaeHold.HOLD_SPEED1, Constants.AlgaeHold.HOLD_SPEED2),
+          // Commands.sequence(
+            // new WaitCommand(0.5),
+            // new PIDToElevSafePosition(algaePivot).withTimeout(0.5)
+          // ) 
+        // )
+      // )
+    )
+  );
+
+   
+    //new PIDToElevSafePosition(algaePivot).withTimeout(0.5),
+    //new ElevMotionMagicPID(elevator, Constants.Elevator.TELEOP_HEIGHT).withTimeout(0.5)
+
 
 }
 }

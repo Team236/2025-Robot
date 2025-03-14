@@ -227,7 +227,7 @@ public static final class Swerve {
     public static final double L2_HEIGHT = 5;//3.47;
     public static final double L3_HEIGHT = 23;
     public static final double L4_HEIGHT = 55.25;
-    public static final double PICK_ALGAE_L2_HEIGHT = 3.47; //TODO find actual
+    public static final double PICK_ALGAE_L2_HEIGHT = 16; //TODO find actual
     public static final double PICK_ALGAE_L3_HEIGHT = 13.5;//TODO find actual
     public static final double SCORE_ALGAE_NET_HEIGHT = 55; //TODO find actual
     public static final double CLIMB_START_HEIGHT = 12;  
@@ -262,7 +262,7 @@ public static class CoralHold {
     public static final int DIO_ENC_A = 7;
     public static final int DIO_ENC_B = 13;
     public static final double ENC_REVS_MAX = -700; //TODO determine max revs
-    public static final double ENC_REVS_REEF_PICKUP = -18;
+    public static final double ENC_REVS_REEF_PICKUP = -300;
     public static final double ENC_REVS_FLOOR_PICKUP = -23.7;
     public static final double ENC_REVS_SCORE_NET = 0; //TODO find actual
     public static final double ENC_REVS_ELEVATOR_SAFE_POSITION = 0;//TODO verify safe at retract limit

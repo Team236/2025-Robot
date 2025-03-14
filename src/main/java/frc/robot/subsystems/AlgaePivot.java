@@ -69,7 +69,7 @@ public class AlgaePivot extends SubsystemBase {
   }
 
   public boolean isFullyExtended(){
-    return getPivotEncoder() <= Constants.AlgaePivot.ENC_REVS_MAX;
+    return (getPivotEncoder() <= Constants.AlgaePivot.ENC_REVS_MAX);
   }
 
   public void stopAlgaePivot()
@@ -109,20 +109,24 @@ public class AlgaePivot extends SubsystemBase {
     if (speed >= 0){ //positive speed means extending
       //Extending
       if (isFullyExtended()){
+        SmartDashboard.putBoolean("speed positive and extending, so stop", true);
         stopAlgaePivot();
       } else {
+        SmartDashboard.putBoolean("speed positive and not fully extended, so go", true);
         algaePivotMotor.set(speed);
       }
     } 
     else 
     {//Retracting
       if (isLimit()){
+        SmartDashboard.putBoolean("algae pivot limit hit and retracting, so stop", true);
         //Added line below - assuming we should stop at retract limit - 
         //TODO: remove line blow if needed to hold PID
         stopAlgaePivot();
        // SmartDashboard.putBoolean("AP Limit Hit, so resetting encoder", true);
         resetPivotEncoder();
       } else {
+        SmartDashboard.putBoolean("algae pivot limot not hot and retracting, so go", true);
         algaePivotMotor.set(speed);
       }
     }
@@ -134,5 +138,6 @@ public class AlgaePivot extends SubsystemBase {
     SmartDashboard.putBoolean("Algae Pivot limit is hit", isLimit());
     SmartDashboard.putBoolean("Algae Pivot is fully extended", isFullyExtended());
     SmartDashboard.putNumber("Algae Pivot Encoder revolutions", getPivotEncoder());
+    //SmartDashboard.putNumber("algae pivot speed ", getPivotSpeed());
   }
 }

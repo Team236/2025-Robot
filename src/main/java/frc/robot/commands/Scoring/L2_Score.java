@@ -25,12 +25,10 @@ public class L2_Score extends SequentialCommandGroup {
   public L2_Score(Elevator elevator, CoralHold coralHold, CoralPivot coralPivot, AlgaePivot algaePivot) {
 
   addCommands(
-    //USE THIS PARALLEL SET RATHER THAN THE SEQUENTIAL PIDCoralPivot, after Algae Device working
-    // Commands.parallel( 
-    // new PIDToElevSafePosition(algaePivot).withTimeout(0.5),
-    // new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5)
-    // ),
-    new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5),
+     Commands.parallel( 
+     new PIDToElevSafePosition(algaePivot).withTimeout(0.5),
+     new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5)
+     ),
 
     Commands.parallel( //do in parallel so elevator stays up the whole time
       new ElevMotionMagicPID(elevator, Constants.Elevator.L2_HEIGHT).withTimeout(2.2),

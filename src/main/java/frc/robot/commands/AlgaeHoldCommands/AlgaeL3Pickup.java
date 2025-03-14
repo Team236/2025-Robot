@@ -18,13 +18,13 @@ public class AlgaeL3Pickup extends SequentialCommandGroup {
   /** Creates a new Algae_Score. */
   public AlgaeL3Pickup(Elevator elevator, AlgaeHold algaeHold, AlgaePivot algaePivot) {
   addCommands(
-    new PIDToElevSafePosition(algaePivot),
-    new ElevMotionMagicPID(elevator, Constants.Elevator.PICK_ALGAE_L3_HEIGHT),
-    new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_REEF_PICKUP),
-    new AlgaeGrab(algaeHold, Constants.AlgaeHold.HOLD_SPEED1, Constants.AlgaeHold.HOLD_SPEED2),
-    new PIDToElevSafePosition(algaePivot),
-    new ElevMotionMagicPID(elevator, Constants.Elevator.TELEOP_HEIGHT)
-    );
+    new PIDToElevSafePosition(algaePivot).withTimeout(0.5),
+    new ElevMotionMagicPID(elevator, Constants.Elevator.PICK_ALGAE_L3_HEIGHT).withTimeout(1),
+    new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_REEF_PICKUP).withTimeout(1),
+    new AlgaeGrab(algaeHold, Constants.AlgaeHold.HOLD_SPEED1, Constants.AlgaeHold.HOLD_SPEED2)
+    //new PIDToElevSafePosition(algaePivot),
+    //new ElevMotionMagicPID(elevator, Constants.Elevator.TELEOP_HEIGHT)
+  );
   }
 }
 
