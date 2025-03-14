@@ -30,12 +30,12 @@ public class ResetPoseWithLL extends Command {
 
   // Called when the command is initially scheduled.
   public void initialize() {
-    if (poseLL != null)  {
-      SmartDashboard.putBoolean("pose not null", true);
-      SmartDashboard.putBoolean("about to reset the LLPose in ResetPoseWithLL: ", true);
+    //if (poseLL != null)  {
+      //SmartDashboard.putBoolean("pose not null", true);
+      //SmartDashboard.putBoolean("about to reset the LLPose in ResetPoseWithLL: ", true);
    s_Swerve.resetLLPose();
     };
-  } 
+   
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override

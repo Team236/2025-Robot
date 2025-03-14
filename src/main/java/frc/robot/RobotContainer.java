@@ -277,9 +277,9 @@ public class RobotContainer {
     //DRIVER CONTROLLER
 
 //targeting
-x.onTrue(coralLeftTarget);
-a.onTrue(algaeTarget);
-b.onTrue(coralRightTarget);
+x.whileTrue(coralLeftTarget);
+a.whileTrue(algaeTarget);
+b.whileTrue(coralRightTarget);
 
 //driving & gyro
 //rb robot cantric already binded
@@ -291,8 +291,8 @@ upPov.whileTrue(dangerElevatorUp);
 downPov.whileTrue(dangerElevatorDown);
 
 //climbing
-view.onTrue(prepForClimb);
-menu.onTrue(climbDownSequence);
+menu.onTrue(prepForClimb);
+view.onTrue(climbDownSequence);
 
 
     //AUX CONTROLLER
@@ -420,6 +420,8 @@ lt1.onTrue(algaeHighPickup);
   SmartDashboard.putString("Asking for auto sequence", "" + !autoSwitch1.get() + !autoSwitch2.get() + !autoSwitch3.get() + !autoSwitch4.get());
   Command command = null;
 
+
+  //! means switch is on
   if (!autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && !autoSwitch4.get()) {
     command = fullRunRight;
   } else if (!autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && autoSwitch4.get()) {
