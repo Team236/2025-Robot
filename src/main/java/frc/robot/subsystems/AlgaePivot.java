@@ -40,7 +40,7 @@ public class AlgaePivot extends SubsystemBase {
     //algaePivotEncoder = algaePivotMotor.getEncoder();
 
     algaePivotConfig = new SparkMaxConfig();
-    algaePivotConfig.inverted(false);
+    algaePivotConfig.inverted(true);
     algaePivotConfig.smartCurrentLimit(Constants.MotorControllers.SMART_CURRENT_LIMIT);
 
     //Must do things like invert and set current limits BEFORE callling the motor.configure class below
@@ -106,7 +106,7 @@ public class AlgaePivot extends SubsystemBase {
 
   public void setAlgaePivotSpeed(double speed){  
     desiredSpeed = speed;
-    if (speed >= 0){ //positive speed means extending
+    if (speed <= 0){ //positive speed means extending
       //Extending
       if (isFullyExtended()){
         SmartDashboard.putBoolean("speed positive and extending, so stop", true);
@@ -138,6 +138,6 @@ public class AlgaePivot extends SubsystemBase {
     SmartDashboard.putBoolean("Algae Pivot limit is hit", isLimit());
     SmartDashboard.putBoolean("Algae Pivot is fully extended", isFullyExtended());
     SmartDashboard.putNumber("Algae Pivot Encoder revolutions", getPivotEncoder());
-    //SmartDashboard.putNumber("algae pivot speed ", getPivotSpeed());
+    SmartDashboard.putNumber("algae pivot speed ", getPivotSpeed());
   }
 }
