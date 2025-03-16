@@ -48,7 +48,7 @@ public class Leg3Right extends SequentialCommandGroup {
          //**** GET POSE WITH LIMELIGHT, BEFORE DRIVING WITH ODOMETRY
          new GetPoseWithLL(s_Swerve).withTimeout(0.5),
          //Needs to end  with coral scorer aligned with right branch of Reef
-         //new DriveSideways(s_Swerve, false, 6.5).withTimeout(1.5), 
+         //new DriveSideways(s_Swerve, false, 7.5).withTimeout(1.5), 
          //**** RESET POSE TO VALUE FROM GetPoseWithLL
          new ResetPoseWithLL(s_Swerve).withTimeout(0.5)//,
       // ,new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5),

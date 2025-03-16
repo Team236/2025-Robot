@@ -35,7 +35,7 @@ public class Leg1Left extends SequentialCommandGroup {
           new TargetSideDistance(s_Swerve, 0).withTimeout(1),
           new TargetForwardDistance(s_Swerve, 0).withTimeout(1),
           //new GetPoseWithLL(s_Swerve).withTimeout(0.3),
-          new DriveSideways(s_Swerve, false, 7.75).withTimeout(1.5),
+          new DriveSideways(s_Swerve, false, -5.7).withTimeout(2),//7.75
           // new ResetPoseWithLL(s_Swerve).withTimeout(0.25),
           new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5),
           //new L4_Score(elevator, coralHold, coralPivot, algaePivot)

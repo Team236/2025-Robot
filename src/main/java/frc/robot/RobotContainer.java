@@ -50,9 +50,13 @@ import frc.robot.commands.ElevatorCommands.ClimbDownSequence;
 import frc.robot.commands.ElevatorCommands.DangerManualUpDown;
 import frc.robot.commands.ElevatorCommands.ElevMotionMagicPID;
 import frc.robot.commands.ElevatorCommands.PrepForClimb;
+import frc.robot.commands.Scoring.L1Shoot;
 import frc.robot.commands.Scoring.L1_Score;
+import frc.robot.commands.Scoring.L2Shoot;
 import frc.robot.commands.Scoring.L2_Score;
+import frc.robot.commands.Scoring.L3Shoot;
 import frc.robot.commands.Scoring.L3_Score;
+import frc.robot.commands.Scoring.L4Shoot;
 import frc.robot.commands.Scoring.L4_Score;
 import frc.robot.commands.Targeting.AlgaeTarget;
 import frc.robot.commands.Targeting.CoralLeftTarget;
@@ -128,9 +132,13 @@ public class RobotContainer {
 
     // Scoring
     private final L1_Score l1_Score = new L1_Score(elevator, coralHold, coralPivot, algaePivot);
+    private final L1Shoot l1Shoot = new L1Shoot(elevator, coralHold, coralPivot, algaePivot);
     private final L2_Score l2_Score = new L2_Score(elevator, coralHold, coralPivot, algaePivot);
+    private final L2Shoot l2Shoot = new L2Shoot(elevator, coralHold, coralPivot, algaePivot);
     private final L3_Score l3_Score = new L3_Score(elevator, coralHold, coralPivot, algaePivot);
+    private final L3Shoot l3Shoot = new L3Shoot(elevator, coralHold, coralPivot, algaePivot);
     private final L4_Score l4_Score = new L4_Score(elevator, coralHold, coralPivot, algaePivot);
+    private final L4Shoot l4Shoot = new L4Shoot(elevator, coralHold, coralPivot, algaePivot);
 
 
     //Auto
@@ -171,7 +179,7 @@ public class RobotContainer {
 
   //AlgaeHold
   private final AlgaeGrab algaeGrab = new AlgaeGrab(algaeHold, Constants.AlgaeHold.HOLD_SPEED1, Constants.AlgaeHold.HOLD_SPEED2);
-  private final AlgaeRelease algaeRelease = new AlgaeRelease(algaeHold, Constants.AlgaeHold.RELEASE_SPEED);
+  private final AlgaeRelease algaeRelease = new AlgaeRelease(algaeHold, Constants.AlgaeHold.PROCESSOR_SPEED);
   private final AlgaeL3Pickup algaeHighPickup = new AlgaeL3Pickup(elevator, algaeHold, algaePivot);
   private final AlgaeL2Pickup algaeLowPickup = new AlgaeL2Pickup(elevator, algaeHold, algaePivot);
 
@@ -299,9 +307,16 @@ view.onTrue(climbDownSequence);
 
 //scoring
 x1.onTrue(l1_Score);
+new Trigger(() -> x1.getAsBoolean() && rt1.getAsBoolean()).onTrue(l1Shoot);
+
 a1.onTrue(l2_Score);
+new Trigger(() -> a1.getAsBoolean() && rt1.getAsBoolean()).onTrue(l2Shoot);
+
 b1.onTrue(l3_Score);
+new Trigger(() -> b1.getAsBoolean() && rt1.getAsBoolean()).onTrue(l3Shoot);
+
 y1.onTrue(l4_Score);
+new Trigger(() -> y1.getAsBoolean() && rt1.getAsBoolean()).onTrue(l4Shoot);
 
 //coral intake
 rb1.onTrue(coralSeqGrabCount);

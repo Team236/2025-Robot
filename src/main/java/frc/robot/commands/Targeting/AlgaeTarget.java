@@ -26,10 +26,10 @@ public class AlgaeTarget extends SequentialCommandGroup {
     //new TargetForwardDistance(s_Swerve, 0.7),
     
       new TargetSideDistance(s_Swerve, 0).withTimeout(1),
-      new GetPoseWithLL(s_Swerve),
+      new GetPoseWithLL(s_Swerve).withTimeout(0.5),
       //TODO - get actual values for side distance algae
       new DriveFwdAndSideAndTurn(s_Swerve, false, 1, -9.75, 0).withTimeout(2),
-      new ResetPoseWithLL(s_Swerve));
+      new ResetPoseWithLL(s_Swerve).withTimeout(0.5));
   }
 
 }

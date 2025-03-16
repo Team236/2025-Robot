@@ -36,7 +36,7 @@ public class L4_Score_AutoLeg1 extends SequentialCommandGroup {
            new WaitCommand(1), //wait for elevator to go up
            new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL4).withTimeout(1),
            new CoralRelease(coralHold, Constants.CoralHold.L4_RELEASE_SPEED).withTimeout(0.5),
-           new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5)
+           new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.9)
           )
         //NO ELEVATOR DOWN - WILL GET DONE AT START OF LEG2 FOR AUTO
   

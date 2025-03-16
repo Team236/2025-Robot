@@ -31,7 +31,9 @@ public class L2_Score extends SequentialCommandGroup {
      ),
 
     Commands.parallel( //do in parallel so elevator stays up the whole time
-      new ElevMotionMagicPID(elevator, Constants.Elevator.L2_HEIGHT).withTimeout(2.2),
+      new ElevMotionMagicPID(elevator, Constants.Elevator.L2_HEIGHT)
+
+      /*
       Commands.sequence(
         //wait for elevator to go up
         new WaitCommand(0.5),
@@ -41,8 +43,8 @@ public class L2_Score extends SequentialCommandGroup {
         )
       ),
       new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1)
+      */
+    )
     );
-
   }
-
 }

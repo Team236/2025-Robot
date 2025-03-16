@@ -32,10 +32,10 @@ public class CoralLeftTarget extends SequentialCommandGroup {
     //new TargetSideDistance(s_Swerve, 0).withTimeout(1),
     //new TargetForwardDistance(s_Swerve, 0.7),
     
-     new TargetSideDistance(s_Swerve, 0).withTimeout(1),
-     new GetPoseWithLL(s_Swerve).withTimeout(1),
-     new DriveSideways(s_Swerve, false, 6.5).withTimeout(2),
-     new ResetPoseWithLL(s_Swerve)//.withTimeout(0.5)
+     new TargetSideDistance(s_Swerve, 0).withTimeout(0.5),
+     new GetPoseWithLL(s_Swerve).withTimeout(0.5),
+     new DriveSideways(s_Swerve, false, 7.5).withTimeout(2),
+     new ResetPoseWithLL(s_Swerve).withTimeout(0.5)
      );    
   }
 

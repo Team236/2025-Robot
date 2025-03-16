@@ -15,8 +15,10 @@ import frc.robot.commands.AutoCommands.DriveSideways;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
 import frc.robot.commands.CoralHoldCommands.CoralResetCount;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
+import frc.robot.commands.ElevatorCommands.ElevMotionMagicPID;
 import frc.robot.commands.Scoring.L2_Score;
 import frc.robot.commands.Scoring.L4_Score;
+import frc.robot.commands.Scoring.L4_Score_AutoLeg1;
 import frc.robot.commands.Targeting.GetPoseWithLL;
 import frc.robot.commands.Targeting.ResetPoseWithLL;
 import frc.robot.commands.Targeting.TargetSideDistance;
@@ -32,22 +34,21 @@ import frc.robot.subsystems.Swerve;
 
 public class CtrScore1 extends SequentialCommandGroup {
   /** Creates a new FullRunParallel. */
-  public CtrScore1(Swerve s_Swerve, Elevator elevator, AlgaePivot algeaPivot, CoralPivot coralPivot, CoralHold coralHold) {
+  public CtrScore1(Swerve s_Swerve, Elevator elevator, AlgaePivot algaePivot, CoralPivot coralPivot, CoralHold coralHold) {
     addCommands(
       //TODO:  add the commands for scoring 
       // Commands.parallel(
         new DriveFwd(s_Swerve, false, Constants.AutoConstants.CENTER_FWD_DIST).withTimeout(2),
         new TargetSideDistance(s_Swerve, 0).withTimeout(1),
-        new GetPoseWithLL(s_Swerve).withTimeout(0.25),
+        new GetPoseWithLL(s_Swerve).withTimeout(0.5),
         new DriveSideways(s_Swerve, false, -6.25).withTimeout(1.5),
-        new ResetPoseWithLL(s_Swerve).withTimeout(0.25)
+        new ResetPoseWithLL(s_Swerve).withTimeout(0.5),
 
         //,new PIDToElevSafePosition(algeaPivot).withTimeout(2)
 
-        , new L4_Score(elevator, coralHold, coralPivot, algeaPivot)
- 
+          new L4_Score_AutoLeg1(elevator, coralHold, coralPivot, algaePivot),
+          new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.2)
     );
-
   }
 }
 

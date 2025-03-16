@@ -24,12 +24,15 @@ public class L1_Score extends SequentialCommandGroup {
     addCommands(
 
     Commands.parallel( 
-    new PIDToElevSafePosition(algaePivot).withTimeout(0.5),
+    new PIDToElevSafePosition(algaePivot).withTimeout(0.5)
+    /*
     new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5)
      ),
 
     new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL1).withTimeout(0.5),
     new CoralRelease(coralHold, Constants.CoralHold.L1_RELEASE_SPEED).withTimeout(1)
+    */
+   )
    );
   }
 }

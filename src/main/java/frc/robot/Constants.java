@@ -205,7 +205,7 @@ public static final class Swerve {
                 kMaxAngularSpeedRadiansPerSecond, kMaxAngularSpeedRadiansPerSecondSquared);
 
       //Center Auto path (inches)
-        public static final double CENTER_FWD_DIST = 51.55; //if starting 2" behind start line
+        public static final double CENTER_FWD_DIST = 54; //if starting 2" behind start line
     }
 
   public static class Elevator {
@@ -226,13 +226,13 @@ public static final class Swerve {
     public static final double L1_HEIGHT = 0;
     public static final double L2_HEIGHT = 5;//3.47;
     public static final double L3_HEIGHT = 23;
-    public static final double L4_HEIGHT = 55.25;
-    public static final double PICK_ALGAE_L2_HEIGHT = 16; //TODO find actual
-    public static final double PICK_ALGAE_L3_HEIGHT = 36;//TODO find actual
-    public static final double SCORE_ALGAE_NET_HEIGHT = 55; //TODO find actual
+    public static final double L4_HEIGHT = 57;//no more than 57.5
+    public static final double PICK_ALGAE_L2_HEIGHT = 22; //TODO find actual
+    public static final double PICK_ALGAE_L3_HEIGHT = 38;//TODO find actual
+    public static final double SCORE_ALGAE_NET_HEIGHT = 60; //TODO find actual
     public static final double CLIMB_START_HEIGHT = 12;  
     public static final double CLIMB_END_HEIGHT = 0; 
-    public static final double MAX_HEIGHT = 57;
+    public static final double MAX_HEIGHT = 60.15;
 
     //PID values
     public static final double KP_ELEV = 0.039; //0.04;
@@ -244,17 +244,17 @@ public static class AlgaeHold {
   public static final double HOLD_SPEED1 = -0.5;//MUST BE NEGATIVE!
   public static final double HOLD_SPEED2 = -0.04;//MUST BE NEGATIVE!
   public static final double RELEASE_SPEED = 1.0;
-  public static final double PROCESSOR_SPEED = -0.5;
+  public static final double PROCESSOR_SPEED = 0.125;
   public static final int DIO_AH_LIMIT = 9;
 }
 
 public static class CoralHold {
   public static final int DIO_COUNTER = 10;
   public static final double HOLD_SPEED = 0.2;
-  public static final double L1_RELEASE_SPEED = 0.2;
-  public static final double L2_RELEASE_SPEED = 0.5;//0.5;
-  public static final double L3_RELEASE_SPEED = 0.5;//0.5;
-  public static final double L4_RELEASE_SPEED = 0.1;
+  public static final double L1_RELEASE_SPEED = 0.25;//0.2;
+  public static final double L2_RELEASE_SPEED = 0.25;//0.5;
+  public static final double L3_RELEASE_SPEED = 0.25;//0.5;
+  public static final double L4_RELEASE_SPEED = 0.25;//0.1;
 }
 
   public static class AlgaePivot {
@@ -262,7 +262,7 @@ public static class CoralHold {
     public static final int DIO_ENC_A = 7;
     public static final int DIO_ENC_B = 13;
     public static final double ENC_REVS_MAX = -855; //TODO determine max revs
-    public static final double ENC_REVS_REEF_PICKUP = -300;
+    public static final double ENC_REVS_REEF_PICKUP = -500;
     public static final double ENC_REVS_FLOOR_PICKUP = -23.7;
     public static final double ENC_REVS_SCORE_NET = 0; //TODO find actual
     public static final double ENC_REVS_ELEVATOR_SAFE_POSITION = 0;//TODO verify safe at retract limit
@@ -276,11 +276,11 @@ public static class CoralHold {
   
   public static class CoralPivot {
     public static final int DIO_LIMIT = 8; 
-    public static final double ENC_REVS_MAX = -120;
+    public static final double ENC_REVS_MAX = -125;
     public static final double ENC_REVS_LEVEL1 = 0;
-    public static final double ENC_REVS_LEVEL2 = -22;
-    public static final double ENC_REVS_LEVEL3 = -22; 
-    public static final double ENC_REVS_LEVEL4 = -110;//107
+    public static final double ENC_REVS_LEVEL2 = -25;
+    public static final double ENC_REVS_LEVEL3 = -25; 
+    public static final double ENC_REVS_LEVEL4 = -125;//107
     public static final double ENC_REVS_FULL_RETRACT = 0;
     public static final double MAN_EXT_SPEED = -0.6;
     public static final double MAN_RET_SPEED = 0.6;

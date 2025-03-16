@@ -16,7 +16,7 @@ public class OrientWithLL extends SequentialCommandGroup {
   /** Creates a new OrientWithLL. */
   public OrientWithLL(Swerve s_Swerve) {
     addCommands(
-      new GetPoseWithLL(s_Swerve),
-      new ResetPoseWithLL(s_Swerve));
+      new GetPoseWithLL(s_Swerve).withTimeout(0.5),
+      new ResetPoseWithLL(s_Swerve).withTimeout(0.5));
   }
 }
