@@ -67,6 +67,8 @@ import frc.robot.commands.Targeting.TargetAngleSide;
 import frc.robot.commands.Targeting.TargetForwardDistance;
 import frc.robot.commands.Targeting.TargetMegaTag2;
 import frc.robot.commands.Targeting.TargetSideDistance;
+import frc.robot.commands.Targeting.UpdateRobotPosition;
+import frc.robot.commands.Targeting.UpdateTargetPosition;
 import frc.robot.subsystems.AlgaeHold;
 import frc.robot.subsystems.AlgaePivot;
 import frc.robot.subsystems.Elevator;
@@ -120,6 +122,8 @@ public class RobotContainer {
     private final AlgaeTarget algaeTarget = new AlgaeTarget(s_Swerve);
     private final CoralLeftTarget coralLeftTarget = new CoralLeftTarget(s_Swerve);
     private final CoralRightTarget coralRightTarget = new CoralRightTarget(s_Swerve);
+    private final UpdateRobotPosition updateRobotPosition = new UpdateRobotPosition(s_Swerve);
+    private final UpdateTargetPosition updateTargetPosition = new UpdateTargetPosition(s_Swerve);
 
   //NOTE - STANDOFF FWD IS WITHOUT THE BUMPER - ADD BUMPER DEPTH AS NEEDEDD
     private final TargetAllParallel targetAllParallel = new TargetAllParallel(s_Swerve, 12, 0);
@@ -295,8 +299,8 @@ b.whileTrue(coralRightTarget);
 rb.onTrue(orientWithLL);
 
 //elevator
-upPov.whileTrue(dangerElevatorUp);
-downPov.whileTrue(dangerElevatorDown);
+upPov.whileTrue(updateRobotPosition);
+downPov.whileTrue(updateTargetPosition);
 
 //climbing
 menu.onTrue(prepForClimb);
