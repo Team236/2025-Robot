@@ -64,6 +64,8 @@ import frc.robot.commands.Scoring.L4_Score;
 import frc.robot.commands.Targeting.AlgaeTarget;
 import frc.robot.commands.Targeting.CoralLeftTarget;
 import frc.robot.commands.Targeting.CoralRightTarget;
+import frc.robot.commands.Targeting.GoToCoralLeftLL;
+import frc.robot.commands.Targeting.GoToCoralRightLL;
 import frc.robot.commands.Targeting.TargetAllParallel;
 import frc.robot.commands.Targeting.TargetAngle;
 import frc.robot.commands.Targeting.TargetAngleSide;
@@ -123,6 +125,8 @@ public class RobotContainer {
     private final AlgaeTarget algaeTarget = new AlgaeTarget(s_Swerve);
     private final CoralLeftTarget coralLeftTarget = new CoralLeftTarget(s_Swerve);
     private final CoralRightTarget coralRightTarget = new CoralRightTarget(s_Swerve);
+    private final GoToCoralLeftLL goToCoralLeftLL = new GoToCoralLeftLL(s_Swerve);
+    private final GoToCoralRightLL goToCoralRightLL = new GoToCoralRightLL(s_Swerve);
 
   //NOTE - STANDOFF FWD IS WITHOUT THE BUMPER - ADD BUMPER DEPTH AS NEEDEDD
     private final TargetAllParallel targetAllParallel = new TargetAllParallel(s_Swerve, 12, 0);
@@ -304,9 +308,9 @@ public class RobotContainer {
     //DRIVER CONTROLLER
 
 //targeting
-x.whileTrue(coralLeftTarget);
+x.whileTrue(goToCoralLeftLL);
 a.whileTrue(algaeTarget);
-b.whileTrue(coralRightTarget);
+b.whileTrue(goToCoralRightLL);
 
 //driving & gyro
 //rb robot cantric already binded
