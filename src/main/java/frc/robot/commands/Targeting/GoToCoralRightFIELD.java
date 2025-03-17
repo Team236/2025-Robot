@@ -77,8 +77,8 @@ public class GoToCoralRightFIELD extends SequentialCommandGroup {
             List<Translation2d> waypoints = new ArrayList<>();
             double interval = 1.0 / (Constants.Targeting.TRAJECTORY_NUM_WAYPOINTS + 1);
             for (int i = 1; i <= Constants.Targeting.TRAJECTORY_NUM_WAYPOINTS; i++) {
-                double x = Units.inchesToMeters(robotFieldPose.getX() + i * interval * (targetFieldPose.getX() - robotFieldPose.getX()));
-                double y = Units.inchesToMeters(robotFieldPose.getY() + i * interval * (targetFieldPose.getY() - robotFieldPose.getY()));
+                double x = (robotFieldPose.getX() + i * interval * (targetFieldPose.getX() - robotFieldPose.getX()));
+                double y = (robotFieldPose.getY() + i * interval * (targetFieldPose.getY() - robotFieldPose.getY()));
                 waypoints.add(new Translation2d(x, y));
             } 
     
@@ -110,7 +110,6 @@ public class GoToCoralRightFIELD extends SequentialCommandGroup {
                     s_Swerve);
     
             addCommands(
-                new TurnOnly(s_Swerve, false, turnAngle),
                 new InstantCommand(() -> s_Swerve.setPose(exampleTrajectory.getInitialPose())),
                 swerveControllerCommand
             );
