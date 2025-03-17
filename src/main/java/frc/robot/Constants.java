@@ -84,6 +84,7 @@ public final class Constants {
     public static final double KP_STRAFE = 0.9;// 0.475;  //kP value for the sideways (strafe) motio%n 
 
     public static final List<Integer> REEF_IDS = Arrays.asList(6, 7, 8, 9, 10, 11, 17, 18, 19, 20, 21, 22);
+    public static final int TRAJECTORY_NUM_WAYPOINTS = 20;
     public static Map<Integer, Pose2d> ID_TO_POSE = new HashMap<>();
 }
 
