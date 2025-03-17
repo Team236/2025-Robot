@@ -3,6 +3,9 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 package frc.robot;
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -218,6 +221,22 @@ public class RobotContainer {
                 () -> robotCentric.getAsBoolean()
             )
         );
+        
+    // Put in AprilTag positions
+    Constants.Targeting.ID_TO_POSE.put(6, new Pose2d(530.49, 130.17, new Rotation2d(Units.degreesToRadians(300))));
+    Constants.Targeting.ID_TO_POSE.put(7, new Pose2d(546.87, 158.50, new Rotation2d(Units.degreesToRadians(0))));  
+    Constants.Targeting.ID_TO_POSE.put(8, new Pose2d(530.49, 186.83, new Rotation2d(Units.degreesToRadians(60))));  
+    Constants.Targeting.ID_TO_POSE.put(9, new Pose2d(530.49, 130.17, new Rotation2d(Units.degreesToRadians(120))));  
+    Constants.Targeting.ID_TO_POSE.put(10, new Pose2d(530.49, 130.17, new Rotation2d(Units.degreesToRadians(180))));  
+    Constants.Targeting.ID_TO_POSE.put(11, new Pose2d(530.49, 130.17, new Rotation2d(Units.degreesToRadians(240))));  
+
+    Constants.Targeting.ID_TO_POSE.put(17, new Pose2d(530.49, 130.17, new Rotation2d(Units.degreesToRadians(240))));  
+    Constants.Targeting.ID_TO_POSE.put(18, new Pose2d(530.49, 130.17, new Rotation2d(Units.degreesToRadians(180))));  
+    Constants.Targeting.ID_TO_POSE.put(19, new Pose2d(530.49, 130.17, new Rotation2d(Units.degreesToRadians(120))));  
+    Constants.Targeting.ID_TO_POSE.put(20, new Pose2d(530.49, 130.17, new Rotation2d(Units.degreesToRadians(60))));  
+    Constants.Targeting.ID_TO_POSE.put(21, new Pose2d(530.49, 130.17, new Rotation2d(Units.degreesToRadians(0))));  
+    Constants.Targeting.ID_TO_POSE.put(22, new Pose2d(530.49, 130.17, new Rotation2d(Units.degreesToRadians(300))));  
+        
     // Configure the trigger bindings
     configureBindings();
   }

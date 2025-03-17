@@ -4,11 +4,16 @@
 
 package frc.robot;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.ctre.phoenix6.signals.SensorDirectionValue;
 import frc.lib.util.SwerveModuleConstants;
-
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
@@ -72,10 +77,14 @@ public final class Constants {
     public static final double DIST_R_CORAL_SIDE = -10.625;//-11.4; //from LL camera to Right Coral Branch
     public static final double DIST_ALGAE_SIDE = -14.375;//-16; //to get to Algae center (from AprilTag center)
     public static final double DIST_FWD = 9; //required fwd standoff (from bumper) to keep target in sight
+    public static final double DIST_CORAL_TAG_CENTER = 6.75;
 
     public static final double KP_ROTATION = 0.008; //kP value for rotation
     public static final double KP_TRANSLATION = 0.4;//kP value for forward (translation) motion
     public static final double KP_STRAFE = 0.9;// 0.475;  //kP value for the sideways (strafe) motio%n 
+
+    public static final List<Integer> REEF_IDS = Arrays.asList(6, 7, 8, 9, 10, 11, 17, 18, 19, 20, 21, 22);
+    public static Map<Integer, Pose2d> ID_TO_POSE = new HashMap<>();
 }
 
 public static final class Swerve {
