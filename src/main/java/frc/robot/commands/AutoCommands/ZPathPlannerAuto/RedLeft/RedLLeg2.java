@@ -22,8 +22,8 @@ import frc.robot.subsystems.Swerve;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class RedLLeg2 extends  SequentialCommandGroup  {
-  /** Creates a new RedRLeg1. */
-  public RedLLeg2(Swerve s_Swerve, boolean reversed) {
+   
+public RedLLeg2(Swerve s_Swerve, boolean reversed) {
 
     TrajectoryConfig config =
         new TrajectoryConfig(
@@ -31,20 +31,16 @@ public class RedLLeg2 extends  SequentialCommandGroup  {
                 Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared)
             .setKinematics(Constants.Swerve.swerveKinematics).setReversed(reversed);
 
-    // An example trajectory to follow.  All units in meters.
-    Trajectory exampleTrajectory =
-    TrajectoryGenerator.generateTrajectory(
-       // Start here
-        new Pose2d(0, 0, new Rotation2d(0)),
-       // Pass through these interior waypoints
-       List.of(
-        new Translation2d(1,1), 
-        new Translation2d(2,2),
-        new Translation2d(3,3)
-        ),  
-        //End here
-        new Pose2d(4, 4, new Rotation2d(0)),
-        config);
+    // All units in meters.
+    Trajectory exampleTrajectory = TrajectoryGenerator.generateTrajectory(
+        // taken from Path: BlueR_leg2_mirror_flip (RED-left)
+        new Pose2d( 12.664112937147248, 2.7214580978066225, new Rotation2d(1.0471975511965979) ),
+            List.of ( 
+                new Translation2d( 12.9732893924241, 2.5147394938949628),
+                new Translation2d( 13.284534003361035, 2.3181777992777883),
+                new Translation2d( 13.475500372137901, 2.2068542378201474)),
+        new Pose2d( 13.476888348084657, 2.2060528849958176, new Rotation2d(1.0471975511965979) ),
+        config );
  
     var thetaController =
         new ProfiledPIDController(

@@ -31,8 +31,8 @@ import frc.robot.subsystems.Swerve;
     *  this start position assumes last leg drove away from 
     *  RED REEF E position as defined in PathPlanner application
     */
-    public class RedRLeg2 extends SequentialCommandGroup {
-  /** Creates a new RRightLeg2. */
+  public class RedRLeg2 extends SequentialCommandGroup {
+   
   public RedRLeg2(Swerve s_Swerve, boolean reversed) {
 
     TrajectoryConfig config =
@@ -41,15 +41,15 @@ import frc.robot.subsystems.Swerve;
                 Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared)
             .setKinematics(Constants.Swerve.swerveKinematics).setReversed(reversed);
 
-    // An example trajectory to follow.  All units in meters.
+    // All units in meters.
     Trajectory legTrajectory = TrajectoryGenerator.generateTrajectory(
-        // Red alliance should use leg2a-FLIP-MIRROR
-        new Pose2d( 12.569532427912042, 2.500650172546843, new Rotation2d(1.0471975511965979) ),
-        List.of ( 
-          new Translation2d( 12.899049906877593, 2.3333938129699003),
-          new Translation2d( 13.26584229258691, 2.2767240699006717),
-          new Translation2d( 13.469874054980925, 2.2100416080555316)),
-        new Pose2d( 13.476888348084657, 2.2060528849958176, new Rotation2d(1.0471975511965979) ),
+        // taken from Path: BlueR_leg2_flipped (RED-RIGHT)
+        new Pose2d( 12.664112937147248, 5.330443502193378, new Rotation2d(-1.0471975511965979) ),
+             List.of ( 
+                  new Translation2d( 12.9732893924241, 5.537162106105038),
+                  new Translation2d( 13.284534003361035, 5.733723800722212),
+                  new Translation2d( 13.475500372137901, 5.845047362179853)),
+        new Pose2d( 13.476888348084657, 5.845848715004183, new Rotation2d(-1.0471975511965979) ),
         config );
 
         

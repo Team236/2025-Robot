@@ -28,7 +28,7 @@ import frc.robot.subsystems.Swerve;
     *  this start position assumes Reef J position as defined in PathPlanner application
    */
   public class RedLLeg2and3concatenated extends  SequentialCommandGroup  {
-  /** Creates a new RedRLeg1. */
+  
   public RedLLeg2and3concatenated(Swerve s_Swerve, boolean reversed) {
     
     TrajectoryConfig config =
@@ -37,36 +37,35 @@ import frc.robot.subsystems.Swerve;
                 Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared)
             .setKinematics(Constants.Swerve.swerveKinematics).setReversed(reversed);
 
-    // from leg2a-MIRROR positions  All units in meters.
-    Trajectory leg2aTrajectory = TrajectoryGenerator.generateTrajectory(
-        // Starting from REEF J
-        new Pose2d( 4.978717972087955, 5.551251427453158, new Rotation2d(-2.0943951023931953) ),
-        // Pass through these interior waypoints
-        List.of (
-          new Translation2d( 4.649200493122405, 5.7185077870301),
-          new Translation2d( 4.282408107413086, 5.775177530099329),
-          new Translation2d( 4.0783763450190715, 5.841859991944469)),
-        new Pose2d( 4.071362051915341, 5.845848715004183, new Rotation2d(-2.0943951023931953) ),
-        config );
-
-    // from leg2a-MIRROR positions  All units in meters.
-    Trajectory leg2bTrajectory = TrajectoryGenerator.generateTrajectory(
-        // Assumes previous pose moved off of REEF J
-        new Pose2d( 4.071362051915341, 5.845848715004183, new Rotation2d(-2.0943951023931953) ),
+    // All units in meters.
+    Trajectory leg2Trajectory = TrajectoryGenerator.generateTrajectory(
+        // taken from Path: BlueR_leg2_mirror_flip (RED-left)
+        new Pose2d( 12.664112937147248, 2.7214580978066225, new Rotation2d(1.0471975511965979) ),
             List.of ( 
-                new Translation2d( 3.8043684670414954, 6.012916277306253),
-                // new Translation2d( 3.4925533021917827, 6.170505775620173),
-                new Translation2d( 3.309875022569957, 6.25023160028466),
-                // new Translation2d( 2.9400434112246323, 6.4002194593694846),
-                new Translation2d( 2.75566567304827, 6.4772872967760176),
-                // new Translation2d( 2.396152048342224, 6.653585082198218),
-                new Translation2d( 2.225073755301423, 6.7587647500072014),
-                // new Translation2d( 1.9484701453698698, 6.974784667758368),
-                new Translation2d( 1.8361120558572477, 7.083752438560468)),
-        new Pose2d( 1.6080683624801264, 7.354405574562799, new Rotation2d(-0.9424777960769379) ),
+                new Translation2d( 12.9732893924241, 2.5147394938949628),
+                new Translation2d( 13.284534003361035, 2.3181777992777883),
+                new Translation2d( 13.475500372137901, 2.2068542378201474)),
+        new Pose2d( 13.476888348084657, 2.2060528849958176, new Rotation2d(1.0471975511965979) ),
         config );
 
-    Trajectory combinedTrajectory = leg2aTrajectory.concatenate(leg2bTrajectory);
+    // All units in meters.
+    Trajectory leg3Trajectory = TrajectoryGenerator.generateTrajectory(
+        // taken from Path: BlueR_leg3_mirror_flip  (RED-left)
+        new Pose2d( 13.476888348084657, 2.2060528849958176, new Rotation2d(1.0471975511965979) ),
+            List.of ( 
+                new Translation2d( 13.743881932958502, 2.0389853226937475),
+                //new Translation2d( 14.055697097808213, 1.8813958243798279),
+                new Translation2d( 14.23837537743004, 1.8016699997153411),
+                //new Translation2d( 14.608206988775365, 1.6516821406305162),
+                new Translation2d( 14.792584726951727, 1.5746143032239832),
+                //new Translation2d( 15.152098351657774, 1.3983165178017831),
+                new Translation2d( 15.323176644698574, 1.2931368499927993),
+                //new Translation2d( 15.599780254630128, 1.0771169322416325),
+                new Translation2d( 15.71213834414275, 0.9681491614395323)),
+            new Pose2d( 15.94018203751987, 0.6974960254372018, new Rotation2d(2.199114857512855) ),
+            config );
+
+    Trajectory combinedTrajectory = leg2Trajectory.concatenate(leg3Trajectory);
  
     var thetaController =
         new ProfiledPIDController(

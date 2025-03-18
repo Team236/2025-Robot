@@ -28,7 +28,7 @@ import frc.robot.subsystems.Swerve;
     *  this start position assumes Reef E position as defined in PathPlanner application
    */
   public class BlueRLeg2 extends  SequentialCommandGroup  {
-  /** Creates a new RedRLeg1. */
+   
   public BlueRLeg2(Swerve s_Swerve, boolean reversed) {
 
     TrajectoryConfig config =
@@ -37,17 +37,16 @@ import frc.robot.subsystems.Swerve;
                 Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared)
             .setKinematics(Constants.Swerve.swerveKinematics).setReversed(reversed);
 
-    // values taken from Leg2a-FLIPPED.txt positions  All units in meters.
+    // All units in meters.
     Trajectory legTrajectory = TrajectoryGenerator.generateTrajectory(
-    // starting leg is Corral J
-    new Pose2d( 4.978717972087955, 2.5006501725468424, new Rotation2d(2.0943951023931953) ),
-        List.of ( 
-        new Translation2d( 4.649200493122405, 2.333393812969901),
-        new Translation2d( 4.282408107413086, 2.276724069900671),
-        new Translation2d( 4.0783763450190715, 2.210041608055532)),
+        // taken from Path: BlueR_leg2
+        new Pose2d( 4.884137462852748, 2.7214580978066225, new Rotation2d(2.0943951023931953) ),
+            List.of ( 
+                new Translation2d( 4.574961007575896, 2.514739493894963),
+                new Translation2d( 4.263716396638962, 2.3181777992777883),
+                new Translation2d( 4.072750027862095, 2.206854237820147)),
         new Pose2d( 4.071362051915341, 2.2060528849958176, new Rotation2d(2.0943951023931953) ),
         config );
-     // if Red alliance should use leg2a-mirror
  
     var thetaController =
         new ProfiledPIDController(

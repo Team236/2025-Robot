@@ -30,8 +30,8 @@ import frc.robot.subsystems.Swerve;
     *  this position is aligned with Reef J position as defined in path planner 
    */
 public class BlueLLeg1 extends  SequentialCommandGroup  {
-  /** Creates a new RedRLeg1. */
-  public BlueLLeg1(Swerve s_Swerve, boolean reversed) {
+
+    public BlueLLeg1(Swerve s_Swerve, boolean reversed) {
 
     TrajectoryConfig config =
         new TrajectoryConfig(
@@ -41,25 +41,18 @@ public class BlueLLeg1 extends  SequentialCommandGroup  {
 
         // from BlueLL-leg1E-18-MIRROR.txt positions  All units in meters.
         Trajectory legTrajectory = TrajectoryGenerator.generateTrajectory(
-           // Start here
-            new Pose2d( 12.388354333418924, 5.162179019317324, new Rotation2d(-1.0471975511965979) ),
-                   // Pass through these interior waypoints
-            List.of ( 
-              new Translation2d( 12.719908657340973, 5.371523470283318),
-              //new Translation2d( 13.060423664127327, 5.590880772233312),
-              new Translation2d( 13.233479357946702, 5.7034137718320235),
-              // new Translation2d( 13.584062995142009, 5.932387527286306),
-              new Translation2d( 13.761141285999608, 6.048107906745649),
-              //new Translation2d( 14.117746680938861, 6.2802147281381675),
-              new Translation2d( 14.29682413250218, 6.395880793675117),
-              // new Translation2d( 14.65540441252037, 6.62463729343982),
-              new Translation2d( 14.834457588456907, 6.737007351271348),
-              // new Translation2d( 15.19096588088903, 6.955930141842183),
-              new Translation2d( 15.36797134486628, 7.061762498185264),
-              new Translation2d( 15.718360777047327, 7.264368191996179) ),
-            new Pose2d( 15.891295092732786, 7.360421153067785, new Rotation2d(0.9424777960769383) ),
-            config );
-            // if Red alliance should use BlueLL-leg1E-18-FLIP-MIRROR.txt
+        // taken from Path: BlueR_leg1-18-E_mirror  (BLUE-left)
+        new Pose2d( 7.18, 5.221901600000001, new Rotation2d(-3.141592653589793) ),
+        List.of ( 
+            new Translation2d( 6.82871718055536, 5.213997011294367),
+            new Translation2d( 6.436837125702038, 5.168928305102181),
+            new Translation2d( 6.242302142405486, 5.13726384320213),
+            new Translation2d( 5.850503886012203, 5.083483671263146),
+            new Translation2d( 5.650533161119647, 5.0792503813555925),
+            new Translation2d( 5.251547381789699, 5.1550686461010375),
+            new Translation2d( 5.062270707712605, 5.233699158853814)),
+        new Pose2d( 4.884137462852748, 5.330443502193378, new Rotation2d(-2.0943951023931953) ),
+        config );
 
  
     var thetaController =

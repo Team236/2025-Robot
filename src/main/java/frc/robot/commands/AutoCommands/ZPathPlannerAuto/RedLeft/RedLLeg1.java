@@ -22,7 +22,7 @@ import frc.robot.subsystems.Swerve;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class RedLLeg1 extends  SequentialCommandGroup  {
-  /** Creates a new RedRLeg1. */
+   
   public RedLLeg1(Swerve s_Swerve, boolean reversed) {
 
     TrajectoryConfig config =
@@ -31,20 +31,20 @@ public class RedLLeg1 extends  SequentialCommandGroup  {
                 Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared)
             .setKinematics(Constants.Swerve.swerveKinematics).setReversed(reversed);
 
-    // An example trajectory to follow.  All units in meters.
-    Trajectory exampleTrajectory =
-    TrajectoryGenerator.generateTrajectory(
-       // Start here
-        new Pose2d(0, 0, new Rotation2d(0)),
-       // Pass through these interior waypoints
-       List.of(
-        new Translation2d(1,1), 
-        new Translation2d(2,2),
-        new Translation2d(3,3)
-        ),  
-        //End here
-        new Pose2d(4, 4, new Rotation2d(0)),
-        config);
+    // All units in meters.
+    Trajectory exampleTrajectory = TrajectoryGenerator.generateTrajectory(
+     // taken from Path: BlueR_leg1-18-E_mirror_flip  (RED-left)
+     new Pose2d( 10.368250399999997, 2.83, new Rotation2d(-0.0) ),
+          List.of ( 
+               new Translation2d( 10.719533219444637, 2.8379045887056336),
+               new Translation2d( 11.11141327429796, 2.8829732948978197),
+               new Translation2d( 11.305948257594512, 2.9146377567978705),
+               new Translation2d( 11.697746513987795, 2.968417928736855),
+               new Translation2d( 11.89771723888035, 2.9726512186444083),
+               new Translation2d( 12.296703018210298, 2.8968329538989632),
+               new Translation2d( 12.485979692287392, 2.8182024411461866)),
+     new Pose2d( 12.664112937147248, 2.7214580978066225, new Rotation2d(1.0471975511965979) ),
+     config );
  
     var thetaController =
         new ProfiledPIDController(

@@ -30,9 +30,8 @@ import frc.robot.subsystems.Swerve;
     *  this start position assumes last leg drove away from 
     *  RED REEF E position as defined in PathPlanner application
     */
-    public class RedRLeg1 extends  SequentialCommandGroup  {
+  public class RedRLeg1 extends  SequentialCommandGroup  {
   
-        /** Creates a new RedRLeg1. */
   public RedRLeg1(Swerve s_Swerve, boolean reversed) {
 
     TrajectoryConfig config =
@@ -41,23 +40,22 @@ import frc.robot.subsystems.Swerve;
                 Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared)
             .setKinematics(Constants.Swerve.swerveKinematics).setReversed(reversed);
 
-    // taken from BlueLL-leg1E-18-FLIPP_MIRROR.txt (should rename BlueRLeg1-12_toE-FLIP_MIRROR.txt) positions 
     //  All units in meters.
     Trajectory legTrajectory = TrajectoryGenerator.generateTrajectory(
-       // Start here
-       new Pose2d( 10.368250399999997, 2.83, new Rotation2d(0.0) ),
-       List.of ( 
-         new Translation2d( 10.718494444055324, 2.8292934783875623),
-         //new Translation2d( 11.110817930928182, 2.8428032493819924),
-         new Translation2d( 11.306663355482476, 2.8495659081258626),
-         //new Translation2d( 11.702117179644612, 2.83411411281638),
-         new Translation2d( 11.901218765024744, 2.7967805131257926),
-         //new Translation2d( 12.286094900411275, 2.6545829021406826),
-         new Translation2d( 12.467568079814631, 2.5598878455913034)),
-       new Pose2d( 12.569532427912042, 2.500650172546843, new Rotation2d(1.0471975511965979) ),
-       config );
+        // taken from Path: BlueR_leg1-18-E_flipped  (RED-RIGHT)
+        new Pose2d( 10.368250399999997, 5.221901600000001, new Rotation2d(0.0) ),
+            List.of ( 
+                new Translation2d( 10.719533219444637, 5.213997011294367),
+                new Translation2d( 11.11141327429796, 5.168928305102181),
+                new Translation2d( 11.305948257594512, 5.13726384320213),
+                new Translation2d( 11.697746513987795, 5.083483671263146),
+                new Translation2d( 11.89771723888035, 5.0792503813555925),
+                new Translation2d( 12.296703018210298, 5.1550686461010375),
+                new Translation2d( 12.485979692287392, 5.233699158853814)),
+        new Pose2d( 12.664112937147248, 5.330443502193378, new Rotation2d(-1.0471975511965979) ),
+        config );
  
-    var thetaController =
+    var thetaController = 
         new ProfiledPIDController(
             Constants.AutoConstants.kPThetaController, 0, 0, Constants.AutoConstants.kThetaControllerConstraints);
     thetaController.enableContinuousInput(-Math.PI, Math.PI);

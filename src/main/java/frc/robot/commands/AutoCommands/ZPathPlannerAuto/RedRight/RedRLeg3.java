@@ -30,8 +30,8 @@ import frc.robot.subsystems.Swerve;
     *  RED REEF E position as defined in PathPlanner application
     */
 
-    public class RedRLeg3 extends SequentialCommandGroup {
-  /** Creates a new RRightLeg3. */
+  public class RedRLeg3 extends SequentialCommandGroup {
+ 
   public RedRLeg3(Swerve s_Swerve, boolean reversed) {
 
     TrajectoryConfig config =
@@ -40,21 +40,21 @@ import frc.robot.subsystems.Swerve;
                 Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared)
             .setKinematics(Constants.Swerve.swerveKinematics).setReversed(reversed);
 
-    // taken from leg2b-FLIP-MIRROR.txt to follow.  All units in meters.
+    // All units in meters.
     Trajectory legTrajectory = TrajectoryGenerator.generateTrajectory(
-    // Start here
-    new Pose2d( 13.476888348084657, 2.2060528849958176, new Rotation2d(1.0471975511965979) ),
-        List.of ( 
-            new Translation2d( 13.743881932958502, 2.0389853226937475),
-            new Translation2d( 14.055697097808213, 1.8813958243798279),
-            new Translation2d( 14.23837537743004, 1.8016699997153411),
-            new Translation2d( 14.608206988775365, 1.6516821406305162),
-            new Translation2d( 14.792584726951727, 1.5746143032239832),
-            new Translation2d( 15.152098351657774, 1.3983165178017831),
-            new Translation2d( 15.323176644698574, 1.2931368499927993),
-            new Translation2d( 15.599780254630128, 1.0771169322416325),
-            new Translation2d( 15.71213834414275, 0.9681491614395323)),
-        new Pose2d( 15.94018203751987, 0.6974960254372018, new Rotation2d(2.199114857512855) ),
+        // taken from Path: BlueR_leg3_flipped (RED-RIGHT)
+        new Pose2d( 13.476888348084657, 5.845848715004183, new Rotation2d(-1.0471975511965979) ),
+            List.of ( 
+                new Translation2d( 13.743881932958502, 6.012916277306253),
+                new Translation2d( 14.055697097808213, 6.170505775620173),
+                new Translation2d( 14.23837537743004, 6.25023160028466),
+                new Translation2d( 14.608206988775365, 6.4002194593694846),
+                new Translation2d( 14.792584726951727, 6.4772872967760176),
+                new Translation2d( 15.152098351657774, 6.653585082198218),
+                new Translation2d( 15.323176644698574, 6.7587647500072014),
+                new Translation2d( 15.599780254630128, 6.974784667758368),
+                new Translation2d( 15.71213834414275, 7.083752438560468)),
+        new Pose2d( 15.94018203751987, 7.354405574562799, new Rotation2d(-2.199114857512855) ),
         config );
     
 
