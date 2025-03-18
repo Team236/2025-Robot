@@ -4,6 +4,9 @@
 
 package frc.robot;
 
+import java.util.Arrays;
+import java.util.List;
+
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.ctre.phoenix6.signals.SensorDirectionValue;
@@ -58,7 +61,7 @@ public final class Constants {
 
   public static final class  Targeting {
     //use this with TargetPose-CameraSpace:  
-    public static final double DIST_FORWARDS_CAMERA_TO_FRAME = 5.5;
+    public static final double DIST_FORWARDS_CAMERA_TO_FRAME = 5.31;
     public static final double BUMPER_THICKNESS = 3.25;
     //TODO - may need to use just cam to frame for TargetFwdDistance?
     public static final double DIST_CAMERA_TO_BUMPER_FWD = BUMPER_THICKNESS + DIST_FORWARDS_CAMERA_TO_FRAME;
@@ -76,6 +79,9 @@ public final class Constants {
     public static final double KP_ROTATION = 0.008; //kP value for rotation
     public static final double KP_TRANSLATION = 0.4;//kP value for forward (translation) motion
     public static final double KP_STRAFE = 0.9;// 0.475;  //kP value for the sideways (strafe) motio%n 
+
+    public static final List<Integer> REEF_IDS = Arrays.asList(6, 7, 8, 9, 10, 11, 17, 18, 19, 20, 21, 22);
+    public static final double DIST_CORAL_TAG_CENTER = 6.5;
 }
 
 public static final class Swerve {

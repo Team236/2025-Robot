@@ -61,6 +61,8 @@ import frc.robot.commands.Scoring.L4_Score;
 import frc.robot.commands.Targeting.AlgaeTarget;
 import frc.robot.commands.Targeting.CoralLeftTarget;
 import frc.robot.commands.Targeting.CoralRightTarget;
+import frc.robot.commands.Targeting.GoToCoralLeftLL;
+import frc.robot.commands.Targeting.GoToCoralRightLL;
 import frc.robot.commands.Targeting.TargetAllParallel;
 import frc.robot.commands.Targeting.TargetAngle;
 import frc.robot.commands.Targeting.TargetAngleSide;
@@ -122,6 +124,8 @@ public class RobotContainer {
     private final AlgaeTarget algaeTarget = new AlgaeTarget(s_Swerve);
     private final CoralLeftTarget coralLeftTarget = new CoralLeftTarget(s_Swerve);
     private final CoralRightTarget coralRightTarget = new CoralRightTarget(s_Swerve);
+    private final GoToCoralRightLL goToCoralRightLL = new GoToCoralRightLL(s_Swerve);
+    private final GoToCoralLeftLL goToCoralLeftLL = new GoToCoralLeftLL(s_Swerve);
     private final UpdateRobotPosition updateRobotPosition = new UpdateRobotPosition(s_Swerve);
     private final UpdateTargetPosition updateTargetPosition = new UpdateTargetPosition(s_Swerve);
 
@@ -289,9 +293,9 @@ public class RobotContainer {
     //DRIVER CONTROLLER
 
 //targeting
-x.whileTrue(coralLeftTarget);
+x.whileTrue(goToCoralLeftLL);
 a.whileTrue(algaeTarget);
-b.whileTrue(coralRightTarget);
+b.whileTrue(goToCoralRightLL);
 
 //driving & gyro
 //rb robot cantric already binded
@@ -299,8 +303,8 @@ b.whileTrue(coralRightTarget);
 rb.onTrue(orientWithLL);
 
 //elevator
-upPov.whileTrue(updateRobotPosition);
-downPov.whileTrue(updateTargetPosition);
+upPov.whileTrue(dangerElevatorUp);
+downPov.whileTrue(dangerElevatorDown);
 
 //climbing
 menu.onTrue(prepForClimb);
