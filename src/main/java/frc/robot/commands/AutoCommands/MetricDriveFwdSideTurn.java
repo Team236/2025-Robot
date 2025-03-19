@@ -67,7 +67,7 @@ public class MetricDriveFwdSideTurn extends SequentialCommandGroup {
                    new Translation2d((fwdDist1+0.95*deltaFwd), (sideDist1+0.95*deltaSide))
                    ),  
             // End here
-            new Pose2d(fwdDist2, sideDist2, new Rotation2d(Units.degreesToRadians(turnAngle2))),
+            new Pose2d(fwdDist2, sideDist2, new Rotation2d(Units.degreesToRadians(turnAngle2 + 180))), //add 180 because target and robot are facing opposite directions
             config);
             
         var thetaController =

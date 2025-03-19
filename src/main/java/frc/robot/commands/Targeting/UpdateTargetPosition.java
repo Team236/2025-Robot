@@ -29,11 +29,12 @@ public class UpdateTargetPosition extends InstantCommand {
   public void initialize() {
     Pose2d robotFieldPose = s_Swerve.getPose(); //MUST be updated before this command runs, probably through UpdateRobotPosition
 
-    double[] targetPoseArray = LimelightHelpers.getTargetPose_RobotSpace("limelight"); //TODO: robot space might not be field space, in which case would need to add pose
-    SmartDashboard.putNumber("Target Side Dist From Robot (in):", Units.metersToInches(targetPoseArray[0]));
-    SmartDashboard.putNumber("Target Side Dist From Robot (m):", targetPoseArray[0]);
-    SmartDashboard.putNumber("Target Forward Dist From Robot (in):", Units.metersToInches(targetPoseArray[2]));
-    SmartDashboard.putNumber("Target Forward Dist From Robot (m):", targetPoseArray[2]);
-    SmartDashboard.putNumber("Target Angle from Robot:", targetPoseArray[5]);
+    double[] targetPoseBotArray = LimelightHelpers.getTargetPose_RobotSpace("limelight");
+    double[] targetPoseArray = LimelightHelpers.getTargetPose_CameraSpace("limelight"); //TODO: robot space might not be field space, in which case would need to add pose
+    SmartDashboard.putNumber("Target Side Dist From Cam (in):", Units.metersToInches(targetPoseArray[0]));
+    SmartDashboard.putNumber("Target Side Dist From Cam (m):", targetPoseArray[0]);
+    SmartDashboard.putNumber("Target Forward Dist From Cam (in):", Units.metersToInches(targetPoseArray[2]));
+    SmartDashboard.putNumber("Target Forward Dist From Cam (m):", targetPoseArray[2]);
+    SmartDashboard.putNumber("Target Angle from Robot:", targetPoseBotArray[4]);
   }
 }

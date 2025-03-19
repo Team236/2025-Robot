@@ -61,6 +61,10 @@ import frc.robot.commands.Scoring.L4_Score;
 import frc.robot.commands.Targeting.AlgaeTarget;
 import frc.robot.commands.Targeting.CoralLeftTarget;
 import frc.robot.commands.Targeting.CoralRightTarget;
+import frc.robot.commands.Targeting.FieldCentricTargetAlgae;
+import frc.robot.commands.Targeting.FieldCentricTargetLeft;
+import frc.robot.commands.Targeting.FieldCentricTargetRight;
+import frc.robot.commands.Targeting.GoToCoralLeftFwdSide;
 import frc.robot.commands.Targeting.GoToCoralLeftLL;
 import frc.robot.commands.Targeting.GoToCoralRightLL;
 import frc.robot.commands.Targeting.TargetAllParallel;
@@ -125,9 +129,13 @@ public class RobotContainer {
     private final CoralLeftTarget coralLeftTarget = new CoralLeftTarget(s_Swerve);
     private final CoralRightTarget coralRightTarget = new CoralRightTarget(s_Swerve);
     private final GoToCoralRightLL goToCoralRightLL = new GoToCoralRightLL(s_Swerve);
-    private final GoToCoralLeftLL goToCoralLeftLL = new GoToCoralLeftLL(s_Swerve);
+    // private final GoToCoralLeftFwdSide goToCoralLeftLL = new GoToCoralLeftFwdSide(s_Swerve);
     private final UpdateRobotPosition updateRobotPosition = new UpdateRobotPosition(s_Swerve);
     private final UpdateTargetPosition updateTargetPosition = new UpdateTargetPosition(s_Swerve);
+    private final GoToCoralLeftLL goToCoralLeftLL = new GoToCoralLeftLL(s_Swerve);
+    private final FieldCentricTargetLeft fieldCentricTargetLeft = new FieldCentricTargetLeft(s_Swerve);
+    private final FieldCentricTargetRight fieldCentricTargetRight = new FieldCentricTargetRight(s_Swerve);
+    private final FieldCentricTargetAlgae fieldCentricTargetAlgae = new FieldCentricTargetAlgae(s_Swerve);
 
   //NOTE - STANDOFF FWD IS WITHOUT THE BUMPER - ADD BUMPER DEPTH AS NEEDEDD
     private final TargetAllParallel targetAllParallel = new TargetAllParallel(s_Swerve, 12, 0);
@@ -151,10 +159,11 @@ public class RobotContainer {
 
     //Auto
    // private final DriveFwd driveFwd = new DriveFwd(s_Swerve, false, 10); //9
-   // private final TurnOnly turnOnlyNeg90 = new TurnOnly(s_Swerve, false, -90);
+   private final TurnOnly turnOnlyNeg90 = new TurnOnly(s_Swerve, false, -90);
    // private final DriveFwdAndSideAndTurn driveFwdAndSideAndTurn = new DriveFwdAndSideAndTurn(s_Swerve, false, 9, 0, 0);
     //private final DriveFwd driveFwd9 = new DriveFwd(s_Swerve, false, 9);//
-   // private final TurnOnly turnOnly90 = new TurnOnly(s_Swerve, false, 90);
+   private final TurnOnly turnOnly1125 = new TurnOnly(s_Swerve, false, 11.25);
+   private final TurnOnly turnOnly45 = new TurnOnly(s_Swerve, false, 45);
    // private final DriveReverse driveReverse9 = new DriveReverse(s_Swerve, true,-9);
    // private final DriveSideways driveSideways675 = new DriveSideways(s_Swerve, false, 6.5);
    // private final DriveSideways driveSidewaysNeg675 = new DriveSideways(s_Swerve, false, -6.5);
@@ -293,9 +302,10 @@ public class RobotContainer {
     //DRIVER CONTROLLER
 
 //targeting
-x.whileTrue(goToCoralLeftLL);
-a.whileTrue(algaeTarget);
-b.whileTrue(goToCoralRightLL);
+x.onTrue(fieldCentricTargetLeft);
+// a.whileTrue(algaeTarget);
+a.onTrue(fieldCentricTargetAlgae);
+b.onTrue(fieldCentricTargetRight);
 
 //driving & gyro
 //rb robot cantric already binded
@@ -346,11 +356,9 @@ lm1.onTrue(algaeLowPickup);
 lt1.onTrue(algaeHighPickup);
 
 
-
-
-
-
-
+//a.onTrue(turnOnly225);
+//b.onTrue(turnOnlyNeg90);
+//x.onTrue(turnOnly45);
 //  rm.onTrue(driveSideways675);
 // rb.onTrue(driveSidewaysNeg675);
 //upPov.onTrue(driveFwd9);

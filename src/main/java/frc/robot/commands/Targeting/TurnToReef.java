@@ -8,21 +8,25 @@ import java.util.Optional;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.networktables.NetworkTableEvent;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.units.Unit;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import frc.robot.Constants;
 import frc.robot.LimelightHelpers;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
+import frc.robot.commands.AutoCommands.TurnOnly;
+import frc.robot.Constants;
+
 import frc.robot.subsystems.Swerve;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class GoToCoralRightLL extends InstantCommand {
+public class TurnToReef extends InstantCommand {
   private Swerve s_Swerve;
   private Pose2d robotFieldPose;
   private Pose2d targetFieldPose;
@@ -31,7 +35,7 @@ public class GoToCoralRightLL extends InstantCommand {
   private Optional<Alliance> alliance = DriverStation.getAlliance();
 
   /** Creates a new GoToCoralRightLL. */
-  public GoToCoralRightLL(Swerve swerve) {
+  public TurnToReef(Swerve swerve) {
     this.s_Swerve = swerve;
     addRequirements(swerve);
   }
@@ -53,19 +57,24 @@ public class GoToCoralRightLL extends InstantCommand {
         s_Swerve.setPose(robotFieldPose);
       }
 
-      double turnAngle = LimelightHelpers.getTargetPose_CameraSpace("limelight")[5];
-      double forward = Units.metersToInches(LimelightHelpers.getTargetPose_CameraSpace("limelight")[0]) - Constants.Targeting.DIST_CAMERA_TO_BUMPER_FWD;//Constants.Targeting.DIST_TO_CENTER;
-      double side = Units.metersToInches(LimelightHelpers.getTargetPose_CameraSpace("limelight")[2]);
+      double turnAngle = LimelightHelpers.getTargetPose_RobotSpace("limelight")[4];
+
       
-      //side += Constants.Targeting.DIST_CORAL_TAG_CENTER * Math.cos(Units.degreesToRadians(turnAngle));
-      side *= -1;
+      // double forward = Units.metersToInches(LimelightHelpers.getTargetPose_CameraSpace("limelight")[2]) - Constants.Targeting.DIST_CAMERA_TO_BUMPER_FWD;
+      // double side = Units.metersToInches(LimelightHelpers.getTargetPose_CameraSpace("limelight")[0]);
+      
+      // side -= Constants.Targeting.DIST_CORAL_TAG_CENTER * Math.cos(Units.degreesToRadians(turnAngle));
+      
+      // side *= -1;
       turnAngle *= -1;
-            SmartDashboard.putNumber("Attempting Side: ", side);
-      SmartDashboard.putNumber("Attempting Forward", forward);
+      
+      // SmartDashboard.putNumber("Attempting Side: ", side);
+      // SmartDashboard.putNumber("Attempting Forward", forward);
       SmartDashboard.putNumber("Attempting Turn", turnAngle);
- 
-      CommandScheduler.getInstance().schedule(new DriveFwdAndSideAndTurn(s_Swerve, false, forward, side, turnAngle));
+      
+      CommandScheduler.getInstance().schedule(new DriveFwdAndSideAndTurn(s_Swerve, false, 0.5, 0, turnAngle).withTimeout(1.5));
+    //  CommandScheduler.getInstance().schedule(new DriveFwdAndSideAndTurn(s_Swerve, false, forward, side, 0));
+      
     }
   }
-
 }
