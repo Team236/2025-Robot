@@ -5,13 +5,15 @@
 package frc.robot;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.ctre.phoenix6.signals.SensorDirectionValue;
 import frc.lib.util.SwerveModuleConstants;
-
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
@@ -82,6 +84,7 @@ public final class Constants {
 
     public static final List<Integer> REEF_IDS = Arrays.asList(6, 7, 8, 9, 10, 11, 17, 18, 19, 20, 21, 22);
     public static final double DIST_CORAL_TAG_CENTER = 6.5;
+    public static Map<Integer, Pose2d> ID_TO_POSE = new HashMap<>();
 }
 
 public static final class Swerve {

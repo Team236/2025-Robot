@@ -53,21 +53,21 @@ public class FieldCentricTargetAlgae extends InstantCommand {
       double y1 = robotFieldPose.getY();
       double angle1 = robotFieldPose.getRotation().getDegrees();
 
-      //testing for april tag 7 coordinates
-      double x2 = Units.inchesToMeters(546.87);
-      double y2 = Units.inchesToMeters(158.5);
-      double angle2 = 0.0;
+      // april tag coordinates
+      double x2 = Constants.Targeting.ID_TO_POSE.get(targetId).getX();
+      double y2 = Constants.Targeting.ID_TO_POSE.get(targetId).getY();
+      double angle2 = Constants.Targeting.ID_TO_POSE.get(targetId).getRotation().getRadians();
 
       //standoff forward (from testing)
-      x2 -= 2.5 * Math.cos(Units.degreesToRadians(angle2)) * 0.0254;
-      y2 -= 2.5 * Math.sin(Units.degreesToRadians(angle2)) * 0.0254;
+      x2 -= 2.5 * Math.cos((angle2)) * 0.0254;
+      y2 -= 2.5 * Math.sin((angle2)) * 0.0254;
 
       //standoff side (from testing)
-      x2 -= 3 * Math.sin(Units.degreesToRadians(angle2)) * 0.0254;
-      y2 += 3 * Math.cos(Units.degreesToRadians(angle2)) * 0.0254;
+      x2 -= 3 * Math.sin((angle2)) * 0.0254;
+      y2 += 3 * Math.cos((angle2)) * 0.0254;
 
-      x2 -= Constants.Targeting.DIST_ALGAE_SIDE * Math.sin(Units.degreesToRadians(angle2)) * 0.0254;
-      y2 += Constants.Targeting.DIST_ALGAE_SIDE * Math.cos(Units.degreesToRadians(angle2)) * 0.0254;
+      x2 -= Constants.Targeting.DIST_ALGAE_SIDE * Math.sin((angle2)) * 0.0254;
+      y2 += Constants.Targeting.DIST_ALGAE_SIDE * Math.cos((angle2)) * 0.0254;
 
       // double turnAngle = LimelightHelpers.getTargetPose_RobotSpace("limelight")[4];
 
