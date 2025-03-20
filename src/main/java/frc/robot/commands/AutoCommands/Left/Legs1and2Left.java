@@ -11,16 +11,15 @@ import frc.robot.subsystems.CoralPivot;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Swerve;
 
-// NOTE:  Consider using this command inline, rather than writing a subclass.  For more
-// information, see:
+// NOTE:  Consider using this command inline, rather than writing a subclass.  For more information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class Legs1and2Left extends SequentialCommandGroup {
   /** Creates a new Legs1and2Left. */
-  public Legs1and2Left(Swerve s_Swerve, Elevator elevator, AlgaePivot algaePivot, CoralPivot coralPivot, CoralHold coralHold) {
+  public Legs1and2Left(Swerve s_Swerve, Elevator elevator, AlgaePivot algaePivot, CoralPivot coralPivot,
+      CoralHold coralHold) {
 
     addCommands(
-    new Leg1Left(s_Swerve, elevator, algaePivot, coralPivot, coralHold),
-    new Leg2Left(s_Swerve, coralHold, coralPivot, elevator)
-    );
+        new Leg1Left(s_Swerve, elevator, algaePivot, coralPivot, coralHold),
+        new Leg2Left(s_Swerve, coralHold, coralPivot, elevator));
   }
 }

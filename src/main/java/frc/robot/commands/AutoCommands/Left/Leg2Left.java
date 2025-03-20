@@ -24,27 +24,25 @@ import frc.robot.subsystems.Swerve;
 public class Leg2Left extends SequentialCommandGroup {
   /** Creates a new Leg2Left. */
   public Leg2Left(Swerve s_Swerve, CoralHold coralHold, frc.robot.subsystems.CoralPivot coralPivot, Elevator elevator) {
- //MAKE ALL Y DISTANCES AND ALL ANGLES OPPOSITE TO Right
- addCommands(
-  Commands.parallel(
-    new CoralResetCount(coralHold).withTimeout(0.5),
-    new DriveFwdAndSideAndTurn(s_Swerve, true, -6, -166, 0)
-    //new DriveSideways(s_Swerve, false, -73).withTimeout(2.5)
-    //Bring elevator down while driving sideways
-    ,new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.5)
-    ), 
+    // MAKE ALL Y DISTANCES AND ALL ANGLES OPPOSITE TO Right
+    addCommands(
+      Commands.parallel(
+      new CoralResetCount(coralHold).withTimeout(0.5),
+      new DriveFwdAndSideAndTurn(s_Swerve, true, -6, -166, 0)
+      // new DriveSideways(s_Swerve, false, -73).withTimeout(2.5)
+      // Bring elevator down while driving sideways
+      , new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.5)
+      ),
 
-  Commands.parallel(
+      Commands.parallel(
 
-  Commands.sequence(
-  new DriveFwdAndSideAndTurn(s_Swerve, false, -6, -20, 68).withTimeout(4),  
-  //new DriveFwdAndSideAndTurn(s_Swerve, false, 5, -115, 68).withTimeout(4),//62
-    new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5)
-    ),
-    new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LOADING).withTimeout(4), //adjust as needed
-    new CoralGrabWithCounter(coralHold, Constants.CoralHold.HOLD_SPEED).withTimeout(4)
-    )  
+      Commands.sequence(
+      new DriveFwdAndSideAndTurn(s_Swerve, false, -6, -20, 68).withTimeout(4),
+      // new DriveFwdAndSideAndTurn(s_Swerve, false, 5, -115, 68).withTimeout(4),//62
+      new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5)),
+      new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LOADING).withTimeout(4), // adjust as needed
+      new CoralGrabWithCounter(coralHold, Constants.CoralHold.HOLD_SPEED).withTimeout(4)
+      )
 );
   }
 }
-   
