@@ -4,11 +4,13 @@
 
 package frc.robot.commands.AutoCommands.ZPathPlannerAuto.BlueLeft;
 
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
 import frc.robot.commands.AutoCommands.ZPathPlannerAuto.*;
 import frc.robot.commands.AutoCommands.EndDriveTrajectoryPID;
 import frc.robot.commands.AutoCommands.ZPathPlannerAuto.BlueLeft.*;
+import frc.robot.commands.ElevatorCommands.ElevMotionMagicPID;
 import frc.robot.commands.Scoring.L4_Score_AutoLeg1;
 import frc.robot.commands.Targeting.TargetForwardDistance;
 import frc.robot.commands.Targeting.TargetSideDistance;
@@ -17,6 +19,7 @@ import frc.robot.subsystems.CoralHold;
 import frc.robot.subsystems.CoralPivot;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Swerve;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 // import frc.robot.subsystems.Elevator;
 // import frc.robot.subsystems.CoralPivot;
@@ -33,8 +36,13 @@ public class BlueL_FullRun extends SequentialCommandGroup {
       // Could use AutoLeg2 score, which does not bring elevator down - if bring it down at start of leg2
       new L4_Score_AutoLeg1(elevator, coralHold, coralPivot, algaePivot),
       
-      // drive next legs to go pickup new coral
-      new BlueLLeg2(s_Swerve, false),   //TODO - make true if going negative in X direction
+      // the prior command "L4_Score_AutoLeg1" does not bring down elevator
+      // Bring elevator down while driving next leg
+      Commands.parallel(
+            new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.5),
+            // drive next legs to go pickup new coral
+            new BlueLLeg2(s_Swerve, false),   //TODO - make true if going negative in X direction
+      ),
       new BlueLLeg3(s_Swerve, true),    //TODO - make false if going positive in X direction
       // intake the coral so that we can possibly move on to leg4
 
