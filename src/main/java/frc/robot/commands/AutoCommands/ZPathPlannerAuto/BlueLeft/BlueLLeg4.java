@@ -1,7 +1,3 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot.commands.AutoCommands.ZPathPlannerAuto.BlueLeft;
 
 import java.util.List;
@@ -22,36 +18,36 @@ import frc.robot.subsystems.Swerve;
 
 /* You should consider using the more terse Command factories API instead 
    https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
+
 /* 
  *  alignment for this leg is LEFT from BLUE driverstation point of view 
  *  this start position assumes last leg drove away from 
  *  Reef E position as defined in PathPlanner application
 */
-public class BlueLLeg3 extends SequentialCommandGroup {
+public class BlueLLeg4 extends SequentialCommandGroup {
 
-        public BlueLLeg3(Swerve s_Swerve, boolean reversed) {
+        public BlueLLeg4(Swerve s_Swerve, boolean reversed) {
 
                 TrajectoryConfig config = new TrajectoryConfig(
-                        Constants.AutoConstants.kMaxSpeedMetersPerSecond,
-                        Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared)
-                        .setKinematics(Constants.Swerve.swerveKinematics).setReversed(reversed);
+                                Constants.AutoConstants.kMaxSpeedMetersPerSecond,
+                                Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared)
+                                .setKinematics(Constants.Swerve.swerveKinematics).setReversed(reversed);
 
                 // All units in meters.
                 Trajectory legTrajectory = TrajectoryGenerator.generateTrajectory(
-                        // taken from Path: BlueR_leg3_mirror (BLUE-left)
-                        new Pose2d(4.071362051915341, 5.845848715004183, new Rotation2d(-2.0943951023931953)),
-                        List.of(
-                                new Translation2d(3.8043684670414954, 6.012916277306253),
-                                // new Translation2d( 3.4925533021917827, 6.170505775620173),
-                                new Translation2d(3.309875022569957, 6.25023160028466),
-                                // new Translation2d( 2.9400434112246323, 6.4002194593694846),
-                                new Translation2d(2.75566567304827, 6.4772872967760176),
-                                // new Translation2d( 2.396152048342224, 6.653585082198218),
-                                new Translation2d(2.225073755301423, 6.7587647500072014),
-                                // new Translation2d( 1.9484701453698698, 6.974784667758368),
-                                new Translation2d(1.8361120558572477, 7.083752438560468) ),
-                        new Pose2d(1.6080683624801264, 7.354405574562799, new Rotation2d(-0.9424777960769379)),
-                        config);
+                                // taken from Path: BlueR_leg4_toC_mirror (BLUE-left)
+                                new Pose2d(1.6080683624801264, 7.354405574562799, new Rotation2d(-0.9424777960769379)),
+                                List.of(
+                                        new Translation2d(1.830512349159914, 7.083242072698825),
+                                        new Translation2d(2.0881461888415886, 6.778551619455477),
+                                        // new Translation2d(2.2184400639948594, 6.627425134994839),
+                                        new Translation2d(2.481053892292155, 6.326777961430035),
+                                        // new Translation2d(2.612936805506801, 6.176854011291701),
+                                        new Translation2d(2.8766188306958678, 5.876660103754194),
+                                        // new Translation2d(3.0078793953224903, 5.725899750381426),
+                                        new Translation2d(3.2678355636388834, 5.421829972318866)),
+                                new Pose2d(3.4022920576764744, 5.260396207993615, new Rotation2d(-1.0471975511965976)),
+                                config);
 
                 var thetaController = new ProfiledPIDController(
                         Constants.AutoConstants.kPThetaController, 0, 0,
@@ -69,8 +65,7 @@ public class BlueLLeg3 extends SequentialCommandGroup {
                         s_Swerve);
 
                 addCommands(
-                        new InstantCommand( () -> s_Swerve.setPose(legTrajectory.getInitialPose()) ),
-                        swerveControllerCommand
-                        );
+                                new InstantCommand(() -> s_Swerve.setPose(legTrajectory.getInitialPose())),
+                                swerveControllerCommand);
         }
 }

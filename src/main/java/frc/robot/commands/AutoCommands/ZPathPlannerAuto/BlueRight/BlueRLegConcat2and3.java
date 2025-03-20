@@ -29,9 +29,9 @@ import frc.robot.subsystems.Swerve;
     *  alignment for this leg is Right from driverstation point of view 
     *  this position is aligned with Coral E position as defined in path planner 
    */
-  public class BlueRLeg2and3concatenate extends  SequentialCommandGroup  {
+  public class BlueRLegConcat2and3 extends  SequentialCommandGroup  {
   
-  public BlueRLeg2and3concatenate(Swerve s_Swerve, boolean reversed) {
+  public BlueRLegConcat2and3(Swerve s_Swerve, boolean reversed) {
 
     TrajectoryConfig config =
         new TrajectoryConfig(

@@ -23,9 +23,9 @@ import frc.robot.subsystems.Swerve;
 /* You should consider using the more terse Command factories API instead 
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands 
 */
-public class BlueLLeg2and3concatenated extends  SequentialCommandGroup  {
+public class BlueLLegConcat2and3 extends  SequentialCommandGroup  {
 
-public BlueLLeg2and3concatenated(Swerve s_Swerve, boolean reversed) {
+public BlueLLegConcat2and3(Swerve s_Swerve, boolean reversed) {
 
     TrajectoryConfig config =
         new TrajectoryConfig(
@@ -38,9 +38,9 @@ public BlueLLeg2and3concatenated(Swerve s_Swerve, boolean reversed) {
         // taken from Path: BlueR_leg2_mirror (BLUE-left)
         new Pose2d( 4.884137462852748, 5.330443502193378, new Rotation2d(-2.0943951023931953) ),
         List.of ( 
-             new Translation2d( 4.574961007575896, 5.537162106105038),
-             new Translation2d( 4.263716396638962, 5.733723800722212),
-             new Translation2d( 4.072750027862095, 5.845047362179853)),
+            new Translation2d( 4.574961007575896, 5.537162106105038),
+            new Translation2d( 4.263716396638962, 5.733723800722212),
+            new Translation2d( 4.072750027862095, 5.845047362179853)),
         new Pose2d( 4.071362051915341, 5.845848715004183, new Rotation2d(-2.0943951023931953) ),
         config );
 
@@ -49,15 +49,15 @@ public BlueLLeg2and3concatenated(Swerve s_Swerve, boolean reversed) {
         // taken from Path: BlueR_leg3_mirror (BLUE-left)
         new Pose2d( 4.071362051915341, 5.845848715004183, new Rotation2d(-2.0943951023931953) ),
         List.of ( 
-             new Translation2d( 3.8043684670414954, 6.012916277306253),
-             new Translation2d( 3.4925533021917827, 6.170505775620173),
-             new Translation2d( 3.309875022569957, 6.25023160028466),
-             new Translation2d( 2.9400434112246323, 6.4002194593694846),
-             new Translation2d( 2.75566567304827, 6.4772872967760176),
-             new Translation2d( 2.396152048342224, 6.653585082198218),
-             new Translation2d( 2.225073755301423, 6.7587647500072014),
-             new Translation2d( 1.9484701453698698, 6.974784667758368),
-             new Translation2d( 1.8361120558572477, 7.083752438560468)),
+            new Translation2d( 3.8043684670414954, 6.012916277306253),
+            new Translation2d( 3.4925533021917827, 6.170505775620173),
+            new Translation2d( 3.309875022569957, 6.25023160028466),
+            new Translation2d( 2.9400434112246323, 6.4002194593694846),
+            new Translation2d( 2.75566567304827, 6.4772872967760176),
+            new Translation2d( 2.396152048342224, 6.653585082198218),
+            new Translation2d( 2.225073755301423, 6.7587647500072014),
+            new Translation2d( 1.9484701453698698, 6.974784667758368),
+            new Translation2d( 1.8361120558572477, 7.083752438560468)),
         new Pose2d( 1.6080683624801264, 7.354405574562799, new Rotation2d(-0.9424777960769379) ),
         config );
 
