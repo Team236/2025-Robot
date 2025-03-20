@@ -15,37 +15,29 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.OrientWithLL;
 import frc.robot.commands.TeleopSwerve;
 import frc.robot.commands.AlgaeHoldCommands.AlgaeGrab;
-import frc.robot.commands.AlgaeHoldCommands.AlgaeL3Pickup;
 import frc.robot.commands.AlgaeHoldCommands.AlgaeL2Pickup;
+import frc.robot.commands.AlgaeHoldCommands.AlgaeL3Pickup;
 import frc.robot.commands.AlgaeHoldCommands.AlgaeRelease;
 import frc.robot.commands.AlgaePivotCommands.ManualAlgaePivot;
 import frc.robot.commands.AlgaePivotCommands.PIDAlgaePivot;
 import frc.robot.commands.AlgaePivotCommands.PIDToElevSafePosition;
-import frc.robot.commands.AutoCommands.DriveFwd;
-import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
-import frc.robot.commands.AutoCommands.DriveReverse;
-import frc.robot.commands.AutoCommands.DriveSideways;
-//mport frc.robot.commands.AutoCommands.DriveWithPath;
-import frc.robot.commands.AutoCommands.TurnOnly;
 import frc.robot.commands.AutoCommands.Center.CtrScore1;
-import frc.robot.commands.AutoCommands.Left.FullRunLeft;
-import frc.robot.commands.AutoCommands.Left.Leg1Left;
-import frc.robot.commands.AutoCommands.Left.Leg2Left;
-import frc.robot.commands.AutoCommands.Left.Leg3Left;
-import frc.robot.commands.AutoCommands.Left.Legs1and2Left;
 import frc.robot.commands.AutoCommands.Right.FullRunRight;
 import frc.robot.commands.AutoCommands.Right.Leg1Right;
 import frc.robot.commands.AutoCommands.Right.Leg2Right;
 import frc.robot.commands.AutoCommands.Right.Leg3Right;
 import frc.robot.commands.AutoCommands.Right.Legs1and2Right;
-import frc.robot.commands.AutoCommands.Right.FullRunRight;
-import frc.robot.commands.CoralHoldCommands.CoralGrabWithCounter;
+import frc.robot.commands.AutoCommands.ZPathPlannerAuto.BlueLeft.BlueLLeg1;
+import frc.robot.commands.AutoCommands.ZPathPlannerAuto.BlueLeft.BlueLLeg2;
+import frc.robot.commands.AutoCommands.ZPathPlannerAuto.BlueLeft.BlueLLeg3;
+import frc.robot.commands.AutoCommands.ZPathPlannerAuto.BlueLeft.BlueLLeg4;
+import frc.robot.commands.AutoCommands.ZPathPlannerAuto.BlueLeft.BlueL_FullRun;
 // import frc.robot.commands.CoralHoldCommands.CoralSeqGrabCount;
 import frc.robot.commands.CoralHoldCommands.CoralGrab;
+import frc.robot.commands.CoralHoldCommands.CoralGrabWithCounter;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
 import frc.robot.commands.CoralHoldCommands.CoralSeqGrabCount;
 import frc.robot.commands.CoralPivotCommands.ManualCoralPivot;
-import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
 import frc.robot.commands.ElevatorCommands.ClimbDownSequence;
 import frc.robot.commands.ElevatorCommands.DangerManualUpDown;
 import frc.robot.commands.ElevatorCommands.ElevMotionMagicPID;
@@ -65,10 +57,10 @@ import frc.robot.commands.Targeting.TargetMegaTag2;
 import frc.robot.commands.Targeting.TargetSideDistance;
 import frc.robot.subsystems.AlgaeHold;
 import frc.robot.subsystems.AlgaePivot;
-import frc.robot.subsystems.Elevator;
-import frc.robot.subsystems.Swerve;
 import frc.robot.subsystems.CoralHold;
 import frc.robot.subsystems.CoralPivot;
+import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.Swerve;
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -143,11 +135,13 @@ public class RobotContainer {
    // private final DriveSideways driveSideways675 = new DriveSideways(s_Swerve, false, 6.5);
    // private final DriveSideways driveSidewaysNeg675 = new DriveSideways(s_Swerve, false, -6.5);
 
-    private final Leg1Left leg1Left = new Leg1Left(s_Swerve,  elevator, algaePivot, coralPivot, coralHold);
-    private final Leg2Left leg2Left = new Leg2Left(s_Swerve, coralHold, coralPivot, elevator);
-    private final Leg3Left leg3Left = new Leg3Left(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
-    private final FullRunLeft fullRunLeft = new FullRunLeft(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
-    private final Legs1and2Left legs1and2Left = new Legs1and2Left(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
+    private final BlueLLeg1 blueLLeg1 = new BlueLLeg1(s_Swerve, false);
+    private final BlueLLeg2 blueLLeg2 = new BlueLLeg2(s_Swerve, false);
+    private final BlueLLeg3 blueLLeg3 = new BlueLLeg3(s_Swerve,false);
+    private final BlueLLeg4 blueLLeg4 = new BlueLLeg4(s_Swerve, false);
+    private final BlueL_FullRun blueL_FullRun = new BlueL_FullRun(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
+    // private final FullRunLeft fullRunLeft = new FullRunLeft(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
+    // private final Legs1and2Left legs1and2Left = new Legs1and2Left(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
 
     private final Leg1Right leg1Right = new Leg1Right(s_Swerve,  elevator, algaePivot, coralPivot, coralHold);
     private final Leg2Right leg2Right = new Leg2Right(s_Swerve, coralHold, coralPivot, elevator);
@@ -319,12 +313,6 @@ lm1.onTrue(algaeLowPickup);
 
 
 
-
-
-
-
-
-
 //  rm.onTrue(driveSideways675);
 // rb.onTrue(driveSidewaysNeg675);
 //upPov.onTrue(driveFwd9);
@@ -417,19 +405,19 @@ lm1.onTrue(algaeLowPickup);
   SmartDashboard.putString("Asking for auto sequence", "" + !autoSwitch1.get() + !autoSwitch2.get() + !autoSwitch3.get() + !autoSwitch4.get());
   Command command = null;
 
-  if (!autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && !autoSwitch4.get()) {
+  if (!autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && !autoSwitch4.get()) {    // ALL switch off 
     command = fullRunRight;
-  } else if (!autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && autoSwitch4.get()) {
-    command = legs1and2Right;
-  } else if (!autoSwitch1.get() && !autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {
-    command = leg1Right;
-  } else if (autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && !autoSwitch4.get()) {
-    command =  fullRunLeft;
-  } else if (autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && autoSwitch4.get()) {
-    command =  legs1and2Left;
-  } else if (autoSwitch1.get() && !autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {
-    command = leg1Left;
-  } else if (autoSwitch1.get() && autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {
+  // } else if (!autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && autoSwitch4.get()) {  // switch 4  
+  //   command = legs1and2Right;
+  // } else if (!autoSwitch1.get() && !autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {   // switch 3 and 4
+  //   command = leg1Right;
+  // } else if (autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && !autoSwitch4.get()) {  // switch 1 
+  //   command =  blueL_FullRun;
+  //} else if (autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && autoSwitch4.get()) {   // switch 1 and 4
+  // command =  legs1and2Left;
+  //} else if (autoSwitch1.get() && !autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {    // switch 1, 3, 4
+  // command = leg1Left;
+  } else if (autoSwitch1.get() && autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {    // ALL = switch 1, 2, 3, 4
     command = ctrScore1;
   } 
  return command;
