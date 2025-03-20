@@ -41,7 +41,7 @@ public class BlueL_FullRun extends SequentialCommandGroup {
       Commands.parallel(
             new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.5),
             // drive next legs to go pickup new coral
-            new BlueLLeg2(s_Swerve, false),   //TODO - make true if going negative in X direction
+            new BlueLLeg2(s_Swerve, false)  //TODO - make true if going negative in X direction
       ),
       new BlueLLeg3(s_Swerve, true),    //TODO - make false if going positive in X direction
       // intake the coral so that we can possibly move on to leg4
