@@ -51,18 +51,18 @@ public class FieldCentricTargetLeft extends InstantCommand {
 
       double x1 = robotFieldPose.getX();
       double y1 = robotFieldPose.getY();
-      double angle1 = robotFieldPose.getRotation().getDegrees();
+      double angle1 = robotFieldPose.getRotation().getRadians();
 
       //april tag coordinates
       double x2 = Constants.Targeting.ID_TO_POSE.get(targetId).getX();
       double y2 = Constants.Targeting.ID_TO_POSE.get(targetId).getY();
       double angle2 = Constants.Targeting.ID_TO_POSE.get(targetId).getRotation().getRadians();
 
-      //standoff forward (from testing)
+      //standoff forward (from testing) move 2.5 more inches forward
       x2 -= 2.5 * Math.cos((angle2)) * 0.0254;
       y2 -= 2.5 * Math.sin((angle2)) * 0.0254;
 
-      //standoff side (from testing)
+      //standoff side (from testing) move 3 more inches right
       x2 -= 3 * Math.sin((angle2)) * 0.0254;
       y2 += 3 * Math.cos((angle2)) * 0.0254;
 
@@ -79,6 +79,7 @@ public class FieldCentricTargetLeft extends InstantCommand {
       // side *= -1;
       // turnAngle *= -1;
       
+      SmartDashboard.putNumber("Target ID", targetId);
       SmartDashboard.putNumber("x1: ", x1 / 0.0254);
       SmartDashboard.putNumber("y1: ", y1/ 0.0254);
       SmartDashboard.putNumber("angle1", Units.radiansToDegrees(angle1));

@@ -79,6 +79,7 @@ public class FieldCentricTargetRight extends InstantCommand {
       // side *= -1;
       // turnAngle *= -1;
       
+      SmartDashboard.putNumber("Target ID", targetId);
       SmartDashboard.putNumber("x1: ", x1 / 0.0254);
       SmartDashboard.putNumber("y1: ", y1/ 0.0254);
       SmartDashboard.putNumber("angle1", angle1);

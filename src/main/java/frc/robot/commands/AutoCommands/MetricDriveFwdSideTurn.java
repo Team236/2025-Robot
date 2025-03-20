@@ -43,7 +43,7 @@ public class MetricDriveFwdSideTurn extends SequentialCommandGroup {
         Trajectory exampleTrajectory =
         TrajectoryGenerator.generateTrajectory(
             // Start at the origin facing the +X direction
-             new Pose2d(fwdDist1, sideDist1, new Rotation2d(Units.degreesToRadians(turnAngle1))),
+             new Pose2d(fwdDist1, sideDist1, new Rotation2d((turnAngle1))),
             // Pass through these interior waypoints
             List.of(
                    new Translation2d((fwdDist1+0.05*deltaFwd), (sideDist1+0.05*deltaSide)), 
@@ -67,7 +67,7 @@ public class MetricDriveFwdSideTurn extends SequentialCommandGroup {
                    new Translation2d((fwdDist1+0.95*deltaFwd), (sideDist1+0.95*deltaSide))
                    ),  
             // End here
-            new Pose2d(fwdDist2, sideDist2, new Rotation2d(Units.degreesToRadians(turnAngle2 + 180))), //add 180 because target and robot are facing opposite directions
+            new Pose2d(fwdDist2, sideDist2, new Rotation2d((turnAngle2 + Math.PI))), //add 180 because target and robot are facing opposite directions
             config);
             
         var thetaController =
