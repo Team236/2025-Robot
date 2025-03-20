@@ -27,9 +27,9 @@ import frc.robot.subsystems.Swerve;
     *  alignment for this leg is LEFT from RED driverstation point of view 
     *  this start position assumes Reef J position as defined in PathPlanner application
    */
-  public class RedLLeg2and3concatenated extends  SequentialCommandGroup  {
+  public class RedLLegConcat2and3 extends  SequentialCommandGroup  {
   
-  public RedLLeg2and3concatenated(Swerve s_Swerve, boolean reversed) {
+  public RedLLegConcat2and3(Swerve s_Swerve, boolean reversed) {
     
     TrajectoryConfig config =
         new TrajectoryConfig(
