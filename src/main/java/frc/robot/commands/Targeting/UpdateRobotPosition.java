@@ -39,20 +39,30 @@ public class UpdateRobotPosition extends InstantCommand {
       if (alliance.get() == Alliance.Red) {
         robotFieldPose = LimelightHelpers.getBotPose2d_wpiRed("limelight");
         s_Swerve.setPose(robotFieldPose);
-        SmartDashboard.putNumber("Robot Field X (m):", robotFieldPose.getX());
-        SmartDashboard.putNumber("Robot Field X (in):", Units.metersToInches(robotFieldPose.getX()));
-        SmartDashboard.putNumber("Robot Field Y (m):", robotFieldPose.getY());
-        SmartDashboard.putNumber("Robot Field Y (in):", Units.metersToInches(robotFieldPose.getY()));
-        SmartDashboard.putNumber("Robot Field Angle:", robotFieldPose.getRotation().getDegrees());
+
+        double x1 = robotFieldPose.getX();
+        double y1 = robotFieldPose.getY();
+        double angle1 = robotFieldPose.getRotation().getRadians();
+
+        SmartDashboard.putNumber("Robot Field X (m):", x1);
+        SmartDashboard.putNumber("x1: ", Units.metersToInches(x1));
+        SmartDashboard.putNumber("Robot Field Y (m):", y1);
+        SmartDashboard.putNumber("y1: ", Units.metersToInches(y1));
+        SmartDashboard.putNumber("angle1", robotFieldPose.getRotation().getDegrees());
       }
       else if (alliance.get() == Alliance.Blue) {
         robotFieldPose = LimelightHelpers.getBotPose2d_wpiBlue("limelight");
         s_Swerve.setPose(robotFieldPose);
-        SmartDashboard.putNumber("Robot Field X (m):", robotFieldPose.getX());
-        SmartDashboard.putNumber("Robot Field X (in):", Units.metersToInches(robotFieldPose.getX()));
-        SmartDashboard.putNumber("Robot Field Y (m):", robotFieldPose.getY());
-        SmartDashboard.putNumber("Robot Field Y (in):", Units.metersToInches(robotFieldPose.getY()));
-        SmartDashboard.putNumber("Robot Field Angle:", robotFieldPose.getRotation().getDegrees());
+
+        double x1 = robotFieldPose.getX();
+        double y1 = robotFieldPose.getY();
+        double angle1 = robotFieldPose.getRotation().getRadians();
+
+        SmartDashboard.putNumber("Robot Field X (m):", x1);
+        SmartDashboard.putNumber("x1: ", Units.metersToInches(x1));
+        SmartDashboard.putNumber("Robot Field Y (m):", y1);
+        SmartDashboard.putNumber("y1: ", Units.metersToInches(y1));
+        SmartDashboard.putNumber("angle1", robotFieldPose.getRotation().getDegrees());
       }
     }
   }

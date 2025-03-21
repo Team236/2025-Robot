@@ -66,8 +66,8 @@ public class FieldCentricTargetLeft extends InstantCommand {
       x2 -= 3 * Math.sin((angle2)) * 0.0254;
       y2 += 3 * Math.cos((angle2)) * 0.0254;
 
-      x2 -= Constants.Targeting.DIST_L_CORAL_SIDE * Math.sin((angle2)) * 0.0254;
-      y2 += Constants.Targeting.DIST_L_CORAL_SIDE * Math.cos((angle2)) * 0.0254;
+      // x2 -= Constants.Targeting.DIST_L_CORAL_SIDE * Math.sin((angle2)) * 0.0254;
+      // y2 += Constants.Targeting.DIST_L_CORAL_SIDE * Math.cos((angle2)) * 0.0254;
 
       // double turnAngle = LimelightHelpers.getTargetPose_RobotSpace("limelight")[4];
 
