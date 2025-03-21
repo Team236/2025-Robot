@@ -76,6 +76,11 @@ rot setpoint = RY
       double ySpeed = -yController.calculate(postions[0]);
       double rotValue = -rotController.calculate(postions[4]);
 
+      //TODO:  CAN ADD HERE TO ORIENT WITH LL WHILE TAG IS IN VIEW, BEFORE DRIVING TO TARGET??
+      //ORIENT WITH LL AS FOLLOWS:
+
+     // s_Swerve.getLLPose(); //SPENCER - CAN WE ADD THIS HERE????
+    //  s_Swerve.resetLLPose();//SPENCER - CAN WE ADD THIS HERE????
       s_Swerve.drive(new Translation2d(xSpeed, ySpeed), rotValue, false, true);
 
       if (!rotController.atSetpoint() ||
