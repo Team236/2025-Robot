@@ -21,9 +21,16 @@ public class AlignToReefTagRelative extends Command {
   private double tagID = -1;
 
   public AlignToReefTagRelative(boolean isRightScore, Swerve s_Swerve) {
-    xController = new PIDController(Constants.AutoConstants.kPXController, 0.0, 0);  // Vertical movement
-    yController = new PIDController(Constants.AutoConstants.kPXController, 0.0, 0);  // Horitontal movement
-    rotController = new PIDController(Constants.AutoConstants.kPThetaController, 0, 0);  // Rotation
+    //SPENCER/MIKE - I think these should be the Targeting Kps, not the AutoConstants Kps.
+    //I see the Auto Kps are about 10x the Targeting Kp (not a problem, likel due to units difference),
+    // except for Theta (Rotation) Auto is 100x Targeting Kp. 
+    //So kP_ROTATION is maybe too small??  Like by a factor of 10??
+    xController = new PIDController(Constants.Targeting.KP_TRANSLATION, 0.0, 0);  // Vertical movement
+    yController = new PIDController(Constants.Targeting.KP_STRAFE, 0.0, 0);  // Horitontal movement
+    rotController = new PIDController(Constants.Targeting.KP_ROTATION, 0, 0);  // Rotation
+   // xController = new PIDController(Constants.AutoConstants.kPXController, 0.0, 0);  // Vertical movement
+   // yController = new PIDController(Constants.AutoConstants.kPYController, 0.0, 0);  // Horitontal movement
+   // rotController = new PIDController(Constants.AutoConstants.kPThetaController, 0, 0);  // Rotation
     this.isRightScore = isRightScore;
     this.s_Swerve = s_Swerve;
     addRequirements(s_Swerve);
@@ -79,8 +86,8 @@ rot setpoint = RY
       //TODO:  CAN ADD HERE TO ORIENT WITH LL WHILE TAG IS IN VIEW, BEFORE DRIVING TO TARGET??
       //ORIENT WITH LL AS FOLLOWS:
 
-     // s_Swerve.getLLPose(); //SPENCER - CAN WE ADD THIS HERE????
-    //  s_Swerve.resetLLPose();//SPENCER - CAN WE ADD THIS HERE????
+     // s_Swerve.getLLPose(); //SPENCER/MIKE - CAN WE ADD THIS HERE????
+    //  s_Swerve.resetLLPose();//SPENCER/MIKE - CAN WE ADD THIS HERE????
       s_Swerve.drive(new Translation2d(xSpeed, ySpeed), rotValue, false, true);
 
       if (!rotController.atSetpoint() ||
