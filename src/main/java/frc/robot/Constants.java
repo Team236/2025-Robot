@@ -85,6 +85,19 @@ public final class Constants {
     public static final List<Integer> REEF_IDS = Arrays.asList(6, 7, 8, 9, 10, 11, 17, 18, 19, 20, 21, 22);
     public static final double DIST_CORAL_TAG_CENTER = 6.5;
     public static Map<Integer, Pose2d> ID_TO_POSE = new HashMap<>();
+
+    public static final double ROT_SETPOINT_REEF_ALIGNMENT = 0; //TODO measure on a field as described in comments above
+    public static final double ROT_TOLERANCE_REEF_ALIGNMENT = 0.01; //TODO is 1 degree ok?
+
+    public static final double X_SETPOINT_REEF_ALIGNMENT = 0; //TODO measure on a field as described in comments above
+    public static final double X_TOLERANCE_REEF_ALIGNMENT =  0.01; //TODO: 10 mm is good?
+
+    public static final double Y_SETPOINT_RIGHT_REEF_ALIGNMENT = 0; //(negative)TODO measure on a field as described in comments above
+    public static final double Y_SETPOINT_LEFT_REEF_ALIGNMENT = 0; // (positive)TODO measure on a field as described in comments above
+    public static final double Y_TOLERANCE_REEF_ALIGNMENT = 0.01; //TODO: 10 mm is good?
+
+    public static final double DONT_SEE_TAG_WAIT_TIME = 0.3;
+    public static final double POSE_VALIDATION_TIME = 2; //TODO - shorten
 }
 
 public static final class Swerve {
