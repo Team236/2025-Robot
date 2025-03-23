@@ -329,11 +329,13 @@ b.onTrue(fieldCentricTargetRight);
 //driving & gyro
 //rb robot cantric already binded
 //y reset gyro already binded
-rb.onTrue(updateRobotPosition);
+// rb.onTrue(updateRobotPosition);
 
 //elevator
-upPov.whileTrue(dangerElevatorUp);
-downPov.whileTrue(dangerElevatorDown);
+// upPov.whileTrue(dangerElevatorUp);
+// downPov.whileTrue(dangerElevatorDown);
+upPov.onTrue(updateRobotPosition);
+downPov.onTrue(updateTargetPosition);
 
 //climbing
 menu.onTrue(prepForClimb);

@@ -47,6 +47,7 @@ public class FieldCentricTargetLeft extends InstantCommand {
     if (tv == 1 && Constants.Targeting.REEF_IDS.contains(targetId)) {
 
       robotFieldPose = LimelightHelpers.getBotPose2d_wpiBlue("limelight");
+      
       s_Swerve.setPose(robotFieldPose);
 
       double x1 = robotFieldPose.getX();
