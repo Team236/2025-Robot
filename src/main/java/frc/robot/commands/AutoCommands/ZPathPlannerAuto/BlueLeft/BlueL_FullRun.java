@@ -6,24 +6,14 @@ package frc.robot.commands.AutoCommands.ZPathPlannerAuto.BlueLeft;
 
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-
-import frc.robot.commands.AutoCommands.ZPathPlannerAuto.*;
-import frc.robot.commands.AutoCommands.EndDriveTrajectoryPID;
-import frc.robot.commands.AutoCommands.ZPathPlannerAuto.BlueLeft.*;
+import frc.robot.Constants;
 import frc.robot.commands.ElevatorCommands.ElevMotionMagicPID;
 import frc.robot.commands.Scoring.L4_Score_AutoLeg1;
-import frc.robot.commands.Targeting.TargetForwardDistance;
-import frc.robot.commands.Targeting.TargetSideDistance;
 import frc.robot.subsystems.AlgaePivot;
 import frc.robot.subsystems.CoralHold;
 import frc.robot.subsystems.CoralPivot;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Swerve;
-import frc.robot.Constants;
-import frc.robot.RobotContainer;
-// import frc.robot.subsystems.Elevator;
-// import frc.robot.subsystems.CoralPivot;
-// import frc.robot.subsystems.AlgaePivot;
 
 /* NOTE:  Consider using this command inline, rather than writing a subclass.  For more information, see:
  * https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html 
