@@ -162,14 +162,14 @@ The numbers used below are robot specific, and should be tuned. */
 
         Optional<Alliance> ally = DriverStation.getAlliance();
         if (ally.isPresent()  && (tv == 1)) { //have alliance color and see target
-            if (ally.get() == Alliance.Red){
-            poseLL = LimelightHelpers.getBotPose2d_wpiRed("limelight");
-            //  s_Swerve.setPose(poseLL); //do this later in ResetPose command
-            }
-            if (ally.get() == Alliance.Blue){
+            // if (ally.get() == Alliance.Red){
+            // poseLL = LimelightHelpers.getBotPose2d_wpiRed("limelight");
+            // //  s_Swerve.setPose(poseLL); //do this later in ResetPose command
+            // }
+            // if (ally.get() == Alliance.Blue){
             poseLL = LimelightHelpers.getBotPose2d_wpiBlue("limelight");
             // s_Swerve.setPose(poseLL); //do this later in ResetPose command
-            }   
+            // }   
         }
         //else do nothing
     }
