@@ -62,8 +62,12 @@ public final class Constants {
   }
 
   public static final class  Targeting {
-    //use this with TargetPose-CameraSpace:  
-    public static final double DIST_FORWARDS_CAMERA_TO_FRAME = 5.31;
+    //Use these do  MetricDriveFwdSideDist field centric robot to tag 
+    public static final double DIST_ROBOT_CENTER_TO_FRONT_WITH_BUMPER = 18.25; // inches
+    public static final double DIST_ROBOT_CENTER_TO_LL_SIDEWAYS = 8; //
+    //use this with TargetPose-CameraSpace:  \
+   
+    public static final double DIST_FORWARDS_CAMERA_TO_FRAME = 5.35;
     public static final double BUMPER_THICKNESS = 3.25;
     //TODO - may need to use just cam to frame for TargetFwdDistance?
     public static final double DIST_CAMERA_TO_BUMPER_FWD = BUMPER_THICKNESS + DIST_FORWARDS_CAMERA_TO_FRAME;
