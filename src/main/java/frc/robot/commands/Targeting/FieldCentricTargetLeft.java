@@ -45,18 +45,18 @@ public class FieldCentricTargetLeft extends InstantCommand {
     targetId = (int) NetworkTableInstance.getDefault().getTable("limelight").getEntry("tid").getDouble(0); //target id
 
     if (tv == 1 && Constants.Targeting.REEF_IDS.contains(targetId)) {
-
+      
       robotFieldPose = LimelightHelpers.getBotPose2d_wpiBlue("limelight");
       
       s_Swerve.setPose(robotFieldPose);
 
-      double x1 = robotFieldPose.getX();
-      double y1 = robotFieldPose.getY();
+      double x1 = robotFieldPose.getX();  //*Math.sin((angle1));
+      double y1 = robotFieldPose.getY();  //*Math.cos((angle1));
       double angle1 = robotFieldPose.getRotation().getRadians();
 
       //april tag coordinates
-      double x2 = Constants.Targeting.ID_TO_POSE.get(targetId).getX();
-      double y2 = Constants.Targeting.ID_TO_POSE.get(targetId).getY();
+      double x2 = Constants.Targeting.ID_TO_POSE.get(targetId).getX(); //*Math.sin((angle2));
+      double y2 = Constants.Targeting.ID_TO_POSE.get(targetId).getY(); //*Math.cos((angle2));
       double angle2 = Constants.Targeting.ID_TO_POSE.get(targetId).getRotation().getRadians();
 
       //standoff forward (from testing) move 2.5 more inches forward
