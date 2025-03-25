@@ -483,7 +483,7 @@ lt1.onTrue(algaeHighPickup);
   } else if (!autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && autoSwitch4.get()) {
     command = legs1and2Right;
   } else if (!autoSwitch1.get() && !autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {
-    command = leg1Right;
+    command = leg1Right; 
   } else if (autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && !autoSwitch4.get()) {
     command =  fullRunLeft;
   } else if (autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && autoSwitch4.get()) {

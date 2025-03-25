@@ -4,6 +4,7 @@
 
 package frc.robot.commands.AutoCommands.Right;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
@@ -28,19 +29,18 @@ import frc.robot.subsystems.Swerve;
 public class Leg2Right extends SequentialCommandGroup {
   /** Creates a new Leg2Right. */
   public Leg2Right(Swerve s_Swerve, CoralHold coralHold, frc.robot.subsystems.CoralPivot coralPivot, Elevator elevator) {
+    SmartDashboard.putBoolean("Leg2 start", true);
+
     addCommands(
       Commands.parallel( 
         new CoralResetCount(coralHold).withTimeout(0.5),
-        new DriveFwdAndSideAndTurn(s_Swerve, true, -6, 157, 0).withTimeout(2.5),
-        //new DriveSideways(s_Swerve, false, 73).withTimeout(2.5)
-        //new DriveSideways(s_Swerve, false, 150).withTimeout(2.5)
+        new DriveFwdAndSideAndTurn(s_Swerve, true, -6, 157, 0).withTimeout(2.5)//,
         //Bring elevator down while driving sideways
-        new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.5)
+       // new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.5)
         ), 
 
       Commands.parallel(
         Commands.sequence(
-        //new DriveFwdAndSideAndTurn(s_Swerve, false, 10, 92, -68).withTimeout(3.5),//96new
         new DriveFwdAndSideAndTurn(s_Swerve, false, 19, 20, -68).withTimeout(4),//96new
         new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5)
         ),
@@ -49,6 +49,8 @@ public class Leg2Right extends SequentialCommandGroup {
         )  
          
     );
+    SmartDashboard.putBoolean("Leg2 end", true);
+
     
   }
 }

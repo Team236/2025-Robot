@@ -4,8 +4,10 @@
 
 package frc.robot.commands.AutoCommands.Right;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
 import frc.robot.commands.ZeroPose;
 import frc.robot.commands.AlgaePivotCommands.PIDToElevSafePosition;
@@ -42,21 +44,26 @@ public class Leg1Right extends SequentialCommandGroup {
   /** Creates a new Leg1Right. */
   public Leg1Right(Swerve s_Swerve, Elevator elevator, AlgaePivot algaePivot, CoralPivot coralPivot, CoralHold coralHold) {
     addCommands(
-      //START ROBOT WITH BACK BUMPER FLUSH WITH BACK OF BLACK STARTING LINE, 91" from sideline
-        new DriveFwdAndTurn(s_Swerve, false, 65.5, -58.2).withTimeout(1.5), //77.5 fwd old
-        new FieldCentricTargetRight(s_Swerve).withTimeout(1.5), // timeout??
+      //START ROBOT WITH BACK BUMPER FLUSH WITH BACK OF BLACK STARTING LINE, 95.75 from sideline
+
+        new DriveFwdAndTurn(s_Swerve, false, 77, -58.2).withTimeout(2), //77.5 fwd old
+       
+        new FieldCentricTargetRight(s_Swerve).withTimeout(1.5)
+      
       //   new TargetSideDistance(s_Swerve, 0).withTimeout(1),
       //   new TargetForwardDistance(s_Swerve, 0).withTimeout(1),
       //  // new GetPoseWithLL(s_Swerve).withTimeout(0.3),
       //   new DriveSideways(s_Swerve, false, -5.7).withTimeout(2), //-6.25 
         //new ResetPoseWithLL(s_Swerve).withTimeout(0.25),
-        new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5),
+
+      // ,new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5)
        // new L4_Score(elevator, coralHold, coralPivot, algaePivot)
 
       // Could use AutoLeg2 score, which does not bring elevator down - if bring it down at start of leg2
-      new L4_Score_AutoLeg1(elevator, coralHold, coralPivot, algaePivot)
+      //new L4_Score_AutoLeg1(elevator, coralHold, coralPivot, algaePivot)
     );         
-    
+    SmartDashboard.putBoolean("Leg1 end", true);
+
   }
 
 }
