@@ -34,8 +34,8 @@ public class BlueL_FullRun extends SequentialCommandGroup {
             new BlueLLeg2(s_Swerve, false)  //TODO - make true if going negative in X direction
       ),
       new BlueLLeg3(s_Swerve, true),    //TODO - make false if going positive in X direction
-      // intake the coral so that we can possibly move on to leg4
 
+      // intake the coral so that we can possibly move on to leg4
       new BlueLLeg4(s_Swerve, true),    
       new L4_Score_AutoLeg1(elevator, coralHold, coralPivot, algaePivot) );
   }
