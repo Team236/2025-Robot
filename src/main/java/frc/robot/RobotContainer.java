@@ -65,8 +65,10 @@ import frc.robot.commands.Targeting.AlgaeTarget;
 import frc.robot.commands.Targeting.CoralLeftTarget;
 import frc.robot.commands.Targeting.CoralRightTarget;
 import frc.robot.commands.Targeting.FieldCentricTargetAlgae;
+import frc.robot.commands.Targeting.FieldCentricTargetCameraToTag;
 import frc.robot.commands.Targeting.FieldCentricTargetLeft;
 import frc.robot.commands.Targeting.FieldCentricTargetRight;
+import frc.robot.commands.Targeting.GetPoseWithOdometry;
 import frc.robot.commands.Targeting.GoToCoralLeftFwdSide;
 import frc.robot.commands.Targeting.GoToCoralLeftLL;
 import frc.robot.commands.Targeting.GoToCoralRightLL;
@@ -139,6 +141,7 @@ public class RobotContainer {
     private final FieldCentricTargetLeft fieldCentricTargetLeft = new FieldCentricTargetLeft(s_Swerve);
     private final FieldCentricTargetRight fieldCentricTargetRight = new FieldCentricTargetRight(s_Swerve);
     private final FieldCentricTargetAlgae fieldCentricTargetAlgae = new FieldCentricTargetAlgae(s_Swerve);
+  // private final FieldCentricTargetCameraToTag fieldCentricTargetCameraToTag = new FieldCentricTargetCameraToTag(s_Swerve);
 
   //NOTE - STANDOFF FWD IS WITHOUT THE BUMPER - ADD BUMPER DEPTH AS NEEDEDD
     private final TargetAllParallel targetAllParallel = new TargetAllParallel(s_Swerve, 12, 0);
@@ -322,7 +325,6 @@ public class RobotContainer {
 
 //targeting
 x.onTrue(fieldCentricTargetLeft);
-// a.whileTrue(algaeTarget);
 a.onTrue(fieldCentricTargetAlgae);
 b.onTrue(fieldCentricTargetRight);
 
@@ -334,8 +336,10 @@ b.onTrue(fieldCentricTargetRight);
 //elevator
 // upPov.whileTrue(dangerElevatorUp);
 // downPov.whileTrue(dangerElevatorDown);
-upPov.onTrue(updateRobotPosition);
-downPov.onTrue(updateTargetPosition);
+upPov.onTrue(new FieldCentricTargetCameraToTag(s_Swerve));
+downPov.onTrue(new GetPoseWithOdometry(s_Swerve));
+//upPov.onTrue(updateRobotPosition);
+//downPov.onTrue(updateTargetPosition);
 
 //climbing
 menu.onTrue(prepForClimb);
