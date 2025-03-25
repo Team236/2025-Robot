@@ -29,11 +29,10 @@ import frc.robot.subsystems.Swerve;
 public class Leg2Right extends SequentialCommandGroup {
   /** Creates a new Leg2Right. */
   public Leg2Right(Swerve s_Swerve, CoralHold coralHold, frc.robot.subsystems.CoralPivot coralPivot, Elevator elevator) {
-    SmartDashboard.putBoolean("Leg2 start", true);
 
     addCommands(
       Commands.parallel( 
-        new CoralResetCount(coralHold).withTimeout(0.5),
+       // new CoralResetCount(coralHold).withTimeout(0.5),
         new DriveFwdAndSideAndTurn(s_Swerve, true, -6, 157, 0).withTimeout(2.5)//,
         //Bring elevator down while driving sideways
        // new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.5)
@@ -49,7 +48,7 @@ public class Leg2Right extends SequentialCommandGroup {
         )  
          
     );
-    SmartDashboard.putBoolean("Leg2 end", true);
+ 
 
     
   }

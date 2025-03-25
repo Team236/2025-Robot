@@ -4,6 +4,7 @@
 
 package frc.robot.commands.AutoCommands.Right;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
@@ -40,9 +41,10 @@ import frc.robot.subsystems.Swerve;
 public class Leg3Right extends SequentialCommandGroup {
   /** Creates a new Leg3Right. */
   public Leg3Right(Swerve s_Swerve, Elevator elevator, AlgaePivot algeaPivot, CoralPivot coralPivot, CoralHold coralHold) {
+    
     addCommands(
         //******NEED TO CHANGE TO "FALSE" BELOW????   
-         new DriveFwdAndSideAndTurn(s_Swerve, false ,111, -26, 6).withTimeout(3.5), //x 106? //TRUE?
+         new DriveFwdAndSideAndTurn(s_Swerve, false ,111, -26, 6).withTimeout(4), //x 106? //TRUE?
          // new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.2),
          // new TargetSideDistance(s_Swerve, 0).withTimeout(1),
          //new TargetForwardDistance(s_Swerve, 0).withTimeout(1),
@@ -52,7 +54,7 @@ public class Leg3Right extends SequentialCommandGroup {
          //new DriveSideways(s_Swerve, false, 7.5).withTimeout(1.5), 
          //**** RESET POSE TO VALUE FROM GetPoseWithLL
          new ResetPoseWithLL(s_Swerve).withTimeout(0.5),
-        new FieldCentricTargetRight(s_Swerve).withTimeout(1.5) // timeout??\
+        new FieldCentricTargetRight(s_Swerve).withTimeout(2) // timeout??\
       // ,new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5),
       //  new L4_Score(elevator, coralHold, coralPivot, algeaPivot)
     );         

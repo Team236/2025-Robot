@@ -48,7 +48,12 @@ public class Leg1Right extends SequentialCommandGroup {
 
         new DriveFwdAndTurn(s_Swerve, false, 77, -58.2).withTimeout(2), //77.5 fwd old
        
-        new FieldCentricTargetRight(s_Swerve).withTimeout(1.5)
+        new FieldCentricTargetRight(s_Swerve).withTimeout(1.5),
+
+
+        new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5),
+
+        new ZeroPose(s_Swerve).withTimeout(1)
       
       //   new TargetSideDistance(s_Swerve, 0).withTimeout(1),
       //   new TargetForwardDistance(s_Swerve, 0).withTimeout(1),
@@ -62,7 +67,6 @@ public class Leg1Right extends SequentialCommandGroup {
       // Could use AutoLeg2 score, which does not bring elevator down - if bring it down at start of leg2
       //new L4_Score_AutoLeg1(elevator, coralHold, coralPivot, algaePivot)
     );         
-    SmartDashboard.putBoolean("Leg1 end", true);
 
   }
 
