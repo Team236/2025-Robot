@@ -38,7 +38,6 @@ public class FieldCentricTargetAlgae extends InstantCommand {
     addRequirements(swerve);
   }
 
-
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
@@ -46,23 +45,19 @@ public class FieldCentricTargetAlgae extends InstantCommand {
     targetId = (int) NetworkTableInstance.getDefault().getTable("limelight").getEntry("tid").getDouble(0); //target id
 
     if (tv == 1 && Constants.Targeting.REEF_IDS.contains(targetId)) {
-
-      
+   
       robotFieldPose = LimelightHelpers.getBotPose2d_wpiBlue("limelight");
       
-      // s_Swerve.setPose(robotFieldPose);
-      
-      SmartDashboard.putNumber("x1 robot center: ", robotFieldPose.getX() / 0.0254);
-      SmartDashboard.putNumber("y1 robot center: ", robotFieldPose.getY()/ 0.0254);
-      // SmartDashboard.putNumber("angle1", Units.radiansToDegrees(angle1));
-      
-      
-      
+     // SmartDashboard.putNumber("x1 robot center: ", robotFieldPose.getX() / 0.0254);
+     // SmartDashboard.putNumber("y1 robot center: ", robotFieldPose.getY()/ 0.0254);
+        
       //april tag coordinates
       double x2 = Constants.Targeting.ID_TO_POSE.get(targetId).getX(); //*Math.sin((angle2));
       double y2 = Constants.Targeting.ID_TO_POSE.get(targetId).getY(); //*Math.cos((angle2));
       double angle2 = Constants.Targeting.ID_TO_POSE.get(targetId).getRotation().getRadians();
-
+      
+      //Get the AprilTag pose now, then reset the pose to this value at the end of MetricDriveFwdAndSideAndTurn
+      //(after targeting) so that the driving is field oriented after targeting:
       s_Swerve.getTargetPose(new Pose2d(x2, y2, new Rotation2d(angle2)));
       
       //robotFieldPose is from center of robot
@@ -72,35 +67,15 @@ public class FieldCentricTargetAlgae extends InstantCommand {
 
       y1 -= Constants.Targeting.DIST_ALGAE_CENTERED_LL * Math.cos((angle2)) * 0.0254;
       x1 += Constants.Targeting.DIST_ALGAE_CENTERED_LL * Math.sin((angle2)) * 0.0254;
-
-      //standoff forward (from testing) move 2.5 more inches forward
-     // x2 -= 2.5 * Math.cos((angle2)) * 0.0254;
-     // y2 -= 2.5 * Math.sin((angle2)) * 0.0254;
-
-      //standoff side (from testing) move 3 more inches right
-     // x2 -= 3 * Math.sin((angle2)) * 0.0254;
-      //y2 += 3 * Math.cos((angle2)) * 0.0254;
-
-      // x2 -= Constants.Targeting.DIST_L_CORAL_SIDE * Math.sin((angle2)) * 0.0254;
-      // y2 += Constants.Targeting.DIST_L_CORAL_SIDE * Math.cos((angle2)) * 0.0254;
-
-      // double turnAngle = LimelightHelpers.getTargetPose_RobotSpace("limelight")[4];
-
-      // double forward = Units.metersToInches(LimelightHelpers.getTargetPose_CameraSpace("limelight")[2]) - Constants.Targeting.DIST_CAMERA_TO_BUMPER_FWD;
-      // double side = Units.metersToInches(LimelightHelpers.getTargetPose_CameraSpace("limelight")[0]);
-      
-      // side -= Constants.Targeting.DIST_CORAL_TAG_CENTER * Math.cos(Units.degreesToRadians(turnAngle));
-      
-      // side *= -1;
-      // turnAngle *= -1;
-      
-      SmartDashboard.putNumber("Target ID", targetId);
+   
+    /*SmartDashboard.putNumber("Target ID", targetId);
       SmartDashboard.putNumber("x1: ", x1 / 0.0254);
       SmartDashboard.putNumber("y1: ", y1/ 0.0254);
       SmartDashboard.putNumber("angle1", Units.radiansToDegrees(angle1));
       SmartDashboard.putNumber("x2: ", x2/ 0.0254);
       SmartDashboard.putNumber("y2: ", y2/ 0.0254);
       SmartDashboard.putNumber("angle2", Units.radiansToDegrees(angle2));
+      */ 
      CommandScheduler.getInstance().schedule(new MetricDriveFwdSideTurn(s_Swerve, false, x1, y1, angle1, x2, y2, angle2));
       
     }
