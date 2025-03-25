@@ -14,6 +14,7 @@ import frc.robot.commands.AlgaePivotCommands.PIDToElevSafePosition;
 import frc.robot.commands.AutoCommands.DriveFwd;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
 import frc.robot.commands.AutoCommands.DriveFwdAndTurn;
+import frc.robot.commands.AutoCommands.DriveReverse;
 import frc.robot.commands.AutoCommands.DriveSideways;
 import frc.robot.commands.AutoCommands.EndDriveTrajectoryPID;
 import frc.robot.commands.AutoCommands.TurnOnly;
@@ -23,9 +24,11 @@ import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
 import frc.robot.commands.Scoring.L2_Score;
 import frc.robot.commands.Scoring.L4_Score;
 import frc.robot.commands.Scoring.L4_Score_AutoLeg1;
+import frc.robot.commands.Targeting.CoralRightTarget;
 import frc.robot.commands.Targeting.FieldCentricTargetLeft;
 import frc.robot.commands.Targeting.FieldCentricTargetRight;
 import frc.robot.commands.Targeting.GetPoseWithLL;
+import frc.robot.commands.Targeting.GetPoseWithOdometry;
 import frc.robot.commands.Targeting.ResetPoseWithLL;
 import frc.robot.commands.Targeting.TargetAllParallel;
 import frc.robot.commands.Targeting.TargetAngle;
@@ -46,15 +49,12 @@ public class Leg1Right extends SequentialCommandGroup {
     addCommands(
       //START ROBOT WITH BACK BUMPER FLUSH WITH BACK OF BLACK STARTING LINE, 95.75 from sideline
 
-        new DriveFwdAndTurn(s_Swerve, false, 77, -58.2).withTimeout(2), //77.5 fwd old
-       
-        new FieldCentricTargetRight(s_Swerve).withTimeout(1.5),
-
-
-        new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5),
-
-        new ZeroPose(s_Swerve).withTimeout(1)
+        //new DriveFwdAndTurn(s_Swerve, false, 77, -58.2).withTimeout(2), //77.5 fwd old
+        new DriveFwd(s_Swerve, false, 6).withTimeout(2), //77.5 fwd old
       
+        new FieldCentricTargetRight(s_Swerve).withTimeout(1.5),
+        new DriveReverse(s_Swerve, true, -10).withTimeout(2.5)      
+
       //   new TargetSideDistance(s_Swerve, 0).withTimeout(1),
       //   new TargetForwardDistance(s_Swerve, 0).withTimeout(1),
       //  // new GetPoseWithLL(s_Swerve).withTimeout(0.3),
@@ -66,7 +66,10 @@ public class Leg1Right extends SequentialCommandGroup {
 
       // Could use AutoLeg2 score, which does not bring elevator down - if bring it down at start of leg2
       //new L4_Score_AutoLeg1(elevator, coralHold, coralPivot, algaePivot)
-    );         
+    );   
+   // SmartDashboard.putNumber("odometry pose x from Leg1Right:  ", s_Swerve.getPose().getTranslation().getX());
+   // SmartDashboard.putNumber("odometry pose Y from Leg1Right:  ", s_Swerve.getPose().getTranslation().getY());
+   // SmartDashboard.putNumber("odometry pose angle from Leg1Right:  ", s_Swerve.getPose().getRotation().getDegrees());     
 
   }
 
