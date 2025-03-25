@@ -7,6 +7,7 @@ package frc.robot.commands.Targeting;
 import java.util.Optional;
 
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -46,28 +47,42 @@ public class FieldCentricTargetAlgae extends InstantCommand {
 
     if (tv == 1 && Constants.Targeting.REEF_IDS.contains(targetId)) {
 
+      
       robotFieldPose = LimelightHelpers.getBotPose2d_wpiBlue("limelight");
-      s_Swerve.setPose(robotFieldPose);
-
-      double x1 = robotFieldPose.getX();
-      double y1 = robotFieldPose.getY();
-      double angle1 = robotFieldPose.getRotation().getDegrees();
-
-      // april tag coordinates
-      double x2 = Constants.Targeting.ID_TO_POSE.get(targetId).getX();
-      double y2 = Constants.Targeting.ID_TO_POSE.get(targetId).getY();
+      
+      // s_Swerve.setPose(robotFieldPose);
+      
+      SmartDashboard.putNumber("x1 robot center: ", robotFieldPose.getX() / 0.0254);
+      SmartDashboard.putNumber("y1 robot center: ", robotFieldPose.getY()/ 0.0254);
+      // SmartDashboard.putNumber("angle1", Units.radiansToDegrees(angle1));
+      
+      
+      
+      //april tag coordinates
+      double x2 = Constants.Targeting.ID_TO_POSE.get(targetId).getX(); //*Math.sin((angle2));
+      double y2 = Constants.Targeting.ID_TO_POSE.get(targetId).getY(); //*Math.cos((angle2));
       double angle2 = Constants.Targeting.ID_TO_POSE.get(targetId).getRotation().getRadians();
 
-      //standoff forward (from testing)
-      x2 -= 2.5 * Math.cos((angle2)) * 0.0254;
-      y2 -= 2.5 * Math.sin((angle2)) * 0.0254;
+      s_Swerve.getTargetPose(new Pose2d(x2, y2, new Rotation2d(angle2)));
+      
+      //robotFieldPose is from center of robot
+      double angle1 = robotFieldPose.getRotation().getRadians();
+      double x1 = robotFieldPose.getX() - (Constants.Targeting.DIST_ROBOT_CENTER_TO_FRONT_WITH_BUMPER*(0.0254)) * Math.cos(angle2) - (Constants.Targeting.DIST_ROBOT_CENTER_TO_LL_SIDEWAYS*(0.0254))*Math.sin((angle2));
+      double y1 = robotFieldPose.getY() + (Constants.Targeting.DIST_ROBOT_CENTER_TO_LL_SIDEWAYS*(0.0254))*Math.cos((angle2)) - (Constants.Targeting.DIST_ROBOT_CENTER_TO_FRONT_WITH_BUMPER*(0.0254)) * Math.sin((angle2));
 
-      //standoff side (from testing)
-      x2 -= 3 * Math.sin((angle2)) * 0.0254;
-      y2 += 3 * Math.cos((angle2)) * 0.0254;
+      y1 -= Constants.Targeting.DIST_ALGAE_CENTERED_LL * Math.cos((angle2)) * 0.0254;
+      x1 += Constants.Targeting.DIST_ALGAE_CENTERED_LL * Math.sin((angle2)) * 0.0254;
 
-      x2 -= Constants.Targeting.DIST_ALGAE_SIDE * Math.sin((angle2)) * 0.0254;
-      y2 += Constants.Targeting.DIST_ALGAE_SIDE * Math.cos((angle2)) * 0.0254;
+      //standoff forward (from testing) move 2.5 more inches forward
+     // x2 -= 2.5 * Math.cos((angle2)) * 0.0254;
+     // y2 -= 2.5 * Math.sin((angle2)) * 0.0254;
+
+      //standoff side (from testing) move 3 more inches right
+     // x2 -= 3 * Math.sin((angle2)) * 0.0254;
+      //y2 += 3 * Math.cos((angle2)) * 0.0254;
+
+      // x2 -= Constants.Targeting.DIST_L_CORAL_SIDE * Math.sin((angle2)) * 0.0254;
+      // y2 += Constants.Targeting.DIST_L_CORAL_SIDE * Math.cos((angle2)) * 0.0254;
 
       // double turnAngle = LimelightHelpers.getTargetPose_RobotSpace("limelight")[4];
 
@@ -82,10 +97,10 @@ public class FieldCentricTargetAlgae extends InstantCommand {
       SmartDashboard.putNumber("Target ID", targetId);
       SmartDashboard.putNumber("x1: ", x1 / 0.0254);
       SmartDashboard.putNumber("y1: ", y1/ 0.0254);
-      SmartDashboard.putNumber("angle1", angle1);
+      SmartDashboard.putNumber("angle1", Units.radiansToDegrees(angle1));
       SmartDashboard.putNumber("x2: ", x2/ 0.0254);
       SmartDashboard.putNumber("y2: ", y2/ 0.0254);
-      SmartDashboard.putNumber("angle2", angle2);
+      SmartDashboard.putNumber("angle2", Units.radiansToDegrees(angle2));
      CommandScheduler.getInstance().schedule(new MetricDriveFwdSideTurn(s_Swerve, false, x1, y1, angle1, x2, y2, angle2));
       
     }

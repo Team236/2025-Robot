@@ -87,7 +87,8 @@ public final class Constants {
     public static final double KP_STRAFE = 0.9;// 0.475;  //kP value for the sideways (strafe) motio%n 
 
     public static final List<Integer> REEF_IDS = Arrays.asList(6, 7, 8, 9, 10, 11, 17, 18, 19, 20, 21, 22);
-    public static final double DIST_CORAL_TAG_CENTER = 6.5;
+    public static final double DIST_CORAL_TAG_CENTER = 7.0;
+    public static final double DIST_ALGAE_CENTERED_LL = 12.0;
     public static Map<Integer, Pose2d> ID_TO_POSE = new HashMap<>();
 
     public static final double ROT_SETPOINT_REEF_ALIGNMENT = 0; //TODO measure on a field as described in comments above

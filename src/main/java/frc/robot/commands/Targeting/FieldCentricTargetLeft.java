@@ -7,6 +7,7 @@ package frc.robot.commands.Targeting;
 import java.util.Optional;
 
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -45,20 +46,32 @@ public class FieldCentricTargetLeft extends InstantCommand {
     targetId = (int) NetworkTableInstance.getDefault().getTable("limelight").getEntry("tid").getDouble(0); //target id
 
     if (tv == 1 && Constants.Targeting.REEF_IDS.contains(targetId)) {
+
       
       robotFieldPose = LimelightHelpers.getBotPose2d_wpiBlue("limelight");
       
-      s_Swerve.setPose(robotFieldPose);
-    //robotFieldPose is from center of robot
-      double angle1 = robotFieldPose.getRotation().getRadians();
-      double x1 = robotFieldPose.getX() + (Constants.Targeting.DIST_ROBOT_CENTER_TO_FRONT_WITH_BUMPER*(0.0254));//*Math.cos(angle1)));
-      double y1 = robotFieldPose.getY() - (Constants.Targeting.DIST_ROBOT_CENTER_TO_LL_SIDEWAYS*(0.0254));//*Math.cos((angle1)));
-     
-
+      // s_Swerve.setPose(robotFieldPose);
+      
+      SmartDashboard.putNumber("x1 robot center: ", robotFieldPose.getX() / 0.0254);
+      SmartDashboard.putNumber("y1 robot center: ", robotFieldPose.getY()/ 0.0254);
+      // SmartDashboard.putNumber("angle1", Units.radiansToDegrees(angle1));
+      
+      
+      
       //april tag coordinates
       double x2 = Constants.Targeting.ID_TO_POSE.get(targetId).getX(); //*Math.sin((angle2));
       double y2 = Constants.Targeting.ID_TO_POSE.get(targetId).getY(); //*Math.cos((angle2));
       double angle2 = Constants.Targeting.ID_TO_POSE.get(targetId).getRotation().getRadians();
+
+      s_Swerve.getTargetPose(new Pose2d(x2, y2, new Rotation2d(angle2)));
+      
+      //robotFieldPose is from center of robot
+      double angle1 = robotFieldPose.getRotation().getRadians();
+      double x1 = robotFieldPose.getX() - (Constants.Targeting.DIST_ROBOT_CENTER_TO_FRONT_WITH_BUMPER*(0.0254)) * Math.cos(angle2) - (Constants.Targeting.DIST_ROBOT_CENTER_TO_LL_SIDEWAYS*(0.0254))*Math.sin((angle2));
+      double y1 = robotFieldPose.getY() + (Constants.Targeting.DIST_ROBOT_CENTER_TO_LL_SIDEWAYS*(0.0254))*Math.cos((angle2)) - (Constants.Targeting.DIST_ROBOT_CENTER_TO_FRONT_WITH_BUMPER*(0.0254)) * Math.sin((angle2));
+
+      y1 += Constants.Targeting.DIST_CORAL_TAG_CENTER * Math.cos((angle2)) * 0.0254;
+      x1 -= Constants.Targeting.DIST_CORAL_TAG_CENTER * Math.sin((angle2)) * 0.0254;
 
       //standoff forward (from testing) move 2.5 more inches forward
      // x2 -= 2.5 * Math.cos((angle2)) * 0.0254;

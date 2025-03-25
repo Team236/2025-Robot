@@ -42,6 +42,7 @@ public class Swerve extends SubsystemBase {
     private double pipeline = 0; 
     private double tv;
     public Pose2d poseLL; //want to use this pose after this command, after moving with odometry
+    public Pose2d targetPose;
 
     public Swerve() {
         gyro = new Pigeon2(Constants.Swerve.pigeonID, "usb");
@@ -173,6 +174,23 @@ The numbers used below are robot specific, and should be tuned. */
             }   
         }
         //else do nothing
+    }
+
+    public void getTargetPose(Pose2d targetPose) {
+        Optional<Alliance> ally = DriverStation.getAlliance();
+        if (ally.get() == Alliance.Blue){
+            this.targetPose = new Pose2d(targetPose.getX(), targetPose.getY(), targetPose.getRotation().plus(new Rotation2d(Math.PI))); //do this later in ResetPose command
+        }
+        if (ally.get() == Alliance.Red){ // not sure why but we needed to swap these
+            this.targetPose = targetPose; //do this later in ResetPose command
+        }   
+
+        // this.setPose(targetPose);
+
+    }
+
+    public void resetFieldPoseWithTarget() {
+        setPose(targetPose);
     }
 
     public void resetLLPose() {

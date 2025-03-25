@@ -1,6 +1,7 @@
 package frc.robot.commands.AutoCommands;
 
 import frc.robot.Constants;
+import frc.robot.commands.Targeting.ResetFieldPoseWithTarget;
 import frc.robot.subsystems.Swerve;
 
 import java.util.List;
@@ -88,7 +89,8 @@ public class MetricDriveFwdSideTurn extends SequentialCommandGroup {
 
         addCommands(
             new InstantCommand(() -> s_Swerve.setPose(exampleTrajectory.getInitialPose())),
-            swerveControllerCommand
+            swerveControllerCommand,
+            new ResetFieldPoseWithTarget(s_Swerve)
         );
     }
 }
