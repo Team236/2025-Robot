@@ -28,8 +28,7 @@ public class MetricDriveFwdSideTurn extends SequentialCommandGroup {
   
     public MetricDriveFwdSideTurn(Swerve s_Swerve, boolean reversed, double fwdDist1, double sideDist1, double turnAngle1, double fwdDist2, double sideDist2, double turnAngle2) {
         //Must pass in current camera pose from LL, and current AprilTag pose from LL (meters, radians)
-        //Add or subtract ~6.5 inches from sideDist2 in order to center LL on a branch)
-        //MAKE SURE LL GIVES ANGLE IN DEGREES (I THINK IT DOES)
+        //Add or subtract ~6.5 inches from sideDist2 in order to center LL on a branch later in FieldCentricTarget commands
         double deltaFwd = fwdDist2-fwdDist1;
         double deltaSide = sideDist2 - sideDist1;
         double deltaAngle = turnAngle2- turnAngle1;
