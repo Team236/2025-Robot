@@ -24,24 +24,19 @@ public class L3_Score_AutoLeg1 extends SequentialCommandGroup {
   public L3_Score_AutoLeg1(Elevator elevator, CoralHold coralHold, CoralPivot coralPivot, AlgaePivot algaePivot) {
 
     addCommands(
-      //USE THIS PARALLEL SET RATHER THAN THE SEQUENTIAL PIDCoralPivot, after Algae Device working
-      //Commands.parallel(
-      //new PIDToElevSafePosition(algaePivot).withTimeout(0.5),
-      //new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5)
-       // ),
-       new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5),
-
-      Commands.parallel( //do in parallel so elevator stays up the whole time
-        new ElevMotionMagicPID(elevator, Constants.Elevator.L3_HEIGHT).withTimeout(2.2),
-        Commands.sequence(
-           //wait for elevator to go up
-           new WaitCommand(0.7),
-           new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL3).withTimeout(0.5),
-           new CoralRelease(coralHold, Constants.CoralHold.L3_RELEASE_SPEED).withTimeout(0.5),
-           new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5)
+      Commands.parallel(
+       new PIDToElevSafePosition(algaePivot).withTimeout(0.5),
+       new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5)
+       ),
+       Commands.parallel( //do in parallel so elevator stays up the whole time
+         new ElevMotionMagicPID(elevator, Constants.Elevator.L3_HEIGHT).withTimeout(2.3),
+         Commands.sequence(
+           //new WaitCommand(0.7), //wait for elevator to go up
+            new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL3).withTimeout(0.9),
+            new CoralRelease(coralHold, Constants.CoralHold.L3_RELEASE_SPEED).withTimeout(0.5),
+            new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.9)
           )
         //NO ELEVATOR DOWN - WILL GET DONE AT START OF LEG2 FOR AUTO
-  
        )
       );
 

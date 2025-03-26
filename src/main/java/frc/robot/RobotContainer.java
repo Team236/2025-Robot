@@ -65,7 +65,6 @@ import frc.robot.commands.Targeting.AlgaeTarget;
 import frc.robot.commands.Targeting.CoralLeftTarget;
 import frc.robot.commands.Targeting.CoralRightTarget;
 import frc.robot.commands.Targeting.FieldCentricTargetAlgae;
-import frc.robot.commands.Targeting.FieldCentricTargetCameraToTag;
 import frc.robot.commands.Targeting.FieldCentricTargetLeft;
 import frc.robot.commands.Targeting.FieldCentricTargetRight;
 import frc.robot.commands.Targeting.GetPoseWithOdometry;
@@ -186,7 +185,7 @@ public class RobotContainer {
     private final FullRunRight fullRunRight = new FullRunRight(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
     private final Legs1and2Right legs1and2Right = new Legs1and2Right(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
 
-    private final CtrScore1 ctrScore1 = new CtrScore1(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
+    private final CtrScore1 ctrScore1 = new CtrScore1(s_Swerve, elevator, algaePivot, algaeHold, coralPivot, coralHold);
    // private final DriveWithPath driveWithPathLeg1 = new DriveWithPath(s_Swerve, false);
     
       

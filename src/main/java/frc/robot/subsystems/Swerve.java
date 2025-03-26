@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import frc.robot.SwerveModule;
+import frc.robot.commands.AutoCommands.MetricDriveFwdSideTurn;
 import frc.robot.commands.Targeting.TargetAngle;
 import frc.robot.Constants;
 import frc.robot.LimelightHelpers;
@@ -27,6 +28,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Swerve extends SubsystemBase {
@@ -205,12 +207,12 @@ The numbers used below are robot specific, and should be tuned. */
 
        swerveOdometry.update(getGyroYaw(), getModulePositions());
 
-         for(SwerveModule mod : mSwerveMods){
+        // for(SwerveModule mod : mSwerveMods){
           // SmartDashboard.putNumber("Mod " + mod.moduleNumber + " CANcoder degrees", mod.getCANcoder().getDegrees());
           // SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Angle degrees", mod.getPosition().angle.getDegrees());
           // SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Velocity", mod.getState().speedMetersPerSecond);
           //Can't use m/s in the key!! SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Velocity m/s", mod.getState().speedMetersPerSecond);
-         }
+        // }
     
          /* 
        poseAngle = LimelightHelpers.getTargetPose_CameraSpace("limelight")[5];

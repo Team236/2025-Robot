@@ -42,7 +42,7 @@ public class CoralGrabWithCounter extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return coralHold.getLightSensorState();  // TRUE WHEN CORAL IS IN?  OR FALSE?
+    return coralHold.getLightSensorState();
     //return coralHold.getCoralHCount() > 0;
   }
 }

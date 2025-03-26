@@ -29,22 +29,16 @@ public class L2_Score extends SequentialCommandGroup {
      new PIDToElevSafePosition(algaePivot).withTimeout(0.5),
      new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5)
      ),
-
-    Commands.parallel( //do in parallel so elevator stays up the whole time
-      new ElevMotionMagicPID(elevator, Constants.Elevator.L2_HEIGHT)
-
-      /*
+     Commands.parallel( //do in parallel so elevator stays up the whole time
+      new ElevMotionMagicPID(elevator, Constants.Elevator.L2_HEIGHT),
       Commands.sequence(
-        //wait for elevator to go up
-        new WaitCommand(0.5),
-        new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL2).withTimeout(0.5),
+       // new WaitCommand(0.5),     //wait for elevator to go up
+        new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL2).withTimeout(0.9),
         new CoralRelease(coralHold, Constants.CoralHold.L2_RELEASE_SPEED).withTimeout(0.5),
-        new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5)
+        new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.9)
         )
-      ),
-      new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1)
-      */
-    )
+     ),
+      new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.2)
     );
   }
 }

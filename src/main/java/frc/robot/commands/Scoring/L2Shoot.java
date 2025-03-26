@@ -26,7 +26,6 @@ public class L2Shoot extends SequentialCommandGroup {
     addCommands(    
       Commands.parallel( //do in parallel so elevator stays up the whole time
       new ElevMotionMagicPID(elevator, Constants.Elevator.L2_HEIGHT).withTimeout(2.3),      
-
       Commands.sequence(
          new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL2).withTimeout(0.9),
          new CoralRelease(coralHold, Constants.CoralHold.L2_RELEASE_SPEED).withTimeout(0.5),

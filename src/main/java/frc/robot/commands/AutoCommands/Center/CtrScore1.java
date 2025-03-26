@@ -7,6 +7,7 @@ package frc.robot.commands.AutoCommands.Center;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
+import frc.robot.commands.AlgaeHoldCommands.AlgaeL2Pickup;
 import frc.robot.commands.AlgaePivotCommands.PIDToElevSafePosition;
 import frc.robot.commands.AutoCommands.DriveFwd;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
@@ -23,6 +24,7 @@ import frc.robot.commands.Targeting.FieldCentricTargetRight;
 import frc.robot.commands.Targeting.GetPoseWithLL;
 import frc.robot.commands.Targeting.ResetPoseWithLL;
 import frc.robot.commands.Targeting.TargetSideDistance;
+import frc.robot.subsystems.AlgaeHold;
 import frc.robot.subsystems.AlgaePivot;
 import frc.robot.subsystems.CoralHold;
 import frc.robot.subsystems.CoralPivot;
@@ -35,24 +37,25 @@ import frc.robot.subsystems.Swerve;
 
 public class CtrScore1 extends SequentialCommandGroup {
   /** Creates a new FullRunParallel. */
-  public CtrScore1(Swerve s_Swerve, Elevator elevator, AlgaePivot algaePivot, CoralPivot coralPivot, CoralHold coralHold) {
+  public CtrScore1(Swerve s_Swerve, Elevator elevator, AlgaePivot algaePivot, AlgaeHold algaeHold, CoralPivot coralPivot, CoralHold coralHold) {
     addCommands(
       //TODO:  add the commands for scoring 
       // Commands.parallel(
      
         new DriveFwd(s_Swerve, false, Constants.AutoConstants.CENTER_FWD_DIST).withTimeout(2),
 
-        new TargetSideDistance(s_Swerve, 0).withTimeout(1),
-        //new FieldCentricTargetRight(s_Swerve).withTimeout(2),
-        new GetPoseWithLL(s_Swerve).withTimeout(0.5),
-        new DriveSideways(s_Swerve, false, -6.25).withTimeout(1.5),
+       // new TargetSideDistance(s_Swerve, 0).withTimeout(1),
+        new FieldCentricTargetRight(s_Swerve).withTimeout(2),
+       // new GetPoseWithLL(s_Swerve).withTimeout(0.5),
+       // new DriveSideways(s_Swerve, false, -6.25).withTimeout(1.5),
         new ResetPoseWithLL(s_Swerve).withTimeout(0.5), 
 
         //,new PIDToElevSafePosition(algeaPivot).withTimeout(2)
 
           new L4_Score_AutoLeg1(elevator, coralHold, coralPivot, algaePivot),
           new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.2),
-          new DriveSideways(s_Swerve, false, 4).withTimeout(1.5)
+          new DriveSideways(s_Swerve, false, -4).withTimeout(1.5)//,
+          //new AlgaeL2Pickup(elevator, algaeHold, algaePivot)
     );
   }
 }
