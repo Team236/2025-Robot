@@ -33,7 +33,7 @@ public class Leg2Right extends SequentialCommandGroup {
   public Leg2Right(Swerve s_Swerve, CoralHold coralHold, frc.robot.subsystems.CoralPivot coralPivot, Elevator elevator) {
 
     addCommands(
-      new DriveReverse(s_Swerve, true, -10).withTimeout(2.5)
+      new DriveReverse(s_Swerve, true, -10).withTimeout(1)
 
       //Commands.parallel( 
        // new DriveFwdAndSideAndTurn(s_Swerve, true, -6, 157, 0).withTimeout(2.5)//, //no turn at first
