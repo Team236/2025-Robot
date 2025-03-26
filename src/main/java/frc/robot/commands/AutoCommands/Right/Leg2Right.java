@@ -5,6 +5,7 @@
 package frc.robot.commands.AutoCommands.Right;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
@@ -31,8 +32,8 @@ public class Leg2Right extends SequentialCommandGroup {
   /** Creates a new Leg2Right. */
   public Leg2Right(Swerve s_Swerve, CoralHold coralHold, frc.robot.subsystems.CoralPivot coralPivot, Elevator elevator) {
 
-    SmartDashboard.putBoolean("Leg2 Starting?", true);
     addCommands(
+   
       new DriveReverse(s_Swerve, true, -10).withTimeout(2.5)
       //Commands.parallel( 
        // new CoralResetCount(coralHold).withTimeout(0.5),

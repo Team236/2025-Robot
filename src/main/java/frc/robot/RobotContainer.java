@@ -334,10 +334,10 @@ b.onTrue(fieldCentricTargetRight);
 // rb.onTrue(updateRobotPosition);
 
 //elevator
-// upPov.whileTrue(dangerElevatorUp);
-// downPov.whileTrue(dangerElevatorDown);
-upPov.onTrue(new FieldCentricTargetCameraToTag(s_Swerve));
-downPov.onTrue(new GetPoseWithOdometry(s_Swerve));
+ upPov.whileTrue(dangerElevatorUp);
+downPov.whileTrue(dangerElevatorDown);
+//upPov.onTrue(new FieldCentricTargetCameraToTag(s_Swerve));
+//downPov.onTrue(new GetPoseWithOdometry(s_Swerve));
 //upPov.onTrue(updateRobotPosition);
 //downPov.onTrue(updateTargetPosition);
 
