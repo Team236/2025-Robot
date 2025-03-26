@@ -134,8 +134,8 @@ public class RobotContainer {
     private final CoralRightTarget coralRightTarget = new CoralRightTarget(s_Swerve);
     //private final GoToCoralRightLL goToCoralRightLL = new GoToCoralRightLL(s_Swerve);
     // private final GoToCoralLeftFwdSide goToCoralLeftLL = new GoToCoralLeftFwdSide(s_Swerve);
-    private final UpdateRobotPosition updateRobotPosition = new UpdateRobotPosition(s_Swerve);
-    private final UpdateTargetPosition updateTargetPosition = new UpdateTargetPosition(s_Swerve);
+   // private final UpdateRobotPosition updateRobotPosition = new UpdateRobotPosition(s_Swerve);
+   // private final UpdateTargetPosition updateTargetPosition = new UpdateTargetPosition(s_Swerve);
    // private final GoToCoralLeftLL goToCoralLeftLL = new GoToCoralLeftLL(s_Swerve);
     private final FieldCentricTargetLeft fieldCentricTargetLeft = new FieldCentricTargetLeft(s_Swerve);
     private final FieldCentricTargetRight fieldCentricTargetRight = new FieldCentricTargetRight(s_Swerve);
@@ -328,17 +328,13 @@ a.onTrue(fieldCentricTargetAlgae);
 b.onTrue(fieldCentricTargetRight);
 
 //driving & gyro
-//rb robot cantric already binded
+//rb robot centric already binded
 //y reset gyro already binded
 // rb.onTrue(updateRobotPosition);
 
 //elevator
  upPov.whileTrue(dangerElevatorUp);
 downPov.whileTrue(dangerElevatorDown);
-//upPov.onTrue(new FieldCentricTargetCameraToTag(s_Swerve));
-//downPov.onTrue(new GetPoseWithOdometry(s_Swerve));
-//upPov.onTrue(updateRobotPosition);
-//downPov.onTrue(updateTargetPosition);
 
 //climbing
 menu.onTrue(prepForClimb);
