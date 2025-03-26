@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import frc.robot.SwerveModule;
 import frc.robot.commands.AutoCommands.MetricDriveFwdSideTurn;
+import frc.robot.commands.Targeting.ResetFieldPoseWithTarget;
 import frc.robot.commands.Targeting.TargetAngle;
 import frc.robot.Constants;
 import frc.robot.LimelightHelpers;
@@ -11,17 +12,23 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.ctre.phoenix6.configs.Pigeon2Configuration;
 import com.ctre.phoenix6.hardware.Pigeon2;
 
 import edu.wpi.first.math.VecBuilder;
+import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.math.trajectory.Trajectory;
+import edu.wpi.first.math.trajectory.TrajectoryConfig;
+import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -29,7 +36,9 @@ import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 
 public class Swerve extends SubsystemBase {
     public SwerveDriveOdometry swerveOdometry;
@@ -200,6 +209,154 @@ The numbers used below are robot specific, and should be tuned. */
         setPose(poseLL);
     }
 }
+
+public double getx1Right() {
+    tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0); //if target is seen
+    double targetId = (int) NetworkTableInstance.getDefault().getTable("limelight").getEntry("tid").getDouble(0); //target id
+    double x1R =0;
+    if (tv == 1 && Constants.Targeting.REEF_IDS.contains(targetId)) {
+      Pose2d robotFieldPose = LimelightHelpers.getBotPose2d_wpiBlue("limelight");
+      double angle2 = Constants.Targeting.ID_TO_POSE.get(targetId).getRotation().getRadians();
+      x1R = robotFieldPose.getX() - (Constants.Targeting.DIST_ROBOT_CENTER_TO_FRONT_WITH_BUMPER*(0.0254)) * Math.cos(angle2) - (Constants.Targeting.DIST_ROBOT_CENTER_TO_LL_SIDEWAYS*(0.0254))*Math.sin((angle2));
+      x1R += Constants.Targeting.DIST_CORAL_TAG_CENTER * Math.sin((angle2)) * 0.0254;
+}
+    return x1R;
+}
+
+
+public double gety1Right(){
+    tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0); //if target is seen
+    double targetId = (int) NetworkTableInstance.getDefault().getTable("limelight").getEntry("tid").getDouble(0); //target id
+    double y1R= 0;
+    if (tv == 1 && Constants.Targeting.REEF_IDS.contains(targetId)) {
+      Pose2d  robotFieldPose = LimelightHelpers.getBotPose2d_wpiBlue("limelight");
+      //april tag coordinates
+      double angle2 = Constants.Targeting.ID_TO_POSE.get(targetId).getRotation().getRadians();
+      y1R = robotFieldPose.getY() + (Constants.Targeting.DIST_ROBOT_CENTER_TO_LL_SIDEWAYS*(0.0254))*Math.cos((angle2)) - (Constants.Targeting.DIST_ROBOT_CENTER_TO_FRONT_WITH_BUMPER*(0.0254)) * Math.sin((angle2));
+      y1R -= Constants.Targeting.DIST_CORAL_TAG_CENTER * Math.cos((angle2)) * 0.0254;
+    }
+    return y1R;
+}
+public double getx1Left() {
+    tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0); //if target is seen
+    double targetId = (int) NetworkTableInstance.getDefault().getTable("limelight").getEntry("tid").getDouble(0); //target id
+    double x1L =0;
+    if (tv == 1 && Constants.Targeting.REEF_IDS.contains(targetId)) {
+      Pose2d robotFieldPose = LimelightHelpers.getBotPose2d_wpiBlue("limelight");
+      double angle2 = Constants.Targeting.ID_TO_POSE.get(targetId).getRotation().getRadians();
+      x1L = robotFieldPose.getX() - (Constants.Targeting.DIST_ROBOT_CENTER_TO_FRONT_WITH_BUMPER*(0.0254)) * Math.cos(angle2) - (Constants.Targeting.DIST_ROBOT_CENTER_TO_LL_SIDEWAYS*(0.0254))*Math.sin((angle2));
+      x1L -= Constants.Targeting.DIST_CORAL_TAG_CENTER * Math.sin((angle2)) * 0.0254;
+}
+    return x1L;
+}
+
+
+public double gety1Left(){
+    tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0); //if target is seen
+    double targetId = (int) NetworkTableInstance.getDefault().getTable("limelight").getEntry("tid").getDouble(0); //target id
+    double y1L= 0;
+    if (tv == 1 && Constants.Targeting.REEF_IDS.contains(targetId)) {
+      Pose2d  robotFieldPose = LimelightHelpers.getBotPose2d_wpiBlue("limelight");
+      //april tag coordinates
+      double angle2 = Constants.Targeting.ID_TO_POSE.get(targetId).getRotation().getRadians();
+      y1L = robotFieldPose.getY() + (Constants.Targeting.DIST_ROBOT_CENTER_TO_LL_SIDEWAYS*(0.0254))*Math.cos((angle2)) - (Constants.Targeting.DIST_ROBOT_CENTER_TO_FRONT_WITH_BUMPER*(0.0254)) * Math.sin((angle2));
+      y1L += Constants.Targeting.DIST_CORAL_TAG_CENTER * Math.cos((angle2)) * 0.0254;
+    }
+    return y1L;
+}
+public double getAngle1(){
+tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0); //if target is seen
+double targetId = (int) NetworkTableInstance.getDefault().getTable("limelight").getEntry("tid").getDouble(0); //target id
+double angle1 = 0;
+
+if (tv == 1 && Constants.Targeting.REEF_IDS.contains(targetId)) {
+  Pose2d robotFieldPose = LimelightHelpers.getBotPose2d_wpiBlue("limelight");
+  angle1 = robotFieldPose.getRotation().getRadians();
+}
+    return angle1;
+}
+
+public double getx2(){
+    tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0); //if target is seen
+    double targetId = (int) NetworkTableInstance.getDefault().getTable("limelight").getEntry("tid").getDouble(0); //target id
+    double x2 = 0;
+    if (tv == 1 && Constants.Targeting.REEF_IDS.contains(targetId)) {
+   
+      Pose2d robotFieldPose = LimelightHelpers.getBotPose2d_wpiBlue("limelight");
+      //april tag coordinates
+      x2 = Constants.Targeting.ID_TO_POSE.get(targetId).getX(); 
+    }
+    return x2;
+}
+
+public double gety2(){
+    tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0); //if target is seen
+    double targetId = (int) NetworkTableInstance.getDefault().getTable("limelight").getEntry("tid").getDouble(0); //target id
+    double y2 = 0;
+    if (tv == 1 && Constants.Targeting.REEF_IDS.contains(targetId)) {
+      Pose2d robotFieldPose = LimelightHelpers.getBotPose2d_wpiBlue("limelight");
+      //april tag coordinates
+      y2 = Constants.Targeting.ID_TO_POSE.get(targetId).getY(); 
+    }
+    return y2;
+}
+
+public double getAngle2(){
+    tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0); //if target is seen
+    double targetId = (int) NetworkTableInstance.getDefault().getTable("limelight").getEntry("tid").getDouble(0); //target id
+    double angle2 = 0;
+    if (tv == 1 && Constants.Targeting.REEF_IDS.contains(targetId)) {
+      Pose2d robotFieldPose = LimelightHelpers.getBotPose2d_wpiBlue("limelight");
+      //april tag coordinates
+      angle2 = Constants.Targeting.ID_TO_POSE.get(targetId).getRotation().getRadians();
+    }
+    return angle2;
+}
+
+public Trajectory getTargetingTrajectory(double fwdDist1, double sideDist1, double turnAngle1, double fwdDist2, double sideDist2, double turnAngle2, boolean reversed) {
+    double deltaFwd = fwdDist2-fwdDist1;
+    double deltaSide = sideDist2 - sideDist1;
+    double deltaAngle = turnAngle2- turnAngle1;
+
+        TrajectoryConfig config =
+            new TrajectoryConfig(
+                    Constants.AutoConstants.kMaxSpeedMetersPerSecond,
+                    Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared)
+                .setKinematics(Constants.Swerve.swerveKinematics).setReversed(reversed);
+
+        // An example trajectory to follow.  All units in meters.
+        Trajectory exampleTrajectory =
+        TrajectoryGenerator.generateTrajectory(
+            // Start at the origin facing the +X direction
+             new Pose2d(fwdDist1, sideDist1, new Rotation2d((turnAngle1))),
+            // Pass through these interior waypoints
+            List.of(
+                   new Translation2d((fwdDist1+0.05*deltaFwd), (sideDist1+0.05*deltaSide)), 
+                   new Translation2d((fwdDist1+0.1*deltaFwd), (sideDist1+0.1*deltaSide)),
+                   new Translation2d((fwdDist1+0.15*deltaFwd), (sideDist1+0.15*deltaSide)),
+                   new Translation2d((fwdDist1+0.2*deltaFwd), (sideDist1+0.2*deltaSide)), 
+                   new Translation2d((fwdDist1+0.25*deltaFwd), (sideDist1+0.25*deltaSide)),
+                   new Translation2d((fwdDist1+0.3*deltaFwd), (sideDist1+0.3*deltaSide)),
+                   new Translation2d((fwdDist1+0.35*deltaFwd), (sideDist1+0.35*deltaSide)), 
+                   new Translation2d((fwdDist1+0.4*deltaFwd), (sideDist1+0.4*deltaSide)),
+                   new Translation2d((fwdDist1+0.45*deltaFwd), (sideDist1+0.45*deltaSide)), 
+                   new Translation2d((fwdDist1+0.5*deltaFwd), (sideDist1+0.5*deltaSide)),
+                   new Translation2d((fwdDist1+0.55*deltaFwd), (sideDist1+0.55*deltaSide)),
+                   new Translation2d((fwdDist1+0.6*deltaFwd), (sideDist1+0.6*deltaSide)), 
+                   new Translation2d((fwdDist1+0.65*deltaFwd), (sideDist1+0.65*deltaSide)),
+                   new Translation2d((fwdDist1+0.7*deltaFwd), (sideDist1+0.7*deltaSide)),
+                   new Translation2d((fwdDist1+0.75*deltaFwd), (sideDist1+0.75*deltaSide)), 
+                   new Translation2d((fwdDist1+0.8*deltaFwd), (sideDist1+0.8*deltaSide)),
+                   new Translation2d((fwdDist1+0.85*deltaFwd), (sideDist1+0.85*deltaSide)), 
+                   new Translation2d((fwdDist1+0.9*deltaFwd), (sideDist1+0.9*deltaSide)),
+                   new Translation2d((fwdDist1+0.95*deltaFwd), (sideDist1+0.95*deltaSide))
+                   ),  
+            // End here
+            new Pose2d(fwdDist2, sideDist2, new Rotation2d((turnAngle2 + Math.PI))), //add 180 because target and robot are facing opposite directions
+            config);
+        return exampleTrajectory;
+    }
+
 
     @Override
     public void periodic(){

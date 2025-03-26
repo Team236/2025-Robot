@@ -47,19 +47,17 @@ public class Leg1Right extends SequentialCommandGroup {
   /** Creates a new Leg1Right. */
   public Leg1Right(Swerve s_Swerve, Elevator elevator, AlgaePivot algaePivot, CoralPivot coralPivot, CoralHold coralHold) {
     addCommands(
-      //START ROBOT WITH BACK BUMPER FLUSH WITH BACK OF BLACK STARTING LINE, 95.75 from sideline
+      //START ROBOT WITH BACK BUMPER FLUSH WITH BACK OF BLACK STARTING LINE, 91 inches from side ///95.75 from sideline
 
-        //new DriveFwdAndTurn(s_Swerve, false, 77, -58.2).withTimeout(2), //77.5 fwd old
-        new DriveFwd(s_Swerve, false, 6).withTimeout(2), 
-      
-        new FieldCentricTargetRight(s_Swerve).withTimeout(1.5),  
-        new DriveReverse(s_Swerve, true, -6).withTimeout(1),
+        new DriveFwdAndTurn(s_Swerve, false, 84.5, -58.5).withTimeout(1.7), //77.5 58.2//
+        //new FCTR(s_Swerve).withTimeout(2),//.asProxy(),
+        //new FieldCentricTargetRight(s_Swerve).withTimeout(1.5).asProxy(),
         
-      //   new TargetSideDistance(s_Swerve, 0).withTimeout(1),
-      //   new TargetForwardDistance(s_Swerve, 0).withTimeout(1),
-      //  // new GetPoseWithLL(s_Swerve).withTimeout(0.3),
-      //   new DriveSideways(s_Swerve, false, -5.7).withTimeout(2), //-6.25 
-        //new ResetPoseWithLL(s_Swerve).withTimeout(0.25),
+      new TargetSideDistance(s_Swerve, 0).withTimeout(0.5),
+      new TargetForwardDistance(s_Swerve, 0).withTimeout(0.75),
+      new GetPoseWithLL(s_Swerve).withTimeout(0.3),
+      new DriveSideways(s_Swerve, false, -6).withTimeout(1), //-6.25 
+      new ResetPoseWithLL(s_Swerve).withTimeout(0.25),
 
       new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5)
     

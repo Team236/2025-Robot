@@ -87,9 +87,9 @@ public class MetricDriveFwdSideTurn extends SequentialCommandGroup {
                 s_Swerve);
 
         addCommands(
-            new InstantCommand(() -> s_Swerve.setPose(exampleTrajectory.getInitialPose())),
-            swerveControllerCommand, //TODO try removing this as last ditch effort to get it to work
-            new ResetFieldPoseWithTarget(s_Swerve)
+          new InstantCommand(() -> s_Swerve.setPose(exampleTrajectory.getInitialPose())),
+           swerveControllerCommand, //TODO try removing this as last ditch effort to get it to work
+           new ResetFieldPoseWithTarget(s_Swerve)
         );
     }
 }
