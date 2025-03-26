@@ -60,10 +60,11 @@ public class Leg1Right extends SequentialCommandGroup {
         //new ResetPoseWithLL(s_Swerve).withTimeout(0.25),
 
       new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5)
-       // new L4_Score(elevator, coralHold, coralPivot, algaePivot)
-
-      // Could use AutoLeg2 score, which does not bring elevator down - if bring it down at start of leg2
+    
+      //Use AutoLeg1 score, which does not bring elevator down - if bring it down at start of leg2
       //new L4_Score_AutoLeg1(elevator, coralHold, coralPivot, algaePivot)
+      //OTHERWISE USE:
+      // new L4_Score(elevator, coralHold, coralPivot, algaePivot)
     );     
 
   }
