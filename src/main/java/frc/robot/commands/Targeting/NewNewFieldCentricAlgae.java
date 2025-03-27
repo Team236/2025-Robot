@@ -36,8 +36,7 @@ public class NewNewFieldCentricAlgae extends SequentialCommandGroup {
     SmartDashboard.putString("Print", "entered NewFieldCentricTargetRight");
     System.out.println("NewFieldCentricTargetRight constructor");
  
-      //Get the AprilTag pose from LL now, then reset the pose to this value at the end of MetricDriveFwdAndSideAndTurn
-      //(after targeting) so that the driving is field oriented after targeting:
+      //Get the AprilTag pose from LL
       double x2 =  s_Swerve.getx2();
       double y2 = s_Swerve.gety2();
       double angle2 = s_Swerve.getAngle2();

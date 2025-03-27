@@ -36,8 +36,7 @@ public class NewNewFieldCentricTargetLeft extends SequentialCommandGroup {
     SmartDashboard.putString("Print", "entered NewFieldCentricTargetRight");
     System.out.println("NewFieldCentricTargetRight constructor");
  
-      //Get the AprilTag pose from LL now, then reset the pose to this value at the end of MetricDriveFwdAndSideAndTurn
-      //(after targeting) so that the driving is field oriented after targeting:
+      //Get the AprilTag pose from LL 
       double x2 =  s_Swerve.getx2();
       double y2 = s_Swerve.gety2();
       double angle2 = s_Swerve.getAngle2();
@@ -79,7 +78,6 @@ public class NewNewFieldCentricTargetLeft extends SequentialCommandGroup {
         SmartDashboard.putString("Print", "before addCommands");
 
         addCommands(
-         // new InstantCommand(() -> s_Swerve.getTargetPose(new Pose2d(x2, y2, new Rotation2d(angle2))),
           new InstantCommand(() -> s_Swerve.setPose(exampleTrajectory.getInitialPose())),
           new InstantCommand(() -> SmartDashboard.putString("Print", "first instant complete")),
           swerveControllerCommand, 

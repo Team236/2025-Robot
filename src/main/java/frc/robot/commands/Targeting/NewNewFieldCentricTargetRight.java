@@ -36,8 +36,7 @@ public class NewNewFieldCentricTargetRight extends SequentialCommandGroup {
     SmartDashboard.putString("Print", "entered NewFieldCentricTargetRight");
     System.out.println("NewFieldCentricTargetRight constructor");
  
-      //Get the AprilTag pose from LL now, then reset the pose to this value at the end of MetricDriveFwdAndSideAndTurn
-      //(after targeting) so that the driving is field oriented after targeting:
+      //Get the AprilTag pose from LL
       double x2 =  s_Swerve.getx2();
       double y2 = s_Swerve.gety2();
       double angle2 = s_Swerve.getAngle2();
@@ -78,14 +77,15 @@ public class NewNewFieldCentricTargetRight extends SequentialCommandGroup {
         
         SmartDashboard.putString("Print", "before addCommands");
 
-        addCommands(
-          new InstantCommand(() -> s_Swerve.setPose(exampleTrajectory.getInitialPose())),
-          new InstantCommand(() -> SmartDashboard.putString("Print", "first instant complete")),
-          swerveControllerCommand, 
-          new InstantCommand(() -> SmartDashboard.putString("Print", " swerve controller command complete")),
-          new ResetFieldPoseWithTarget(s_Swerve),
-          new InstantCommand(() -> SmartDashboard.putString("Print", "final: reset field pose complete"))
-        );
+      addCommands(
+        new InstantCommand(() -> s_Swerve.setPose(exampleTrajectory.getInitialPose())),
+        new InstantCommand(() -> SmartDashboard.putString("Print", "first instant complete")),
+        swerveControllerCommand, 
+        new InstantCommand(() -> SmartDashboard.putString("Print", " swerve controller command complete")),
+        new ResetFieldPoseWithTarget(s_Swerve),
+        new InstantCommand(() -> SmartDashboard.putString("Print", "final: reset field pose complete"))
+      );
+      
         SmartDashboard.putString("Print", "after addCommands");
         System.out.println("NewFieldCentricTargetRight after addCommands()");
     //} else {
@@ -93,3 +93,4 @@ public class NewNewFieldCentricTargetRight extends SequentialCommandGroup {
     //} 
   }
 }
+

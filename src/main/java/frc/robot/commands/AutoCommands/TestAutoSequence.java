@@ -30,12 +30,12 @@ import frc.robot.subsystems.Swerve;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class TestAutoSequence extends SequentialCommandGroup {
   /** Creates a new Leg3Left. */
-  public TestAutoSequence(Swerve s_Swerve, Elevator elevator, AlgaePivot algaePivot, CoralPivot coralPivot, CoralHold coralHold) {
+  public TestAutoSequence(Swerve s_Swerve) {
  //FOR TESTING OUT NEW FIELD CENTRIC TARGETING IN SEQUENTIAL COMMAND
-    addCommands(
-        new DriveFwd(s_Swerve, false ,6).withTimeout(2), //x 10
-        new NewNewFieldCentricTargetRight(s_Swerve).withTimeout(2),
-        new DriveReverse(s_Swerve, true, 20).withTimeout(2)
+    addCommands(//first try the targeting only to be sure it works
+      //  new DriveFwd(s_Swerve, false ,6).withTimeout(2), 
+        new NewNewFieldCentricTargetRight(s_Swerve).withTimeout(2)//,
+       // new DriveReverse(s_Swerve, true, 20).withTimeout(2)
     );
   }
 }
