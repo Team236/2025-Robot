@@ -223,7 +223,6 @@ public double getx1Right() {
     return x1R;
 }
 
-
 public double gety1Right(){
     tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0); //if target is seen
     double targetId = (int) NetworkTableInstance.getDefault().getTable("limelight").getEntry("tid").getDouble(0); //target id
@@ -250,7 +249,6 @@ public double getx1Left() {
     return x1L;
 }
 
-
 public double gety1Left(){
     tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0); //if target is seen
     double targetId = (int) NetworkTableInstance.getDefault().getTable("limelight").getEntry("tid").getDouble(0); //target id
@@ -264,6 +262,33 @@ public double gety1Left(){
     }
     return y1L;
 }
+public double getx1Algae() {
+    tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0); //if target is seen
+    double targetId = (int) NetworkTableInstance.getDefault().getTable("limelight").getEntry("tid").getDouble(0); //target id
+    double x1A =0;
+    if (tv == 1 && Constants.Targeting.REEF_IDS.contains(targetId)) {
+      Pose2d robotFieldPose = LimelightHelpers.getBotPose2d_wpiBlue("limelight");
+      double angle2 = Constants.Targeting.ID_TO_POSE.get(targetId).getRotation().getRadians();
+      x1A = robotFieldPose.getX() - (Constants.Targeting.DIST_ROBOT_CENTER_TO_FRONT_WITH_BUMPER*(0.0254)) * Math.cos(angle2) - (Constants.Targeting.DIST_ROBOT_CENTER_TO_LL_SIDEWAYS*(0.0254))*Math.sin((angle2)); 
+      x1A += Constants.Targeting.DIST_ALGAE_CENTERED_LL * Math.sin((angle2)) * 0.0254;
+    }
+    return x1A;
+}
+
+public double gety1Algae(){
+    tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0); //if target is seen
+    double targetId = (int) NetworkTableInstance.getDefault().getTable("limelight").getEntry("tid").getDouble(0); //target id
+    double y1A= 0;
+    if (tv == 1 && Constants.Targeting.REEF_IDS.contains(targetId)) {
+      Pose2d  robotFieldPose = LimelightHelpers.getBotPose2d_wpiBlue("limelight");
+      //april tag coordinates
+      double angle2 = Constants.Targeting.ID_TO_POSE.get(targetId).getRotation().getRadians();
+      y1A = robotFieldPose.getY() + (Constants.Targeting.DIST_ROBOT_CENTER_TO_LL_SIDEWAYS*(0.0254))*Math.cos((angle2)) - (Constants.Targeting.DIST_ROBOT_CENTER_TO_FRONT_WITH_BUMPER*(0.0254)) * Math.sin((angle2));
+      y1A -= Constants.Targeting.DIST_ALGAE_CENTERED_LL * Math.cos((angle2)) * 0.0254;
+    }
+    return y1A;
+}
+
 public double getAngle1(){
 tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0); //if target is seen
 double targetId = (int) NetworkTableInstance.getDefault().getTable("limelight").getEntry("tid").getDouble(0); //target id

@@ -41,16 +41,14 @@ public class Leg1Left extends SequentialCommandGroup {
         new ParallelCommandGroup(        
           new DriveFwdAndTurn(s_Swerve, false, 60.5, 60.5).withTimeout(1.7), //77.5 58.2//
           new PIDToElevSafePosition(algaePivot).withTimeout(0.5),
-          new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5)
-          
+          new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5)  
         ),
 
-      //  new NewFieldCentricTargetRight(s_Swerve).withTimeout(1.5),
-        
+      //  new NewFieldCentricTargetRight(s_Swerve).withTimeout(1.5), 
       new TargetSideDistance(s_Swerve, 0).withTimeout(0.75),
       new TargetForwardDistance(s_Swerve, 0).withTimeout(0.9),
       new GetPoseWithLL(s_Swerve).withTimeout(0.3),
-      new DriveSideways(s_Swerve, false, 7.5).withTimeout(1.2), //-6.25 
+      new DriveSideways(s_Swerve, false, 7.5).withTimeout(1.4), //-6.25 
       new ResetPoseWithLL(s_Swerve).withTimeout(0.25),
 
       new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5),
