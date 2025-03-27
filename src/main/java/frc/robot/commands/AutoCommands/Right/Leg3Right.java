@@ -45,18 +45,18 @@ public class Leg3Right extends SequentialCommandGroup {
     
     addCommands(
         //******NEED TO CHANGE TO "FALSE" BELOW????   
-         new DriveFwdAndSideAndTurn(s_Swerve, false ,111, -26, 6).withTimeout(4), //x 106? //TRUE?
+         new DriveFwdAndSideAndTurn(s_Swerve, false ,120, -26, 6).withTimeout(4), //x 106? //TRUE?
          // new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.2),
 
          new FieldCentricTargetRight(s_Swerve).withTimeout(2),
          // new TargetSideDistance(s_Swerve, 0).withTimeout(1),
          //new TargetForwardDistance(s_Swerve, 0).withTimeout(1),
          //**** GET POSE WITH LIMELIGHT, BEFORE DRIVING WITH ODOMETRY
-         //new GetPoseWithLL(s_Swerve).withTimeout(0.5),
+         new GetPoseWithLL(s_Swerve).withTimeout(0.5),
          //Needs to end  with coral scorer aligned with right branch of Reef
          //new DriveSideways(s_Swerve, false, 7.5).withTimeout(1.5), 
          //**** RESET POSE TO VALUE FROM GetPoseWithLL
-        // new ResetPoseWithLL(s_Swerve).withTimeout(0.5),
+         new ResetPoseWithLL(s_Swerve).withTimeout(0.5),
        
          new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5)//,
       //  new L4_Score(elevator, coralHold, coralPivot, algeaPivot)

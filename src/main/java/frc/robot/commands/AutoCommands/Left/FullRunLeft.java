@@ -27,9 +27,9 @@ public class FullRunLeft extends SequentialCommandGroup {
     addCommands(
     // MAKE ALL Y DISTANCES AND ALL ANGLES OPPOSITE TO FullRunRight 
 
-    new Leg1Left(s_Swerve, elevator, algaePivot, coralPivot, coralHold),
-    new Leg2Left(s_Swerve, coralHold, coralPivot, elevator),
-    new Leg3Left(s_Swerve, elevator, algaePivot, coralPivot, coralHold) 
+    new Leg1Left(s_Swerve, elevator, algaePivot, coralPivot, coralHold)
+    // new Leg2Left(s_Swerve, coralHold, coralPivot, elevator),
+    // new Leg3Left(s_Swerve, elevator, algaePivot, coralPivot, coralHold) 
   
     );
   

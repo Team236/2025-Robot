@@ -12,6 +12,7 @@ import frc.robot.commands.AutoCommands.DriveSideways;
 import frc.robot.commands.AutoCommands.EndDriveTrajectoryPID;
 import frc.robot.commands.ElevatorCommands.ElevMotionMagicPID;
 import frc.robot.commands.Scoring.L4_Score;
+import frc.robot.commands.Targeting.FieldCentricTargetRight;
 import frc.robot.commands.Targeting.GetPoseWithLL;
 import frc.robot.commands.Targeting.ResetPoseWithLL;
 import frc.robot.commands.Targeting.TargetForwardDistance;
@@ -31,11 +32,12 @@ public class Leg3Left extends SequentialCommandGroup {
  //MAKE ALL Y DISTANCES AND ALL ANGLES OPPOSITE TO Right
     addCommands(
         //******NEED TO CHANGE TO "FALSE" BELOW????\
-        new DriveFwdAndSideAndTurn(s_Swerve, false ,125.5, 19, -6).withTimeout(3.5), //x 10
+        new DriveFwdAndSideAndTurn(s_Swerve, false ,120, 26, -6).withTimeout(4), //x 10
         //Commands.parallel(
         //new DriveFwdAndSideAndTurn(s_Swerve, true ,125.5, 19, -6).withTimeout(3.5), //x 106?
         //new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT)
         //),
+         new FieldCentricTargetRight(s_Swerve).withTimeout(2),
 
         //new TargetSideDistance(s_Swerve, 0).withTimeout(1),
         //new TargetForwardDistance(s_Swerve, 0).withTimeout(1),
@@ -44,8 +46,8 @@ public class Leg3Left extends SequentialCommandGroup {
         //Needs to end  with coral scorer aligned with right branch of Reef
         //new DriveSideways(s_Swerve, false, -5.7).withTimeout(1.5), 
         //**** RESET POSE TO VALUE FROM GetPoseWithLL
-        new ResetPoseWithLL(s_Swerve).withTimeout(0.5)//,
-        // ,new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5),
+        new ResetPoseWithLL(s_Swerve).withTimeout(0.5),
+        new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5)
         //new L4_Score(elevator, coralHold, coralPivot, algaePivot)
     );
   }

@@ -29,9 +29,9 @@ public class FullRunRight extends SequentialCommandGroup {
 
   public FullRunRight(Swerve s_Swerve, Elevator elevator, AlgaePivot algaePivot, CoralPivot coralPivot, CoralHold coralHold) {
     addCommands(
-          // new Leg1Right(s_Swerve, elevator, algaePivot, coralPivot, coralHold)//,
-         new Leg2Right(s_Swerve, coralHold,  coralPivot, elevator)//,
-        //new Leg3Right(s_Swerve, elevator, algaePivot, coralPivot,coralHold)
+        new Leg1Right(s_Swerve, elevator, algaePivot, coralPivot, coralHold),
+        new Leg2Right(s_Swerve, coralHold,  coralPivot, elevator),
+        new Leg3Right(s_Swerve, elevator, algaePivot, coralPivot,coralHold)
     );
   }
 
