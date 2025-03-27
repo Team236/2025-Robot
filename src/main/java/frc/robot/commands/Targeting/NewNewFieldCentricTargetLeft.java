@@ -79,6 +79,7 @@ public class NewNewFieldCentricTargetLeft extends SequentialCommandGroup {
         SmartDashboard.putString("Print", "before addCommands");
 
         addCommands(
+         // new InstantCommand(() -> s_Swerve.getTargetPose(new Pose2d(x2, y2, new Rotation2d(angle2))),
           new InstantCommand(() -> s_Swerve.setPose(exampleTrajectory.getInitialPose())),
           new InstantCommand(() -> SmartDashboard.putString("Print", "first instant complete")),
           swerveControllerCommand, 
@@ -93,3 +94,4 @@ public class NewNewFieldCentricTargetLeft extends SequentialCommandGroup {
     //} 
   }
 }
+
