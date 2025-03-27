@@ -18,6 +18,7 @@ import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
@@ -31,6 +32,9 @@ import frc.robot.subsystems.Swerve;
 public class NewFieldCentricTargetRight extends SequentialCommandGroup {
   /** Creates a new NewFieldCentricTargetLeft. */
   public NewFieldCentricTargetRight(Swerve s_Swerve) {
+    SmartDashboard.putString("Print", "entered NewFieldCentricTargetRight");
+    System.out.println("NewFieldCentricTargetRight constructor");
+
     Pose2d robotFieldPose;
     Pose2d targetFieldPose;
     double tv;
@@ -133,12 +137,19 @@ public class NewFieldCentricTargetRight extends SequentialCommandGroup {
                 thetaController,
                 s_Swerve::setModuleStates,
                 s_Swerve);
+        
+        SmartDashboard.putString("Print", "before addCommands");
 
         addCommands(
           new InstantCommand(() -> s_Swerve.setPose(exampleTrajectory.getInitialPose())),
+          new InstantCommand(() -> SmartDashboard.putString("Print", "first instant complete")),
            swerveControllerCommand, //TODO try removing this as last ditch effort to get it to work
-           new ResetFieldPoseWithTarget(s_Swerve)
+           new InstantCommand(() -> SmartDashboard.putString("Print", " swerve controller command complete")),
+           new ResetFieldPoseWithTarget(s_Swerve),
+           new InstantCommand(() -> SmartDashboard.putString("Print", "final: reset field pose complete"))
         );
+        SmartDashboard.putString("Print", "after addCommands");
+        System.out.println("NewFieldCentricTargetRight after addCommands()");
     } else {
       addCommands(); //TODO  not sure if this is needed? worried code might crash if no target is found ==> no commands are added
     } 
