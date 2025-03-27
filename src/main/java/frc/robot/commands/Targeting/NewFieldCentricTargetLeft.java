@@ -1,7 +1,7 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
-
+/* 
 package frc.robot.commands.Targeting;
 
 import java.util.List;
@@ -30,6 +30,7 @@ import frc.robot.subsystems.Swerve;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class NewFieldCentricTargetLeft extends SequentialCommandGroup {
   /** Creates a new NewFieldCentricTargetLeft. */
+  /* 
   public NewFieldCentricTargetLeft(Swerve s_Swerve) {
     Pose2d robotFieldPose;
     Pose2d targetFieldPose;
@@ -74,7 +75,7 @@ public class NewFieldCentricTargetLeft extends SequentialCommandGroup {
       */
 
       // DRIVE SEGMENT
- 
+ /*
         double deltaFwd = x2 - x1;
         double deltaSide = y2 - y1;
         double deltaAngle = angle2- angle1;
@@ -139,8 +140,9 @@ public class NewFieldCentricTargetLeft extends SequentialCommandGroup {
            swerveControllerCommand, //TODO try removing this as last ditch effort to get it to work
            new ResetFieldPoseWithTarget(s_Swerve)
         );
-    } else {
-      addCommands(); //TODO  not sure if this is needed? worried code might crash if no target is found ==> no commands are added
+   // } else {
+//addCommands(); //TODO  not sure if this is needed? worried code might crash if no target is found ==> no commands are added
     } 
   }
 }
+ */

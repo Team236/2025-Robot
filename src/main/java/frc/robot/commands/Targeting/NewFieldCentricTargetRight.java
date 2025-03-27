@@ -1,7 +1,7 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
-
+/* 
 package frc.robot.commands.Targeting;
 
 import java.util.List;
@@ -31,6 +31,8 @@ import frc.robot.subsystems.Swerve;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class NewFieldCentricTargetRight extends SequentialCommandGroup {
   /** Creates a new NewFieldCentricTargetLeft. */
+
+  /* 
   public NewFieldCentricTargetRight(Swerve s_Swerve) {
     SmartDashboard.putString("Print", "entered NewFieldCentricTargetRight");
     System.out.println("NewFieldCentricTargetRight constructor");
@@ -78,7 +80,7 @@ public class NewFieldCentricTargetRight extends SequentialCommandGroup {
       */
 
       // DRIVE SEGMENT
- 
+ /* 
         double deltaFwd = x2 - x1;
         double deltaSide = y2 - y1;
         double deltaAngle = angle2- angle1;
@@ -150,8 +152,9 @@ public class NewFieldCentricTargetRight extends SequentialCommandGroup {
         );
         SmartDashboard.putString("Print", "after addCommands");
         System.out.println("NewFieldCentricTargetRight after addCommands()");
-    } else {
-      addCommands(); //TODO  not sure if this is needed? worried code might crash if no target is found ==> no commands are added
+  //  } else {
+  //    addCommands(); //TODO  not sure if this is needed? worried code might crash if no target is found ==> no commands are added
     } 
   }
 }
+*/

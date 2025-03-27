@@ -32,7 +32,7 @@ public class L4_Score_AutoLeg1 extends SequentialCommandGroup {
     //do in parallel so elevator stays up the whole time
         new ElevMotionMagicPID(elevator, Constants.Elevator.L4_HEIGHT).withTimeout(3.5),
         Commands.sequence(
-          new WaitCommand(1.2), //wait for elevator to go up
+           new WaitCommand(1.2), //wait for elevator to go up
            new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL4).withTimeout(0.9),
            new CoralRelease(coralHold, Constants.CoralHold.L4_RELEASE_SPEED).withTimeout(0.5),
            new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.9)

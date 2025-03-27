@@ -28,7 +28,7 @@ import frc.robot.commands.AutoCommands.DriveFwd;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
 import frc.robot.commands.AutoCommands.DriveReverse;
 import frc.robot.commands.AutoCommands.DriveSideways;
-import frc.robot.commands.AutoCommands.TestAutoSequence;
+//import frc.robot.commands.AutoCommands.TestAutoSequence;
 //mport frc.robot.commands.AutoCommands.DriveWithPath;
 import frc.robot.commands.AutoCommands.TurnOnly;
 import frc.robot.commands.AutoCommands.Center.CtrScore1;
@@ -142,7 +142,7 @@ public class RobotContainer {
     private final FieldCentricTargetRight fieldCentricTargetRight = new FieldCentricTargetRight(s_Swerve);
     private final FieldCentricTargetAlgae fieldCentricTargetAlgae = new FieldCentricTargetAlgae(s_Swerve);
   // private final FieldCentricTargetCameraToTag fieldCentricTargetCameraToTag = new FieldCentricTargetCameraToTag(s_Swerve);
-   private final TestAutoSequence testAutoSequence = new TestAutoSequence(s_Swerve);
+   //private final TestAutoSequence testAutoSequence = new TestAutoSequence(s_Swerve);
 
 
   //NOTE - STANDOFF FWD IS WITHOUT THE BUMPER - ADD BUMPER DEPTH AS NEEDEDD
@@ -327,8 +327,7 @@ public class RobotContainer {
 
 //targeting
 x.onTrue(fieldCentricTargetLeft);
-a.onTrue(testAutoSequence);
-//a.onTrue(fieldCentricTargetAlgae);
+a.onTrue(fieldCentricTargetAlgae);
 b.onTrue(fieldCentricTargetRight);
 
 //driving & gyro
