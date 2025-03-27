@@ -39,22 +39,25 @@ public class Leg1Left extends SequentialCommandGroup {
       //START ROBOT WITH BACK BUMPER FLUSH WITH BACK OF BLACK STARTING LINE, 84 inches from side ///95.75 from sideline
 
         new ParallelCommandGroup(        
-          new DriveFwdAndTurn(s_Swerve, false, 60.5, 60.5).withTimeout(1.7), //77.5 58.2//
+          new DriveFwdAndTurn(s_Swerve, false, 70, 60.5).withTimeout(1.7), //70
           new PIDToElevSafePosition(algaePivot).withTimeout(0.5),
           new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5)  
         ),
 
       //  new NewFieldCentricTargetRight(s_Swerve).withTimeout(1.5), 
+
       new TargetSideDistance(s_Swerve, 0).withTimeout(0.75),
       new TargetForwardDistance(s_Swerve, 0).withTimeout(0.9),
       new GetPoseWithLL(s_Swerve).withTimeout(0.3),
-      new DriveSideways(s_Swerve, false, 7.5).withTimeout(1.4), //-6.25 
+      new DriveSideways(s_Swerve, false, 8.5).withTimeout(1.4), //-6.25 
       new ResetPoseWithLL(s_Swerve).withTimeout(0.25),
 
       new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5),
     
       //Use AutoLeg1 score, which does not bring elevator down - if bring it down at start of leg2
       new L4_Score_AutoLeg1(elevator, coralHold, coralPivot, algaePivot)
+
+
       //OTHERWISE USE:
       // new L4_Score(elevator, coralHold, coralPivot, algaePivot)
     );           

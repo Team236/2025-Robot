@@ -31,7 +31,7 @@ import frc.robot.commands.Targeting.FieldCentricTargetLeft;
 import frc.robot.commands.Targeting.FieldCentricTargetRight;
 import frc.robot.commands.Targeting.GetPoseWithLL;
 import frc.robot.commands.Targeting.GetPoseWithOdometry;
-import frc.robot.commands.Targeting.NewFieldCentricTargetRight;
+//import frc.robot.commands.Targeting.NewFieldCentricTargetRight;
 import frc.robot.commands.Targeting.ResetPoseWithLL;
 import frc.robot.commands.Targeting.TargetAllParallel;
 import frc.robot.commands.Targeting.TargetAngle;
@@ -62,7 +62,7 @@ public class Leg1Right extends SequentialCommandGroup {
       new TargetSideDistance(s_Swerve, 0).withTimeout(0.75),
       new TargetForwardDistance(s_Swerve, 0).withTimeout(0.9),
       new GetPoseWithLL(s_Swerve).withTimeout(0.3),
-      new DriveSideways(s_Swerve, false, -6.2).withTimeout(1), //-6.25 
+      new DriveSideways(s_Swerve, false, -6.7).withTimeout(1), //-6.25 
       new ResetPoseWithLL(s_Swerve).withTimeout(0.25),
 
       new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5),

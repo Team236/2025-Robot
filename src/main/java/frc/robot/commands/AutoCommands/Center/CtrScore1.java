@@ -15,6 +15,7 @@ import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
 import frc.robot.commands.AutoCommands.DriveFwdAndTurn;
 import frc.robot.commands.AutoCommands.DriveReverse;
 import frc.robot.commands.AutoCommands.DriveSideways;
+import frc.robot.commands.AutoCommands.EndDriveTrajectoryPID;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
 import frc.robot.commands.CoralHoldCommands.CoralResetCount;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
@@ -41,11 +42,13 @@ public class CtrScore1 extends SequentialCommandGroup {
   /** Creates a new FullRunParallel. */
   public CtrScore1(Swerve s_Swerve, Elevator elevator, AlgaePivot algaePivot, AlgaeHold algaeHold, CoralPivot coralPivot, CoralHold coralHold) {
     addCommands(
-      
+
+       new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(0.5),
+
         new ParallelCommandGroup(        
           new DriveFwd(s_Swerve, false, Constants.AutoConstants.CENTER_FWD_DIST).withTimeout(2),
-          new PIDToElevSafePosition(algaePivot).withTimeout(0.5),
-          new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5)  
+          new PIDToElevSafePosition(algaePivot).withTimeout(2),
+          new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(2)  
         ), 
 
         new TargetSideDistance(s_Swerve, 0).withTimeout(1),
@@ -53,12 +56,14 @@ public class CtrScore1 extends SequentialCommandGroup {
         new GetPoseWithLL(s_Swerve).withTimeout(0.5),
         new DriveSideways(s_Swerve, false, -6.25).withTimeout(1.5),
         new ResetPoseWithLL(s_Swerve).withTimeout(0.5),
-
-         new L4_Score_AutoLeg1(elevator, coralHold, coralPivot, algaePivot)//,
-         // new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.2),
-         // new DriveSideways(s_Swerve, false, -4).withTimeout(1.5)//,
-          //new AlgaeL2Pickup(elevator, algaeHold, algaePivot),
-          //new DriveReverse(s_Swerve, true, 12)
+        //ADD COMMAND BELOW WHENEVER USING ELEVATOR PID AFTER DRIVE PID
+         new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5),
+         new L4_Score_AutoLeg1(elevator, coralHold, coralPivot, algaePivot),
+         new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(2)//,
+        // new DriveSideways(s_Swerve, false, -4).withTimeout(1.5),
+         //new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5),
+         //new AlgaeL2Pickup(elevator, algaeHold, algaePivot).withTimeout(1),
+         //new DriveReverse(s_Swerve, true, 12).withTimeout(2)
     );
   }
 }

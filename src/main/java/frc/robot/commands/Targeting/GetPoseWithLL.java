@@ -52,7 +52,7 @@ public class GetPoseWithLL extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    SmartDashboard.putBoolean("isFinished in GetPoseWithLL: ", true);
+    //SmartDashboard.putBoolean("isFinished in GetPoseWithLL: ", true);
     return true;
   }
 }

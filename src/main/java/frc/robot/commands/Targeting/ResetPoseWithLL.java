@@ -50,7 +50,7 @@ public class ResetPoseWithLL extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    SmartDashboard.putBoolean("isFinished in ResetPoseWithLL: ", true);
+    //SmartDashboard.putBoolean("isFinished in ResetPoseWithLL: ", true);
     return true;
   }
 

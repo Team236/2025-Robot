@@ -28,12 +28,12 @@ public AlgaeL3Pickup(Elevator elevator, AlgaeHold algaeHold, AlgaePivot algaePiv
       Commands.sequence(    
         // wait for elevator to go up    
         new WaitCommand(0.7),
-        new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_REEF_PICKUP).withTimeout(1),
+        new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_REEF_PICKUP).withTimeout(0.5),
 
         Commands.parallel(
           new AlgaeGrab(algaeHold, Constants.AlgaeHold.HOLD_SPEED1, Constants.AlgaeHold.HOLD_SPEED2),
           Commands.sequence(
-            new WaitCommand(0.5),
+            new WaitCommand(1),
             new PIDToElevSafePosition(algaePivot).withTimeout(0.5)
           ) 
         )
