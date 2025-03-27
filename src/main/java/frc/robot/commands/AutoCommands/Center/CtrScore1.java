@@ -59,9 +59,9 @@ public class CtrScore1 extends SequentialCommandGroup {
         //ADD COMMAND BELOW WHENEVER USING ELEVATOR PID AFTER DRIVE PID
          new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5),
          new L4_Score_AutoLeg1(elevator, coralHold, coralPivot, algaePivot),
-         new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(2)//,
-        // new DriveSideways(s_Swerve, false, -4).withTimeout(1.5),
-         //new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5),
+         new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(2),
+        new DriveSideways(s_Swerve, false, -4).withTimeout(1.5),
+         new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5)//,
          //new AlgaeL2Pickup(elevator, algaeHold, algaePivot).withTimeout(1),
          //new DriveReverse(s_Swerve, true, 12).withTimeout(2)
     );
