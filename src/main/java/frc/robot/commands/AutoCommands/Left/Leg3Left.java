@@ -32,7 +32,7 @@ public class Leg3Left extends SequentialCommandGroup {
  //MAKE ALL Y DISTANCES AND ALL ANGLES OPPOSITE TO Right
     addCommands(
         //******NEED TO CHANGE TO "FALSE" BELOW????\
-        new DriveFwdAndSideAndTurn(s_Swerve, false ,120, 26, -6).withTimeout(4), //x 10
+        new DriveFwdAndSideAndTurn(s_Swerve, false ,120, 53, -6).withTimeout(4), //x 10
         //Commands.parallel(
         //new DriveFwdAndSideAndTurn(s_Swerve, true ,125.5, 19, -6).withTimeout(3.5), //x 106?
         //new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT)
