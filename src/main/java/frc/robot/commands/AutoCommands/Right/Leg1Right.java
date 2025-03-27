@@ -4,37 +4,18 @@
 
 package frc.robot.commands.AutoCommands.Right;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
-import frc.robot.commands.ZeroPose;
 import frc.robot.commands.AlgaePivotCommands.PIDToElevSafePosition;
-import frc.robot.commands.AutoCommands.DriveFwd;
-import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
 import frc.robot.commands.AutoCommands.DriveFwdAndTurn;
-import frc.robot.commands.AutoCommands.DriveReverse;
 import frc.robot.commands.AutoCommands.DriveSideways;
 import frc.robot.commands.AutoCommands.EndDriveTrajectoryPID;
-import frc.robot.commands.AutoCommands.TurnOnly;
-import frc.robot.commands.CoralHoldCommands.CoralRelease;
-import frc.robot.commands.CoralHoldCommands.CoralResetCount;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
-import frc.robot.commands.ElevatorCommands.ElevMotionMagicPID;
-import frc.robot.commands.Scoring.L2_Score;
-import frc.robot.commands.Scoring.L4_Score;
 import frc.robot.commands.Scoring.L4_Score_AutoLeg1;
-import frc.robot.commands.Targeting.CoralRightTarget;
-import frc.robot.commands.Targeting.FieldCentricTargetLeft;
-import frc.robot.commands.Targeting.FieldCentricTargetRight;
 import frc.robot.commands.Targeting.GetPoseWithLL;
-import frc.robot.commands.Targeting.GetPoseWithOdometry;
 //import frc.robot.commands.Targeting.NewFieldCentricTargetRight;
 import frc.robot.commands.Targeting.ResetPoseWithLL;
-import frc.robot.commands.Targeting.TargetAllParallel;
-import frc.robot.commands.Targeting.TargetAngle;
 import frc.robot.commands.Targeting.TargetForwardDistance;
 import frc.robot.commands.Targeting.TargetSideDistance;
 import frc.robot.subsystems.AlgaePivot;

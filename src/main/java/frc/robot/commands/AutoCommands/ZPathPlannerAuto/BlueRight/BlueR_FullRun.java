@@ -5,9 +5,6 @@
 package frc.robot.commands.AutoCommands.ZPathPlannerAuto.BlueRight;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.AutoCommands.Right.Leg1Right;
-import frc.robot.commands.AutoCommands.Right.Leg2Right;
-import frc.robot.commands.AutoCommands.Right.Leg3Right;
 import frc.robot.subsystems.Swerve;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more

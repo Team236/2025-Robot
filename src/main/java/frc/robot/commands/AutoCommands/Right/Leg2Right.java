@@ -4,23 +4,14 @@
 
 package frc.robot.commands.AutoCommands.Right;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
-import frc.robot.Constants.CoralPivot;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
-import frc.robot.commands.AutoCommands.DriveRevAndSideAndTurn;
-import frc.robot.commands.AutoCommands.DriveReverse;
-import frc.robot.commands.AutoCommands.DriveSideways;
 import frc.robot.commands.AutoCommands.EndDriveTrajectoryPID;
-import frc.robot.commands.CoralHoldCommands.CoralGrab;
 import frc.robot.commands.CoralHoldCommands.CoralGrabWithCounter;
-import frc.robot.commands.CoralHoldCommands.CoralResetCount;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
 import frc.robot.commands.ElevatorCommands.ElevMotionMagicPID;
-import frc.robot.commands.Targeting.TargetAllParallel;
 import frc.robot.subsystems.CoralHold;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Swerve;
