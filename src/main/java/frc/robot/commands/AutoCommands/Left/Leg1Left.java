@@ -40,10 +40,10 @@ public class Leg1Left extends SequentialCommandGroup {
 
       //  new NewFieldCentricTargetRight(s_Swerve).withTimeout(1.5), 
 
-      new TargetSideDistance(s_Swerve, 0).withTimeout(0.75),
+      new TargetSideDistance(s_Swerve, 0).withTimeout(0.4),
       new TargetForwardDistance(s_Swerve, 0).withTimeout(0.9),
       new GetPoseWithLL(s_Swerve).withTimeout(0.3),
-      new DriveSideways(s_Swerve, false, 8.5).withTimeout(1.4), //-6.25 
+      new DriveSideways(s_Swerve, false, 11).withTimeout(1.4), //-6.25 //8.5
       new ResetPoseWithLL(s_Swerve).withTimeout(0.25),
 
       new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5),

@@ -158,7 +158,7 @@ public class CoralHold extends SubsystemBase {
   @Override
   public void periodic() {
   // This method will be called once per scheduler run
-   SmartDashboard.putNumber("Coral count is:", getCoralHCount());
+  // SmartDashboard.putNumber("Coral count is:", getCoralHCount());
    SmartDashboard.putBoolean("Coral Light Sensor State is:", getLightSensorState());
   // SmartDashboard.putBoolean("Has Coral: ", counter.get()>0);
   }

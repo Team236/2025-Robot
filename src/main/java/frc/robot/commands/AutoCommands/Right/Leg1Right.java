@@ -43,7 +43,7 @@ public class Leg1Right extends SequentialCommandGroup {
       new TargetSideDistance(s_Swerve, 0).withTimeout(0.75),
       new TargetForwardDistance(s_Swerve, 0).withTimeout(0.9),
       new GetPoseWithLL(s_Swerve).withTimeout(0.3),
-      new DriveSideways(s_Swerve, false, -6.2).withTimeout(1), //-6.25 
+      new DriveSideways(s_Swerve, false, -5).withTimeout(1), //DO NOT ADJUST UNLESS YOU TEST IT
       new ResetPoseWithLL(s_Swerve).withTimeout(0.25),
 
       new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5),

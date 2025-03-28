@@ -7,6 +7,7 @@ package frc.robot.commands.AutoCommands.Right;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
 import frc.robot.commands.AutoCommands.EndDriveTrajectoryPID;
+import frc.robot.commands.Targeting.FieldCentricTargetLeft;
 import frc.robot.commands.Targeting.FieldCentricTargetRight;
 import frc.robot.commands.Targeting.GetPoseWithLL;
 import frc.robot.commands.Targeting.ResetPoseWithLL;
@@ -28,7 +29,7 @@ public class Leg3Right extends SequentialCommandGroup {
          new DriveFwdAndSideAndTurn(s_Swerve, false ,120, -26, 6).withTimeout(4), //x 106? //TRUE?
          // new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.2),
 
-         new FieldCentricTargetRight(s_Swerve).withTimeout(2),
+         new FieldCentricTargetLeft(s_Swerve).withTimeout(2),
          // new TargetSideDistance(s_Swerve, 0).withTimeout(1),
          //new TargetForwardDistance(s_Swerve, 0).withTimeout(1),
          //**** GET POSE WITH LIMELIGHT, BEFORE DRIVING WITH ODOMETRY

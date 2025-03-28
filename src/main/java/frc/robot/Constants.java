@@ -66,7 +66,7 @@ public final class Constants {
     public static final double DIST_ROBOT_CENTER_TO_LL_SIDEWAYS = 8; //
     //use this with TargetPose-CameraSpace:  \
    
-    public static final double DIST_FORWARDS_CAMERA_TO_FRAME = 5.44;
+    public static final double DIST_FORWARDS_CAMERA_TO_FRAME = 5.2;
     public static final double BUMPER_THICKNESS = 3.25;
     //TODO - may need to use just cam to frame for TargetFwdDistance?
     public static final double DIST_CAMERA_TO_BUMPER_FWD = BUMPER_THICKNESS + DIST_FORWARDS_CAMERA_TO_FRAME;
@@ -86,9 +86,9 @@ public final class Constants {
     public static final double KP_STRAFE = 0.9;// 0.475;  //kP value for the sideways (strafe) motio%n 
 
     public static final List<Integer> REEF_IDS = Arrays.asList(6, 7, 8, 9, 10, 11, 17, 18, 19, 20, 21, 22);
-    public static final double DIST_TAG_RIGHT_BRANCH = 5.5;//7.0;
-    public static final double DIST_TAG_LEFT_BRANCH = 8.75;//7.0;
-    public static final double DIST_ALGAE_CENTERED_LL = 12.0;
+    public static final double DIST_TAG_RIGHT_BRANCH = 6.75-1;//5.5;//7.0;
+    public static final double DIST_TAG_LEFT_BRANCH = 9+1;//6.75;//8.75;//7.0;
+    public static final double DIST_ALGAE_CENTERED_LL = 12.0-1;
     public static Map<Integer, Pose2d> ID_TO_POSE = new HashMap<>();
 
     public static final double ROT_SETPOINT_REEF_ALIGNMENT = 0; //TODO measure on a field as described in comments above
@@ -183,7 +183,7 @@ public static final class Swerve {
             public static final int driveMotorID = 7;
             public static final int angleMotorID = 6;
             public static final int canCoderID = 3;
-            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(-119.79);//(81.1+180); TESTBED
+            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(-120.15);//(81.1+180); TESTBED//-119.79
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
         }
@@ -192,7 +192,7 @@ public static final class Swerve {
             public static final int driveMotorID = 3;
             public static final int angleMotorID = 2;
             public static final int canCoderID = 1;
-            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(130.87);//(-20.83+180); TESTBED
+            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(131.045);//(-20.83+180)Estbed; 130.87 
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
         }    
@@ -201,7 +201,7 @@ public static final class Swerve {
             public static final int driveMotorID = 5;
             public static final int angleMotorID = 4;
             public static final int canCoderID = 2;
-            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(106.35);//(8.1+180); TESTBED 
+            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(106.87);//(8.1+180); TESTBED //106.35
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
         }
@@ -210,7 +210,7 @@ public static final class Swerve {
             public static final int driveMotorID = 1;
             public static final int angleMotorID = 10;
             public static final int canCoderID = 0;
-            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(130.87);//(-17.75+180);  TESTBED
+            public static final Rotation2d angleOffset = Rotation2d.fromDegrees(130.95);//(-17.75+180);  TESTBED//130.87
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
         }

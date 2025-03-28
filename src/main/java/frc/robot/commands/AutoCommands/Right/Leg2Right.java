@@ -26,7 +26,7 @@ public class Leg2Right extends SequentialCommandGroup {
     addCommands(
 
       Commands.parallel( 
-       new DriveFwdAndSideAndTurn(s_Swerve, true, -4, 150, 0).withTimeout(2.75), //no turn at first
+       new DriveFwdAndSideAndTurn(s_Swerve, true, -4, 151, 0).withTimeout(2.75), //no turn at first
         //Bring elevator down while driving sideways
        new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.5)
        ),

@@ -26,6 +26,7 @@ import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Swerve extends SubsystemBase {
@@ -377,17 +378,17 @@ public Trajectory getTargetingTrajectory(double fwdDist1, double sideDist1, doub
 
        swerveOdometry.update(getGyroYaw(), getModulePositions());
 
-        // for(SwerveModule mod : mSwerveMods){
-          // SmartDashboard.putNumber("Mod " + mod.moduleNumber + " CANcoder degrees", mod.getCANcoder().getDegrees());
-          // SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Angle degrees", mod.getPosition().angle.getDegrees());
+        //for(SwerveModule mod : mSwerveMods){
+         // SmartDashboard.putNumber("Mod " + mod.moduleNumber + " CANcoder degrees", mod.getCANcoder().getDegrees());
+          //SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Angle degrees", mod.getPosition().angle.getDegrees());
           // SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Velocity", mod.getState().speedMetersPerSecond);
           //Can't use m/s in the key!! SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Velocity m/s", mod.getState().speedMetersPerSecond);
-        // }
+         //}
     
          /* 
        poseAngle = LimelightHelpers.getTargetPose_CameraSpace("limelight")[5];
        SmartDashboard.putNumber("TargetingAngle in swerve: ", poseAngle);
-       poseForwardDistance = LimelightHelpers.getTargetPose_CameraSpace("limelight")[2];
+       poseForwardDistance = LimelightHelpers.getTargetPose_ameraSpace("limelight")[2];
       SmartDashboard.putNumber("TargetingForwardDistance in swerve: ", poseForwardDistance / 0.0254);
       poseSideDistance = LimelightHelpers.getTargetPose_CameraSpace("limelight")[0];
        SmartDashboard.putNumber("TargetingSideDistance in swerve: ", poseSideDistance / 0.0254);
