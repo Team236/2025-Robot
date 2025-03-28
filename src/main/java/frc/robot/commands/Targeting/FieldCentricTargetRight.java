@@ -65,8 +65,8 @@ public class FieldCentricTargetRight extends InstantCommand {
       double x1 = robotFieldPose.getX() - (Constants.Targeting.DIST_ROBOT_CENTER_TO_FRONT_WITH_BUMPER*(0.0254)) * Math.cos(angle2) - (Constants.Targeting.DIST_ROBOT_CENTER_TO_LL_SIDEWAYS*(0.0254))*Math.sin((angle2));
       double y1 = robotFieldPose.getY() + (Constants.Targeting.DIST_ROBOT_CENTER_TO_LL_SIDEWAYS*(0.0254))*Math.cos((angle2)) - (Constants.Targeting.DIST_ROBOT_CENTER_TO_FRONT_WITH_BUMPER*(0.0254)) * Math.sin((angle2));
 
-     y1 -= Constants.Targeting.DIST_CORAL_TAG_CENTER * Math.cos((angle2)) * 0.0254;
-     x1 += Constants.Targeting.DIST_CORAL_TAG_CENTER * Math.sin((angle2)) * 0.0254;
+     y1 -= Constants.Targeting.DIST_TAG_RIGHT_BRANCH * Math.cos((angle2)) * 0.0254;
+     x1 += Constants.Targeting.DIST_TAG_RIGHT_BRANCH  * Math.sin((angle2)) * 0.0254;
       
      /* SmartDashboard.putNumber("Target ID", targetId);
       SmartDashboard.putNumber("x1: ", x1 / 0.0254);

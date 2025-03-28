@@ -218,7 +218,7 @@ public double getx1Right() {
       Pose2d robotFieldPose = LimelightHelpers.getBotPose2d_wpiBlue("limelight");
       double angle2 = Constants.Targeting.ID_TO_POSE.get(targetId).getRotation().getRadians();
       x1R = robotFieldPose.getX() - (Constants.Targeting.DIST_ROBOT_CENTER_TO_FRONT_WITH_BUMPER*(0.0254)) * Math.cos(angle2) - (Constants.Targeting.DIST_ROBOT_CENTER_TO_LL_SIDEWAYS*(0.0254))*Math.sin((angle2));
-      x1R += Constants.Targeting.DIST_CORAL_TAG_CENTER * Math.sin((angle2)) * 0.0254;
+      x1R += Constants.Targeting.DIST_TAG_RIGHT_BRANCH * Math.sin((angle2)) * 0.0254;
 }
     return x1R;
 }
@@ -232,7 +232,7 @@ public double gety1Right(){
       //april tag coordinates
       double angle2 = Constants.Targeting.ID_TO_POSE.get(targetId).getRotation().getRadians();
       y1R = robotFieldPose.getY() + (Constants.Targeting.DIST_ROBOT_CENTER_TO_LL_SIDEWAYS*(0.0254))*Math.cos((angle2)) - (Constants.Targeting.DIST_ROBOT_CENTER_TO_FRONT_WITH_BUMPER*(0.0254)) * Math.sin((angle2));
-      y1R -= Constants.Targeting.DIST_CORAL_TAG_CENTER * Math.cos((angle2)) * 0.0254;
+      y1R -= Constants.Targeting.DIST_TAG_RIGHT_BRANCH * Math.cos((angle2)) * 0.0254;
     }
     return y1R;
 }
@@ -244,7 +244,7 @@ public double getx1Left() {
       Pose2d robotFieldPose = LimelightHelpers.getBotPose2d_wpiBlue("limelight");
       double angle2 = Constants.Targeting.ID_TO_POSE.get(targetId).getRotation().getRadians();
       x1L = robotFieldPose.getX() - (Constants.Targeting.DIST_ROBOT_CENTER_TO_FRONT_WITH_BUMPER*(0.0254)) * Math.cos(angle2) - (Constants.Targeting.DIST_ROBOT_CENTER_TO_LL_SIDEWAYS*(0.0254))*Math.sin((angle2));
-      x1L -= Constants.Targeting.DIST_CORAL_TAG_CENTER * Math.sin((angle2)) * 0.0254;
+      x1L -= Constants.Targeting.DIST_TAG_LEFT_BRANCH * Math.sin((angle2)) * 0.0254;
 }
     return x1L;
 }
@@ -258,7 +258,7 @@ public double gety1Left(){
       //april tag coordinates
       double angle2 = Constants.Targeting.ID_TO_POSE.get(targetId).getRotation().getRadians();
       y1L = robotFieldPose.getY() + (Constants.Targeting.DIST_ROBOT_CENTER_TO_LL_SIDEWAYS*(0.0254))*Math.cos((angle2)) - (Constants.Targeting.DIST_ROBOT_CENTER_TO_FRONT_WITH_BUMPER*(0.0254)) * Math.sin((angle2));
-      y1L += Constants.Targeting.DIST_CORAL_TAG_CENTER * Math.cos((angle2)) * 0.0254;
+      y1L += Constants.Targeting.DIST_TAG_LEFT_BRANCH * Math.cos((angle2)) * 0.0254;
     }
     return y1L;
 }
