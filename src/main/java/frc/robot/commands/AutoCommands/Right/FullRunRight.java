@@ -3,18 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.commands.AutoCommands.Right;
-import java.rmi.server.ServerCloneException;
-
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.Constants;
-import frc.robot.commands.AutoCommands.DriveFwd;
-import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
-import frc.robot.commands.AutoCommands.DriveReverse;
-import frc.robot.commands.AutoCommands.DriveSideways;
-import frc.robot.commands.AutoCommands.EndDriveTrajectoryPID;
-import frc.robot.commands.Targeting.TargetAllParallel;
-import frc.robot.subsystems.AlgaeHold;
 import frc.robot.subsystems.AlgaePivot;
 import frc.robot.subsystems.CoralHold;
 import frc.robot.subsystems.CoralPivot;

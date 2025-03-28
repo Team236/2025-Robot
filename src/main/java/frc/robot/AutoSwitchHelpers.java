@@ -1,12 +1,7 @@
 package frc.robot;
 
 
-import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.List;
-
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj2.command.Command;
 
 public class AutoSwitchHelpers
 {

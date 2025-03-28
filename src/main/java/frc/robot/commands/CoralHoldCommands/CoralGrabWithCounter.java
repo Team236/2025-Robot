@@ -4,7 +4,6 @@
 
 package frc.robot.commands.CoralHoldCommands;
 
-import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.CoralHold;
 

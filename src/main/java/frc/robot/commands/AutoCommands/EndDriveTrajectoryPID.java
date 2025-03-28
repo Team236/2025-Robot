@@ -5,11 +5,7 @@
 package frc.robot.commands.AutoCommands;
 
 import edu.wpi.first.math.geometry.Translation2d;
-import edu.wpi.first.math.kinematics.ChassisSpeeds;
-import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.Constants;
-import frc.robot.subsystems.AlgaeHold;
 import frc.robot.subsystems.Swerve;
 
 public class EndDriveTrajectoryPID extends Command {
