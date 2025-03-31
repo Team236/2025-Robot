@@ -46,9 +46,11 @@ public class Swerve extends SubsystemBase {
 
     public Swerve() {
         gyro = new Pigeon2(Constants.Swerve.pigeonID, "usb");
+        //when calibrated on 3/31/25, gyro mount pose configs quarternion values were:
+        //gyro.getConfigurator().apply(-0.041875,  0.012086,  0.005250, Z	-0.997314))
         gyro.getConfigurator().apply(new Pigeon2Configuration());
         gyro.setYaw(0);
-
+        
         mSwerveMods = new SwerveModule[] {
             new SwerveModule(0, Constants.Swerve.Mod0.constants), //front left
             new SwerveModule(1, Constants.Swerve.Mod1.constants), //front right

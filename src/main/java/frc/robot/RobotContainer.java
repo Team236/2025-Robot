@@ -54,6 +54,7 @@ import frc.robot.commands.Scoring.L2_Pt1;
 import frc.robot.commands.Scoring.L3_Pt2;
 import frc.robot.commands.Scoring.L3_Pt1;
 import frc.robot.commands.Scoring.L4_Pt2;
+import frc.robot.commands.Scoring.L4_Pt2_Algae_Bump;
 import frc.robot.commands.Scoring.L4_Pt1;
 import frc.robot.commands.Targeting.AlgaeTarget;
 import frc.robot.commands.Targeting.CoralLeftTarget;
@@ -149,6 +150,7 @@ public class RobotContainer {
     private final L3_Pt2 l3_Pt2 = new L3_Pt2(elevator, coralHold, coralPivot, algaePivot);
     private final L4_Pt1 l4_Pt1 = new L4_Pt1(elevator, coralHold, coralPivot, algaePivot);
     private final L4_Pt2 l4_Pt2 = new L4_Pt2(elevator, coralHold, coralPivot, algaePivot);
+    private final L4_Pt2_Algae_Bump l4_Pt2_Algae_Bump = new L4_Pt2_Algae_Bump(elevator, coralPivot, coralHold, algaePivot);
 
 
     //Auto
@@ -328,7 +330,7 @@ b.onTrue(fieldCentricTargetRight);
 upPov.whileTrue(dangerElevatorUp);
 downPov.whileTrue(dangerElevatorDown);
 leftPov.onTrue(motionMagicToBottom);
-rightPov.onTrue(leg1and2Practice);
+rightPov.onTrue(l4_Pt2_Algae_Bump);
 //climbing
 menu.onTrue(prepForClimb);
 view.onTrue(climbDownSequence);

@@ -288,9 +288,11 @@ public static class CoralHold {
     public static final int DIO_LIMIT = 6;
     public static final int DIO_ENC_A = 7;
     public static final int DIO_ENC_B = 13;
-    public static final double ENC_REVS_MAX = -855; //TODO determine max revs
-    public static final double ENC_REVS_REEF_PICKUP = -500;
-    public static final double ENC_REVS_FLOOR_PICKUP = -23.7;
+    //TODO find actual values with new limit switch position (approx 167 difference)
+    public static final double ENC_REVS_MAX = -855-167; //TODO determine max revs
+    public static final double ENC_REVS_BUMP = -250-167;
+    public static final double ENC_REVS_REEF_PICKUP = -500-167;
+    public static final double ENC_REVS_FLOOR_PICKUP = -23.7-167;
     public static final double ENC_REVS_SCORE_NET = 0; //TODO find actual
     public static final double ENC_REVS_ELEVATOR_SAFE_POSITION = 0;//TODO verify safe at retract limit
     public static final double MAN_EXT_SPEED = -0.4;
