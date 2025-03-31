@@ -27,7 +27,6 @@ import frc.robot.commands.AlgaePivotCommands.PIDToElevSafePosition;
 import frc.robot.commands.AutoCommands.Center.CtrScore1;
 import frc.robot.commands.AutoCommands.Left.FullRunLeft;
 import frc.robot.commands.AutoCommands.Left.Leg1Left;
-import frc.robot.commands.AutoCommands.Left.Leg1ParallelTest;
 import frc.robot.commands.AutoCommands.Left.Leg1and2Practice;
 import frc.robot.commands.AutoCommands.Left.Leg2Left;
 import frc.robot.commands.AutoCommands.Left.Leg3Left;
@@ -164,7 +163,6 @@ public class RobotContainer {
    // private final DriveSideways driveSideways675 = new DriveSideways(s_Swerve, false, 6.5);
    // private final DriveSideways driveSidewaysNeg675 = new DriveSideways(s_Swerve, false, -6.5);
 
-    private final Leg1ParallelTest leg1ParallelTest = new Leg1ParallelTest(s_Swerve, elevator);
     private final Leg1and2Practice leg1and2Practice = new Leg1and2Practice(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
 
     private final Leg1Left leg1Left = new Leg1Left(s_Swerve,  elevator, algaePivot, coralPivot, coralHold);

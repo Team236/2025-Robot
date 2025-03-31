@@ -45,20 +45,17 @@ public class Leg1PracticeFieldTest extends SequentialCommandGroup {
       //  new NewFieldCentricTargetRight(s_Swerve).withTimeout(1.5), 
       new ParallelCommandGroup(
         new ElevMotionMagicPID(elevator, Constants.Elevator.L4_HEIGHT).withTimeout(3.75),
-
         new SequentialCommandGroup(
           new TargetSideDistance(s_Swerve, 0).withTimeout(0.4),
           new TargetForwardDistance(s_Swerve, 0).withTimeout(0.9),
           new GetPoseWithLL(s_Swerve).withTimeout(0.3),
           new DriveSideways(s_Swerve, false, 10.2).withTimeout(1.4), //11
           new ResetPoseWithLL(s_Swerve).withTimeout(0.25),
-    
           new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5)
-        )
-),
-
+         )
+      ),
     
-      //Use AutoLeg1 score, which does not bring elevator down - if bring it down at start of leg2
+    //Use AutoLeg1 score, which does not bring elevator down - if bring it down at start of leg2
     new L4_Score_AutoLeg1(elevator, coralHold, coralPivot, algaePivot)
 
 
