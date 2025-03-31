@@ -32,6 +32,7 @@ public final class Constants {
     //USB port number of the xbox controllers
     public static final int USB_DRIVECONTROLLER = 0;
     public static final int USB_AUXCONTROLLER = 1;
+    public static final int USB_TEST_CONTROLLER = 2;
   }
 
   //AUTO SWITCHES
