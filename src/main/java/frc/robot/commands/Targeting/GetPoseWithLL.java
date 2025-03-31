@@ -29,7 +29,7 @@ public class GetPoseWithLL extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() { 
-    SmartDashboard.putBoolean("about to get LLPose in GetPoseWithLL: ", true);
+    //SmartDashboard.putBoolean("about to get LLPose in GetPoseWithLL: ", true);
     s_Swerve.getLLPose(); 
   }
   // Called every time the scheduler runs while the command is scheduled.

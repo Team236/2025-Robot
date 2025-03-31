@@ -60,9 +60,9 @@ public class GoToCoralRightLL extends InstantCommand {
       //side += Constants.Targeting.DIST_CORAL_TAG_CENTER * Math.cos(Units.degreesToRadians(turnAngle));
       side *= -1;
       turnAngle *= -1;
-            SmartDashboard.putNumber("Attempting Side: ", side);
-      SmartDashboard.putNumber("Attempting Forward", forward);
-      SmartDashboard.putNumber("Attempting Turn", turnAngle);
+          //  SmartDashboard.putNumber("Attempting Side: ", side);
+      //SmartDashboard.putNumber("Attempting Forward", forward);
+      //SmartDashboard.putNumber("Attempting Turn", turnAngle);
  
       CommandScheduler.getInstance().schedule(new DriveFwdAndSideAndTurn(s_Swerve, false, forward, side, turnAngle));
     }

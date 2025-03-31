@@ -44,12 +44,13 @@ public class UpdateRobotPosition extends InstantCommand {
         double x1 = robotFieldPose.getX();
         double y1 = robotFieldPose.getY();
         double angle1 = robotFieldPose.getRotation().getRadians();
-
+/* 
         SmartDashboard.putNumber("Robot Field X (m):", x1);
         SmartDashboard.putNumber("x1: ", Units.metersToInches(x1));
         SmartDashboard.putNumber("Robot Field Y (m):", y1);
         SmartDashboard.putNumber("y1: ", Units.metersToInches(y1));
         SmartDashboard.putNumber("angle1", robotFieldPose.getRotation().getDegrees());
+        */
       }
       else if (alliance.get() == Alliance.Blue) {
         robotFieldPose = LimelightHelpers.getBotPose2d_wpiBlue("limelight");
@@ -59,14 +60,16 @@ public class UpdateRobotPosition extends InstantCommand {
         double x1 = robotFieldPose.getTranslation().getX();
         double y1 = robotFieldPose.getTranslation().getY();
         double angle1 = robotFieldPose.getRotation().getRadians();
-        
+       /* 
         SmartDashboard.putNumber("Robot Field X (m):", x1);
         SmartDashboard.putNumber("x1: ", Units.metersToInches(x1));
         SmartDashboard.putNumber("Robot Field Y (m):", y1);
         SmartDashboard.putNumber("y1: ", Units.metersToInches(y1));
         SmartDashboard.putNumber("angle1", robotFieldPose.getRotation().getDegrees());
+        */
         Field2d field = new Field2d();
-        SmartDashboard.putData(field);
+       // SmartDashboard.putData(field);
+        
         field.setRobotPose(x1, y1, new Rotation2d(angle1));
       }
     }

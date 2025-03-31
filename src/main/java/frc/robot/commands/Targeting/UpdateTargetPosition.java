@@ -43,11 +43,12 @@ public class UpdateTargetPosition extends InstantCommand {
     double x2 = Constants.Targeting.ID_TO_POSE.get(targetId).getX();
     double y2 = Constants.Targeting.ID_TO_POSE.get(targetId).getY();
     double angle2 = Constants.Targeting.ID_TO_POSE.get(targetId).getRotation().getRadians();
-
+/* 
     SmartDashboard.putNumber("Robot Field X (m):", x2);
     SmartDashboard.putNumber("x2: ", Units.metersToInches(x2));
     SmartDashboard.putNumber("Robot Field Y (m):", y2);
     SmartDashboard.putNumber("y2: ", Units.metersToInches(y2));
     SmartDashboard.putNumber("angle2", Units.radiansToDegrees(angle2));
+    */
   }
 }

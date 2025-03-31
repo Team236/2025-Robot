@@ -66,7 +66,7 @@ public class TurnToReef extends InstantCommand {
       
       // SmartDashboard.putNumber("Attempting Side: ", side);
       // SmartDashboard.putNumber("Attempting Forward", forward);
-      SmartDashboard.putNumber("Attempting Turn", turnAngle);
+      //SmartDashboard.putNumber("Attempting Turn", turnAngle);
       
       CommandScheduler.getInstance().schedule(new DriveFwdAndSideAndTurn(s_Swerve, false, 0.5, 0, turnAngle).withTimeout(1.5));
     //  CommandScheduler.getInstance().schedule(new DriveFwdAndSideAndTurn(s_Swerve, false, forward, side, 0));
