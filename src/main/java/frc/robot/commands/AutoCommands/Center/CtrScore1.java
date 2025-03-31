@@ -44,7 +44,7 @@ public class CtrScore1 extends SequentialCommandGroup {
         new TargetSideDistance(s_Swerve, 0).withTimeout(1),
        // new FieldCentricTargetRight(s_Swerve).withTimeout(2),
         new GetPoseWithLL(s_Swerve).withTimeout(0.5),
-        new DriveSideways(s_Swerve, false, -6.25).withTimeout(1.5),
+        new DriveSideways(s_Swerve, false, -5).withTimeout(1.5),
         new ResetPoseWithLL(s_Swerve).withTimeout(0.5),
         //ADD COMMAND BELOW WHENEVER USING ELEVATOR PID AFTER DRIVE PID
          new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5),

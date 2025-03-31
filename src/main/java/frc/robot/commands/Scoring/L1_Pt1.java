@@ -17,9 +17,9 @@ import frc.robot.subsystems.CoralPivot;
 import frc.robot.subsystems.Elevator;
 
 
-public class L1_Score extends SequentialCommandGroup {
+public class L1_Pt1 extends SequentialCommandGroup {
   /** Creates a new L1_Score. */
-  public L1_Score(Elevator elevator, CoralHold coralHold, CoralPivot coralPivot, AlgaePivot algaePivot) {
+  public L1_Pt1(Elevator elevator, CoralHold coralHold, CoralPivot coralPivot, AlgaePivot algaePivot) {
     addCommands(
    Commands.parallel( //do in parallel - elev full down, coral pivot full retract
       // new ElevMotionMagicPID(elevator, Constants.Elevator.L1_HEIGHT).withTimeout(2.3),//level1 elev =0, full down   

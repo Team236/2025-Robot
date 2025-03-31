@@ -88,7 +88,7 @@ public final class Constants {
     public static final List<Integer> REEF_IDS = Arrays.asList(6, 7, 8, 9, 10, 11, 17, 18, 19, 20, 21, 22);
     public static final double DIST_TAG_RIGHT_BRANCH = 6.75-1;//5.5;//7.0;
     public static final double DIST_TAG_LEFT_BRANCH = 9+1;//6.75;//8.75;//7.0;
-    public static final double DIST_ALGAE_CENTERED_LL = 12.0-1;
+    public static final double DIST_ALGAE_CENTERED_LL = 12.0-4;
     public static Map<Integer, Pose2d> ID_TO_POSE = new HashMap<>();
 
     public static final double ROT_SETPOINT_REEF_ALIGNMENT = 0; //TODO measure on a field as described in comments above
@@ -240,7 +240,7 @@ public static final class Swerve {
     public static final int DIO_ELEV_BOTTOM = 5;
 
     public static final double ELEV_UP_SPEED = 0.1;
-    public static final double ELEV_DOWN_SPEED = -0.1;
+    public static final double ELEV_DOWN_SPEED = -0.2;
     public static final double ELEV_CLIMB_DOWN_SPEED = -0.2;
 
     //conversion factors
@@ -251,9 +251,9 @@ public static final class Swerve {
     public static final double BOTTOM_HEIGHT = 0;
     public static final double TELEOP_HEIGHT = 5;//3.47;
     public static final double L1_HEIGHT = 0;
-    public static final double L2_HEIGHT = 6;//3.47;
-    public static final double L3_HEIGHT = 23;
-    public static final double L4_HEIGHT = 57;//no more than 57.5
+    public static final double L2_HEIGHT = 4;//6;
+    public static final double L3_HEIGHT = 20.5;//23;
+    public static final double L4_HEIGHT = 53;//57;//no more than 57.5
     public static final double PICK_ALGAE_L2_HEIGHT = 22; //TODO find actual
     public static final double PICK_ALGAE_L3_HEIGHT = 38;//TODO find actual
     public static final double SCORE_ALGAE_NET_HEIGHT = 60; //TODO find actual
@@ -305,9 +305,9 @@ public static class CoralHold {
     public static final int DIO_LIMIT = 8; 
     public static final double ENC_REVS_MAX = -125;
     public static final double ENC_REVS_LEVEL1 = 0;
-    public static final double ENC_REVS_LEVEL2 = -45;
-    public static final double ENC_REVS_LEVEL3 = -45; 
-    public static final double ENC_REVS_LEVEL4 = -125;//107
+    public static final double ENC_REVS_LEVEL2 = -10;//-45;
+    public static final double ENC_REVS_LEVEL3 = -10;//-45; 
+    public static final double ENC_REVS_LEVEL4 = -95;//-125;
     public static final double ENC_REVS_FULL_RETRACT = 0;
     public static final double MAN_EXT_SPEED = -0.6;
     public static final double MAN_RET_SPEED = 0.6;

@@ -19,27 +19,23 @@ import frc.robot.subsystems.Elevator;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class L4Shoot extends SequentialCommandGroup {
-  /** Creates a new CoralScore. */
-  public L4Shoot(Elevator elevator, CoralHold coralHold, CoralPivot coralPivot, AlgaePivot algaePivot) {
-
-    addCommands(   
+public class L3_Pt2 extends SequentialCommandGroup {
+  /** Creates a new L2And3Shoot. */
+  public L3_Pt2(Elevator elevator, CoralHold coralHold, CoralPivot coralPivot, AlgaePivot algaePivot) {
+ 
+    addCommands(    
       Commands.parallel( //do in parallel so elevator stays up the whole time
-        new ElevMotionMagicPID(elevator, Constants.Elevator.L4_HEIGHT).withTimeout(2.3), 
-             
-        Commands.sequence(
-        // new WaitCommand(1.2), //wait for elevator to go up
-          new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL4).withTimeout(0.9),
-          new CoralRelease(coralHold, Constants.CoralHold.L4_RELEASE_SPEED).withTimeout(0.5),
-          new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.9)
-      )
+      new ElevMotionMagicPID(elevator, Constants.Elevator.L3_HEIGHT).withTimeout(2.3),      
+      
+      Commands.sequence(
+         //new WaitCommand(1.2), //wait for elevator to go up
+         new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL3).withTimeout(0.9),
+         new CoralRelease(coralHold, Constants.CoralHold.L3_RELEASE_SPEED).withTimeout(0.5),
+         new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.9)
+        )
       ),
 
-      new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.2));
+      new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.2)
+      );
   }
 }
-
-
-
-
-
