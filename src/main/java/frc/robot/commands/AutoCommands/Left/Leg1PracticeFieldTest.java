@@ -16,6 +16,7 @@ import frc.robot.commands.ElevatorCommands.ElevMotionMagicPID;
 import frc.robot.commands.Scoring.L4_Score_AutoLeg1;
 import frc.robot.commands.Targeting.FieldCentricTargetLeft;
 import frc.robot.commands.Targeting.GetPoseWithLL;
+import frc.robot.commands.Targeting.GetTargetingValues;
 import frc.robot.commands.Targeting.NewFieldCentricTargetLeft;
 import frc.robot.commands.Targeting.NewFieldCentricTargetRight;
 import frc.robot.commands.Targeting.ResetPoseWithLL;
@@ -46,6 +47,7 @@ public class Leg1PracticeFieldTest extends SequentialCommandGroup {
       // new ParallelCommandGroup(
         // new ElevMotionMagicPID(elevator, Constants.Elevator.L4_HEIGHT).withTimeout(3.75),
         new SequentialCommandGroup(
+          new GetTargetingValues(s_Swerve),
           new NewFieldCentricTargetRight(s_Swerve).withTimeout(1.5),
           //new TargetSideDistance(s_Swerve, 0).withTimeout(0.4),
           //new TargetForwardDistance(s_Swerve, 0).withTimeout(0.9),
