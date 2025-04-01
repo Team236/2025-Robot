@@ -37,28 +37,26 @@ public class Leg1Left extends SequentialCommandGroup {
           new DriveFwdAndTurn(s_Swerve, false, 70.5, 60.5).withTimeout(1.7), 
           new PIDToElevSafePosition(algaePivot).withTimeout(0.5),
           new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5)  
-        ),
+        //***Consider moving the ElevMotionMagicPID command here, especially if using NewFieldCentricTargeting
+          ),
         new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.25),
 
-  
-      //  new NewFieldCentricTargetRight(s_Swerve).withTimeout(1.5), 
-
       new ParallelCommandGroup(
-        new ElevMotionMagicPID(elevator, Constants.Elevator.L4_HEIGHT).withTimeout(4.1),
-
+        new ElevMotionMagicPID(elevator, Constants.Elevator.L4_HEIGHT).withTimeout(3.9),
+       
         new SequentialCommandGroup(
-      new TargetSideDistance(s_Swerve, 0).withTimeout(0.75),
-      new TargetForwardDistance(s_Swerve, 0).withTimeout(0.9),
-      new GetPoseWithLL(s_Swerve).withTimeout(0.3),
-      new DriveSideways(s_Swerve, false, 9.8).withTimeout(1.4), //11
-      new ResetPoseWithLL(s_Swerve).withTimeout(0.25),
-
-      new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5)
-      )
+        new TargetSideDistance(s_Swerve, 0).withTimeout(0.75),
+        new TargetForwardDistance(s_Swerve, 0).withTimeout(0.9),
+        new GetPoseWithLL(s_Swerve).withTimeout(0.3),
+        new DriveSideways(s_Swerve, false, -5).withTimeout(1.2), 
+        new ResetPoseWithLL(s_Swerve).withTimeout(0.25),
+    //  new NewFieldCentricTargetRight(s_Swerve).withTimeout(1.5), //Replace 5 commands above with this, if this works
+        new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5)
+       )
       ),
     
       //Use AutoLeg1 score, which does not bring elevator down - if bring it down at start of leg2
-    new L4_Score_AutoLeg1(elevator, coralHold, coralPivot, algaePivot)
+     new L4_Score_AutoLeg1(elevator, coralHold, coralPivot, algaePivot)
 
 
       //OTHERWISE USE:
