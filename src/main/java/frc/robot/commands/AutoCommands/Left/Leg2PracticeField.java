@@ -21,12 +21,12 @@ import frc.robot.subsystems.Swerve;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class Leg2PracticeField extends SequentialCommandGroup {
   /** Creates a new Leg2Left. */
-  public Leg2PracticeField(Swerve s_Swerve) {
+  public Leg2PracticeField(Swerve s_Swerve, Elevator elevator) {
  //MAKE ALL Y DISTANCES AND ALL ANGLES OPPOSITE TO Right
  addCommands(
-
-   new DriveFwdAndSideAndTurn(s_Swerve, true, -4, -3, 0).withTimeout(3), //no turn at first
-   new DriveFwdAndSideAndTurn(s_Swerve, false, 4, 3, 0).withTimeout(3),
+  new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.5),
+   new DriveFwdAndSideAndTurn(s_Swerve, true, -6, -4, 0).withTimeout(3), //no turn at first
+   new DriveFwdAndSideAndTurn(s_Swerve, false, 2, 2, 0).withTimeout(3),
    new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5)
    );
   }

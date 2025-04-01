@@ -64,7 +64,7 @@ public class FieldCentricTargetLeft extends InstantCommand {
 
       y1 += Constants.Targeting.DIST_TAG_LEFT_BRANCH * Math.cos((angle2)) * 0.0254;
       x1 -= Constants.Targeting.DIST_TAG_LEFT_BRANCH * Math.sin((angle2)) * 0.0254;
-      
+    
      /*SmartDashboard.putNumber("Target ID", targetId);
       SmartDashboard.putNumber("x1: ", x1 / 0.0254);
       SmartDashboard.putNumber("y1: ", y1/ 0.0254);
@@ -73,7 +73,7 @@ public class FieldCentricTargetLeft extends InstantCommand {
       SmartDashboard.putNumber("y2: ", y2/ 0.0254);
       SmartDashboard.putNumber("angle2", Units.radiansToDegrees(angle2));
       */
-    //ADDED asProxy to the end to ensure subsystem reqmts for the commands don't confuse the command scheduler
+    //Tried adding asProxy to the end to ensure subsystem reqmts for the commands don't confuse the command scheduler
      CommandScheduler.getInstance().schedule(new MetricDriveFwdSideTurn(s_Swerve, false, x1, y1, angle1, x2, y2, angle2));
       
     }

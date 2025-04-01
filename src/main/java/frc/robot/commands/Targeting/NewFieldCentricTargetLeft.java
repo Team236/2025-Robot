@@ -1,7 +1,7 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
-/* 
+
 package frc.robot.commands.Targeting;
 
 import java.util.List;
@@ -15,9 +15,11 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
@@ -30,8 +32,23 @@ import frc.robot.subsystems.Swerve;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class NewFieldCentricTargetLeft extends SequentialCommandGroup {
   /** Creates a new NewFieldCentricTargetLeft. */
-  /* 
+  private Swerve s_Swerve;
+  private Trajectory exampleTrajectory;
+  private SwerveControllerCommand swerveControllerCommand;
+  
   public NewFieldCentricTargetLeft(Swerve s_Swerve) {
+    this.s_Swerve = s_Swerve;
+    this.setDefaultValues();
+    addCommands(
+      new InstantCommand(() -> this.setupValues()),
+
+      new InstantCommand(() -> s_Swerve.setPose(exampleTrajectory.getInitialPose())),
+      swerveControllerCommand, //TODO try removing this as last ditch effort to get it to work
+      new ResetFieldPoseWithTarget(s_Swerve)
+    );
+  }
+
+  public void setupValues() {
     Pose2d robotFieldPose;
     Pose2d targetFieldPose;
     double tv;
@@ -40,6 +57,8 @@ public class NewFieldCentricTargetLeft extends SequentialCommandGroup {
   
     tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0); //if target is seen
     targetId = (int) NetworkTableInstance.getDefault().getTable("limelight").getEntry("tid").getDouble(0); //target id
+
+    SmartDashboard.putNumber("TV: ", tv);
 
     if (tv == 1 && Constants.Targeting.REEF_IDS.contains(targetId)) {
    
@@ -62,20 +81,20 @@ public class NewFieldCentricTargetLeft extends SequentialCommandGroup {
       double x1 = robotFieldPose.getX() - (Constants.Targeting.DIST_ROBOT_CENTER_TO_FRONT_WITH_BUMPER*(0.0254)) * Math.cos(angle2) - (Constants.Targeting.DIST_ROBOT_CENTER_TO_LL_SIDEWAYS*(0.0254))*Math.sin((angle2));
       double y1 = robotFieldPose.getY() + (Constants.Targeting.DIST_ROBOT_CENTER_TO_LL_SIDEWAYS*(0.0254))*Math.cos((angle2)) - (Constants.Targeting.DIST_ROBOT_CENTER_TO_FRONT_WITH_BUMPER*(0.0254)) * Math.sin((angle2));
 
-      y1 += Constants.Targeting.DIST_CORAL_TAG_CENTER * Math.cos((angle2)) * 0.0254;
-      x1 -= Constants.Targeting.DIST_CORAL_TAG_CENTER * Math.sin((angle2)) * 0.0254;
+      y1 += Constants.Targeting.DIST_TAG_LEFT_BRANCH * Math.cos((angle2)) * 0.0254;
+      x1 -= Constants.Targeting.DIST_TAG_LEFT_BRANCH * Math.sin((angle2)) * 0.0254;
       
-     /*SmartDashboard.putNumber("Target ID", targetId);
+     SmartDashboard.putNumber("Target IDDD", targetId);
       SmartDashboard.putNumber("x1: ", x1 / 0.0254);
       SmartDashboard.putNumber("y1: ", y1/ 0.0254);
       SmartDashboard.putNumber("angle1", Units.radiansToDegrees(angle1));
       SmartDashboard.putNumber("x2: ", x2/ 0.0254);
       SmartDashboard.putNumber("y2: ", y2/ 0.0254);
       SmartDashboard.putNumber("angle2", Units.radiansToDegrees(angle2));
-      */
+      
 
       // DRIVE SEGMENT
- /*
+ 
         double deltaFwd = x2 - x1;
         double deltaSide = y2 - y1;
         double deltaAngle = angle2- angle1;
@@ -89,7 +108,7 @@ public class NewFieldCentricTargetLeft extends SequentialCommandGroup {
                 .setKinematics(Constants.Swerve.swerveKinematics).setReversed(reversed);
 
         // An example trajectory to follow.  All units in meters.
-        Trajectory exampleTrajectory =
+        exampleTrajectory =
         TrajectoryGenerator.generateTrajectory(
             // Start at the origin facing the +X direction
              new Pose2d(x1, y1, new Rotation2d((angle1))),
@@ -124,7 +143,7 @@ public class NewFieldCentricTargetLeft extends SequentialCommandGroup {
                 Constants.AutoConstants.kPThetaController, 0, 0, Constants.AutoConstants.kThetaControllerConstraints);
         thetaController.enableContinuousInput(-Math.PI, Math.PI);
 
-        SwerveControllerCommand swerveControllerCommand =
+        swerveControllerCommand =
             new SwerveControllerCommand(
                 exampleTrajectory,
                 s_Swerve::getPose,
@@ -135,14 +154,98 @@ public class NewFieldCentricTargetLeft extends SequentialCommandGroup {
                 s_Swerve::setModuleStates,
                 s_Swerve);
 
-        addCommands(
-          new InstantCommand(() -> s_Swerve.setPose(exampleTrajectory.getInitialPose())),
-           swerveControllerCommand, //TODO try removing this as last ditch effort to get it to work
-           new ResetFieldPoseWithTarget(s_Swerve)
-        );
-   // } else {
-//addCommands(); //TODO  not sure if this is needed? worried code might crash if no target is found ==> no commands are added
-    } 
+              } else {
+                //addCommands(); //TODO  not sure if this is needed? worried code might crash if no target is found ==> no commands are added
+              } 
+  }
+
+  public void setDefaultValues() {
+    // Pose2d robotFieldPose;
+    // Pose2d targetFieldPose;
+    // double tv;
+    // int targetId;
+    // Optional<Alliance> alliance = DriverStation.getAlliance();
+  
+    // tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0); //if target is seen
+    // targetId = (int) NetworkTableInstance.getDefault().getTable("limelight").getEntry("tid").getDouble(0); //target id
+
+    // SmartDashboard.putNumber("TV: ", tv);
+   
+    //   robotFieldPose = LimelightHelpers.getBotPose2d_wpiBlue("limelight");
+ 
+    // //  SmartDashboard.putNumber("x1 robot center: ", robotFieldPose.getX() / 0.0254);
+    // //  SmartDashboard.putNumber("y1 robot center: ", robotFieldPose.getY()/ 0.0254);
+      
+    //   //april tag coordinates
+    //   double x2 = Constants.Targeting.ID_TO_POSE.get(targetId).getX(); //*Math.sin((angle2));
+    //   double y2 = Constants.Targeting.ID_TO_POSE.get(targetId).getY(); //*Math.cos((angle2));
+    //   double angle2 = Constants.Targeting.ID_TO_POSE.get(targetId).getRotation().getRadians();
+
+    //   //Get the AprilTag pose now, then reset the pose to this value at the end of MetricDriveFwdAndSideAndTurn
+    //   //(after targeting) so that the driving is field oriented after targeting:
+    //   s_Swerve.getTargetPose(new Pose2d(x2, y2, new Rotation2d(angle2)));
+      
+    //   //robotFieldPose is from center of robot
+    //   double angle1 = robotFieldPose.getRotation().getRadians();
+    //   double x1 = robotFieldPose.getX() - (Constants.Targeting.DIST_ROBOT_CENTER_TO_FRONT_WITH_BUMPER*(0.0254)) * Math.cos(angle2) - (Constants.Targeting.DIST_ROBOT_CENTER_TO_LL_SIDEWAYS*(0.0254))*Math.sin((angle2));
+    //   double y1 = robotFieldPose.getY() + (Constants.Targeting.DIST_ROBOT_CENTER_TO_LL_SIDEWAYS*(0.0254))*Math.cos((angle2)) - (Constants.Targeting.DIST_ROBOT_CENTER_TO_FRONT_WITH_BUMPER*(0.0254)) * Math.sin((angle2));
+
+    //   y1 += Constants.Targeting.DIST_TAG_LEFT_BRANCH * Math.cos((angle2)) * 0.0254;
+    //   x1 -= Constants.Targeting.DIST_TAG_LEFT_BRANCH * Math.sin((angle2)) * 0.0254;
+      
+    //  SmartDashboard.putNumber("Target IDDD", targetId);
+    //   SmartDashboard.putNumber("x1: ", x1 / 0.0254);
+    //   SmartDashboard.putNumber("y1: ", y1/ 0.0254);
+    //   SmartDashboard.putNumber("angle1", Units.radiansToDegrees(angle1));
+    //   SmartDashboard.putNumber("x2: ", x2/ 0.0254);
+    //   SmartDashboard.putNumber("y2: ", y2/ 0.0254);
+    //   SmartDashboard.putNumber("angle2", Units.radiansToDegrees(angle2));
+      
+
+    //   // DRIVE SEGMENT
+ 
+    //     double deltaFwd = x2 - x1;
+    //     double deltaSide = y2 - y1;
+    //     double deltaAngle = angle2- angle1;
+
+        boolean reversed = false; 
+
+        TrajectoryConfig config =
+            new TrajectoryConfig(
+                    Constants.AutoConstants.kMaxSpeedMetersPerSecond,
+                    Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared)
+                .setKinematics(Constants.Swerve.swerveKinematics).setReversed(reversed);
+
+        // An example trajectory to follow.  All units in meters.
+        exampleTrajectory =
+
+        TrajectoryGenerator.generateTrajectory(
+            // Start at the origin facing the +X direction
+            s_Swerve.getPose(),
+            // Pass through these interior waypoints
+            List.of(
+              s_Swerve.getPose().getTranslation()
+                   ),  
+            // End here
+            s_Swerve.getPose(), //add 180 because target and robot are facing opposite directions
+            config);
+            
+        var thetaController =
+            new ProfiledPIDController(
+                Constants.AutoConstants.kPThetaController, 0, 0, Constants.AutoConstants.kThetaControllerConstraints);
+        thetaController.enableContinuousInput(-Math.PI, Math.PI);
+
+        swerveControllerCommand =
+            new SwerveControllerCommand(
+                exampleTrajectory,
+                s_Swerve::getPose,
+                Constants.Swerve.swerveKinematics,
+                new PIDController(Constants.AutoConstants.kPXController, 0, 0),
+                new PIDController(Constants.AutoConstants.kPYController, 0, 0),
+                thetaController,
+                s_Swerve::setModuleStates,
+                s_Swerve);
+
   }
 }
- */
+ 

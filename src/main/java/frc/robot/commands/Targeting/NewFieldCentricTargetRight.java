@@ -1,7 +1,7 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
-/* 
+ 
 package frc.robot.commands.Targeting;
 
 import java.util.List;
@@ -32,7 +32,7 @@ import frc.robot.subsystems.Swerve;
 public class NewFieldCentricTargetRight extends SequentialCommandGroup {
   /** Creates a new NewFieldCentricTargetLeft. */
 
-  /* 
+  
   public NewFieldCentricTargetRight(Swerve s_Swerve) {
     SmartDashboard.putString("Print", "entered NewFieldCentricTargetRight");
     System.out.println("NewFieldCentricTargetRight constructor");
@@ -67,8 +67,8 @@ public class NewFieldCentricTargetRight extends SequentialCommandGroup {
       double x1 = robotFieldPose.getX() - (Constants.Targeting.DIST_ROBOT_CENTER_TO_FRONT_WITH_BUMPER*(0.0254)) * Math.cos(angle2) - (Constants.Targeting.DIST_ROBOT_CENTER_TO_LL_SIDEWAYS*(0.0254))*Math.sin((angle2));
       double y1 = robotFieldPose.getY() + (Constants.Targeting.DIST_ROBOT_CENTER_TO_LL_SIDEWAYS*(0.0254))*Math.cos((angle2)) - (Constants.Targeting.DIST_ROBOT_CENTER_TO_FRONT_WITH_BUMPER*(0.0254)) * Math.sin((angle2));
 
-      y1 -= Constants.Targeting.DIST_CORAL_TAG_CENTER * Math.cos((angle2)) * 0.0254;
-      x1 += Constants.Targeting.DIST_CORAL_TAG_CENTER * Math.sin((angle2)) * 0.0254;
+      y1 -= Constants.Targeting.DIST_TAG_RIGHT_BRANCH * Math.cos((angle2)) * 0.0254;
+      x1 += Constants.Targeting.DIST_TAG_RIGHT_BRANCH * Math.sin((angle2)) * 0.0254;
       
      /*SmartDashboard.putNumber("Target ID", targetId);
       SmartDashboard.putNumber("x1: ", x1 / 0.0254);
@@ -80,7 +80,7 @@ public class NewFieldCentricTargetRight extends SequentialCommandGroup {
       */
 
       // DRIVE SEGMENT
- /* 
+ 
         double deltaFwd = x2 - x1;
         double deltaSide = y2 - y1;
         double deltaAngle = angle2- angle1;
@@ -144,17 +144,17 @@ public class NewFieldCentricTargetRight extends SequentialCommandGroup {
 
         addCommands(
           new InstantCommand(() -> s_Swerve.setPose(exampleTrajectory.getInitialPose())),
-          new InstantCommand(() -> SmartDashboard.putString("Print", "first instant complete")),
+          // new InstantCommand(() -> SmartDashboard.putString("Print", "first instant complete")),
            swerveControllerCommand, //TODO try removing this as last ditch effort to get it to work
-           new InstantCommand(() -> SmartDashboard.putString("Print", " swerve controller command complete")),
-           new ResetFieldPoseWithTarget(s_Swerve),
-           new InstantCommand(() -> SmartDashboard.putString("Print", "final: reset field pose complete"))
+          //  new InstantCommand(() -> SmartDashboard.putString("Print", " swerve controller command complete")),
+           new ResetFieldPoseWithTarget(s_Swerve)
+          //  new InstantCommand(() -> SmartDashboard.putString("Print", "final: reset field pose complete"))
         );
         SmartDashboard.putString("Print", "after addCommands");
         System.out.println("NewFieldCentricTargetRight after addCommands()");
-  //  } else {
-  //    addCommands(); //TODO  not sure if this is needed? worried code might crash if no target is found ==> no commands are added
+   } else {
+     addCommands(); //TODO  not sure if this is needed? worried code might crash if no target is found ==> no commands are added
     } 
   }
 }
-*/
+

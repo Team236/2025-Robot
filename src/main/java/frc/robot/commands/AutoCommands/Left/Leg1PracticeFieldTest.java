@@ -16,6 +16,8 @@ import frc.robot.commands.ElevatorCommands.ElevMotionMagicPID;
 import frc.robot.commands.Scoring.L4_Score_AutoLeg1;
 import frc.robot.commands.Targeting.FieldCentricTargetLeft;
 import frc.robot.commands.Targeting.GetPoseWithLL;
+import frc.robot.commands.Targeting.NewFieldCentricTargetLeft;
+import frc.robot.commands.Targeting.NewFieldCentricTargetRight;
 import frc.robot.commands.Targeting.ResetPoseWithLL;
 import frc.robot.commands.Targeting.TargetForwardDistance;
 import frc.robot.commands.Targeting.TargetSideDistance;
@@ -35,28 +37,27 @@ public class Leg1PracticeFieldTest extends SequentialCommandGroup {
       //START ROBOT WITH BACK BUMPER FLUSH WITH BACK OF BLACK STARTING LINE, 84 inches from side ///95.75 from sideline
 
      new ParallelCommandGroup(        
-          new DriveFwdAndTurn(s_Swerve, false, 10, 0).withTimeout(1.7), 
+          new DriveFwdAndTurn(s_Swerve, false, 2, 0).withTimeout(1.7), 
           new PIDToElevSafePosition(algaePivot).withTimeout(0.5),
           new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5)  
         ),
         new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.25),
 
-  
-      //  new NewFieldCentricTargetRight(s_Swerve).withTimeout(1.5), 
-      new ParallelCommandGroup(
-        new ElevMotionMagicPID(elevator, Constants.Elevator.L4_HEIGHT).withTimeout(3.75),
+      // new ParallelCommandGroup(
+        // new ElevMotionMagicPID(elevator, Constants.Elevator.L4_HEIGHT).withTimeout(3.75),
         new SequentialCommandGroup(
-          new TargetSideDistance(s_Swerve, 0).withTimeout(0.4),
-          new TargetForwardDistance(s_Swerve, 0).withTimeout(0.9),
-          new GetPoseWithLL(s_Swerve).withTimeout(0.3),
-          new DriveSideways(s_Swerve, false, 10.2).withTimeout(1.4), //11
-          new ResetPoseWithLL(s_Swerve).withTimeout(0.25),
+          new NewFieldCentricTargetRight(s_Swerve).withTimeout(1.5),
+          //new TargetSideDistance(s_Swerve, 0).withTimeout(0.4),
+          //new TargetForwardDistance(s_Swerve, 0).withTimeout(0.9),
+          //new GetPoseWithLL(s_Swerve).withTimeout(0.3),
+          //new DriveSideways(s_Swerve, false, 10.2).withTimeout(1.4), //11
+          //new ResetPoseWithLL(s_Swerve).withTimeout(0.25),
           new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5)
          )
-      ),
+      // )
     
     //Use AutoLeg1 score, which does not bring elevator down - if bring it down at start of leg2
-    new L4_Score_AutoLeg1(elevator, coralHold, coralPivot, algaePivot)
+    //new L4_Score_AutoLeg1(elevator, coralHold, coralPivot, algaePivot).withTimeout(2.0)
 
 
       //OTHERWISE USE:

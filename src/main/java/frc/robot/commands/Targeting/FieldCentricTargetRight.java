@@ -64,6 +64,9 @@ public class FieldCentricTargetRight extends InstantCommand {
 
      y1 -= Constants.Targeting.DIST_TAG_RIGHT_BRANCH * Math.cos((angle2)) * 0.0254;
      x1 += Constants.Targeting.DIST_TAG_RIGHT_BRANCH  * Math.sin((angle2)) * 0.0254;
+     
+    //  y1 -= 2 * Math.sin((angle2)) * 0.0254; //fwd standoff
+    //  x1 += 2 * Math.cos((angle2)) * 0.0254; // ^^
       
      /* SmartDashboard.putNumber("Target ID", targetId);
       SmartDashboard.putNumber("x1: ", x1 / 0.0254);

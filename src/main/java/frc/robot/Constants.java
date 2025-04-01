@@ -85,10 +85,26 @@ public final class Constants {
 
     public static final List<Integer> REEF_IDS = Arrays.asList(6, 7, 8, 9, 10, 11, 17, 18, 19, 20, 21, 22);
     //LL lens is offset from Coral scorer by 1.25 inches, and Reefs are about 6.75" Left/Right of AprilTag ce
-    public static final double DIST_TAG_RIGHT_BRANCH = 6.75-1.25;// 6.75-1;//5.5;//7.0;
-    public static final double DIST_TAG_LEFT_BRANCH = 6.75+1.25;//9+1;//6.75;//8.75;//7.0;
+    public static final double DIST_TAG_RIGHT_BRANCH = 6.75-2.25;// 6.75-1;//5.5;//7.0;
+    public static final double DIST_TAG_LEFT_BRANCH = 6.75+1.75;//9+1;//6.75;//8.75;//7.0;
     public static final double DIST_ALGAE_CENTERED_LL = 8.5;//center of LL lens to center of Algae device
     public static Map<Integer, Pose2d> ID_TO_POSE = new HashMap<>();
+
+    static {
+      Constants.Targeting.ID_TO_POSE.put(6, new Pose2d(Units.inchesToMeters(530.49), Units.inchesToMeters(130.17), new Rotation2d(Units.degreesToRadians(300))));
+      Constants.Targeting.ID_TO_POSE.put(7, new Pose2d(Units.inchesToMeters(546.87), Units.inchesToMeters(158.50), new Rotation2d(Units.degreesToRadians(0))));
+      Constants.Targeting.ID_TO_POSE.put(8, new Pose2d(Units.inchesToMeters(530.49), Units.inchesToMeters(186.83), new Rotation2d(Units.degreesToRadians(60))));
+      Constants.Targeting.ID_TO_POSE.put(9, new Pose2d(Units.inchesToMeters(497.77), Units.inchesToMeters(186.83), new Rotation2d(Units.degreesToRadians(120))));
+      Constants.Targeting.ID_TO_POSE.put(10, new Pose2d(Units.inchesToMeters(481.39), Units.inchesToMeters(158.50), new Rotation2d(Units.degreesToRadians(180))));
+      Constants.Targeting.ID_TO_POSE.put(11, new Pose2d(Units.inchesToMeters(497.77), Units.inchesToMeters(130.17), new Rotation2d(Units.degreesToRadians(240))));
+        
+      Constants.Targeting.ID_TO_POSE.put(17, new Pose2d(Units.inchesToMeters(160.39), Units.inchesToMeters(130.17), new Rotation2d(Units.degreesToRadians(240))));
+      Constants.Targeting.ID_TO_POSE.put(18, new Pose2d(Units.inchesToMeters(144.00), Units.inchesToMeters(158.50), new Rotation2d(Units.degreesToRadians(180))));
+      Constants.Targeting.ID_TO_POSE.put(19, new Pose2d(Units.inchesToMeters(160.39), Units.inchesToMeters(186.83), new Rotation2d(Units.degreesToRadians(120))));
+      Constants.Targeting.ID_TO_POSE.put(20, new Pose2d(Units.inchesToMeters(193.10), Units.inchesToMeters(186.83), new Rotation2d(Units.degreesToRadians(60))));
+      Constants.Targeting.ID_TO_POSE.put(21, new Pose2d(Units.inchesToMeters(209.49), Units.inchesToMeters(158.50), new Rotation2d(Units.degreesToRadians(0))));
+      Constants.Targeting.ID_TO_POSE.put(22, new Pose2d(Units.inchesToMeters(193.10), Units.inchesToMeters(130.17), new Rotation2d(Units.degreesToRadians(300))));
+    }
 
     public static final double ROT_SETPOINT_REEF_ALIGNMENT = 0; //TODO measure on a field as described in comments above
     public static final double ROT_TOLERANCE_REEF_ALIGNMENT = 0.01; //TODO is 1 degree ok?
@@ -221,9 +237,9 @@ public static final class Swerve {
         public static final double kMaxAngularSpeedRadiansPerSecond = 4*Math.PI;
         public static final double kMaxAngularSpeedRadiansPerSecondSquared = 4*Math.PI;
         //X = forward, Y = to the left, Theta positive CCW for swerve
-        public static final double kPXController = 4; //12 
-        public static final double kPYController = 6; //TODO: RETUNE!
-        public static final double kPThetaController = 8.1; //TODO: RETUNE!
+        public static final double kPXController = 12; //4//  12 
+        public static final double kPYController = 8;//7;//12; //6//TODO: RETUNE!
+        public static final double kPThetaController = 10; //TODO: RETUNE!
     
         /* Constraint for the motion profilied robot angle controller */
         public static final TrapezoidProfile.Constraints kThetaControllerConstraints =
@@ -251,7 +267,7 @@ public static final class Swerve {
     public static final double TELEOP_HEIGHT = 5;//3.47;
     public static final double L1_HEIGHT = 0;
     public static final double L2_HEIGHT = 4;//6;
-    public static final double L3_HEIGHT = 20.5;//23;
+    public static final double L3_HEIGHT = 21;//23;
     public static final double L4_HEIGHT = 53;//57;//no more than 57.5
     public static final double PICK_ALGAE_L2_HEIGHT = 22; //TODO find actual
     public static final double PICK_ALGAE_L3_HEIGHT = 38;//TODO find actual

@@ -21,6 +21,6 @@ public class Leg1and2Practice extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(    
       new Leg1PracticeFieldTest(s_Swerve, elevator, algaePivot, coralPivot, coralHold),
-      new Leg2PracticeField(s_Swerve));
+      new Leg2PracticeField(s_Swerve, elevator));
   }
 }
