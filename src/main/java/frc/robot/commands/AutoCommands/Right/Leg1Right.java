@@ -6,6 +6,7 @@ package frc.robot.commands.AutoCommands.Right;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
 import frc.robot.commands.AlgaePivotCommands.PIDToElevSafePosition;
 import frc.robot.commands.AutoCommands.DriveFwdAndTurn;
@@ -51,6 +52,7 @@ public class Leg1Right extends SequentialCommandGroup {
           new DriveSideways(s_Swerve, false, 9.4).withTimeout(1.4),
           new ResetPoseWithLL(s_Swerve).withTimeout(0.25),
           //Replace 5 commands above with command below, if using field centric targeting in Leg1
+          //new WaitCommand(2);
           //new NewFieldCentricTargetRight(s_Swerve).withTimeout(1.5), 
           new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5)
          )
