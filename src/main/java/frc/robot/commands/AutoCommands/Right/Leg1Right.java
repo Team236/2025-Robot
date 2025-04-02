@@ -47,7 +47,7 @@ public class Leg1Right extends SequentialCommandGroup {
         new ElevMotionMagicPID(elevator, Constants.Elevator.L4_HT_AUTO).withTimeout(2.9),
 
         new SequentialCommandGroup(
-          new TargetSideDistance(s_Swerve, 0).withTimeout(0.75),
+          new TargetSideDistance(s_Swerve, 0).withTimeout(0.7),
           new TargetForwardDistance(s_Swerve, 0).withTimeout(0.6),
           new GetPoseWithLL(s_Swerve).withTimeout(0.3),
           //TODO:  TUNE SIDE DIST PER FIELD (9.4 is too much for branches 13" apart, may be ok for 13.5")

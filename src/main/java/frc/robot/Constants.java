@@ -268,7 +268,7 @@ public static final class Swerve {
     public static final double L1_HEIGHT = 0;
     public static final double L2_HEIGHT = 4;//6;
     public static final double L3_HEIGHT = 21;//23;
-    public static final double L4_HEIGHT = 53;//57;//no more than 57.5
+    public static final double L4_HEIGHT = 57;//no more than 57.5
     public static final double L4_HT_AUTO = 55;
     public static final double PICK_ALGAE_L2_HEIGHT = 22; //TODO find actual
     public static final double PICK_ALGAE_L3_HEIGHT = 38;//TODO find actual
@@ -306,7 +306,7 @@ public static class CoralHold {
     public static final int DIO_ENC_B = 13;
     //TODO find actual values with new limit switch position (approx 167 difference)
     public static final double ENC_REVS_MAX = -855-167; //TODO determine max revs
-    public static final double ENC_REVS_BUMP = -250-167;
+    public static final double ENC_REVS_BUMP = -250-167-33;
     public static final double ENC_REVS_REEF_PICKUP = -500-167;
     public static final double ENC_REVS_FLOOR_PICKUP = -23.7-167;
     public static final double ENC_REVS_SCORE_NET = 0; //TODO find actual
@@ -325,8 +325,8 @@ public static class CoralHold {
     public static final double ENC_REVS_LEVEL1 = 0;
     public static final double ENC_REVS_LEVEL2 = -10;//-45;
     public static final double ENC_REVS_LEVEL3 = -10;//-45; 
-    public static final double ENC_REVS_LEVEL4 = -95;//-125;
-    public static final double ENC_REVS_AUTO_LEVEL4 = -120;
+    public static final double ENC_REVS_LEVEL4 = -120;//-125;
+    public static final double ENC_REVS_AUTO_LEVEL4 = -110;//120;
     public static final double ENC_REVS_FULL_RETRACT = 0;
     public static final double MAN_EXT_SPEED = -0.6;
     public static final double MAN_RET_SPEED = 0.6;

@@ -32,7 +32,7 @@ public class L4_Pt1 extends SequentialCommandGroup {
       new ElevMotionMagicPID(elevator, Constants.Elevator.L4_HEIGHT),
       Commands.sequence(
         new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL2).withTimeout(0.25),
-         new WaitCommand(0.3), //wait for elevator to go up
+         new WaitCommand(0.6), //wait for elevator to go up
          new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL4)//.withTimeout(0.9)
         //  new CoralRelease(coralHold, Constants.CoralHold.L4_RELEASE_SPEED).withTimeout(0.5),
         //  new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.9)

@@ -152,7 +152,7 @@ public class RobotContainer {
     private final L3_Pt2 l3_Pt2 = new L3_Pt2(elevator, coralHold, coralPivot, algaePivot);
     private final L4_Pt1 l4_Pt1 = new L4_Pt1(elevator, coralHold, coralPivot, algaePivot);
     private final L4_Pt2 l4_Pt2 = new L4_Pt2(elevator, coralHold, coralPivot, algaePivot);
-    private final L4_Pt2_Algae_Bump l4_Pt2_Algae_Bump = new L4_Pt2_Algae_Bump(elevator, coralPivot, coralHold, algaePivot);
+    private final L4_Pt2_Algae_Bump l4_Pt2_Algae_Bump = new L4_Pt2_Algae_Bump(elevator, coralPivot, coralHold, algaePivot, algaeHold);
 
 
     //Auto
@@ -331,9 +331,7 @@ b.onTrue(fieldCentricTargetRight);
 upPov.whileTrue(dangerElevatorUp);
 downPov.whileTrue(dangerElevatorDown);
 leftPov.onTrue(motionMagicToBottom);
-rightPov.onTrue(leg1and2Practice);
-//rightPov.onTrue(l4_Pt2_Algae_Bump);
-//climbing
+//rightPov.onTrue(leg1and2Practice);
 menu.onTrue(prepForClimb);
 view.onTrue(climbDownSequence);
 
@@ -341,8 +339,9 @@ view.onTrue(climbDownSequence);
 //AUX CONTROLLER
 
 //scoring
-x1.onTrue(l1_Pt1);
-new Trigger(() -> x1.getAsBoolean() && rt1.getAsBoolean()).onTrue(l1_Pt2);
+
+//x1.onTrue(l1_Pt1);
+new Trigger(() -> x1.getAsBoolean() && rt1.getAsBoolean()).onTrue(l4_Pt2_Algae_Bump);
 
 a1.onTrue(l2_Pt1);
 new Trigger(() -> a1.getAsBoolean() && rt1.getAsBoolean()).onTrue(l2_Pt2);
