@@ -54,7 +54,7 @@ public class Leg1PracticeFieldTest extends SequentialCommandGroup {
          // new InstantCommand(() -> System.out.println("okasdasdasd")),
          // new InstantCommand(() -> SmartDashboard.putString("asfasfoij", "SKIB")),
           new GetTargetingValues(s_Swerve, "right").withTimeout(0.5),
-          new WaitCommand(5),
+          new WaitCommand(2)),
           new NewFieldCentricTargetRight(s_Swerve).withTimeout(1.5),
           //new TargetSideDistance(s_Swerve, 0).withTimeout(0.4),
           //new TargetForwardDistance(s_Swerve, 0).withTimeout(0.9),
@@ -62,7 +62,7 @@ public class Leg1PracticeFieldTest extends SequentialCommandGroup {
           //new DriveSideways(s_Swerve, false, 10.2).withTimeout(1.4), //11
           //new ResetPoseWithLL(s_Swerve).withTimeout(0.25),
           new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5)
-         )
+         );
       // )
     
     //Use AutoLeg1 score, which does not bring elevator down - if bring it down at start of leg2
@@ -71,7 +71,7 @@ public class Leg1PracticeFieldTest extends SequentialCommandGroup {
 
       //OTHERWISE USE:
       // new L4_Score(elevator, coralHold, coralPivot, algaePivot)
-    );           
+    //);           
 
   }
 }
