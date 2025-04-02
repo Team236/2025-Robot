@@ -273,6 +273,7 @@ public static final class Swerve {
     public static final double PICK_ALGAE_L2_HEIGHT = 22; //TODO find actual
     public static final double PICK_ALGAE_L3_HEIGHT = 38;//TODO find actual
     public static final double SCORE_ALGAE_NET_HEIGHT = 60; //TODO find actual
+    public static final double BUMP_HEIGHT = 10; 
     public static final double CLIMB_START_HEIGHT = 12;  
     public static final double CLIMB_END_HEIGHT = 0; 
     public static final double MAX_HEIGHT = 60.15;

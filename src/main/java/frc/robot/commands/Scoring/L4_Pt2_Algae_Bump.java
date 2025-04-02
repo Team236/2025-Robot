@@ -7,10 +7,14 @@ package frc.robot.commands.Scoring;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
 import frc.robot.Constants.AlgaeHold;
 import frc.robot.commands.AlgaeHoldCommands.AlgaeRelease;
 import frc.robot.commands.AlgaePivotCommands.PIDAlgaePivot;
+import frc.robot.commands.AutoCommands.DriveFwd;
+import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
+import frc.robot.commands.AutoCommands.DriveSideways;
 import frc.robot.commands.CoralHoldCommands.CoralRelease;
 import frc.robot.commands.CoralPivotCommands.PIDCoralPivot;
 import frc.robot.commands.ElevatorCommands.ElevMotionMagicPID;
@@ -18,13 +22,14 @@ import frc.robot.subsystems.AlgaePivot;
 import frc.robot.subsystems.CoralHold;
 import frc.robot.subsystems.CoralPivot;
 import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.Swerve;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class L4_Pt2_Algae_Bump extends SequentialCommandGroup {
   /** Creates a new Algae_Bump_After_Score. */
-  public L4_Pt2_Algae_Bump(Elevator elevator, CoralPivot coralPivot, CoralHold coralHold, AlgaePivot algaePivot, AlgaeHold algaeHold) {
+  public L4_Pt2_Algae_Bump(Elevator elevator, CoralPivot coralPivot, CoralHold coralHold, AlgaePivot algaePivot, frc.robot.subsystems.AlgaeHold algaeHold, Swerve swerve) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
@@ -40,9 +45,11 @@ public class L4_Pt2_Algae_Bump extends SequentialCommandGroup {
           ),
 
       new ParallelCommandGroup(
+
+        new DriveFwdAndSideAndTurn(swerve, true, -2.5, -3, 0).withTimeout(0.5),
         new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_BUMP).withTimeout(1.2),
         new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.2),
-        new AlgaeRelease(null, -0.5).withTimeout(1.2)
+        new AlgaeRelease(algaeHold, -0.5).withTimeout(1.2)
         ),
 
       new PIDAlgaePivot(algaePivot, Constants.AlgaePivot.ENC_REVS_ELEVATOR_SAFE_POSITION).withTimeout(1)
@@ -51,8 +58,4 @@ public class L4_Pt2_Algae_Bump extends SequentialCommandGroup {
     );
   }
 
-public L4_Pt2_Algae_Bump(Elevator elevator, CoralPivot coralPivot, CoralHold coralHold, AlgaePivot algaePivot,
-        frc.robot.subsystems.AlgaeHold algaeHold) {
-    //TODO Auto-generated constructor stub
-}
 }
