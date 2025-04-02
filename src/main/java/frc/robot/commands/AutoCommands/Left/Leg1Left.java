@@ -47,7 +47,7 @@ public class Leg1Left extends SequentialCommandGroup {
       new WaitCommand(0.1)
 /* 
       new ParallelCommandGroup(
-        new ElevMotionMagicPID(elevator, Constants.Elevator.L4_HEIGHT).withTimeout(2.9),
+        new ElevMotionMagicPID(elevator, Constants.Elevator.L4_HEIGHT).withTimeout(2.6),
        
         new SequentialCommandGroup(
         new TargetSideDistance(s_Swerve, 0).withTimeout(0.75),
