@@ -367,7 +367,7 @@ The numbers used below are robot specific, and should be tuned. */
         }
     }
 
-public double getx1Right() {
+/*public double getx1Right() {
     tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0); //if target is seen
     double targetId = (int) NetworkTableInstance.getDefault().getTable("limelight").getEntry("tid").getDouble(0); //target id
     double x1R =0;
@@ -538,7 +538,7 @@ public Trajectory getTargetingTrajectory(double fwdDist1, double sideDist1, doub
             config);
         return exampleTrajectory;
     }
-
+*/
 
     @Override
     public void periodic(){
