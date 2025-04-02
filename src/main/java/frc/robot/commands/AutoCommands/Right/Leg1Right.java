@@ -48,7 +48,7 @@ public class Leg1Right extends SequentialCommandGroup {
 
         new SequentialCommandGroup(
           new TargetSideDistance(s_Swerve, 0).withTimeout(0.75),
-          new TargetForwardDistance(s_Swerve, 0).withTimeout(0.9),
+          new TargetForwardDistance(s_Swerve, 0).withTimeout(0.6),
           new GetPoseWithLL(s_Swerve).withTimeout(0.3),
           //TODO:  TUNE SIDE DIST PER FIELD (9.4 is too much for branches 13" apart, may be ok for 13.5")
           new DriveSideways(s_Swerve, false, 8.25).withTimeout(1.7),//9.4 on 4/2

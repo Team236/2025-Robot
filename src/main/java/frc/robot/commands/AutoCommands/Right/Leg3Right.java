@@ -4,9 +4,14 @@
 
 package frc.robot.commands.AutoCommands.Right;
 
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.Constants;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
 import frc.robot.commands.AutoCommands.EndDriveTrajectoryPID;
+import frc.robot.commands.ElevatorCommands.ElevMotionMagicPID;
+import frc.robot.commands.Scoring.L4_Score_AutoLeg1;
 import frc.robot.commands.Targeting.FieldCentricTargetLeft;
 import frc.robot.commands.Targeting.FieldCentricTargetRight;
 import frc.robot.commands.Targeting.GetPoseWithLL;
@@ -26,10 +31,17 @@ public class Leg3Right extends SequentialCommandGroup {
     
     addCommands(
         //******NEED TO CHANGE TO "FALSE" BELOW????   
-         new DriveFwdAndSideAndTurn(s_Swerve, false ,120, -26, 6).withTimeout(4), //x 106? //TRUE?
-         // new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.2),
+    
 
-         new FieldCentricTargetLeft(s_Swerve).withTimeout(2),
+  new ParallelCommandGroup(
+
+    new ElevMotionMagicPID(elevator, Constants.Elevator.L4_HT_AUTO).withTimeout(4.7),
+       
+      new SequentialCommandGroup(
+         new DriveFwdAndSideAndTurn(s_Swerve, false ,120, -26, 6).withTimeout(2), //x 106? //TRUE?
+         // new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.2),
+         new WaitCommand(0.2),
+         new FieldCentricTargetLeft(s_Swerve).withTimeout(1.4),
          // new TargetSideDistance(s_Swerve, 0).withTimeout(1),
          //new TargetForwardDistance(s_Swerve, 0).withTimeout(1),
          //**** GET POSE WITH LIMELIGHT, BEFORE DRIVING WITH ODOMETRY
@@ -39,9 +51,12 @@ public class Leg3Right extends SequentialCommandGroup {
          //**** RESET POSE TO VALUE FROM GetPoseWithLL
          new ResetPoseWithLL(s_Swerve).withTimeout(0.5),
        
-         new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5)//,
-      //  new L4_Score(elevator, coralHold, coralPivot, algeaPivot)
-    );         
+         new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5)
+      )
+  ),
+         new L4_Score_AutoLeg1(elevator, coralHold, coralPivot, algeaPivot)
+    
+    );       
     
   }
 
