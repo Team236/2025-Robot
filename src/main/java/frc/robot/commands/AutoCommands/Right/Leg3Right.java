@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
 import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
+import frc.robot.commands.AutoCommands.DriveSideways;
 import frc.robot.commands.AutoCommands.EndDriveTrajectoryPID;
 import frc.robot.commands.ElevatorCommands.ElevMotionMagicPID;
 import frc.robot.commands.Scoring.L4_Score_AutoLeg1;
@@ -16,6 +17,8 @@ import frc.robot.commands.Targeting.FieldCentricTargetLeft;
 import frc.robot.commands.Targeting.FieldCentricTargetRight;
 import frc.robot.commands.Targeting.GetPoseWithLL;
 import frc.robot.commands.Targeting.ResetPoseWithLL;
+import frc.robot.commands.Targeting.TargetForwardDistance;
+import frc.robot.commands.Targeting.TargetSideDistance;
 import frc.robot.subsystems.AlgaePivot;
 import frc.robot.subsystems.CoralHold;
 import frc.robot.subsystems.CoralPivot;
@@ -38,17 +41,19 @@ public class Leg3Right extends SequentialCommandGroup {
     new SequentialCommandGroup(
          new DriveFwdAndSideAndTurn(s_Swerve, false ,120, -26, 6).withTimeout(2), //x 106? //TRUE?
          new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5),
-         new WaitCommand(0.2),
-         new FieldCentricTargetLeft(s_Swerve).withTimeout(2)
-         // new TargetSideDistance(s_Swerve, 0).withTimeout(1),
-         //new TargetForwardDistance(s_Swerve, 0).withTimeout(1),
+         
+         //new WaitCommand(0.2),
+        // new FieldCentricTargetLeft(s_Swerve).withTimeout(2)
+
+         new TargetSideDistance(s_Swerve, 0).withTimeout(1),
+         new TargetForwardDistance(s_Swerve, 0).withTimeout(1),
          //**** GET POSE WITH LIMELIGHT, BEFORE DRIVING WITH ODOMETRY
-        // new GetPoseWithLL(s_Swerve).withTimeout(0.5),
+         new GetPoseWithLL(s_Swerve).withTimeout(0.5),
          //Needs to end  with coral scorer aligned with right branch of Reef
-         //new DriveSideways(s_Swerve, false, 7.5).withTimeout(1.5), 
+         new DriveSideways(s_Swerve, false, 7.5).withTimeout(1.5), 
          //**** RESET POSE TO VALUE FROM GetPoseWithLL
-         //new ResetPoseWithLL(s_Swerve).withTimeout(0.5),
-         //new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5)
+         new ResetPoseWithLL(s_Swerve).withTimeout(0.5),
+         new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5)
       )
   ),
     new L4_Score_AutoLeg1(elevator, coralHold, coralPivot, algeaPivot)
