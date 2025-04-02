@@ -232,8 +232,8 @@ public static final class Swerve {
     }
 
     public static final class AutoConstants { //TODO: these are for example auto - must be tuned to specific robot
-        public static final double kMaxSpeedMetersPerSecond = 3.0; //4 //2.5
-        public static final double kMaxAccelerationMetersPerSecondSquared = 2.0; //4 //2.5
+        public static final double kMaxSpeedMetersPerSecond = 5.0; //4 //2.5
+        public static final double kMaxAccelerationMetersPerSecondSquared = 4.0; //4 //2.5
         public static final double kMaxAngularSpeedRadiansPerSecond = 4*Math.PI;
         public static final double kMaxAngularSpeedRadiansPerSecondSquared = 4*Math.PI;
         //X = forward, Y = to the left, Theta positive CCW for swerve
@@ -269,6 +269,7 @@ public static final class Swerve {
     public static final double L2_HEIGHT = 4;//6;
     public static final double L3_HEIGHT = 21;//23;
     public static final double L4_HEIGHT = 53;//57;//no more than 57.5
+    public static final double L4_HT_AUTO = 55;
     public static final double PICK_ALGAE_L2_HEIGHT = 22; //TODO find actual
     public static final double PICK_ALGAE_L3_HEIGHT = 38;//TODO find actual
     public static final double SCORE_ALGAE_NET_HEIGHT = 60; //TODO find actual
@@ -325,6 +326,7 @@ public static class CoralHold {
     public static final double ENC_REVS_LEVEL2 = -10;//-45;
     public static final double ENC_REVS_LEVEL3 = -10;//-45; 
     public static final double ENC_REVS_LEVEL4 = -95;//-125;
+    public static final double ENC_REVS_AUTO_LEVEL4 = -120;
     public static final double ENC_REVS_FULL_RETRACT = 0;
     public static final double MAN_EXT_SPEED = -0.6;
     public static final double MAN_RET_SPEED = 0.6;

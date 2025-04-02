@@ -62,6 +62,7 @@ import frc.robot.commands.Targeting.FieldCentricTargetAlgae;
 import frc.robot.commands.Targeting.FieldCentricTargetLeft;
 import frc.robot.commands.Targeting.FieldCentricTargetRight;
 import frc.robot.commands.Targeting.NewFieldCentricTargetLeft;
+import frc.robot.commands.Targeting.NewFieldCentricTargetRight;
 import frc.robot.commands.Targeting.TargetAllParallel;
 import frc.robot.commands.Targeting.TargetAngle;
 import frc.robot.commands.Targeting.TargetAngleSide;
@@ -128,7 +129,7 @@ public class RobotContainer {
     private final FieldCentricTargetLeft fieldCentricTargetLeft = new FieldCentricTargetLeft(s_Swerve);
     private final FieldCentricTargetRight fieldCentricTargetRight = new FieldCentricTargetRight(s_Swerve);
     private final FieldCentricTargetAlgae fieldCentricTargetAlgae = new FieldCentricTargetAlgae(s_Swerve);
-    // private final NewFieldCentricTargetLeft newFieldCentricTargetLeft = new NewFieldCentricTargetLeft(s_Swerve);
+   // private final NewFieldCentricTargetRight newFieldCentricTargetRight = new NewFieldCentricTargetRight(s_Swerve);
   // private final FieldCentricTargetCameraToTag fieldCentricTargetCameraToTag = new FieldCentricTargetCameraToTag(s_Swerve);
    //private final TestAutoSequence testAutoSequence = new TestAutoSequence(s_Swerve);
 
@@ -474,8 +475,8 @@ lt1.onTrue(algaeHighPickup);
   } else if (autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && !autoSwitch4.get()) {
     command =  fullRunLeft;
   } else if (autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && autoSwitch4.get()) {
-    // command =  legs1and2Left;
-    command = leg1and2Practice;
+     command =  legs1and2Left;
+   // command = leg1and2Practice;
   } else if (autoSwitch1.get() && !autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {
     command = leg1Left;
   } else if (autoSwitch1.get() && autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {
