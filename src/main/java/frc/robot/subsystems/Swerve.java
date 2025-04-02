@@ -260,17 +260,15 @@ The numbers used below are robot specific, and should be tuned. */
                 x1 -= Constants.Targeting.DIST_TAG_LEFT_BRANCH * Math.sin((angle2)) * 0.0254;
             }
       
-            SmartDashboard.putNumber("Target ID", targetId);
-            SmartDashboard.putNumber("x1: ", x1 / 0.0254);
-            SmartDashboard.putNumber("y1: ", y1/ 0.0254);
-            SmartDashboard.putNumber("angle1", Units.radiansToDegrees(angle1));
-            SmartDashboard.putNumber("x2: ", x2/ 0.0254);
-            SmartDashboard.putNumber("y2: ", y2/ 0.0254);
-            SmartDashboard.putNumber("angle2", Units.radiansToDegrees(angle2));
+           // SmartDashboard.putNumber("Target ID", targetId);
+           // SmartDashboard.putNumber("x1: ", x1 / 0.0254);
+           // SmartDashboard.putNumber("y1: ", y1/ 0.0254);
+           // SmartDashboard.putNumber("angle1", Units.radiansToDegrees(angle1));
+           // SmartDashboard.putNumber("x2: ", x2/ 0.0254);
+           // SmartDashboard.putNumber("y2: ", y2/ 0.0254);
+           // SmartDashboard.putNumber("angle2", Units.radiansToDegrees(angle2));
             
-
             // DRIVE SEGMENT
-    
             double deltaFwd = x2 - x1;
             double deltaSide = y2 - y1;
             double deltaAngle = angle2- angle1;

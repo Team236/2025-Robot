@@ -460,7 +460,7 @@ lt1.onTrue(algaeHighPickup);
   public Command getAutonomousCommand() {
 
   // SmartDashboard.putString("autokey", "Entering getAutoCommand now");
-  SmartDashboard.putString("Asking for auto sequence", "" + !autoSwitch1.get() + !autoSwitch2.get() + !autoSwitch3.get() + !autoSwitch4.get());
+  //SmartDashboard.putString("Asking for auto sequence", "" + !autoSwitch1.get() + !autoSwitch2.get() + !autoSwitch3.get() + !autoSwitch4.get());
   Command command = null;
 
 
