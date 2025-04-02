@@ -4,6 +4,7 @@
 
 package frc.robot.commands.Targeting;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.Swerve;
 
@@ -12,16 +13,19 @@ import frc.robot.subsystems.Swerve;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class GetTargetingValues extends InstantCommand {
   private Swerve s_Swerve;
+  private String targetingType; // "left" or "right" or "algae"
 
-  public GetTargetingValues(Swerve s_Swerve) {
+  public GetTargetingValues(Swerve s_Swerve, String targetingType) {
     this.s_Swerve = s_Swerve;
+    this.targetingType = targetingType;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(s_Swerve);
+    s_Swerve.updateTargetingValues(targetingType);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    s_Swerve.updateTargetingValues("right");
+    s_Swerve.updateTargetingValues(targetingType);
   }
 }

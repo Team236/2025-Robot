@@ -4,6 +4,8 @@
 
 package frc.robot.commands.AutoCommands.Left;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
@@ -47,7 +49,9 @@ public class Leg1PracticeFieldTest extends SequentialCommandGroup {
       // new ParallelCommandGroup(
         // new ElevMotionMagicPID(elevator, Constants.Elevator.L4_HEIGHT).withTimeout(3.75),
         new SequentialCommandGroup(
-          new GetTargetingValues(s_Swerve),
+          new InstantCommand(() -> System.out.println("okasdasdasd")),
+          new InstantCommand(() -> SmartDashboard.putString("asfasfoij", "SKIB")),
+          new GetTargetingValues(s_Swerve, "right").withTimeout(0.5),
           new NewFieldCentricTargetRight(s_Swerve).withTimeout(1.5),
           //new TargetSideDistance(s_Swerve, 0).withTimeout(0.4),
           //new TargetForwardDistance(s_Swerve, 0).withTimeout(0.9),

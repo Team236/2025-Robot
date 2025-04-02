@@ -26,6 +26,7 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
@@ -231,6 +232,7 @@ The numbers used below are robot specific, and should be tuned. */
         thetaController.enableContinuousInput(-Math.PI, Math.PI);
         
         if (tv == 1 && Constants.Targeting.REEF_IDS.contains(targetId)) {
+            SmartDashboard.putString("trajectory", "is not null (if)");
             robotFieldPose = LimelightHelpers.getBotPose2d_wpiBlue("limelight");
 
             //april tag coordinates
@@ -258,14 +260,14 @@ The numbers used below are robot specific, and should be tuned. */
                 x1 -= Constants.Targeting.DIST_TAG_LEFT_BRANCH * Math.sin((angle2)) * 0.0254;
             }
       
-            /*SmartDashboard.putNumber("Target ID", targetId);
+            SmartDashboard.putNumber("Target ID", targetId);
             SmartDashboard.putNumber("x1: ", x1 / 0.0254);
             SmartDashboard.putNumber("y1: ", y1/ 0.0254);
             SmartDashboard.putNumber("angle1", Units.radiansToDegrees(angle1));
             SmartDashboard.putNumber("x2: ", x2/ 0.0254);
             SmartDashboard.putNumber("y2: ", y2/ 0.0254);
             SmartDashboard.putNumber("angle2", Units.radiansToDegrees(angle2));
-            */
+            
 
             // DRIVE SEGMENT
     
@@ -328,8 +330,28 @@ The numbers used below are robot specific, and should be tuned. */
             
             currentSwerveControllerCommand = swerveControllerCommand;
         } else {
-            Trajectory exampleTrajectory = new Trajectory(); // empty trajectory if there is no target found
-            currentTrajectory = exampleTrajectory;
+            SmartDashboard.putString("trajectory", "is null (else)");
+
+            boolean reversed = false;
+            TrajectoryConfig config =
+                new TrajectoryConfig(
+                        Constants.AutoConstants.kMaxSpeedMetersPerSecond,
+                        Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared)
+                    .setKinematics(Constants.Swerve.swerveKinematics).setReversed(reversed);
+
+            // An example trajectory to follow.  All units in meters.
+            Trajectory exampleTrajectory =
+            TrajectoryGenerator.generateTrajectory(
+            // Start at the origin facing the +X direction
+            new Pose2d(0, 0, new Rotation2d(0)),
+            // Pass through these interior waypoints
+            List.of(
+                    new Translation2d(0.01, 0.01)
+                    ),  
+            // End here
+            new Pose2d(0.02, 0.02, new Rotation2d(0)), //add 180 because target and robot are facing opposite directions
+            config);
+            currentTrajectory = exampleTrajectory; 
 
             SwerveControllerCommand swerveControllerCommand =
                 new SwerveControllerCommand(

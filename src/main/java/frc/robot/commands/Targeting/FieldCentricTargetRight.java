@@ -8,9 +8,12 @@ import java.util.Optional;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.units.Unit;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.Constants;
@@ -68,14 +71,14 @@ public class FieldCentricTargetRight extends InstantCommand {
     //  y1 -= 2 * Math.sin((angle2)) * 0.0254; //fwd standoff
     //  x1 += 2 * Math.cos((angle2)) * 0.0254; // ^^
       
-     /* SmartDashboard.putNumber("Target ID", targetId);
+     SmartDashboard.putNumber("Target ID", targetId);
       SmartDashboard.putNumber("x1: ", x1 / 0.0254);
       SmartDashboard.putNumber("y1: ", y1/ 0.0254);
       SmartDashboard.putNumber("angle1", Units.radiansToDegrees(angle1));
       SmartDashboard.putNumber("x2: ", x2/ 0.0254);
       SmartDashboard.putNumber("y2: ", y2/ 0.0254);
       SmartDashboard.putNumber("angle2", Units.radiansToDegrees(angle2));
-      */
+      
     //ADDED asProxy to the end to ensure subsystem reqmts for the commands don't confuse the command scheduler
    //  CommandScheduler.getInstance().schedule(
     CommandScheduler.getInstance().schedule(new MetricDriveFwdSideTurn(s_Swerve, false, x1, y1, angle1, x2, y2, angle2));

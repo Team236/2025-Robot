@@ -48,7 +48,7 @@ public class Leg1Right extends SequentialCommandGroup {
           new TargetSideDistance(s_Swerve, 0).withTimeout(0.75),
           new TargetForwardDistance(s_Swerve, 0).withTimeout(0.9),
           new GetPoseWithLL(s_Swerve).withTimeout(0.3),
-          new DriveSideways(s_Swerve, false, 9.8).withTimeout(1.4),
+          new DriveSideways(s_Swerve, false, 9.4).withTimeout(1.4),
           new ResetPoseWithLL(s_Swerve).withTimeout(0.25),
           //Replace 5 commands above with command below, if using field centric targeting in Leg1
           //new NewFieldCentricTargetRight(s_Swerve).withTimeout(1.5), 
