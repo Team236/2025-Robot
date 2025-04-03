@@ -55,8 +55,8 @@ public class Leg3Right extends SequentialCommandGroup {
        //  new ResetPoseWithLL(s_Swerve).withTimeout(0.5),
          new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5)
       )
-  ),
-   new L4_Score_AutoLeg1(elevator, coralHold, coralPivot, algeaPivot)
+  )
+  //,new L4_Score_AutoLeg1(elevator, coralHold, coralPivot, algeaPivot)
     
     );          
 }
