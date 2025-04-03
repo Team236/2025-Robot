@@ -26,14 +26,14 @@ public class Leg2Left extends SequentialCommandGroup {
  addCommands(
 
  Commands.parallel( 
-  new DriveFwdAndSideAndTurn(s_Swerve, true, -4, -162, 0).withTimeout(2.75), //-175
+  new DriveFwdAndSideAndTurn(s_Swerve, true, -4, -158.5, 0).withTimeout(2.75), //-175
    //Bring elevator down while driving sideways
   new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.5)
   ),
 
 Commands.parallel(
  Commands.sequence(
-   new DriveFwdAndSideAndTurn(s_Swerve, false, 18, -24, 68).withTimeout(3),
+   new DriveFwdAndSideAndTurn(s_Swerve, false, 18, -24, 66).withTimeout(3),
    new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5)
    ),
    new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LOADING).withTimeout(1), //adjust time as needed

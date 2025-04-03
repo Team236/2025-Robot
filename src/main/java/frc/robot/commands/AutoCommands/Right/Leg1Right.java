@@ -44,20 +44,21 @@ public class Leg1Right extends SequentialCommandGroup {
       new WaitCommand(0.1),
 
       new ParallelCommandGroup(
-        new ElevMotionMagicPID(elevator, Constants.Elevator.L4_HT_AUTO).withTimeout(2.6),
+       new ElevMotionMagicPID(elevator, Constants.Elevator.L4_HT_AUTO).withTimeout(2.6),
 
         new SequentialCommandGroup(
           new TargetSideDistance(s_Swerve, 0).withTimeout(0.7),
-          new TargetForwardDistance(s_Swerve, 0).withTimeout(0.6),
+          new TargetForwardDistance(s_Swerve, 0).withTimeout(0.7),
          // new GetPoseWithLL(s_Swerve).withTimeout(0.3),
           //TODO:  TUNE SIDE DIST PER FIELD (9.4 is too much for branches 13" apart, may be ok for 13.5")
-          new DriveSideways(s_Swerve, false, 8.25).withTimeout(1.7),//9.4 on 4/2
+          new DriveSideways(s_Swerve, false, 8.25).withTimeout(1.7),//9.4 on 4/2 //TUNE AT COMP
           //new ResetPoseWithLL(s_Swerve).withTimeout(0.25),
           //Replace 5 commands above with command below, if using field centric targeting in Leg1
           //new WaitCommand(0.5);
           //new NewFieldCentricTargetRight(s_Swerve).withTimeout(1.5), 
           new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5)
          )
+          
       ),
       
       

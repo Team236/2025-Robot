@@ -36,7 +36,7 @@ public class Leg1Left extends SequentialCommandGroup {
       //START ROBOT WITH BACK BUMPER FLUSH WITH BACK OF BLACK STARTING LINE, 84 inches from side ///95.75 from sideline
 
       new ParallelCommandGroup(        
-          new DriveFwdAndTurn(s_Swerve, false, 70.5, 60.5).withTimeout(1.7), 
+          new DriveFwdAndTurn(s_Swerve, false, 72, 60.5).withTimeout(1.7), 
           new PIDToElevSafePosition(algaePivot).withTimeout(0.5),
           new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5)  
         //***Consider moving the ElevMotionMagicPID command here, especially if using NewFieldCentricTargeting
@@ -44,21 +44,21 @@ public class Leg1Left extends SequentialCommandGroup {
 
      // new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.25),
       
-      new WaitCommand(0.1)
-/* 
+      new WaitCommand(0.1),
+
       new ParallelCommandGroup(
         new ElevMotionMagicPID(elevator, Constants.Elevator.L4_HEIGHT).withTimeout(2.6),
        
         new SequentialCommandGroup(
-        new TargetSideDistance(s_Swerve, 0).withTimeout(0.75),
-        new TargetForwardDistance(s_Swerve, 0).withTimeout(0.6),
+        new TargetSideDistance(s_Swerve, 0).withTimeout(0.9),
+        new TargetForwardDistance(s_Swerve, 0).withTimeout(0.7),
        // new GetPoseWithLL(s_Swerve).withTimeout(0.3),
-        new DriveSideways(s_Swerve, false, -5).withTimeout(1.7), 
+        new DriveSideways(s_Swerve, false, -4.5).withTimeout(1.5), //TUNE AT COMP
        // new ResetPoseWithLL(s_Swerve).withTimeout(0.25),
     //Replace 5 commands above with commands below, if using field centric targeting in Leg1
     //  new WaitCommand(0.5);
     //  new NewFieldCentricTargetRight(s_Swerve).withTimeout(1.5),
-        new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5)
+       new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5)
        )
       ),
     
@@ -68,7 +68,7 @@ public class Leg1Left extends SequentialCommandGroup {
 
       //OTHERWISE USE:
       // new L4_Score(elevator, coralHold, coralPivot, algaePivot)   
-    */ 
+    
   );    
 
   }
