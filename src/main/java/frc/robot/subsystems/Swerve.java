@@ -364,8 +364,50 @@ The numbers used below are robot specific, and should be tuned. */
             currentSwerveControllerCommand = swerveControllerCommand;
         }
     }
-
-/*public double getx1Right() {
+    
+    public void MegaTag2UpdateOdometry() {
+        boolean useMegaTag2 = true; //set to false to use MegaTag1
+        boolean doRejectUpdate = false;
+        // evaluating which Megatag one or two to use based on above boolean value and 
+        // only incorporate Limelight's estimates when more than one tag is visible (tagcount >= 1)
+        if(useMegaTag2 == false)
+        {
+          LimelightHelpers.PoseEstimate mt1 = LimelightHelpers.getBotPoseEstimate_wpiBlue("limelight");
+          if(mt1.tagCount == 1 && mt1.rawFiducials.length == 1)
+          {
+            if(mt1.rawFiducials[0].ambiguity > .7) { doRejectUpdate = true; }
+            if(mt1.rawFiducials[0].distToCamera > 3) { doRejectUpdate = true; }
+          }
+          if(mt1.tagCount == 0) { doRejectUpdate = true; }
+          if(!doRejectUpdate) {     // if doRejectUpdate is false (or NOT true), then update the pose estimator
+            m_poseEstimator.setVisionMeasurementStdDevs(VecBuilder.fill(.5,.5,9999999));
+            m_poseEstimator.addVisionMeasurement(
+                mt1.pose,
+                mt1.timestampSeconds);
+          }
+        }
+        else if (useMegaTag2 == true)
+        {   // only incorporate Limelight's estimates when more than one tag is visible (tagcount >= 1)
+          LimelightHelpers.SetRobotOrientation("limelight", m_poseEstimator.getEstimatedPosition().getRotation().getDegrees(), 0, 0, 0, 0, 0);
+          LimelightHelpers.PoseEstimate mt2 = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("limelight");
+          if(Math.abs(gyro.getRate()) > 720) // if our angular velocity is greater than 720 degrees per second, ignore vision updates
+          {
+            doRejectUpdate = true;
+          }
+          if(mt2.tagCount == 0)
+          {
+            doRejectUpdate = true;
+          }
+          if(!doRejectUpdate)   // if doRejectUpdate is false (or NOT true), then update the pose estimator
+          {
+            m_poseEstimator.setVisionMeasurementStdDevs(VecBuilder.fill(.7,.7,9999999));
+            m_poseEstimator.addVisionMeasurement(
+                mt2.pose,
+                mt2.timestampSeconds);
+          }
+      }
+    }
+/*public double getx1Right() {}
     tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0); //if target is seen
     double targetId = (int) NetworkTableInstance.getDefault().getTable("limelight").getEntry("tid").getDouble(0); //target id
     double x1R =0;
