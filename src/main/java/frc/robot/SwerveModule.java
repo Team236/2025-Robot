@@ -69,6 +69,18 @@ public class SwerveModule {
         } 
     }
 
+    private void setSlowSpeed(SwerveModuleState desiredState, boolean isOpenLoop){
+        if(isOpenLoop){
+            driveDutyCycle.Output = (desiredState.speedMetersPerSecond * Constants.Swerve.throttle) / Constants.Swerve.maxSpeed;
+            mDriveMotor.setControl(driveDutyCycle);
+        }
+        else {
+            driveVelocity.Velocity = Conversions.MPSToRPS(desiredState.speedMetersPerSecond, Constants.Swerve.wheelCircumference);
+            driveVelocity.FeedForward = driveFeedForward.calculate(desiredState.speedMetersPerSecond);
+            mDriveMotor.setControl(driveVelocity);
+        } 
+    }
+
     public Rotation2d getCANcoder(){
         return Rotation2d.fromRotations(angleEncoder.getAbsolutePosition().getValueAsDouble());
     }

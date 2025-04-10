@@ -49,14 +49,15 @@ public class Leg1Right extends SequentialCommandGroup {
         new SequentialCommandGroup(
           new TargetSideDistance(s_Swerve, 0).withTimeout(0.7),
           new TargetForwardDistance(s_Swerve, 0).withTimeout(0.7),
+          //new TargetForwardDistance(s_Swerve, 2).withTimeout(0.7),
          // new GetPoseWithLL(s_Swerve).withTimeout(0.3),
           //TODO:  TUNE SIDE DIST PER FIELD (9.4 is too much for branches 13" apart, may be ok for 13.5")
-          new DriveSideways(s_Swerve, false, 8.25).withTimeout(1.7),//9.4 on 4/2 //TUNE AT COMP
+          new DriveSideways(s_Swerve, false, 7.75).withTimeout(1.6),
           //new ResetPoseWithLL(s_Swerve).withTimeout(0.25),
           //Replace 5 commands above with command below, if using field centric targeting in Leg1
           //new WaitCommand(0.5);
           //new NewFieldCentricTargetRight(s_Swerve).withTimeout(1.5), 
-          new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5)
+          new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.25)
          )
           
       ),
@@ -64,7 +65,7 @@ public class Leg1Right extends SequentialCommandGroup {
       
 
     //Use AutoLeg1 score, which does not bring elevator down - if bring it down at start of leg2
-    new L4_Score_AutoLeg1(elevator, coralHold, coralPivot, algaePivot)
+    new L4_Score_AutoLeg1(elevator, coralHold, coralPivot, algaePivot).withTimeout(1.9) //could change coral pivot angle  to -110 if use 2" standoff for targeting
 
     //OTHERWISE USE:
     // new L4_Score(elevator, coralHold, coralPivot, algaePivot)

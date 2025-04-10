@@ -31,9 +31,9 @@ import frc.robot.subsystems.Swerve;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 
-public class CtrScore1 extends SequentialCommandGroup {
+public class CenterNoAlgae extends SequentialCommandGroup {
   /** Creates a new FullRunParallel. */
-  public CtrScore1(Swerve s_Swerve, Elevator elevator, AlgaePivot algaePivot, AlgaeHold algaeHold, CoralPivot coralPivot, CoralHold coralHold) {
+  public CenterNoAlgae(Swerve s_Swerve, Elevator elevator, AlgaePivot algaePivot, AlgaeHold algaeHold, CoralPivot coralPivot, CoralHold coralHold) {
     addCommands(
 
        new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(0.5),
@@ -61,23 +61,9 @@ public class CtrScore1 extends SequentialCommandGroup {
         ), 
 
          new L4_Score_AutoLeg1(elevator, coralHold, coralPivot, algaePivot).withTimeout(2.5),
+         new ElevMotionMagicPID(elevator, Constants.Elevator.BOTTOM_HEIGHT).withTimeout(1.5)
 
-         new ParallelCommandGroup(
-          new ElevMotionMagicPID(elevator, Constants.Elevator.PICK_ALGAE_L2_HEIGHT).withTimeout(1),
-
-          new SequentialCommandGroup(
-            new DriveSideways(s_Swerve, false, -4).withTimeout(1.3),
-            new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.25)
-          )
-         ),
-         new ParallelCommandGroup(
-          new AlgaeL2Pickup(elevator, algaeHold, algaePivot),
-
-            new SequentialCommandGroup(
-              new WaitCommand(2.5),
-              new DriveReverse(s_Swerve, true, -12).withTimeout(2)
-            )
-         )
+     
     );
   }
 }

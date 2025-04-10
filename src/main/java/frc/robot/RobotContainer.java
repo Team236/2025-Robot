@@ -24,11 +24,14 @@ import frc.robot.commands.AlgaeHoldCommands.AlgaeRelease;
 import frc.robot.commands.AlgaePivotCommands.ManualAlgaePivot;
 import frc.robot.commands.AlgaePivotCommands.PIDAlgaePivot;
 import frc.robot.commands.AlgaePivotCommands.PIDToElevSafePosition;
+import frc.robot.commands.AutoCommands.Center.CenterNoAlgae;
 import frc.robot.commands.AutoCommands.Center.CtrScore1;
 import frc.robot.commands.AutoCommands.Left.FullRunLeft;
 import frc.robot.commands.AutoCommands.Left.Leg1Left;
+import frc.robot.commands.AutoCommands.Left.Leg1PracticeFieldTest;
 import frc.robot.commands.AutoCommands.Left.Leg1and2Practice;
 import frc.robot.commands.AutoCommands.Left.Leg2Left;
+import frc.robot.commands.AutoCommands.Left.Leg2PracticeField;
 import frc.robot.commands.AutoCommands.Left.Leg3Left;
 import frc.robot.commands.AutoCommands.Left.Legs1and2Left;
 import frc.robot.commands.AutoCommands.Right.FullRunRight;
@@ -173,6 +176,7 @@ public class RobotContainer {
     private final Leg3Left leg3Left = new Leg3Left(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
     private final FullRunLeft fullRunLeft = new FullRunLeft(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
     private final Legs1and2Left legs1and2Left = new Legs1and2Left(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
+    private final Leg1PracticeFieldTest leg1PracticeFieldTest = new Leg1PracticeFieldTest(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
 
     private final Leg1Right leg1Right = new Leg1Right(s_Swerve,  elevator, algaePivot, coralPivot, coralHold);
     private final Leg2Right leg2Right = new Leg2Right(s_Swerve, coralHold, coralPivot, elevator);
@@ -181,6 +185,7 @@ public class RobotContainer {
     private final Legs1and2Right legs1and2Right = new Legs1and2Right(s_Swerve, elevator, algaePivot, coralPivot, coralHold);
 
     private final CtrScore1 ctrScore1 = new CtrScore1(s_Swerve, elevator, algaePivot, algaeHold, coralPivot, coralHold);
+    private final CenterNoAlgae centerNoAlgae = new CenterNoAlgae(s_Swerve, elevator, algaePivot, algaeHold, coralPivot, coralHold);
    // private final DriveWithPath driveWithPathLeg1 = new DriveWithPath(s_Swerve, false);
     
       
@@ -335,6 +340,7 @@ leftPov.onTrue(motionMagicToBottom);
 menu.onTrue(prepForClimb);
 view.onTrue(climbDownSequence);
 
+// rm.onTrue(Constants.Swerve.throttle = 0.2);
 
 //AUX CONTROLLER
 
@@ -475,11 +481,15 @@ lt1.onTrue(algaeHighPickup);
     command =  fullRunLeft;
   } else if (autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && autoSwitch4.get()) {
      command =  legs1and2Left;
+   //  command = leg1PracticeFieldTest;
    // command = leg1and2Practice;
   } else if (autoSwitch1.get() && !autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {
     command = leg1Left;
   } else if (autoSwitch1.get() && autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {
     command = ctrScore1;
+  } 
+  else if (autoSwitch1.get() && autoSwitch2.get() && autoSwitch3.get() && !autoSwitch4.get()) {
+    command = centerNoAlgae;
   } 
  return command;
 }

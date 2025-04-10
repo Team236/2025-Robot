@@ -27,10 +27,11 @@ public class L3_Pt1 extends SequentialCommandGroup {
     new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.5)
      ),
     Commands.parallel( //do in parallel so elevator stays up the whole time
-      new ElevMotionMagicPID(elevator, Constants.Elevator.L3_HEIGHT),
+    new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL3),//.withTimeout(0.9)
       Commands.sequence(
-       new WaitCommand(0.2), //wait for elevator to go up
-        new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_LEVEL3)//.withTimeout(0.9)
+       new WaitCommand(0.1), //wait for elevator to go up
+       new ElevMotionMagicPID(elevator, Constants.Elevator.L3_HEIGHT)
+
         // new CoralRelease(coralHold, Constants.CoralHold.L3_RELEASE_SPEED).withTimeout(0.5),
         // new PIDCoralPivot(coralPivot, Constants.CoralPivot.ENC_REVS_FULL_RETRACT).withTimeout(0.9)
         )
