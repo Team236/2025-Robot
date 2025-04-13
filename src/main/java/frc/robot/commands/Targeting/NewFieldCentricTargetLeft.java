@@ -34,13 +34,18 @@ public class NewFieldCentricTargetLeft extends SequentialCommandGroup {
   /** Creates a new NewFieldCentricTargetLeft. */
   private Swerve s_Swerve;
   private Trajectory exampleTrajectory;
+ // public Trajectory currentTrajectory;
   private SwerveControllerCommand swerveControllerCommand;
+ // public SwerveControllerCommand currentSwerveControllerCommand;
   
   public NewFieldCentricTargetLeft(Swerve s_Swerve) {
     this.s_Swerve = s_Swerve;
+   // this.currentTrajectory = s_Swerve.currentTrajectory;
+   // this.currentSwerveControllerCommand = s_Swerve.currentSwerveControllerCommand;
 
     //SPENCER - try changing this to a method called s_Swerve.setDefaultValues), 
     //and delete the methods in this command - not good to put methods in a command
+    
     //s_Swerve.setDefaultValues();
     this.setDefaultValues();  
 
@@ -48,15 +53,18 @@ public class NewFieldCentricTargetLeft extends SequentialCommandGroup {
 
     //SPENCER - try changing this to a method from s_Swerve, called setupValues
     //and delete the methods in this command, not good to have methods in a command
+    
     //new InstantCommand (s_Swerve::setupValues, s_Swerve),
     new InstantCommand(() -> this.setupValues()), 
 
     //SPENCER - if using the s_Swerve methods for setDefaultValue and setupValues, 
     //then use currentTrajectory below rather than exampleTrajectory
+    //new InstantCommand(() -> s_Swerve.setPose(currentTrajectory.getInitialPose())),
     new InstantCommand(() -> s_Swerve.setPose(exampleTrajectory.getInitialPose())),
 
     //SPENCER - if using the s_Swerve methods for setDefaultValue and setupValues, 
     //then use currentSwerveControllerCommand below 
+    //currentSwerveControllerCommand, 
     swerveControllerCommand, 
 
     //SPENCER -Why not make this an instant command also, using the method resetFldPoseWithTarget from s_Swerve?
