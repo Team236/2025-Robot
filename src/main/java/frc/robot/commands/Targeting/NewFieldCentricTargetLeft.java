@@ -38,13 +38,30 @@ public class NewFieldCentricTargetLeft extends SequentialCommandGroup {
   
   public NewFieldCentricTargetLeft(Swerve s_Swerve) {
     this.s_Swerve = s_Swerve;
-    this.setDefaultValues();
-    addCommands(
-      new InstantCommand(() -> this.setupValues()),
 
-      new InstantCommand(() -> s_Swerve.setPose(exampleTrajectory.getInitialPose())),
-      swerveControllerCommand, //TODO try removing this as last ditch effort to get it to work
-      new ResetFieldPoseWithTarget(s_Swerve)
+    //SPENCER - try changing this to a method called s_Swerve.setDefaultValues), 
+    //and delete the methods in this command - not good to put methods in a command
+    //s_Swerve.setDefaultValues();
+    this.setDefaultValues();  
+
+    addCommands(
+
+    //SPENCER - try changing this to a method from s_Swerve, called setupValues
+    //and delete the methods in this command, not good to have methods in a command
+    //new InstantCommand (s_Swerve::setupValues, s_Swerve),
+    new InstantCommand(() -> this.setupValues()), 
+
+    //SPENCER - if using the s_Swerve methods for setDefaultValue and setupValues, 
+    //then use currentTrajectory below rather than exampleTrajectory
+    new InstantCommand(() -> s_Swerve.setPose(exampleTrajectory.getInitialPose())),
+
+    //SPENCER - if using the s_Swerve methods for setDefaultValue and setupValues, 
+    //then use currentSwerveControllerCommand below 
+    swerveControllerCommand, 
+
+    //SPENCER -Why not make this an instant command also, using the method resetFldPoseWithTarget from s_Swerve?
+    new ResetFieldPoseWithTarget(s_Swerve)
+
     );
   }
 
@@ -153,7 +170,7 @@ public class NewFieldCentricTargetLeft extends SequentialCommandGroup {
                 thetaController,
                 s_Swerve::setModuleStates,
                 s_Swerve);
-
+//SPENCER - REMOVE THE ELSE PART BELOW
               } else {
                 //addCommands(); //TODO  not sure if this is needed? worried code might crash if no target is found ==> no commands are added
               } 
