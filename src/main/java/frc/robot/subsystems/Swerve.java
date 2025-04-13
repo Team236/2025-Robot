@@ -498,7 +498,8 @@ The numbers used below are robot specific, and should be tuned. */
                    ),  
             // End here
             new Pose2d(x2, y2, new Rotation2d((angle2 + Math.PI))), //add 180 because target and robot are facing opposite directions
-            config);
+            config);     
+        currentTrajectory = exampleTrajectory;
             
         var thetaController =
             new ProfiledPIDController(
@@ -515,8 +516,8 @@ The numbers used below are robot specific, and should be tuned. */
                 thetaController,
                 this::setModuleStates,
                 this);
+            currentSwerveControllerCommand = swerveControllerCommand;
 
-        currentTrajectory = exampleTrajectory;
          }
     }
 
