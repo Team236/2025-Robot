@@ -63,13 +63,13 @@ public class NewNewFieldCentricTargetLeft extends SequentialCommandGroup {
     //new InstantCommand(() -> this.setupValues()),//Needs to be command here, or method above ok???
 
     //new InstantCommand(() -> s_Swerve.setPose(exampleTrajectory.getInitialPose())),
-    new InstantCommand(() -> s_Swerve.setPose(currentTrajectory.getInitialPose())),
+    new InstantCommand(() -> s_Swerve.setPose(currentTrajectory.getInitialPose())).withTimeout(1),
 
     //swerveControllerCommand,
-    currentSwerveControllerCommand,  
+    currentSwerveControllerCommand.withTimeout(5),  
 
     //Why not make this an instant command also, using the method resetFldPoseWithTarget from s_Swerve?
-    new ResetFieldPoseWithTarget(s_Swerve)
+    new ResetFieldPoseWithTarget(s_Swerve).withTimeout(1)
 
     );
   }
