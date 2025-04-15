@@ -45,20 +45,18 @@ public class NewFieldCentricTargetLeft extends SequentialCommandGroup {
 
     //SPENCER - try changing this to a method called s_Swerve.setDefaultValues), 
     //and delete the methods in this command - not good to put methods in a command
-    //I'm not even suret the setDefaultValues part is needed at all.  Doesn't seem to do anything.  
-    
+    //Also use method setupValues up top here - should not be in the command sequence
+    //In setDefaultValues, add another waypoint (2 minimum?), and set kPx=kPy=0 so it doesn't move if no target seen.
+    //Delete the methods in the bottom of this command (use those in the Swerve subsystem)
+ 
+    this.setDefaultValues();    
     //s_Swerve.setDefaultValues();
-    this.setDefaultValues();  
-   // s_Swerve.setupValues();
+    //s_Swerve.setupValues();
 
     addCommands(
-
-    //SPENCER - try changing this to a method from s_Swerve, called setupValues
-    //and delete the methods in this command, not good to have methods in a command
-    //or really I think this should just be a method, used before the addCommands, similar to setDefaultValues
-    
-    //new InstantCommand (s_Swerve::setupValues, s_Swerve),
-    new InstantCommand(() -> this.setupValues()), 
+ 
+   
+    new InstantCommand(() -> this.setupValues()), //delete - or  //new InstantCommand (s_Swerve::setupValues, s_Swerve),
 
     //SPENCER - if using the s_Swerve methods for setDefaultValue and setupValues, 
     //then use currentTrajectory below rather than exampleTrajectory

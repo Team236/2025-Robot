@@ -45,22 +45,22 @@ public class NewNewFieldCentricTargetLeft extends SequentialCommandGroup {
     this.currentSwerveControllerCommand = s_Swerve.currentSwerveControllerCommand;
     
 
-    //This setDefautValues is supposed to read the current pose and move to the current pose
-    //But I think you can't just specify one waypoint that is the same as the start and end point
-    //so this could be the problem with this code.
-    //Try instead to find another way not to move here, but to have some pose value
-    //test sample code passing thru 1 waypoint with start and end the same as the waypoint - WORKS?
-    //could try setting kps to 0 in this section???
+    //This setDefautValues puts values into exampleTrajectory and swerveControllerCommand 
+    //(and those same values into currentTrajectory and currentSwerveControllerCommand)
+    //(avoids nulls in the case that a target is not seen)
+    //But it does not call the swerveControllerCommand so nothing should move
+    //I added two waypoints vice one, since I think 2 waypoints are needed
+    //Should try deleting the line below and see if command still works
     s_Swerve.setDefaultValues();
     //this.setDefaultValues();  
-    SmartDashboard.putNumber("pose X after default: ", s_Swerve.getPose().getX());
-    SmartDashboard.putNumber("pose Y after default: ", s_Swerve.getPose().getY());
+   // SmartDashboard.putNumber("pose X after default: ", s_Swerve.getPose().getX());
+   // SmartDashboard.putNumber("pose Y after default: ", s_Swerve.getPose().getY());
+    s_Swerve.setupValues();
 
     addCommands( 
-    //Try a lower wait, also try using setUpValues in the init section as a method (s_Swerve.setupValues())
-    new WaitCommand(0.5),
-    new InstantCommand (s_Swerve::setupValues, s_Swerve),
-    // new InstantCommand(() -> this.setupValues()),//Needs to be command here, or method above ok???
+    //new WaitCommand(0.3),
+    //new InstantCommand (s_Swerve::setupValues, s_Swerve),
+    //new InstantCommand(() -> this.setupValues()),//Needs to be command here, or method above ok???
 
     //new InstantCommand(() -> s_Swerve.setPose(exampleTrajectory.getInitialPose())),
     new InstantCommand(() -> s_Swerve.setPose(currentTrajectory.getInitialPose())),

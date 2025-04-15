@@ -367,7 +367,6 @@ The numbers used below are robot specific, and should be tuned. */
     }
     
     public void setDefaultValues() {  
-    //TEST THIS OUT SEPARATELY - NOT SURE ONE WAY POINT IS VALID,  NOT SURE NO X or Y movement is valid
         boolean reversed = false; 
         Trajectory exampleTrajectory;
 
@@ -377,16 +376,16 @@ The numbers used below are robot specific, and should be tuned. */
                     Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared)
                 .setKinematics(Constants.Swerve.swerveKinematics).setReversed(reversed);
 
-        // An example trajectory to follow.  All units in meters.
+        //This trajecotry is just used to avoid nulls
+        //sets the beginning pose, waypoints and end pose all to the value of the current pose (getPose())
+        //Used 2 waypoints since that may be the minimum number 
         exampleTrajectory =
         TrajectoryGenerator.generateTrajectory(
-            // start at the current pose
             getPose(),
-            // don't move - stay at the current pose x,y
             List.of(
+              getPose().getTranslation(),
               getPose().getTranslation()
                    ),  
-            // End at the current pose
             getPose(),
             config);
             currentTrajectory = exampleTrajectory;
@@ -396,13 +395,16 @@ The numbers used below are robot specific, and should be tuned. */
                 Constants.AutoConstants.kPThetaController, 0, 0, Constants.AutoConstants.kThetaControllerConstraints);
         thetaController.enableContinuousInput(-Math.PI, Math.PI);
 
+        
+        //This command is just used to avoid nulls
+        // But will get called if no target seen, so kpX=kpY=0 so no movement if no target
         SwerveControllerCommand swerveControllerCommand =
         new SwerveControllerCommand(
             exampleTrajectory,
             this::getPose,
             Constants.Swerve.swerveKinematics,
-            new PIDController(Constants.AutoConstants.kPXController, 0, 0),
-            new PIDController(Constants.AutoConstants.kPYController, 0, 0),
+            new PIDController(0, 0, 0),
+            new PIDController(0, 0, 0),
             thetaController,
             this::setModuleStates,
             this);
