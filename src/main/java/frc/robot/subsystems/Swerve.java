@@ -366,10 +366,10 @@ The numbers used below are robot specific, and should be tuned. */
         }
     }
     
-    public void setDefaultValues() {
+    public void setDefaultValues() {  
+    //TEST THIS OUT SEPARATELY - NOT SURE ONE WAY POINT IS VALID,  NOT SURE NO X or Y movement is valid
         boolean reversed = false; 
         Trajectory exampleTrajectory;
-       // SwerveControllerCommand swerveControllerCommand;
 
         TrajectoryConfig config =
             new TrajectoryConfig(
@@ -380,14 +380,14 @@ The numbers used below are robot specific, and should be tuned. */
         // An example trajectory to follow.  All units in meters.
         exampleTrajectory =
         TrajectoryGenerator.generateTrajectory(
-            // Start at the origin facing the +X direction
+            // start at the current pose
             getPose(),
-            // Pass through these interior waypoints
+            // don't move - stay at the current pose x,y
             List.of(
               getPose().getTranslation()
                    ),  
-            // End here
-            getPose(), //add 180 because target and robot are facing opposite directions
+            // End at the current pose
+            getPose(),
             config);
             currentTrajectory = exampleTrajectory;
             
