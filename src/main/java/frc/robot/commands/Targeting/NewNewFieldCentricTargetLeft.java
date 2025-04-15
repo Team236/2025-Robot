@@ -43,8 +43,11 @@ public class NewNewFieldCentricTargetLeft extends SequentialCommandGroup {
     this.currentTrajectory = s_Swerve.currentTrajectory;
     this.currentSwerveControllerCommand = s_Swerve.currentSwerveControllerCommand;
     
-    s_Swerve.setDefaultValues();
+
+    //WHAT DOES setDefaultValues even do?  Can it be deleted?
+   // s_Swerve.setDefaultValues();
     //this.setDefaultValues();  
+
     s_Swerve.setupValues();
 
     addCommands( 
@@ -54,8 +57,8 @@ public class NewNewFieldCentricTargetLeft extends SequentialCommandGroup {
     //new InstantCommand(() -> s_Swerve.setPose(exampleTrajectory.getInitialPose())),
     new InstantCommand(() -> s_Swerve.setPose(currentTrajectory.getInitialPose())),
 
-   //swerveControllerCommand,
-   currentSwerveControllerCommand,  
+    //swerveControllerCommand,
+    currentSwerveControllerCommand,  
 
     //Why not make this an instant command also, using the method resetFldPoseWithTarget from s_Swerve?
     new ResetFieldPoseWithTarget(s_Swerve)
