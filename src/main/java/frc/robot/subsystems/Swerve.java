@@ -583,9 +583,12 @@ The numbers used below are robot specific, and should be tuned. */
     @Override
     public void periodic(){
        swerveOdometry.update(getGyroYaw(), getModulePositions());
-      //TO ADD IN VISION MEASUREMENTS TO ODOMETRY, REPLACE LINE ABOVE WITH THE LINE BELOW
-      //MegaTag2UpdateOdometry(); //method in Swerve subysystem
+      // swerveOdometry.getPoseMeters();
 
+      //TO ADD IN VISION MEASUREMENTS TO ODOMETRY, REPLACE LINE ABOVE WITH THE LINE BELOW (???)
+      //TEST BY USING FIELD CENTRIC TARGETING AND THEN BY WATCHING THE getPoseMeters ON DASHBOARD WHILE DRIVING
+      //MegaTag2UpdateOdometry(); //method in Swerve subysystem
+      //swerveOdometry.getPoseMeters();
 
 
 
