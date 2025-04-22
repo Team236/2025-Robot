@@ -379,17 +379,32 @@ The numbers used below are robot specific, and should be tuned. */
         //This trajecotry is just used to avoid nulls
         //sets the beginning pose, waypoints and end pose all to the value of the current pose (getPose())
         //Used 2 waypoints since that may be the minimum number 
-        exampleTrajectory =
-        TrajectoryGenerator.generateTrajectory(
-            getPose(),
-            List.of(
-              getPose().getTranslation(),
-              getPose().getTranslation()
-                   ),  
-            getPose(),
-            config);
-            currentTrajectory = exampleTrajectory;
-            
+        //BUT I THINK THE WAYPOINTS CANNOT EQUAL THE STARTING POINT!!
+       // exampleTrajectory =
+       // TrajectoryGenerator.generateTrajectory(
+         //   getPose(),
+          //  List.of(
+           //   getPose().getTranslation(),
+            //  getPose().getTranslation()
+             //      ),  
+           // getPose(),
+            //config);
+           // currentTrajectory = exampleTrajectory;
+//Replaced trajectory above with starting at 0,0,0 and moving just 1", 2" then 1" in Y, but with Kp = 0 so shouldn't move.
+            exampleTrajectory =
+            TrajectoryGenerator.generateTrajectory(
+                // Start at the origin facing the +X direction
+                 new Pose2d(0, 0, new Rotation2d((0))),
+                // Pass through these interior waypoints
+                List.of(
+                       new Translation2d((0), (0.025)), 
+                       new Translation2d((0), (0.05))
+                       ),  
+                // End here
+                new Pose2d(0, 0.025, new Rotation2d((0))), 
+                config);     
+                currentTrajectory = exampleTrajectory;
+
         var thetaController =
             new ProfiledPIDController(
                 Constants.AutoConstants.kPThetaController, 0, 0, Constants.AutoConstants.kThetaControllerConstraints);
@@ -524,8 +539,12 @@ The numbers used below are robot specific, and should be tuned. */
     }
 
 /** Updates the field relative position of the robot. */
-//THIS METHOD WAS NOT USED IN 2025 SEASON - FIND OUT HOW TO IMPLEMENT IT
-//USED IN AUTONOMOUS PERIODIC IN LL EXAMPLE CODE swerve-megatag-odometry"
+//THIS METHOD WAS NOT USED IN 2025 SEASON - SHOULD TEST FOR 2026
+//USE IN PERIODIC OF SWERVE SUBSYSTEM TO REPLACE swerveOdometry.update
+//TO ADD IN VISION MEASUREMENTS TO ODOMETRY
+//TEST BY USING FIELD CENTRIC TARGETING AND THEN BY WATCHING getPoseMeters ON DASHBOARD WHILE DRIVING
+//swerveOdometry.update(getGyroYaw(), //DELETE THIS
+//MegaTag2UpdateOdometry(); //method in Swerve subysystem  // ADD THIS
     public void MegaTag2UpdateOdometry() {
         /* Replaced below with m_poseEstimator.update(getGyroYaw(), getModulePositions()); as done in periodic for swerve odometry
         m_poseEstimator.update(
