@@ -27,6 +27,12 @@ public class MetricDriveFwdSideTurn extends SequentialCommandGroup {
     public MetricDriveFwdSideTurn(Swerve s_Swerve, boolean reversed, double fwdDist1, double sideDist1, double turnAngle1, double fwdDist2, double sideDist2, double turnAngle2) {
         //Must pass in current camera pose from LL, and current AprilTag pose from LL (meters, radians)
         //Add or subtract ~6.5 inches from sideDist2 in order to center LL on a branch later in FieldCentricTarget commands
+        System.out.println("x1 : " + fwdDist1);
+        System.out.println("x2 : " + fwdDist2);
+        System.out.println("y1 : " + sideDist1);
+        System.out.println("y2 : " + sideDist2);
+        System.out.println("angle1 : " + turnAngle1);
+        System.out.println("angle2 : " + turnAngle2);
         double deltaFwd = fwdDist2-fwdDist1;
         double deltaSide = sideDist2 - sideDist1;
         double deltaAngle = turnAngle2- turnAngle1;

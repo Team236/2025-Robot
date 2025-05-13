@@ -66,6 +66,7 @@ import frc.robot.commands.Targeting.FieldCentricTargetLeft;
 import frc.robot.commands.Targeting.FieldCentricTargetRight;
 import frc.robot.commands.Targeting.NewFieldCentricTargetLeft;
 import frc.robot.commands.Targeting.NewFieldCentricTargetRight;
+import frc.robot.commands.Targeting.NewNewFieldCentricTargetLeft;
 import frc.robot.commands.Targeting.TargetAllParallel;
 import frc.robot.commands.Targeting.TargetAngle;
 import frc.robot.commands.Targeting.TargetAngleSide;
@@ -132,7 +133,8 @@ public class RobotContainer {
     private final FieldCentricTargetLeft fieldCentricTargetLeft = new FieldCentricTargetLeft(s_Swerve);
     private final FieldCentricTargetRight fieldCentricTargetRight = new FieldCentricTargetRight(s_Swerve);
     private final FieldCentricTargetAlgae fieldCentricTargetAlgae = new FieldCentricTargetAlgae(s_Swerve);
-   // private final NewFieldCentricTargetRight newFieldCentricTargetRight = new NewFieldCentricTargetRight(s_Swerve);
+    private final NewFieldCentricTargetLeft newFieldCentricTargetLeft = new NewFieldCentricTargetLeft(s_Swerve);
+    //private final NewNewFieldCentricTargetLeft newNewFieldCentricTargetLeft = new NewNewFieldCentricTargetLeft(s_Swerve);
   // private final FieldCentricTargetCameraToTag fieldCentricTargetCameraToTag = new FieldCentricTargetCameraToTag(s_Swerve);
    //private final TestAutoSequence testAutoSequence = new TestAutoSequence(s_Swerve);
 
@@ -324,8 +326,10 @@ public class RobotContainer {
 
 //targeting
 x.onTrue(fieldCentricTargetLeft);
-a.onTrue(fieldCentricTargetAlgae);
-b.onTrue(fieldCentricTargetRight);
+//b.onTrue(newNewFieldCentricTargetLeft);
+a.onTrue(newFieldCentricTargetLeft);
+//a.onTrue(fieldCentricTargetAlgae);
+//b.onTrue(fieldCentricTargetRight);
 
 //driving & gyro
 //rb robot centric already binded
@@ -471,26 +475,27 @@ lt1.onTrue(algaeHighPickup);
 
 
   //! means switch is on
-  if (!autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && !autoSwitch4.get()) {
-    command = fullRunRight;
-  } else if (!autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && autoSwitch4.get()) {
-    command = legs1and2Right;
-  } else if (!autoSwitch1.get() && !autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {
-    command = leg1Right; 
-  } else if (autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && !autoSwitch4.get()) {
-    command =  fullRunLeft;
-  } else if (autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && autoSwitch4.get()) {
-     command =  legs1and2Left;
-   //  command = leg1PracticeFieldTest;
-   // command = leg1and2Practice;
-  } else if (autoSwitch1.get() && !autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {
-    command = leg1Left;
-  } else if (autoSwitch1.get() && autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {
-    command = ctrScore1;
-  } 
-  else if (autoSwitch1.get() && autoSwitch2.get() && autoSwitch3.get() && !autoSwitch4.get()) {
-    command = centerNoAlgae;
-  } 
+  // if (!autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && !autoSwitch4.get()) {
+  //   command = fullRunRight;
+  // } else if (!autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && autoSwitch4.get()) {
+  //   command = legs1and2Right;
+  // } else if (!autoSwitch1.get() && !autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {
+  //   command = leg1Right; 
+  // } else if (autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && !autoSwitch4.get()) {
+  //   command =  fullRunLeft;
+  // } else if (autoSwitch1.get() && !autoSwitch2.get() && !autoSwitch3.get() && autoSwitch4.get()) {
+  //   //  command =  legs1and2Left;
+  //   command = leg1PracticeFieldTest;
+  //  // command = leg1and2Practice;
+  // } else if (autoSwitch1.get() && !autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {
+  //   command = leg1Left;
+  // } else if (autoSwitch1.get() && autoSwitch2.get() && autoSwitch3.get() && autoSwitch4.get()) {
+  //   command = ctrScore1;
+  // } 
+  // else if (autoSwitch1.get() && autoSwitch2.get() && autoSwitch3.get() && !autoSwitch4.get()) {
+  //   command = centerNoAlgae;
+  // } 
+  command = leg1PracticeFieldTest;
  return command;
 }
 

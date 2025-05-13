@@ -55,6 +55,8 @@ public class Swerve extends SubsystemBase {
     public SwerveControllerCommand currentSwerveControllerCommand;
     public Trajectory currentTrajectory;
 
+    public double[] driveTargetingValues;
+
     public Swerve() {
         gyro = new Pigeon2(Constants.Swerve.pigeonID, "usb");
         //when calibrated on 3/31/25, gyro mount pose configs quarternion values were:
@@ -68,6 +70,14 @@ public class Swerve extends SubsystemBase {
             new SwerveModule(2, Constants.Swerve.Mod2.constants), //back left
             new SwerveModule(3, Constants.Swerve.Mod3.constants) //back right
         };
+
+        driveTargetingValues = new double[6];
+        driveTargetingValues[0] = 0;
+        driveTargetingValues[1] = 1;
+        driveTargetingValues[2] = 2;
+        driveTargetingValues[3] = 3;
+        driveTargetingValues[4] = 4;
+        driveTargetingValues[5] = 5;
 
         swerveOdometry = new SwerveDriveOdometry(Constants.Swerve.swerveKinematics, getGyroYaw(), getModulePositions());
 
@@ -203,7 +213,9 @@ The numbers used below are robot specific, and should be tuned. */
     }
 
     public void resetFldPoseWithTarget() {
-        setPose(targetPose);
+        if (targetPose != null) {
+            setPose(targetPose);
+        }
     }
 
     public void resetLLPose() {
@@ -376,33 +388,19 @@ The numbers used below are robot specific, and should be tuned. */
                     Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared)
                 .setKinematics(Constants.Swerve.swerveKinematics).setReversed(reversed);
 
-        //This trajecotry is just used to avoid nulls
-        //sets the beginning pose, waypoints and end pose all to the value of the current pose (getPose())
-        //Used 2 waypoints since that may be the minimum number 
-        //BUT I THINK THE WAYPOINTS CANNOT EQUAL THE STARTING POINT!!
-       // exampleTrajectory =
-       // TrajectoryGenerator.generateTrajectory(
-         //   getPose(),
-          //  List.of(
-           //   getPose().getTranslation(),
-            //  getPose().getTranslation()
-             //      ),  
-           // getPose(),
-            //config);
-           // currentTrajectory = exampleTrajectory;
-//Replaced trajectory above with starting at 0,0,0 and moving just 1", 2" then 1" in Y, but with Kp = 0 so shouldn't move.
             exampleTrajectory =
-            TrajectoryGenerator.generateTrajectory(
-                // Start at the origin facing the +X direction
-                 new Pose2d(0, 0, new Rotation2d((0))),
-                // Pass through these interior waypoints
-                List.of(
-                       new Translation2d((0), (0.025)), 
-                       new Translation2d((0), (0.05))
-                       ),  
-                // End here
-                new Pose2d(0, 0.025, new Rotation2d((0))), 
-                config);     
+
+                TrajectoryGenerator.generateTrajectory(
+                    getPose(),
+                    // Pass through these interior waypoints
+                    List.of(
+                      new Translation2d(getPose().getTranslation().getX(), getPose().getTranslation().getY() + 0.001)//,
+                     // new Translation2d(getPose().getTranslation().getX(), getPose().getTranslation().getY() + 0.025)
+                           ),  
+                    // End here
+                    getPose(),
+                    config);
+                    
                 currentTrajectory = exampleTrajectory;
 
         var thetaController =
@@ -418,8 +416,10 @@ The numbers used below are robot specific, and should be tuned. */
             exampleTrajectory,
             this::getPose,
             Constants.Swerve.swerveKinematics,
-            new PIDController(0, 0, 0),
-            new PIDController(0, 0, 0),
+            //new PIDController(0, 0, 0),
+               // new PIDController(0, 0, 0),
+               new PIDController(Constants.AutoConstants.kPXController, 0, 0),
+               new PIDController(Constants.AutoConstants.kPYController, 0, 0),
             thetaController,
             this::setModuleStates,
             this);
@@ -462,16 +462,27 @@ The numbers used below are robot specific, and should be tuned. */
 
       y1 += Constants.Targeting.DIST_TAG_LEFT_BRANCH * Math.cos((angle2)) * 0.0254;
       x1 -= Constants.Targeting.DIST_TAG_LEFT_BRANCH * Math.sin((angle2)) * 0.0254;
+
+    //   y1 *= 0.01;
+    //   x1 *= 0.01;
+
+    //   y2 *= 0.01;
+    //   x2 *= 0.01;
       
      SmartDashboard.putNumber("Target IDDD", targetId);
-      SmartDashboard.putNumber("x1: ", x1 / 0.0254);
-      SmartDashboard.putNumber("y1: ", y1/ 0.0254);
+      SmartDashboard.putNumber("x1: ", x1 / (0.0254));
+      SmartDashboard.putNumber("y1: ", y1/ (0.0254 ));
       SmartDashboard.putNumber("angle1", Units.radiansToDegrees(angle1));
-      SmartDashboard.putNumber("x2: ", x2/ 0.0254);
-      SmartDashboard.putNumber("y2: ", y2/ 0.0254);
+      SmartDashboard.putNumber("x2: ", x2/ (0.0254 ));
+      SmartDashboard.putNumber("y2: ", y2/ (0.0254 ));
       SmartDashboard.putNumber("angle2", Units.radiansToDegrees(angle2));
       
-
+      driveTargetingValues[0] = x1;
+      driveTargetingValues[1] = y1;
+      driveTargetingValues[2] = angle1;
+      driveTargetingValues[3] = x2;
+      driveTargetingValues[4] = y2;
+      driveTargetingValues[5] = angle2;
       // DRIVE SEGMENT
  
         double deltaFwd = x2 - x1;
@@ -525,7 +536,7 @@ The numbers used below are robot specific, and should be tuned. */
 
         SwerveControllerCommand swerveControllerCommand =
             new SwerveControllerCommand(
-                exampleTrajectory,
+                currentTrajectory,
                 this::getPose,
                 Constants.Swerve.swerveKinematics,
                 new PIDController(Constants.AutoConstants.kPXController, 0, 0),
@@ -533,7 +544,8 @@ The numbers used below are robot specific, and should be tuned. */
                 thetaController,
                 this::setModuleStates,
                 this);
-            currentSwerveControllerCommand = swerveControllerCommand;
+        
+        currentSwerveControllerCommand = swerveControllerCommand;
 
          }
     }

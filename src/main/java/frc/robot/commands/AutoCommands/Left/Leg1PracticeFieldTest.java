@@ -58,13 +58,15 @@ public class Leg1PracticeFieldTest extends SequentialCommandGroup {
          // new GetTargetingValues(s_Swerve, "right").withTimeout(0.5),
          //new WaitCommand(1),
           
-        // new NewFieldCentricTargetRight(s_Swerve).withTimeout(1.5),
-          new TargetSideDistance(s_Swerve, 0).withTimeout(0.9),
-         new TargetForwardDistance(s_Swerve, 0).withTimeout(0.9),
+        new NewFieldCentricTargetLeft(s_Swerve).withTimeout(1.5)
+        .andThen(new DriveSideways(s_Swerve, false,-7.25).withTimeout(1.4))
+        .andThen(new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5))
+          // new TargetSideDistance(s_Swerve, 0).withTimeout(0.9),
+        //  new TargetForwardDistance(s_Swerve, 0).withTimeout(0.9),
          // new GetPoseWithLL(s_Swerve).withTimeout(0.3),
-          new DriveSideways(s_Swerve, false, 7.25).withTimeout(1.4),//-4.75//6.5 or 7.25
+          // new DriveSideways(s_Swerve, false,-7.25).withTimeout(1.4),//-4.75//6.5 or 7.25
          // new ResetPoseWithLL(s_Swerve).withTimeout(0.25),
-          new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5)
+          // new EndDriveTrajectoryPID(s_Swerve).withTimeout(0.5)
          )
        );
     
