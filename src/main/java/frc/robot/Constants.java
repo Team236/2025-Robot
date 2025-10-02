@@ -184,7 +184,7 @@ public static final class Swerve {
 
         /* Swerve Profiling Values, Meters per Second*/
         public static final double maxSpeed = 4.5; //TODO: This must be tuned to specific robot
-        public static final double throttle = 0.2;
+        public static final double throttle = 0.1;
         /** Radians per Second */
         public static final double maxAngularVelocity = 10.0; //TODO: This must be tuned to specific robot
 
@@ -289,7 +289,7 @@ public static class AlgaeHold {
   public static final double HOLD_SPEED1 = -0.5;//MUST BE NEGATIVE!
   public static final double HOLD_SPEED2 = -0.04;//MUST BE NEGATIVE!
   public static final double RELEASE_SPEED = 1.0;
-  public static final double PROCESSOR_SPEED = 0.125;
+  public static final double PROCESSOR_SPEED = 1.0; //0.125;
   public static final int DIO_AH_LIMIT = 9;
 }
 

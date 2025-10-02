@@ -24,6 +24,7 @@ import frc.robot.commands.AlgaeHoldCommands.AlgaeRelease;
 import frc.robot.commands.AlgaePivotCommands.ManualAlgaePivot;
 import frc.robot.commands.AlgaePivotCommands.PIDAlgaePivot;
 import frc.robot.commands.AlgaePivotCommands.PIDToElevSafePosition;
+import frc.robot.commands.AutoCommands.DriveFwdAndSideAndTurn;
 import frc.robot.commands.AutoCommands.Center.CenterNoAlgae;
 import frc.robot.commands.AutoCommands.Center.CtrScore1;
 import frc.robot.commands.AutoCommands.Left.FullRunLeft;
@@ -163,7 +164,7 @@ public class RobotContainer {
     //Auto
    // private final DriveFwd driveFwd = new DriveFwd(s_Swerve, false, 10); //9
    //private final TurnOnly turnOnlyNeg90 = new TurnOnly(s_Swerve, false, -90);
-   // private final DriveFwdAndSideAndTurn driveFwdAndSideAndTurn = new DriveFwdAndSideAndTurn(s_Swerve, false, 9, 0, 0);
+   private final DriveFwdAndSideAndTurn driveFwdAndSideAndTurn = new DriveFwdAndSideAndTurn(s_Swerve, false, 200, 100, 45);
     //private final DriveFwd driveFwd9 = new DriveFwd(s_Swerve, false, 9);//
    //private final TurnOnly turnOnly1125 = new TurnOnly(s_Swerve, false, 11.25);
    //private final TurnOnly turnOnly45 = new TurnOnly(s_Swerve, false, 45);
@@ -339,7 +340,7 @@ a.onTrue(newFieldCentricTargetLeft);
 //elevator
 upPov.whileTrue(dangerElevatorUp);
 downPov.whileTrue(dangerElevatorDown);
-leftPov.onTrue(motionMagicToBottom);
+//leftPov.onTrue(motionMagicToBottom);
 //rightPov.onTrue(leg1and2Practice);
 menu.onTrue(prepForClimb);
 view.onTrue(climbDownSequence);
@@ -394,7 +395,7 @@ lt1.onTrue(algaeHighPickup);
 // rb1.onTrue(turnOnly90);
 // lb1.onTrue(turnOnlyNeg90);
 
-//leftPov.whileTrue(driveFwdAndSideAndTurn);
+leftPov.whileTrue(driveFwdAndSideAndTurn);
 
 //rb.whileTrue(targetAllParallel);
 //upPov.whileTrue(targetForwardDistance);

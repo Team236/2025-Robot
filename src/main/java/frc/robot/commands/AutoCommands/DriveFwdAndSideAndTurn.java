@@ -14,6 +14,7 @@ import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
@@ -86,5 +87,10 @@ public class DriveFwdAndSideAndTurn extends SequentialCommandGroup {
             new InstantCommand(() -> s_Swerve.setPose(exampleTrajectory.getInitialPose())),
             swerveControllerCommand
         );
+    }
+
+    public static Command getCommand(Swerve s_Swerve, boolean b, int i, int j, int k) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getCommand'");
     }
 }
